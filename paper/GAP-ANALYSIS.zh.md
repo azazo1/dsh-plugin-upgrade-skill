@@ -1,159 +1,211 @@
-# 顶会投稿实验差距分析与任务分工清单
+# 论文投稿 TODO：先修测量有效性，再补实验
 
-> 日期:2026-09-04。目的:盘点论文(`paper/latex/acl_latex.tex`)已承诺、但 `benchmark/results/` 里尚未完成的实验,拆成可分派的任务卡。
-> 每条任务卡包含:为什么、怎么跑、产出物、验收标准、预算估计。
-> 负责人 / 截止日期列留空,由分工时填写。
+> 更新：2026-09-08；核对仓库 HEAD `72267b6`、论文主稿与截至 09-06 的已提交报告。
+> 本文件替换 09-04 清单，保留旧 T1–T12 编号便于追踪；新增 T13–T18。
+> 完整审稿意见见 [REVIEW-2026-09-08.zh.md](REVIEW-2026-09-08.zh.md)。这里的“完成”仅指能由仓库材料确认的子项，不代表实验已复现。
+> P0 = 支撑所保留主张的必要条件；P1 = 显著增强说服力；P2 = 扩展。未达标时可收缩主张，不能用预期结果填空。
 
-## 总览
+## 已确认的新主实验计划（2026-09-08）
 
-| # | 任务 | 优先级 | 类型 | 预估成本 | 负责人 | 截止 |
-|---|---|---|---|---|---|---|
-| T1 | Generic-skill 对照组 | **P0** | 写 skill + 跑实验 | ~$5(flash)+ 半天人工 | | |
-| T2 | Temporal holdout 正式实验 | **P0** | 跑实验 | ~$10–40 | | |
-| T3 | 补齐现有模型到 3-run | **P0** | 跑实验 | ~$50–300 | | |
-| T4 | 新增 2+ 个跨厂商模型 | **P0** | 跑实验 | 视模型定价 | | |
-| T5 | 任务三维标注(难度/卡片依赖/对抗族) | **P0** | 纯人工 | 0 | | |
-| T6 | Skill activation 分析 | **P1** | 跑现成脚本 | 0(无 API 成本) | | |
-| T7 | with-skill 失败分类 / over-trust 量化 | **P1** | 人工读轨迹 | 0 | | |
-| T8 | H6 地板任务诊断 | **P1** | 调查 | ~$2 | | |
-| T9 | 冻结扩大版 snapshot(52 任务) | **P1** | 跑实验(可与 T3/T4 合并) | 视范围 | | |
-| T10 | 训练 cutoff vs 版本日期对照表 | **P2** | 纯人工 | 0 | | |
-| T11 | Grader 信度人工抽查 | **P2** | 人工读轨迹 | 0 | | |
-| T12 | 论文数字口径统一(23 vs 24) | **P0** | 文字工作 | 0 | | |
+**统一以当前 56 题为目标重新运行：两个配置 × 四条件 × 每格一次，共 448 次。** 稳定性分析在看到正式成绩前选定 K 题，各配置各条件额外补两次，新增 16K 次。主表始终只使用每格第 1 次，重复子集单列；不按成绩选择补跑。
 
-P0 = 不完成就不能投稿;P1 = 审稿人大概率会提;P2 = 防御性加分项。
+具体执行步骤与验收见 [56 题统一重跑计划](../docs/superpowers/plans/2026-09-08-paper-56-task-rerun.md)。旧实验仅作开发/校准/历史记录，不并入新主表；新跑不消除开发暴露，不把 56 题全池称为独立未见测试。正式 56 题快照尚待 QC 后冻结，旧 23 题快照保持不变。
 
----
+RQ1 四条件效用比较为核心；独立事件 holdout 和 clean/trap 为扩展，保留相应结论时必须完成。恢复全部历史原始产物不再是新主实验启动的前置条件，评分有效性和新协议冻结仍是前置条件。
 
-## 统一跑实验规范(所有任务卡共用)
+## benchmark 版本边界与旧实验价值（2026-09-08）
 
-1. **固定 snapshot**:正式实验一律 pin `benchmark/snapshots/2026-09-01-main-23.json`(23 任务),除非该任务卡明确说用别的。禁止用"当前 main"描述实验对象。
-2. **次数与聚合**:每任务每条件 **3 次独立 trial**,取 per-task median(`node benchmark/scripts/summarize-runs.mjs` 汇总,paired 模式)。
-3. **报告落盘**:报告放 `benchmark/results/validation-report-YYYY-MM-DD-<slug>.md`,**必须**包含每轮的 input/cache/output token 总和、summed job duration、成本,以及 per-task 表。缺这些数字的报告不予合并(见 `benchmark/README.md` 的提交规范)。
-4. **协议**:`BENCHMARK-AUTH-v1`;正式条件为 no-network(H21 教训:Windows Docker Desktop 上 Harbor 0.22.0 的 no-network 策略会被拒,**正式跑请在 Linux 主机或可用 nftables 的 Docker 环境**)。
-5. **异常处理**:verifier 无 reward 的 trial 记为异常、不得当 0 分;setup/timeout 异常在报告里保留证据。
-6. **oracle 自检**:改动任何任务或 judge 后先跑 `harbor run -p <task> -a oracle` 确认参考解仍 1.0,并跑 `node benchmark/scripts/validate-execution-contract.mjs`。
+main 保持现有 benchmark 评分规则。新实验使用独立分支 `experiment/main56-v2`，其中评分修复与四条件材料提出 PR，暂不进入 main；逐次审计日志保留本地，分支只提交汇总证据。
 
----
+旧实验保留为原版本下的历史结果、先导实验及可核验的配对对照。报告应注明题池、模型、条件、评分器版本和已知局限；引用混分或异常计零会限制结论，并不使所有运行记录失去价值。不能混合新旧评分成绩，也不能把现有不齐全条件的历史运行当成56题四条件主实验。
 
-## T1 Generic-skill 对照组(P0)
+- [x] 已完成本地评分审计和修复原型，拟在独立 PR 评审；不代表 main 已更新。
+- [ ] 补其余运行题准入及独立语义/合法替代解检查。
+- [ ] 决定是否采用经评审的新评分版本，固定快照和条件后再启动新主实验。
+- [ ] 事件族、实际token、runner隔离预演、K子集与正式冻结尚未完成。尚未启动448次运行。
 
-**为什么**:论文 §5.3 和摘要承诺了三条件(no-skill / generic-skill / distilled-skill),目前 generic 组不存在。没有它,"提分来自框架专属知识"的核心论点堵不住"随便给份流程都有用"的攻击。
+## 本轮落实进度（2026-09-08）
 
-**子任务**:
+- [x] T12/T10：摘要、Introduction、贡献与全文强断言已修改；结果章节改为明确的待验证状态。
+- [x] T12：正文任务数接入历史快照宏；五项正文引用已核实，旧 stub 退出编译但保留备份。
+- [x] T14：建立覆盖 22 份已提交报告的初版证据账本，区分历史候选、开发、校准及不完整结果。
+- [x] T13：建立当前 56 题的初版暴露账本，记录六题明确 skill-feedback 链及 grader 开发证据。
+- [ ] T13/T14 尚未完成：外部原始轨迹恢复、逐轮 hash、事件家族分组及独立 test 认证。
+- [ ] T1/T2/T3/T11/T15 尚未运行：四条件、正式 holdout、重复统计、双臂统一重评、clean/trap。
 
-- T1a 生成 generic skill(半天):
-  - 用一个 LLM 生成 `skills/generic-migration/SKILL.md`:框架无关的插件迁移方法论,**不得出现** dsh 任何版本号、API 名、卡片编号、具体命令;
-  - 人工审一遍确认无 dsh 泄漏;
-  - 论文里可写"对照 skill 由 LLM 在无任何框架资料条件下生成",排除人为削弱质疑;
-  - 全文将进附录 D。
-- T1b 跑实验:`deepseek/deepseek-v4-flash` + terminus-2,23 任务 × 3 次 × generic-skill 条件。预期 ~$5。
-- T1c(可选,看 T1b 结果):在 1 个贵模型上补跑。
+具体证据与边界见 [audit/README.zh.md](audit/README.zh.md)。上面的完成项仅是编辑和初版账本，不代表整张任务卡完成。
 
-**产出物**:`skills/generic-migration/`(入库)、T1b 报告进 `benchmark/results/`。
+## 一、先确定投稿主线
 
-**验收**:能与现有 flash with-skill / no-skill 两行做三方对比;报告数字齐全。
+推荐问题：**在版本迁移中，程序性 skill 相对等信息量文档是否改善修复，以及这种效果在新事件和误导上下文下是否保留？**
 
-## T2 Temporal holdout 正式实验(P0)
+已有价值是社区事件、版本锁定契约、可执行迁移与证据冲突场景的结合。不要继续以“首次配对评估”“执行判分而其他工作只匹配文本”“首次发现负收益”为创新。
 
-**为什么**:§7.1 自称 "strongest evidence",目前只有 H21 的 6 次**有网络** calibration 跑(README 自己声明不算正式成绩)+ H11 只有 snapshot 元数据没有正式 run。
+- [ ] 明确选择“benchmark + 受控实证研究”主线；把 skill 调优当作独立开发阶段。
+- [ ] 若保留“程序优于资料”，完成 T1 的等信息量对照；否则只声称整个 skill 包的边际效用。
+- [ ] 若保留“鲁棒性机制”，完成 T15；只跑带陷阱任务只能支持该子集上的效用。
+- [ ] 若保留“独立泛化”，完成 T13/T2；历史任务经多轮反馈调优后不能恢复为未见测试集。
 
-**怎么做**:
+## 二、最新状态与优先级
 
-1. 选定冻结 commit(建议复用 H21 已用的 `5f7234ba4e00aeaa46c699ea32384389ad38a2a6`,或另选并在论文中固定);
-2. 确定 holdout 任务集:所有"蒸馏自冻结点之后所写卡片"的任务(候选:H11、H21,以及 2026-09-01 snapshot 之后新增的 H13–H22 中符合条件的;需要逐个核对卡片日期,**这一步本身要产出一张 holdout split 表**,论文 §7.1 要用);
-3. 每任务挂 `metadata.skill_snapshot_commit` 指向冻结 commit;
-4. 正式 no-network 环境,≥2 个模型 × 3 次 × (with-frozen-skill / no-skill)。
+| ID | 工作 | 优先级 | 本次核对后的状态 / 关键验收 | 依赖 |
+|---|---|---|---|---|
+| T12 | 主张、数字、参考文献、图表与可复现材料 | P0 | 已修正历史 23 题与五项正文引用；新主实验目标 56 题，待冻结后切换生成表和补完整综述 | 立即启动 |
+| T13 | 开发/测试隔离与调优审计 | P0，新增 | 09-06 报告记载多轮按任务失败修改 checklist，须标记已暴露样本 | 先于新跑 |
+| T11 | Grader 有效性与版本冻结 | P0，由 P2 上调 | S1–S4 语义 pilot 与 R2 已做，独立信度验证未完成 | 先于新跑 |
+| T14 | 配对协议、baseline 与证据账本 | P0，新增 | 不同 scaffold、原生 skill、网络和评分版本不可直接合并 | 先于新跑 |
+| T9 | 正式 snapshot 决策 | P0 冻结 / P2 扩容 | 以当前 56 题为目标完成 QC 并冻结；独立事件资格另行标记 | T13/T11/T14 |
+| T1 | Generic 与等信息量对照 | P0 | 旧 generic 对照不足以隔离程序结构；加入 raw-card/docs | T9 |
+| T2 | Temporal / incident holdout | P0 若保留泛化 | v1 已有 10 clean / 17 mixed / 25 ineligible 审计，须补正式实验和暴露复核 | T13/T14/T9 |
+| T3 | 同配置重复与统计 | P0 | 56 题每格一次；预选 K 题对称补两次，稳定性结果单列 | T9/T14 |
+| T15 | Clean/trap 成对干预 | P0 若保留鲁棒性机制，新增 | 同任务 clean/trap × skill/no-skill，报告交互效应 | T9 |
+| T5 | 事件分组与可观察任务标注 | P0 核心字段 / P1 难度 | 删除“知识不在模型先验”这类不可观察人工标签 | T13 |
+| T7 | 失败与 over-trust | P1；若摘要主张则 P0 | 负 delta 不自动等于过度信任；需要轨迹证据链 | T3 |
+| T6 | 激活与使用 | P1 | auditor 已存在；区分 skill 读取与插件启动 | T14 |
+| T16 | 成本与计算预算匹配 | P1，新增 | input/cache/output 去重，失败成本计入；比较同预算结果 | T3 |
+| T4 | 增加模型/厂商 | P1，由 P0 下调 | 优先 2–3 个完整受控配置，无强制“≥5 模型”门槛 | 核心四条件完成后 |
+| T8 | 地板与 grader 缺陷复核 | P0 缺陷排除 / P1 难度分析 | 从 H6 扩到报告点名的 M5、M11/M12、H8；先查当前是否已修 | T11 |
+| T10 | 时间与污染说明 | P0 收缩断言 / P2 cutoff 表 | 版本晚于公开 cutoff 也不能证明完全未见 | 立即启动 |
+| T17 | 外部生态/项目迁移 | P2；跨生态主张则 P0，新增 | H9/H11/H22 仍属同一框架，不能当跨生态证明 | 核心实验后 |
+| T18 | Skill 机制消融 | P1，新增 | 去程序/去专属事实/去可执行脚本，按主张选择 | T1/T13 |
 
-**产出物**:holdout split 定义表(任务 × 卡片日期 × 冻结 commit)、正式报告。
+## 三、统一实验规范（取代旧“统一补到 3-run”）
 
-**验收**:holdout 保留增益百分比(§7.1 的 [Z%])可以算出来;全部 trial 在正式 no-network 环境完成。
+- [ ] 每个实验保存 benchmark/fixture/grader/skill commit 与内容 hash、任务列表、真实模型标识或其可获得范围、provider、agent 及版本、提示模板、工具、reasoning、采样、时间/token 预算、网络、native catalog、评分 packet 与 rubric。
+- [ ] 同一 task × model × scaffold 内做条件差分；按任务块随机或交错运行条件，隔离目录、记忆、缓存和输出，保存 trial ID。不能用 GLM+Claude Code with-skill 减 DeepSeek+OpenCode baseline 称 skill gain。
+- [ ] 明确是“文档包”还是“文档+脚本工具”干预。脚本造成的工具差异要披露；宣称文档效果时两组工具权限保持一致。
+- [ ] 区分 agent 无互联网检索、模型调用通道、安装阶段、verifier 通道；保存实际隔离证据。允许 npm/GitHub 出网的历史批次不能标成正式无外部资料条件。
+- [ ] 主实验每格一次，共 448 次；正式成绩可见前登记 K 题分层重复子集与选择规则，各配置四条件对称额外补两次。K 与名单依据预演成本在冻结前确定，不按正式成绩增补。主表固定使用第 1 次，子集三次均值和波动单列。
+- [ ] 主效应定义为“每题第 1 次运行的条件配对差，再对任务等权平均”；重复子集三次均值仅作独立稳定性分析，不与单次任务混合加权。旧 median 不并入新主表。
+- [ ] 同一事件/卡片衍生任务按 incident family 聚类；报告原始任务数与独立 family 数。bootstrap 在最高相关层重采样并保留条件配对，不能把所有 trial 当独立任务扩大样本量。
+- [ ] 报告 95% CI、逐任务差分、功能通过率和负收益比例；离散分数/大量 ties 时采用与配对设计相符的随机化检验，Wilcoxon 仅在说明假设后作为补充。子组多重比较预先声明或标为探索性。
+- [ ] agent 在有效预算内未完成是任务失败；setup、verifier 崩溃/API 错误、评分解析失败是基础设施异常。预定重试上限与两臂处理规则，保留失败尝试、覆盖率和缺失敏感性分析，不能静默删掉困难任务。
+- [ ] 区分重评分与重跑：仅 grader 改变且完整产物足够时，对两臂全部用同一新版本重评；fixture、agent 可见材料或工具改变时须重跑。结果只报告严格可比的交集并披露排除表。
+- [ ] 原始轨迹/产物/配置/评分细项与哈希进入持久归档；临时目录或“可私下提供”不作为长期复现路径。缺失字段记 unknown，不能猜测成本或补造 seed。
 
-## T3 补齐现有模型到 3-run(P0)
+## 四、P0 任务卡
 
-**为什么**:§6 承诺 "median over three runs + paired bootstrap CI + Wilcoxon",目前 Luna/Terra 是单 trial,Opus 5 是 15/23 的 interim。
+### T13 开发/测试隔离（新增）
 
-**子任务**:
+**问题**：09-06 three-system 报告按 M6/M7/M8/M9/M10 等失败逐轮修改 checklist。该批次首先是开发证据；“RL-optimized”本身也未交代优化算法。
 
-- T3a Luna(cheap,~$4):23 任务 × 再补 2 次 × 两条件;
-- T3b Terra(~$40):同上;
-- T3c Opus 5(贵,~$200+):把 interim 缺的 8 个任务补全 + 已有任务补足 3/3(注意:interim 报告里 errored attempt 的 token 已消耗,要计入报告);
-- 全部用同一个 snapshot;跑完后更新 `benchmark/README.md` 主表和 per-task delta 表。
+- [ ] 建立 `task/card/incident family → first exposure → skill revision → reason` 账本，覆盖看过 reward、轨迹、oracle、grader 以及据此写入的规则。
+- [ ] 所有参与优化/选择的事件族归入 dev；按事件/插件/知识家族去重分组，不能只按任务 ID 随机切分。
+- [ ] 冻结候选 skill 后，再由未参与调优的维护者准备或审计独立 test；测试反馈不回流，必要修改形成下一 benchmark 版本。
+- [ ] 若无法获得新测试集，降级为 retrospective/open-book case study，不声称独立泛化。
+- [ ] 将手工轨迹驱动修改称为 feedback-guided refinement；若确实使用 RL，补算法、目标、搜索预算、选择规则和训练/验证/测试隔离。
 
-**验收**:每模型每任务每条件 3 个有效 scored trial;Wilcoxon / paired bootstrap 可以算。
+**产出/验收**：暴露账本、分组 split manifest、skill hash、冻结日期、不可用任务及原因表；测试成员资格不依赖成绩。
 
-## T4 新增 2+ 个跨厂商模型(P0)
+### T11 + T8 Grader 测量有效性与基础设施质量
 
-**为什么**:目前实际是 OpenAI 两家变体 + DeepSeek 一家,覆盖面不足以支撑 "across [N] models" 的摘要表述。
+**已有**：S1–S4 semantic report-judge pilot；09-06 R2 四份 oracle 重评满分。R2 只校准 oracle，未重评 Luna，也没有验证独立人工一致率。
 
-**建议候选**(至少选 2,注意每模型的 **native skill catalog 状态**要记录,论文 Limitations 已承诺 per-model 报告):
+- [ ] 将主结果拆为行为/功能正确性、诊断正确性、证据引用/流程合规；卡号和指定表达不能混入核心能力分数。S4 历史 judge 直接按四个卡号计分，是优先处理对象。
+- [ ] 对同一批保留答案做“原分 / 去卡号依赖分 / 语义或执行分”双臂重评，检查 skill delta 是否仍存在；去卡号不能靠简单删分母替代语义判定。
+- [ ] 对全部正式测试任务跑正解、未修改 fixture、错误但能启动的解、不同合法实现；功能修复允许多个正确实现，不以与 oracle 相同为唯一满分条件。
+- [ ] 静态题加入无卡号正确答案、同义改写/中英文、否定坏建议、关键词堆砌、伪造引用、judge-directed injection。人工确认这些测试的预期区间。
+- [ ] 在未用于调 rubric 的真实答案上抽样，建议起点 30–50 份，覆盖任务类型、条件与分数段；两位独立专家尽量盲评，记录仲裁。报告加权一致性、分数误差、功能 pass 的假阳性/假阴性和 CI。
+- [ ] LLM judge 在预选子集重复评分，并用第二裁判或人工复核检测偏好；记录文本中可能暴露条件的引用，不能声称天然完全盲评。
+- [ ] 复核最新报告中的 M5 oracle=0、M11/M12 cap、H8 输出格式/超时问题在当前版本是否仍存在。区分已修缺陷与待复验问题；H6 只有通过 oracle、替代解与人工可解性后才能当难度锚点。
+- [ ] 审计 catch/JSON 解析失败转 0 的路径（例如历史 S4 `tests/test.sh`），使 evaluator error 与 agent failure 分开。
 
-- 一个 Gemini 系(harbor 支持的 agent)
-- 一个 Anthropic 非 Codex 通道 或 Kimi / Qwen 系
-- 每模型:23 任务 × 3 次 × (with-skill / no-skill) 两条件
+**产出/验收**：grader audit 表、独立标注集、版本化 rubric、全套 admission 记录、重评分影响表；禁止仅以“oracle=1”证明判分可靠。
 
-**验收**:主表模型数 ≥5,跨 ≥3 家厂商;每模型附 native-catalog 状态说明。
+### T14 + T9 冻结可比协议与正式快照（新增协议任务）
 
-## T5 任务三维标注(P0,纯人工)
+- [ ] 将已有结果分为正式候选、校准、开发调优、缺失/不可比较四类；每条都列出证据与缺口。
+- [ ] 标明 19/22/23-task 历史批次、42-task 调优报告、52-task holdout 审计库存与当前 56 个 task.toml 的各自版本；不拼成一张“同基准”模型排行。
+- [ ] 清空或禁用 native skills/插件同步并验证 agent 可读文件与初始上下文；不能做到时命名为 no-injected-skill，并单列研究问题。
+- [ ] 在 T13/T11 后冻结一个正式 main manifest；旧 23-task 留作历史复现。新增实验全部引用新 manifest，正式目标为 56 题；旧结果不进入新主表。
+- [ ] 协议预演：少量任务、完整双臂、完整网络审计、oracle 和异常分支。通过后再启动批量实验。
 
-**为什么**:§4.2 承诺 difficulty / card-dependence 两维度,§4.3 承诺 adversarial family;附录 A 现在写着 "remain future work"——Figure 3 和 §7.2 的条件分析完全依赖这张表。
+**产出/验收**：实验 manifest、历史分类账本、环境审计和可复现命令；不能以模型名称相同推定环境相同。
 
-**怎么做**:两人独立标注 23 个任务的三个维度,分歧第三人仲裁:
+### T1 对照组：把“有知识”与“程序组织”分开
 
-- difficulty:easy / medium / hard(参照 oracle 解的改动面与诊断链长度);
-- card-dependence:知识完全在卡片里 / 部分可从先验推得 / 与卡片无关;
-- adversarial family:misleading-comment / pre-existing-failure / stale-artifact / none。
+建议核心四条件：A 无注入；B 通用迁移流程；C 同源 raw cards/docs；D distilled skill。
 
-**产出物**:`benchmark/snapshots/` 或 `benchmark/docs/` 下的标注表(CSV 或 JSON),写清标注规则和仲裁记录。
+- [ ] B 由不读取 dsh 资料的过程产生，保存生成 prompt 与版本；允许合理通用工具命令，禁止专属 API/卡号和答案，不人为削弱流程。
+- [ ] C 与 D 使用同一允许知识集合、引用边界和可检索权限，审核事实覆盖；尽量匹配实际可见 token 预算，报告无法匹配的部分。不能以冗长无关资料堆满 C。
+- [ ] 使用相关性可控的 raw-card 子集或固定检索策略；把“检索质量”与“程序表达”区分。记录哪些材料实际进入上下文。
+- [ ] A→B 估计通用流程收益；B→D 同时包含专属信息和组织差异；C→D 才是等信息量下程序组织效用的关键对照，仍需披露长度/工具差异。
+- [ ] 至少在两个完整受控配置上跑核心四条件；若预算只够双臂，明确缩小论文结论。
 
-**验收**:23 行全填;两人标注一致率写进论文附录。
+**产出/验收**：四组材料/hash、事实覆盖表、长度/读取量表、配对结果与 CI；不把 generic 对照单独当作机制证明。
 
-## T6 Skill activation 分析(P1,零 API 成本)
+### T2 Temporal holdout 正式实验
 
-**为什么**:`benchmark/scripts/audit-skill-activation.mjs` 是现成工具,论文引用了 "provision does not imply use" 却没用上自己的 auditor。这是相对 SkillsBench 最便宜的差异化。
+- [x] 已有 `benchmark/holdouts/temporal-holdout-v1.json` 与人类可读审计，冻结点 `5f7234ba…`，10 clean、17 mixed、25 ineligible。
+- [ ] 将该审计与 T13 的调优暴露账本相交；v1 的 clean 表示冻结 skill 缺少核心知识，不表示研究团队没见过任务。
+- [ ] 区分卡片写入、原始 incident、目标版本发布与任务创建时间；老事件后补卡不等于未来新事件。单独报告 retrospective knowledge holdout 与 prospective incident holdout。
+- [ ] 对 10 个候选复核全部 references/examples/scripts 的语义重叠；路径不存在或 grep 无命中不是完整的防泄漏证据。M4 的通用 semver 规律尤其不能标为模型必然未知。
+- [ ] 若启动扩展，在相同独立测试任务上比较 A no-skill、B generic、D frozen-skill（保持主实验字母含义）；可另加 post-event skill 参照，明确它不属于 held-out 条件。
+- [ ] 扩展默认两个受控配置、每格一次、正式资料隔离；另行冻结重复子集和预算；mixed 只列探索性分析。H11 属 mixed 且另有自己的冻结点，不能直接并入 clean 主表。
+- [ ] 主要报告绝对配对增益与 CI。ID/holdout 难度不同且 ID 增益近零时，“保留 Z% 增益”会失真，只能作为有区间和条件说明的辅助量。
 
-**怎么做**:对所有已有 with-skill trial 目录(`jobs/` 下)批量跑 auditor,产出:每模型激活率(supplied→opened→references accessed 漏斗)、激活与否 × per-task delta 的相关表。写进 §6 或 §7 新小节。
+**验收**：冻结审计 + 暴露审计 + 正式运行 + 配对区间齐全；泛化正负结果均保留。
 
-**验收**:字节确定性输出归档;论文有一小节 + 一张表。
+### T3 重复实验与统计实现
 
-## T7 失败分类 / over-trust 量化(P1,纯人工)
+- [ ] 56 题正式主实验全部新跑，不复用历史 trial；历史兼容性审计仅决定开发/校准记录的可用范围。
+- [ ] 实现统一规范中的主估计量、family 配对 bootstrap、缺失敏感性分析与多重比较处理；现有 `summarize-runs.mjs` 支持 median 配对汇总，不能当作 CI/Wilcoxon 已实现。
+- [ ] 按预演成本确定 K 并在正式运行前固定分层子集；主实验 448 次，稳定性额外 16K 次。单次主实验的 family CI 不能充分反映每题生成随机性，不承诺固定重复数即可显著。
 
-**为什么**:§7.4 和摘要的 "[N] over-trust regressions" 目前是空头支票。
+**验收**：raw trial → 主表/CI/逐任务表可一键生成；冻结统计配置并给出可手算小例验证。
 
-**怎么做**:收集所有 with-skill 条件下 reward < 1 的 trial,按 §7.4 的四类(over-trust / misapplication / procedure-drift / environment-slip)人工分类;现成案例线索:Terra H5(−0.80)、Flash S5/S7/H9 回归、Luna H7(−0.10)。
+### T15 误导上下文成对实验（新增）
 
-**产出物**:分类表 + 每类 1 个代表性案例(写进 Table 5 和正文)。
+- [ ] 为预定陷阱题制作 clean/trap 两版本，保留同一修复目标、API 与评分规则；仅移除/替换误导线索，并验证两版任务都成立。
+- [ ] 完整运行 skill/no-skill × clean/trap；关键量为 `(D_trap − A_trap) − (D_clean − A_clean)`，按基础任务/事件聚类估计 CI。
+- [ ] 分开报告误导评论、无关既有失败、陈旧产物；如果 clean 变体无法只改变线索，披露额外改变并作为探索性实验。
+- [ ] 人工标注是否识别冲突、是否检查运行证据、是否采取错误修改，不用卡号命中代替“抵抗误导”。
 
-## T8 H6 地板任务诊断(P1)
+**验收**：成对 fixture diff、等价性检查、四格结果、交互效应及轨迹证据；只有陷阱子集提分不能宣称特有鲁棒性。
 
-**为什么**:H6-remote-error-trap 在所有模型所有条件下都是 0 或 0.25,可能是任务本身标定有问题,也可能是真难——两种情况论文写法完全不同。
+### T5 + T10 + T12 标注、主张与论文收口
 
-**怎么做**:人工走一遍 H6,确认 oracle 1.0 仍然成立、judge 的 checkpoint 是否过严、instruction 是否缺失关键信息;要么修任务(修完跑 oracle + 一次 agent 校准),要么在论文里作为 "nobody passes" 的难度锚点明确解释。
+- [ ] task → incident URL/commit → card/recipe → reproduction → license/consent 状态完整映射；无独立事件证据的任务标为 synthetic/derived，不能宣称全部为已验证社区事故。
+- [ ] 任务标注包含 incident family、plugin、version pair、interaction mode、grader 类型、知识是否出现在允许资料、fixture 可推导性、trap 类型及独立性状态；两人独立标注，分歧仲裁。
+- [ ] 用 no-skill 实测表现描述 baseline competence；不按人类猜测“模型知道什么”解释增益。难度依据修复面/证据链，避免看成绩后贴标签再证明单调关系。
+- [ ] 移除 “guaranteed absent from priors / any gain attributable to skill / exactly transfer of methodology”等过强归因；公开 cutoff 只作可核验背景信息，未知就记未知。
+- [x] 历史正文已修正为 23 题、8S/5M/10H，interaction mode 为 10 static/13 hands-on。
+- [ ] 新主实验冻结后将摘要、贡献、主任务表与结果统一为 56 题（17S/14M/25H）；交互类型从 registry 另行生成，旧 23 题表移到历史说明。
+- [ ] 将“hands-on 只按 Host 信号”改为与真实评分组成一致；功能分与诊断/元数据分分开报告。
+- [ ] Related Work 逐项核实并固定引用版本，删除无法找到的 stub；比较范围、知识来源、控制条件、污染隔离、执行验证、误导上下文与独立测试，避免无根据的 only/first/none。
+- [ ] 把目前 Results/Analysis 中预写的正向、单调、机制结论恢复成问题/待检验假设，最终依据实验重写摘要与 Discussion。
+- [ ] 三张主图建议为：构建及 split；逐任务/事件 skill delta+CI；clean/trap 交互与 holdout。pipeline 和 teaser 合并，避免占两张图重复同一信息。
+- [ ] 主表优先给四条件效果、功能 pass、有效覆盖数和成本；完整 task×model 矩阵放附录。完成 rubric、raw data、generic 全文、贡献和复现附录。
+- [ ] 检查匿名稿实际 PDF、社区链接/作者信息策略、源码许可与知情同意记录；LaTeX 编译与交叉引用检查通过，不用猜测性承诺替代材料。
 
-## T9 冻结扩大版 snapshot(P1)
+## 五、P1/P2 扩展任务
 
-**为什么**:23 任务偏小(Limitations 已认);living benchmark 已 52 个。把更多已稳定任务冻结进新 snapshot,边际成本低于造新任务。
+### T6 / T7 使用行为与失败机制
 
-**怎么做**:从 52 个里筛掉有已知问题/依赖特殊环境的,形成 ~40+ 列表 → 按 `benchmark/snapshots/README.md` 流程建新 snapshot → 后续 T3/T4 的新跑直接挂新 snapshot,避免重复花钱。**T9 应尽早做,让 T3/T4 一次跑够。**
+- [ ] T6 批量归档 auditor：supplied → opened → references accessed，另报 trace 可观测覆盖；插件 activation 不等于 skill activation。
+- [ ] 主分析纳入所有分配到 skill 的 trial；只分析打开者有选择偏差，关联不能写为因果。要识别使用机制，可追加随机 forced-open 干预并说明提示变化。
+- [ ] T7 分类包括普通能力失败、环境异常、误用、流程偏离与 over-trust，允许 unknown/multiple；区分所有 skill failures 与相对 baseline 的 regressions。
+- [ ] over-trust 须有“读到某规则→遇到反证→仍按规则行动→产生错误”的证据。双人盲标并给分母、一致率和匿名片段。
 
-## T10 训练 cutoff vs 版本日期表(P2,纯人工)
+### T16 成本与预算
 
-**为什么**:论文核心前提 "target postdates any model's training data" 需要 per-model 证据表:每个被测模型的知识截止日 vs dsh v0.1.1→v0.1.2-alpha.x 各版本发布日期。一张表,附录用。
+- [ ] 报告 uncached input、cached input、output；cache 已含于 input 时不重复求和。报告 agent/verifier 耗时与并行墙钟的区别、全部异常尝试成本。
+- [ ] 比较同时间或 token 上限下的通过率及 cost-success 曲线；解释完整 skill 包多花推理预算是否足以解释收益。
+- [ ] 成本按试运行实测和明确价格日期估算；登录订阅场景无可核验账单则记 unavailable，不沿用旧清单未经验证的美元预算。
 
-## T11 Grader 信度抽查(P2,纯人工)
+### T4 / T17 / T18 扩展
 
-**为什么**:全自动 judge 是卖点也是靶子。抽 ~30 条不同分数段的 trial 轨迹,人工独立打分后与 judge 分数算一致率,写一小节(或附录)。
+- [ ] T4 优先补齐已有 2–3 配置的四条件与重复，再加厂商；共同 scaffold 不可用时报告 system-level 结果，不能声称控制了 scaffold。
+- [ ] T17 新增一个独立框架的版本迁移小集或未参与蒸馏的真实项目族，并使用同一构建/评分规范；做不到就保留单生态限制。
+- [ ] T18 按需对 D 去掉 evidence-first 程序、专属事实或可执行脚本；保持其余信息与预算尽量相同。原始 skill vs 优化 skill 必须在独立 test 比较，不能用调优集进步声称方法有效。
 
-## T12 论文数字口径统一(P0,文字工作)
+## 六、执行顺序、预算与停止规则
 
-摘要说 24 任务、§4.2 说 8S/5M/11H(=24)、snapshot 是 23。投稿前定死一个数并全文一致(generated metadata 已经是 23,改文字即可,别反着改)。
+1. **先整理证据**：T12/T10 收缩主张；T13 暴露账本；T11/T8 grader 审计；T14 历史结果分类。尚未通过这一步不批量补模型。
+2. **再冻结实验**：T9 manifest；T1 四条件；T5 分组；T2 与 T15 的测试设计；锁定估计量、排除/重试规则和预算。
+3. **核心运行**：两个完整配置的 56 题四条件单次主实验，以及预选子集重复；holdout 和 clean/trap 另计预算，未完成则不保留对应实证主张。先小规模预演，再全量。
+4. **分析写作**：T3 统计、T6/T7 轨迹、T16 成本；补图表与真实引用；按实际证据决定是否追加 T4/T17/T18。
 
----
+预算：主实验 `56 × 2 配置 × 4 条件 × 1 次 = 448` trials；预选 K 题额外两次为 `16K`，总计 `448 + 16K`。可选 N 题 holdout 三条件单次为 `6N`；K_trap 个 clean/trap 对、两个配置双臂单次为 `8K_trap`，可复用完全同协议的已运行格并披露。另计预演、oracle、人审、裁判和异常重试成本；扩展预算不计入 448。
 
-## 建议执行顺序
-
-1. **本周**:T12(半小时)、T5 启动、T9 决策(决定 T3/T4 跑哪个 snapshot)、T1a
-2. **下周起并行**:T1b(最便宜,先跑)、T6(零成本)、T2 的 holdout split 表
-3. **预算到位后**:T3、T4(挂 T9 的新 snapshot)
-4. **分析阶段**:T7、T8、T10、T11
-5. 全部数字齐了 → 填论文 `[N]`/`[X]` 占位符 → 补 Figure 1–3、Table 1–5
+**投稿门禁**：核心测量无已知系统偏差；测试未受调优反馈污染或明确降级主张；所有比较同条件同评分版本；有区间、负结果与成本；数据/代码/引用可核查。不以达到某个正向 delta、显著 p 值或固定模型数量为门禁。

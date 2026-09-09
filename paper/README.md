@@ -1,15 +1,19 @@
 # Do Migration Skills Actually Help? A Community-Grounded Benchmark for Skill-Guided Framework Migration
 
+Review and experiment planning (Chinese): [review](REVIEW-2026-09-08.zh.md) · [paper TODO](GAP-ANALYSIS.zh.md), updated 2026-09-08.
+
 [中文说明](README.zh.md)
 
-This directory holds the technical report on the effectiveness of the dsh plugin-upgrade skills. The report studies whether skills---procedural-knowledge documents loaded at inference time---actually help in framework migration: we build a paired-evaluation benchmark from 24 community-reported, verified plugin-migration failures in the dsh plugin ecosystem, and measure the distribution of skill gains, robustness to misleading context, temporal-holdout generalization, and over-trust failure modes.
+This work-in-progress paper now plans a fresh **56-task × two-configuration × four-condition × one-trial evaluation (448 runs)**; see the [execution plan](../docs/superpowers/plans/2026-09-08-paper-56-task-rerun.md). A subset of K tasks will be fixed before formal outcomes are seen and receive two additional trials in every cell (16K extra runs), reported separately for stability. Generated tables still describe the **23-task historical snapshot** until the new 56-task inventory passes quality control and is frozen. Historical scores will not enter the new main table, and the full pool is not claimed to be independently unseen. Empirical conclusions remain pending.
+
+The [experiment and exposure audit](audit/README.zh.md) covers 22 submitted reports and 56 current task definitions. Neither inventory count establishes the size of an independent test set.
 
 ## Directory structure
 
 - `latex/` — LaTeX source of the report
   - `acl_latex.tex` — main file (title, authors, abstract, full section skeleton; based on the latest official template)
   - `acl.sty` / `acl_natbib.bst` — official ACL style (acl-org/acl-style-files master, 2026-06)
-  - `custom.bib` — bibliography (contains stub entries to be verified; see TODOs in the file)
+  - `custom.bib` — bibliography (five versioned arXiv records checked; broader literature review remains pending)
   - `formatting.md` — official formatting guidelines
   - `acl_lualatex.tex` — XeLaTeX / LuaLaTeX template (unused)
 - `word/`, `archive/` — official Word template and legacy templates (unused, kept as shipped with the style package)
@@ -21,15 +25,15 @@ cd latex
 pdflatex acl_latex && bibtex acl_latex && pdflatex acl_latex && pdflatex acl_latex
 ```
 
-Or upload the `latex/` directory to [Overleaf](https://www.overleaf.com/). The document currently uses `review` mode (with line numbers).
+For [Overleaf](https://www.overleaf.com/), upload `latex/` and `generated/` together, preserve their relative paths, and select `latex/acl_latex.tex` as the main document. The document currently uses `review` mode (with line numbers).
 
-## Generated benchmark metadata
+## Historical generated benchmark metadata
 
-The benchmark task metadata used by the paper is **generated, never hand-written**:
+The existing historical task metadata is **generated, never hand-written**. Switching the main table to the planned 56-task snapshot is a freeze-stage task; the old snapshot stays immutable:
 
 - **Source of truth**: one frozen evaluation snapshot, `benchmark/snapshots/2026-09-01-main-23.json` (currently 23 tasks, 3 runs per task, `per-task-median` aggregation, 2 conditions).
 - The generator (`paper/scripts/generate-benchmark-table.mjs`) reads every task row, registry Type (`Static` / `Hands-on`), and description from **git objects at the snapshot's pinned benchmark commit** — never from the current checkout. Tasks added to the living benchmark after the pinned commit do not change the paper metadata of this experiment.
-- The living benchmark (43+ tasks on `main`) is **not** the paper's evaluation set. Paper experiments are always pinned to an explicit snapshot; there is no "latest snapshot" behavior.
+- The living benchmark is **not** the paper's evaluation set. Paper experiments are always pinned to an explicit snapshot; there is no "latest snapshot" behavior.
 
 Generated files (committed, do not edit by hand):
 
@@ -47,13 +51,15 @@ npm run check:paper-benchmark   # CI gate: fails if the committed files drift
 
 ## Writing status
 
-- [x] Title / authors / abstract
-- [x] Section skeleton (§1–§8 + Limitations + Ethics + appendices)
-- [x] Introduction draft (community-grounded, four paragraphs)
-- [ ] Fill in experimental numbers (`[N]` / `[X]` placeholders in the text; search `% TODO`)
-- [ ] Replace Figure 1–3 and Table 1–5 placeholders with final figures/tables
-- [ ] Verify and replace stub entries in `custom.bib`
-- [ ] Draft §3–§5 and §6–§7
+- [x] Rewrite abstract, introduction and contributions around three research questions.
+- [x] Replace unsupported positive findings with explicit evidence status and planned analyses.
+- [x] Use generated frozen task counts; distinguish prefixes from interaction modes.
+- [x] Create report and development-exposure ledgers (initial audit, not a certified split).
+- [x] Replace five active bibliography stubs with checked records; preserve old leads in `audit/`.
+- [ ] Archive available historical artifacts; complete new protocol hashes, incident grouping and provenance.
+- [ ] Validate graders independently and regrade both conditions consistently.
+- [ ] Freeze and run the 56-task single-trial four-condition study and preselected stability repeats; holdout and clean/trap are extensions.
+- [ ] Complete remaining figures, measured results, appendices, and full related-work review.
 
 ## Related resources
 
