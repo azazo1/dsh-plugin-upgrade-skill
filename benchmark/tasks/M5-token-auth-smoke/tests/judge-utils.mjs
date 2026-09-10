@@ -237,7 +237,7 @@ if (match) {
     const r1 = await fetch(match[1], { redirect: "manual" });
     const setCookie = r1.headers.getSetCookie ? r1.headers.getSetCookie() : [r1.headers.get("set-cookie")];
     const cookie = setCookie.filter(Boolean).map((c) => c.split(";")[0]).join("; ");
-    const r2 = await fetch("http://127.0.0.1:3080/", { headers: { cookie } });
+    const r2 = await fetch(new URL(match[1]).origin + "/", { headers: { cookie } });
     outcome.html = await r2.text();
   } catch (error) {
     outcome.fetchError = String(error);

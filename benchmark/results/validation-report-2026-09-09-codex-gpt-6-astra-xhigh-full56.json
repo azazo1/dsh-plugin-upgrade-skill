@@ -1,0 +1,1315 @@
+{
+  "benchmark_commit": "72267b6f83670d74965752aac525a989a5a0a1c0",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "codex_version": "0.153.4",
+  "harbor_version": "0.22.0",
+  "condition": "with-skill",
+  "composition": "Retained initial 18 + new remaining 38; 56 unique single-attempt tasks, not a fresh rerun of all 56.",
+  "summary": {
+    "score": 43.02,
+    "input_tokens": 89816858,
+    "cached_input_tokens": 85071488,
+    "output_tokens": 770371,
+    "reasoning_output_tokens": 172119,
+    "agent_execution_seconds": 32626.882939,
+    "trial_seconds": 34034.995265,
+    "process_seconds": 32116.811145757063,
+    "estimated_standard_api_usd": 171.043738,
+    "valid_scored_tasks": 55,
+    "judge_error_tasks": [
+      "H8-fire-drill"
+    ],
+    "valid_mean_score": 0.7821818181818182,
+    "completed": 56,
+    "planned": 56,
+    "mean_score": 0.7682142857142857,
+    "perfect_tasks": 32
+  },
+  "rounds": {
+    "initial18": {
+      "attempts": 18,
+      "scored_tasks": 18,
+      "score_sum": 15.4,
+      "all_attempts_input_tokens": 19624263,
+      "all_attempts_input_tokens_known_records": 18,
+      "all_attempts_cached_input_tokens": 18362368,
+      "all_attempts_cached_input_tokens_known_records": 18,
+      "all_attempts_output_tokens": 189414,
+      "all_attempts_output_tokens_known_records": 18,
+      "all_attempts_reasoning_output_tokens": 40623,
+      "all_attempts_reasoning_output_tokens_known_records": 18,
+      "all_attempts_estimated_standard_api_usd": 40.45201799999999,
+      "all_attempts_estimated_standard_api_usd_known_records": 18,
+      "all_attempts_agent_execution_seconds": 7065.754628999998,
+      "all_attempts_agent_execution_seconds_known_records": 18,
+      "all_attempts_trial_seconds": 7319.282091,
+      "all_attempts_trial_seconds_known_records": 18,
+      "all_attempts_process_seconds": 7356.735463084973,
+      "all_attempts_process_seconds_known_records": 18,
+      "all_attempts_attempt_seconds_including_warm": 8092.654495502997,
+      "all_attempts_attempt_seconds_including_warm_known_records": 18,
+      "all_attempts_warm_wait_seconds": 727.9134087069251,
+      "all_attempts_warm_wait_seconds_known_records": 18
+    },
+    "remaining38": {
+      "attempts": 38,
+      "scored_tasks": 38,
+      "score_sum": 27.62,
+      "all_attempts_input_tokens": 70192595,
+      "all_attempts_input_tokens_known_records": 38,
+      "all_attempts_cached_input_tokens": 66709120,
+      "all_attempts_cached_input_tokens_known_records": 38,
+      "all_attempts_output_tokens": 580957,
+      "all_attempts_output_tokens_known_records": 38,
+      "all_attempts_reasoning_output_tokens": 131496,
+      "all_attempts_reasoning_output_tokens_known_records": 38,
+      "all_attempts_estimated_standard_api_usd": 130.59172,
+      "all_attempts_estimated_standard_api_usd_known_records": 38,
+      "all_attempts_agent_execution_seconds": 25561.12831,
+      "all_attempts_agent_execution_seconds_known_records": 38,
+      "all_attempts_trial_seconds": 26715.713174,
+      "all_attempts_trial_seconds_known_records": 38,
+      "all_attempts_process_seconds": 24760.07568267209,
+      "all_attempts_process_seconds_known_records": 38,
+      "all_attempts_attempt_seconds_including_warm": 28337.46018037293,
+      "all_attempts_attempt_seconds_including_warm_known_records": 38,
+      "all_attempts_warm_wait_seconds": 2268.434776334034,
+      "all_attempts_warm_wait_seconds_known_records": 38
+    }
+  },
+  "timing": {
+    "finalized_at": "2026-09-09T05:56:36.447513+00:00",
+    "last_trial_finished_at": "2026-09-09T05:55:24.962744Z",
+    "continuation_wall_seconds": 16623.6631,
+    "sum_round_wall_seconds": 21547.100982000004,
+    "verified_frozen_task_files": 2169,
+    "new_selected_tasks": 38,
+    "total_selected_tasks": 56,
+    "continuation_model_attempts": 38,
+    "all_rounds_model_seconds": 32626.882939,
+    "all_rounds_api_equivalent_usd": 171.043738
+  },
+  "rows": [
+    {
+      "task": "S1-static-scan",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 544145,
+      "cached_input_tokens": 464768,
+      "output_tokens": 10956,
+      "reasoning_output_tokens": 1364,
+      "agent_execution_seconds": 369.211475,
+      "trial_seconds": 378.656236,
+      "process_seconds": 380.8753976660082,
+      "estimated_standard_api_usd": 1.806338,
+      "source_result_sha256": "99c0c29899005a8b52c6b0a59c15824480e08693584404207dc1b66da74f440f",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S2-negative-scan",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 617937,
+      "cached_input_tokens": 535168,
+      "output_tokens": 10266,
+      "reasoning_output_tokens": 1532,
+      "agent_execution_seconds": 359.869414,
+      "trial_seconds": 370.089648,
+      "process_seconds": 372.0406952080084,
+      "estimated_standard_api_usd": 1.876158,
+      "source_result_sha256": "e40978a4545db493ad82e5ff676979d6ad37ecd55b149a99afd5c78e15922000",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S3-snapshot-migration",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 929725,
+      "cached_input_tokens": 829696,
+      "output_tokens": 14186,
+      "reasoning_output_tokens": 2809,
+      "agent_execution_seconds": 479.264352,
+      "trial_seconds": 492.896011,
+      "process_seconds": 494.4207313749939,
+      "estimated_standard_api_usd": 2.5392859999999997,
+      "source_result_sha256": "99fe11bc0fcc9188883f6141c20d761aac98ddad47cfe7f72cba605e401738d2",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S4-legacy-client-imports",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 103603,
+      "cached_input_tokens": 88832,
+      "output_tokens": 4365,
+      "reasoning_output_tokens": 1349,
+      "agent_execution_seconds": 175.469286,
+      "trial_seconds": 188.51383,
+      "process_seconds": 191.8935435419844,
+      "estimated_standard_api_usd": 0.454792,
+      "source_result_sha256": "4675911a1eaabf2c9c72be3469d31ae0f1b11a2f329a9ef42f2b868d7c2a7abd",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S5-negative-naming",
+      "round": "initial18",
+      "score": 0.75,
+      "input_tokens": 97629,
+      "cached_input_tokens": 76672,
+      "output_tokens": 4166,
+      "reasoning_output_tokens": 879,
+      "agent_execution_seconds": 162.79792,
+      "trial_seconds": 176.105084,
+      "process_seconds": 179.05421112498152,
+      "estimated_standard_api_usd": 0.494542,
+      "source_result_sha256": "bacdf97108379f6fe9208b074a15458654b2ca56b2961c792e6d7a2f8a1d4c99",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "round": "initial18",
+      "score": 0.5,
+      "input_tokens": 96843,
+      "cached_input_tokens": 65664,
+      "output_tokens": 3767,
+      "reasoning_output_tokens": 1423,
+      "agent_execution_seconds": 146.651816,
+      "trial_seconds": 158.62615,
+      "process_seconds": 161.018522458995,
+      "estimated_standard_api_usd": 0.565804,
+      "source_result_sha256": "00ab8116474eca60e2da7f23f729c52cf4c0b9d8e610ce382e5aa7ee51c773fd",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "round": "initial18",
+      "score": 0.25,
+      "input_tokens": 143257,
+      "cached_input_tokens": 101504,
+      "output_tokens": 7782,
+      "reasoning_output_tokens": 2030,
+      "agent_execution_seconds": 287.021094,
+      "trial_seconds": 298.535906,
+      "process_seconds": 300.6821992089972,
+      "estimated_standard_api_usd": 0.9081339999999999,
+      "source_result_sha256": "34a92714a2e11f01135bb7bc9055a109781c7bf4f7fd8a2324a20aa5a09bfc2f",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 173922,
+      "cached_input_tokens": 119040,
+      "output_tokens": 5116,
+      "reasoning_output_tokens": 994,
+      "agent_execution_seconds": 209.49717,
+      "trial_seconds": 220.968462,
+      "process_seconds": 222.89899045799393,
+      "estimated_standard_api_usd": 0.92366,
+      "source_result_sha256": "271342cd3eb08c1b59f3bdc82e931e5d80467f195f8dd6f706aa5519a51177a1",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S9-composer-coordinate-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 137511,
+      "cached_input_tokens": 108544,
+      "output_tokens": 6890,
+      "reasoning_output_tokens": 1619,
+      "agent_execution_seconds": 269.306802,
+      "trial_seconds": 279.976675,
+      "process_seconds": 281.74413183299475,
+      "estimated_standard_api_usd": 0.7427139999999999,
+      "source_result_sha256": "1c6a37057cda05467a1562c2f9f09bb66df9b13d5d4fcb3445407b862b607159",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S10-paste-rename-and-version-chip",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 162133,
+      "cached_input_tokens": 114048,
+      "output_tokens": 7103,
+      "reasoning_output_tokens": 1936,
+      "agent_execution_seconds": 285.177588,
+      "trial_seconds": 295.055381,
+      "process_seconds": 296.3420951250009,
+      "estimated_standard_api_usd": 0.950048,
+      "source_result_sha256": "f70769c6fb572deb3f16f2bfed56fea9f1246dd34248e216ae68d6ad315b8ed3",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S11-mermaid-lazyload-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 180928,
+      "cached_input_tokens": 147840,
+      "output_tokens": 9150,
+      "reasoning_output_tokens": 2169,
+      "agent_execution_seconds": 345.644433,
+      "trial_seconds": 356.055658,
+      "process_seconds": 357.3557417920092,
+      "estimated_standard_api_usd": 0.93622,
+      "source_result_sha256": "7a24df3e393c59f15c2a3ab986c7afbcc377d716c17c237be781ebda6fb19dbd",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S12-global-upgrade-ebusy-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 186879,
+      "cached_input_tokens": 149504,
+      "output_tokens": 4916,
+      "reasoning_output_tokens": 969,
+      "agent_execution_seconds": 206.980829,
+      "trial_seconds": 216.349701,
+      "process_seconds": 217.65633591698133,
+      "estimated_standard_api_usd": 0.769054,
+      "source_result_sha256": "824a04ac1a92b4a3105e8f93f23f702791299e09e18b1533cefb2ac46505ede3",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S13-peer-range-vs-runtime",
+      "round": "remaining38",
+      "score": 0.6,
+      "input_tokens": 246147,
+      "cached_input_tokens": 213888,
+      "output_tokens": 5432,
+      "reasoning_output_tokens": 1053,
+      "agent_execution_seconds": 212.158414,
+      "trial_seconds": 221.547809,
+      "process_seconds": 222.81240462500136,
+      "estimated_standard_api_usd": 0.808078,
+      "source_result_sha256": "1dc7d23ec656e10f23a824e2d4027194e9e546cc990f500ec947578bbad39ebd",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S14-link-install-lock-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 250584,
+      "cached_input_tokens": 223104,
+      "output_tokens": 7183,
+      "reasoning_output_tokens": 982,
+      "agent_execution_seconds": 268.793727,
+      "trial_seconds": 280.109081,
+      "process_seconds": 281.40951770800166,
+      "estimated_standard_api_usd": 0.8570540000000001,
+      "source_result_sha256": "04aecda56729b72753ce21fa41c4851ea83a3a0e9e9e511142d194d4a002d206",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S15-slot-error-boundary-crash",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 135383,
+      "cached_input_tokens": 114432,
+      "output_tokens": 5998,
+      "reasoning_output_tokens": 1305,
+      "agent_execution_seconds": 237.942586,
+      "trial_seconds": 247.035658,
+      "process_seconds": 248.9581811670214,
+      "estimated_standard_api_usd": 0.623842,
+      "source_result_sha256": "519a02bbc6daa16f46fc5ffa933e2c625e90eb39e43449331be1f02abbae6a30",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S16-self-host-upgrade-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 221779,
+      "cached_input_tokens": 193536,
+      "output_tokens": 5289,
+      "reasoning_output_tokens": 722,
+      "agent_execution_seconds": 203.425836,
+      "trial_seconds": 212.90835,
+      "process_seconds": 214.1563529589912,
+      "estimated_standard_api_usd": 0.7404160000000001,
+      "source_result_sha256": "9958c81e3649226fd92da1f885e08e6010998bcefee145b867a4f0c32829ac46",
+      "grading_status": "scored"
+    },
+    {
+      "task": "S17-external-ui-plugin-onboarding-trap",
+      "round": "remaining38",
+      "score": 0.2,
+      "input_tokens": 238295,
+      "cached_input_tokens": 201728,
+      "output_tokens": 9070,
+      "reasoning_output_tokens": 2301,
+      "agent_execution_seconds": 344.823851,
+      "trial_seconds": 358.416481,
+      "process_seconds": 360.419504999998,
+      "estimated_standard_api_usd": 1.020898,
+      "source_result_sha256": "f57311c4f1036a7fcdd5b2827ad44ca9f644aa5f7e13ad6ea705d390ad94ea7d",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M1-host-migration",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 1321084,
+      "cached_input_tokens": 1229056,
+      "output_tokens": 10429,
+      "reasoning_output_tokens": 1936,
+      "agent_execution_seconds": 408.939938,
+      "trial_seconds": 428.786284,
+      "process_seconds": 430.7535623750009,
+      "estimated_standard_api_usd": 2.6707859999999997,
+      "source_result_sha256": "9621eb8589c95f28dba14c6434592881d2a2d7a4509d038d1e1bdf8d9ad13a19",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M2-optional-dep-trap",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 684941,
+      "cached_input_tokens": 632704,
+      "output_tokens": 7868,
+      "reasoning_output_tokens": 1663,
+      "agent_execution_seconds": 308.739148,
+      "trial_seconds": 324.930011,
+      "process_seconds": 326.7087256249797,
+      "estimated_standard_api_usd": 1.548474,
+      "source_result_sha256": "fd52358bf41f090108c08e43e1b13fb2c869593faf01968d24523497022c711a",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M3-session-projection",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 1204109,
+      "cached_input_tokens": 1128192,
+      "output_tokens": 10447,
+      "reasoning_output_tokens": 2098,
+      "agent_execution_seconds": 395.544749,
+      "trial_seconds": 407.748187,
+      "process_seconds": 410.04364870800055,
+      "estimated_standard_api_usd": 2.409712,
+      "source_result_sha256": "1804ecba089f3980386470274d86a1d31f6998f941b76d7fb4ae8e439a8a156b",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M4-peer-prerelease-range",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 998720,
+      "cached_input_tokens": 925824,
+      "output_tokens": 8118,
+      "reasoning_output_tokens": 1249,
+      "agent_execution_seconds": 332.369656,
+      "trial_seconds": 355.582772,
+      "process_seconds": 357.5021758750081,
+      "estimated_standard_api_usd": 2.060684,
+      "source_result_sha256": "ee9bd7dbf3788ae0fd46f3acb90b25e3a3d9a87878da1b91a986a25421c8c6f1",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M5-token-auth-smoke",
+      "round": "remaining38",
+      "score": 1,
+      "input_tokens": 824402,
+      "cached_input_tokens": 749312,
+      "output_tokens": 10843,
+      "reasoning_output_tokens": 1618,
+      "agent_execution_seconds": 407.795126,
+      "trial_seconds": 440.844642,
+      "process_seconds": 443.4650471250061,
+      "estimated_standard_api_usd": 2.042362,
+      "source_result_sha256": "62765bf2c9cdcd4e802e4266564acc14864c30e2bc34e5311d563af7ac2447f1",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M6-sleep-tool",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 3947679,
+      "cached_input_tokens": 3610496,
+      "output_tokens": 23821,
+      "reasoning_output_tokens": 4731,
+      "agent_execution_seconds": 907.44234,
+      "trial_seconds": 939.350812,
+      "process_seconds": 941.6454668339866,
+      "estimated_standard_api_usd": 8.173376000000001,
+      "source_result_sha256": "8821619f622d54c698caea6011d73525326d0f7c7aa2ff35fa41ff1a20763ffa",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M7-d399-overlay",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 3133149,
+      "cached_input_tokens": 3013888,
+      "output_tokens": 22998,
+      "reasoning_output_tokens": 4479,
+      "agent_execution_seconds": 971.716628,
+      "trial_seconds": 1006.105452,
+      "process_seconds": 1009.5645839580102,
+      "estimated_standard_api_usd": 5.3563979999999995,
+      "source_result_sha256": "d7d1044f31e3d45bc4048bc49a7b19ec19aa1e1e042aa1bb84d6371c3a893e51",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M8-brand-text",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 3080229,
+      "cached_input_tokens": 2954880,
+      "output_tokens": 23686,
+      "reasoning_output_tokens": 4980,
+      "agent_execution_seconds": 1328.525185,
+      "trial_seconds": 1391.341487,
+      "process_seconds": 1393.9979202080285,
+      "estimated_standard_api_usd": 5.392670000000001,
+      "source_result_sha256": "eb0cd5871785dbc098b11ddc668e9b9582d9dad8cccf80d143844f6328e35b49",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M9-mcpanel",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 2460694,
+      "cached_input_tokens": 2370432,
+      "output_tokens": 21502,
+      "reasoning_output_tokens": 4548,
+      "agent_execution_seconds": 2621.077377,
+      "trial_seconds": 2674.432872,
+      "process_seconds": 1350.0712497500062,
+      "estimated_standard_api_usd": 4.348152000000001,
+      "source_result_sha256": "3eb3ef1f3ecfaf10936cfad6d514983868e341f4056b14f4ae9639d53bb5a2c4",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M10-tools-tree",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 2412820,
+      "cached_input_tokens": 2283904,
+      "output_tokens": 21009,
+      "reasoning_output_tokens": 4514,
+      "agent_execution_seconds": 783.387175,
+      "trial_seconds": 827.069888,
+      "process_seconds": 832.375351249997,
+      "estimated_standard_api_usd": 4.623513999999999,
+      "source_result_sha256": "f0095be336527d84aabb25a1abbb72b50708223480fa4b03fe734d1baa041c3c",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M11-sidebar-spur",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 1861531,
+      "cached_input_tokens": 1734400,
+      "output_tokens": 17520,
+      "reasoning_output_tokens": 3680,
+      "agent_execution_seconds": 657.094116,
+      "trial_seconds": 703.034821,
+      "process_seconds": 705.8216468750034,
+      "estimated_standard_api_usd": 3.881710000000001,
+      "source_result_sha256": "9c8b94df0c761c281b36f11ff904c8b50298c73125512f3bbc2c3f15a982135c",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M12-interpreters-card",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 2149682,
+      "cached_input_tokens": 2023424,
+      "output_tokens": 19421,
+      "reasoning_output_tokens": 3257,
+      "agent_execution_seconds": 743.637985,
+      "trial_seconds": 829.038098,
+      "process_seconds": 834.836950500001,
+      "estimated_standard_api_usd": 4.257054,
+      "source_result_sha256": "45effdf6bd361da9daee3d81150db1d505f65bd3b14835aa3a01c45f2a17643b",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M13-repository-plugins-removal",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 2145907,
+      "cached_input_tokens": 2031488,
+      "output_tokens": 14247,
+      "reasoning_output_tokens": 2422,
+      "agent_execution_seconds": 560.221086,
+      "trial_seconds": 593.099583,
+      "process_seconds": 595.8742419169866,
+      "estimated_standard_api_usd": 3.8880280000000003,
+      "source_result_sha256": "1751dc6ac115450c332b2a86031dafc2fd8f13417e834880a2c4b1cf4ab4318e",
+      "grading_status": "scored"
+    },
+    {
+      "task": "M14-service-renames-0812",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 1722767,
+      "cached_input_tokens": 1638400,
+      "output_tokens": 10455,
+      "reasoning_output_tokens": 2201,
+      "agent_execution_seconds": 458.842657,
+      "trial_seconds": 623.702701,
+      "process_seconds": 530.1312475000159,
+      "estimated_standard_api_usd": 3.0048199999999996,
+      "source_result_sha256": "1d4dca1d6c4949c507d65b71279a7a4ea429d8c2d9bdb90efb4d2c3bffd00098",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H1-plane-trap",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 1432133,
+      "cached_input_tokens": 1328256,
+      "output_tokens": 9716,
+      "reasoning_output_tokens": 2213,
+      "agent_execution_seconds": 373.887053,
+      "trial_seconds": 387.894374,
+      "process_seconds": 389.7206387089973,
+      "estimated_standard_api_usd": 2.852826,
+      "source_result_sha256": "45cbbec1801e5f1254e839f775913e50749d5dbddb3f75c8ba84143041865ee7",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H2-baseline-trap",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 1569678,
+      "cached_input_tokens": 1466880,
+      "output_tokens": 14419,
+      "reasoning_output_tokens": 2368,
+      "agent_execution_seconds": 555.613829,
+      "trial_seconds": 574.537605,
+      "process_seconds": 576.4301742500102,
+      "estimated_standard_api_usd": 3.21581,
+      "source_result_sha256": "35fe7a187dad36fd49f2effdea7d159a780e0b0a2d356d5bc01429349923b54c",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H3-client-plane",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 4139527,
+      "cached_input_tokens": 4006144,
+      "output_tokens": 20851,
+      "reasoning_output_tokens": 5754,
+      "agent_execution_seconds": 808.143593,
+      "trial_seconds": 824.43831,
+      "process_seconds": 826.1389559169766,
+      "estimated_standard_api_usd": 6.382524000000001,
+      "source_result_sha256": "b198b1c5e578f0a8356e8efbb6c41e4ab7f8e468d2962c2a9a1b648f0e4b384c",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H4-tsbuildinfo-trap",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 171961,
+      "cached_input_tokens": 146432,
+      "output_tokens": 5491,
+      "reasoning_output_tokens": 740,
+      "agent_execution_seconds": 196.848807,
+      "trial_seconds": 205.954219,
+      "process_seconds": 207.88002154201968,
+      "estimated_standard_api_usd": 0.676272,
+      "source_result_sha256": "40853f73964fe4f363bad27943ba0e54d31635310aac2a2a5b0fcd0f3a7ee8c2",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H5-runtime-export-drift",
+      "round": "initial18",
+      "score": 1.0,
+      "input_tokens": 4141513,
+      "cached_input_tokens": 4011776,
+      "output_tokens": 23001,
+      "reasoning_output_tokens": 5595,
+      "agent_execution_seconds": 845.840726,
+      "trial_seconds": 859.851457,
+      "process_seconds": 862.1053173340042,
+      "estimated_standard_api_usd": 6.459196000000001,
+      "source_result_sha256": "690ed2f7785780edbbd040761950c787d6e68f6e3f090b86109adbf464f45a28",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H6-remote-error-trap",
+      "round": "initial18",
+      "score": 0.0,
+      "input_tokens": 142537,
+      "cached_input_tokens": 126336,
+      "output_tokens": 4727,
+      "reasoning_output_tokens": 1071,
+      "agent_execution_seconds": 181.188897,
+      "trial_seconds": 191.593747,
+      "process_seconds": 193.27356887501082,
+      "estimated_standard_api_usd": 0.5246959999999999,
+      "source_result_sha256": "9582411ae7b97fcce178a1b204439702a50ac3d5eac3f05ea73000b657a4a30a",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H7-locale-trap",
+      "round": "initial18",
+      "score": 0.9,
+      "input_tokens": 1284921,
+      "cached_input_tokens": 1198464,
+      "output_tokens": 18859,
+      "reasoning_output_tokens": 4550,
+      "agent_execution_seconds": 678.352876,
+      "trial_seconds": 694.54226,
+      "process_seconds": 696.1933732909965,
+      "estimated_standard_api_usd": 3.0059839999999998,
+      "source_result_sha256": "03c32c1dafc6064d05d0b78a6ab748d7d912ef9b1f15e4f4bbc0fd2d4e9a8c2b",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H8-fire-drill",
+      "round": "remaining38",
+      "score": 0,
+      "input_tokens": 5150427,
+      "cached_input_tokens": 5004416,
+      "output_tokens": 32241,
+      "reasoning_output_tokens": 9629,
+      "agent_execution_seconds": 1966.867311,
+      "trial_seconds": 2119.7692,
+      "process_seconds": 1498.319763958978,
+      "estimated_standard_api_usd": 8.076576,
+      "source_result_sha256": "6d5db3d55f2ab3eb3c82c74618fffae6b3921b22d793c8a3899d4d53c9713147",
+      "grading_status": "grader-error"
+    },
+    {
+      "task": "H9-dsh-web-alpha2",
+      "round": "remaining38",
+      "score": 0.67,
+      "input_tokens": 7215245,
+      "cached_input_tokens": 7004672,
+      "output_tokens": 43737,
+      "reasoning_output_tokens": 18056,
+      "agent_execution_seconds": 1871.976629,
+      "trial_seconds": 1923.423618,
+      "process_seconds": 1932.320292458986,
+      "estimated_standard_api_usd": 11.297251999999999,
+      "source_result_sha256": "d559ab6bf788887afc0be6c3beb5bf6040159be7b38af0566ec0a7022e921483",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H10-browser-activation-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 1356494,
+      "cached_input_tokens": 1276672,
+      "output_tokens": 12924,
+      "reasoning_output_tokens": 2643,
+      "agent_execution_seconds": 545.323994,
+      "trial_seconds": 573.101942,
+      "process_seconds": 575.1002205840196,
+      "estimated_standard_api_usd": 2.7210920000000005,
+      "source_result_sha256": "3a66fe294518c136fd45444dfb477364805f5fbad45b9fb2953a70e4e6711b55",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H11-dual-cohort-rpc",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 273088,
+      "cached_input_tokens": 221696,
+      "output_tokens": 5221,
+      "reasoning_output_tokens": 895,
+      "agent_execution_seconds": 229.788998,
+      "trial_seconds": 242.668237,
+      "process_seconds": 245.2156043750001,
+      "estimated_standard_api_usd": 0.9966659999999999,
+      "source_result_sha256": "4723f4548a713a2643abbf1fce95cc6edaf6d9d4f44b3c3a2385aeef5f1bb478",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H12-remote-result-boundary-trap",
+      "round": "remaining38",
+      "score": 0.75,
+      "input_tokens": 211748,
+      "cached_input_tokens": 177024,
+      "output_tokens": 4466,
+      "reasoning_output_tokens": 931,
+      "agent_execution_seconds": 169.013706,
+      "trial_seconds": 178.110453,
+      "process_seconds": 180.23094304199913,
+      "estimated_standard_api_usd": 0.747564,
+      "source_result_sha256": "b2b6e4718424861e28152367e70dd281b3db4ec526b8c91a890e021a6205904f",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H13-ghost-host-trap",
+      "round": "remaining38",
+      "score": 0.9,
+      "input_tokens": 340085,
+      "cached_input_tokens": 300800,
+      "output_tokens": 4646,
+      "reasoning_output_tokens": 965,
+      "agent_execution_seconds": 270.503988,
+      "trial_seconds": 285.349268,
+      "process_seconds": 287.59663387501496,
+      "estimated_standard_api_usd": 0.9259499999999999,
+      "source_result_sha256": "38417332a8ef6508d80acd3238976f35a2b84405188729d81336ed94bfe20a75",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H14-mineru-api",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 2956778,
+      "cached_input_tokens": 2825216,
+      "output_tokens": 22643,
+      "reasoning_output_tokens": 3302,
+      "agent_execution_seconds": 830.226885,
+      "trial_seconds": 851.436323,
+      "process_seconds": 853.2299069589935,
+      "estimated_standard_api_usd": 5.272986,
+      "source_result_sha256": "43db272917424c77936d7f31cff8804c57ee33baec0ee7d56d4e221073bf3eeb",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H15-locale-pack",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 3157141,
+      "cached_input_tokens": 3014912,
+      "output_tokens": 26340,
+      "reasoning_output_tokens": 5273,
+      "agent_execution_seconds": 971.13449,
+      "trial_seconds": 989.439071,
+      "process_seconds": 991.4809489999898,
+      "estimated_standard_api_usd": 5.754202000000001,
+      "source_result_sha256": "d5e40425671d2d12907336cf4a42db77ff806340fb963d1c339cd4487693607a",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H16-history-dock",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 3496504,
+      "cached_input_tokens": 3365888,
+      "output_tokens": 23700,
+      "reasoning_output_tokens": 4721,
+      "agent_execution_seconds": 1068.913725,
+      "trial_seconds": 1092.716066,
+      "process_seconds": 1094.692635332991,
+      "estimated_standard_api_usd": 5.857048,
+      "source_result_sha256": "ef1af95855738cf8c927cf7cb0a926078575e27ee8ecf9eb594c92898eb4cc45",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H17-merge-calls",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 4695914,
+      "cached_input_tokens": 4548480,
+      "output_tokens": 28394,
+      "reasoning_output_tokens": 5478,
+      "agent_execution_seconds": 1060.829652,
+      "trial_seconds": 1078.404812,
+      "process_seconds": 1080.7095340000233,
+      "estimated_standard_api_usd": 7.442519999999998,
+      "source_result_sha256": "b3f3c601d6d3c96cc40a2d1da4fcbfcfbfc2ca34c678872530da33e70cdbe3fd",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H18-blame-bubbles",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 4212616,
+      "cached_input_tokens": 4077568,
+      "output_tokens": 28110,
+      "reasoning_output_tokens": 5932,
+      "agent_execution_seconds": 1003.215115,
+      "trial_seconds": 1030.138814,
+      "process_seconds": 1032.013204042014,
+      "estimated_standard_api_usd": 6.833548,
+      "source_result_sha256": "b9647de97a7ee68f56c8ff578c2c39ca98dc429e3c2a67914fafe47c5abddfa4",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H19-workspace-ya",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 2776135,
+      "cached_input_tokens": 2646784,
+      "output_tokens": 27157,
+      "reasoning_output_tokens": 3810,
+      "agent_execution_seconds": 938.883931,
+      "trial_seconds": 956.710153,
+      "process_seconds": 958.9429664580093,
+      "estimated_standard_api_usd": 5.298144000000001,
+      "source_result_sha256": "8dce8e6d9ad4751cb2f21997e7c8be296817cc4153b2907cc62dc01fe5ac91ac",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H20-session-events-ledger",
+      "round": "remaining38",
+      "score": 0.99,
+      "input_tokens": 229067,
+      "cached_input_tokens": 181760,
+      "output_tokens": 2510,
+      "reasoning_output_tokens": 542,
+      "agent_execution_seconds": 113.013176,
+      "trial_seconds": 122.356754,
+      "process_seconds": 124.01947012500023,
+      "estimated_standard_api_usd": 0.7803300000000001,
+      "source_result_sha256": "0c5f17cb491591d40daa402fe07d887021aa0ef931097f8cd2c5538849fed592",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H21-question-answerer-waterfall",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 743969,
+      "cached_input_tokens": 674816,
+      "output_tokens": 11947,
+      "reasoning_output_tokens": 2065,
+      "agent_execution_seconds": 411.977615,
+      "trial_seconds": 422.336978,
+      "process_seconds": 424.3107826670166,
+      "estimated_standard_api_usd": 1.9636959999999997,
+      "source_result_sha256": "cc602439cc507097a6608a3c1ac9e1a01dff5c0c18c382183b338608bcb0731b",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H22-dsh-data-agent-alpha2",
+      "round": "remaining38",
+      "score": 0.11,
+      "input_tokens": 6897639,
+      "cached_input_tokens": 6705664,
+      "output_tokens": 40832,
+      "reasoning_output_tokens": 14131,
+      "agent_execution_seconds": 1514.490038,
+      "trial_seconds": 1535.492677,
+      "process_seconds": 1537.8073659589863,
+      "estimated_standard_api_usd": 10.667014,
+      "source_result_sha256": "d3aa3db73349fd4b171b5975729bc1f7c4aea061402cc0a8465b10f4396adfd1",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H23-storage-domain-version-compat-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 251350,
+      "cached_input_tokens": 216448,
+      "output_tokens": 3852,
+      "reasoning_output_tokens": 513,
+      "agent_execution_seconds": 151.729967,
+      "trial_seconds": 160.584572,
+      "process_seconds": 162.19687879201956,
+      "estimated_standard_api_usd": 0.7580680000000001,
+      "source_result_sha256": "0210cf7dbf532779c26dbfb8170bb09369e43a38a86048b4b623eafeca4a350c",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H24-invalid-record-salvage-trap",
+      "round": "remaining38",
+      "score": 1.0,
+      "input_tokens": 211586,
+      "cached_input_tokens": 182144,
+      "output_tokens": 4921,
+      "reasoning_output_tokens": 1045,
+      "agent_execution_seconds": 200.958794,
+      "trial_seconds": 209.844655,
+      "process_seconds": 211.42928899999242,
+      "estimated_standard_api_usd": 0.722614,
+      "source_result_sha256": "75e52e435060e63cbe4022b8e9afcc1942f5414d264723bd04be7ef404029d85",
+      "grading_status": "scored"
+    },
+    {
+      "task": "H25-session-seed-boundary-trap",
+      "round": "remaining38",
+      "score": 0.4,
+      "input_tokens": 344388,
+      "cached_input_tokens": 287872,
+      "output_tokens": 5667,
+      "reasoning_output_tokens": 1085,
+      "agent_execution_seconds": 218.789385,
+      "trial_seconds": 227.385969,
+      "process_seconds": 228.922279542021,
+      "estimated_standard_api_usd": 1.136382,
+      "source_result_sha256": "83d5080607dad60c2180641a8263a46af61c5b4e4e31151efd72f2fd0ffb24f0",
+      "grading_status": "scored"
+    }
+  ],
+  "same_task_comparisons": [
+    {
+      "record": "Luna (19 tasks)",
+      "n": 19,
+      "astra_mean_percent": 84.57894736842105,
+      "historical_mean_percent": 83.94736842105263,
+      "tasks": [
+        {
+          "task": "S1-static-scan",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S2-negative-scan",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H4-tsbuildinfo-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M1-host-migration",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H1-plane-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H2-baseline-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H3-client-plane",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H5-runtime-export-drift",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H9-dsh-web-alpha2",
+          "astra_reward": 0.67,
+          "historical_reward": 0.8
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S5-negative-naming",
+          "astra_reward": 0.75,
+          "historical_reward": 0.75
+        },
+        {
+          "task": "H6-remote-error-trap",
+          "astra_reward": 0.0,
+          "historical_reward": 0.0
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "astra_reward": 0.5,
+          "historical_reward": 0.25
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "astra_reward": 0.25,
+          "historical_reward": 0.25
+        },
+        {
+          "task": "M2-optional-dep-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M3-session-projection",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M4-peer-prerelease-range",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H7-locale-trap",
+          "astra_reward": 0.9,
+          "historical_reward": 0.9
+        }
+      ]
+    },
+    {
+      "record": "Terra (21 scored tasks)",
+      "n": 21,
+      "astra_mean_percent": 86.04761904761905,
+      "historical_mean_percent": 79.76190476190477,
+      "tasks": [
+        {
+          "task": "S1-static-scan",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S2-negative-scan",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H4-tsbuildinfo-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M1-host-migration",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H1-plane-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H2-baseline-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H3-client-plane",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H5-runtime-export-drift",
+          "astra_reward": 1.0,
+          "historical_reward": 0.2
+        },
+        {
+          "task": "M5-token-auth-smoke",
+          "astra_reward": 1,
+          "historical_reward": 0.6
+        },
+        {
+          "task": "H9-dsh-web-alpha2",
+          "astra_reward": 0.67,
+          "historical_reward": 0.8
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S5-negative-naming",
+          "astra_reward": 0.75,
+          "historical_reward": 0.75
+        },
+        {
+          "task": "H6-remote-error-trap",
+          "astra_reward": 0.0,
+          "historical_reward": 0.0
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "astra_reward": 0.5,
+          "historical_reward": 0.25
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "astra_reward": 0.25,
+          "historical_reward": 0.25
+        },
+        {
+          "task": "S8-release-routing-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M2-optional-dep-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M3-session-projection",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M4-peer-prerelease-range",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H7-locale-trap",
+          "astra_reward": 0.9,
+          "historical_reward": 0.9
+        }
+      ]
+    },
+    {
+      "record": "Flash (23 tasks)",
+      "n": 23,
+      "astra_mean_percent": 82.91304347826087,
+      "historical_mean_percent": 80.65217391304348,
+      "tasks": [
+        {
+          "task": "S1-static-scan",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S2-negative-scan",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "astra_reward": 1.0,
+          "historical_reward": 0.8
+        },
+        {
+          "task": "H4-tsbuildinfo-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M1-host-migration",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H1-plane-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H2-baseline-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H3-client-plane",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H5-runtime-export-drift",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M5-token-auth-smoke",
+          "astra_reward": 1,
+          "historical_reward": 0.6
+        },
+        {
+          "task": "H8-fire-drill",
+          "astra_reward": 0,
+          "historical_reward": 0.7
+        },
+        {
+          "task": "H9-dsh-web-alpha2",
+          "astra_reward": 0.67,
+          "historical_reward": 0.05
+        },
+        {
+          "task": "H10-browser-activation-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "S5-negative-naming",
+          "astra_reward": 0.75,
+          "historical_reward": 0.5
+        },
+        {
+          "task": "H6-remote-error-trap",
+          "astra_reward": 0.0,
+          "historical_reward": 0.25
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "astra_reward": 0.5,
+          "historical_reward": 0.5
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "astra_reward": 0.25,
+          "historical_reward": 0.25
+        },
+        {
+          "task": "S8-release-routing-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M2-optional-dep-trap",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M3-session-projection",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "M4-peer-prerelease-range",
+          "astra_reward": 1.0,
+          "historical_reward": 1.0
+        },
+        {
+          "task": "H7-locale-trap",
+          "astra_reward": 0.9,
+          "historical_reward": 0.9
+        }
+      ]
+    }
+  ],
+  "comparison_source_commit": "72267b6f83670d74965752aac525a989a5a0a1c0",
+  "raw_archives": [
+    {
+      "filename": "astra-xhigh-18-raw-evidence.tar.gz",
+      "sha256": "d3b0500cb33bd964536f6193125db4df8b4426b60962e1771b9c6a635f183e9e",
+      "bytes": 19934777,
+      "availability": "Retained locally by contributor; not hosted by this PR."
+    },
+    {
+      "filename": "astra-xhigh-remaining38-raw-evidence.tar.gz",
+      "sha256": "7393e9f8bf88a9cda8620a049c36c88692e1f7873c679c7bc1b22b06a8e711a2",
+      "bytes": 79872715,
+      "availability": "Retained locally by contributor; not hosted by this PR."
+    }
+  ],
+  "pricing": {
+    "retrieved_at": "2026-09-08T06:09:19.456655+00:00",
+    "source": "https://developers.openai.com/api/docs/pricing",
+    "model": "gpt-6-astra",
+    "currency": "USD",
+    "unit": "per 1M tokens",
+    "standard": {
+      "short": {
+        "input": 10,
+        "cached_input": 1,
+        "cache_write": 12.5,
+        "output": 50
+      },
+      "long": {
+        "input": 20,
+        "cached_input": 2,
+        "cache_write": 25,
+        "output": 75
+      }
+    },
+    "long_context_threshold_input_tokens": 272000,
+    "fast_multiplier": 2,
+    "note": "API-equivalent estimate only; Codex subscription actual marginal bill unavailable. Per-request cache writes may be unreported."
+  }
+}

@@ -325,6 +325,102 @@ test('baseline other-skill access is observational, reported only under the base
   assert.equal(withSkill.baselineHasOtherSkillAccess, false)
 })
 
+// ── shared-root regression: target and sibling under the same catalog root ────
+
+function withSharedRootSkills() {
+  return skillsText({
+    roots: { r0: '/root/.agents/skills' },
+    skills: [
+      { name: 'plugin-upgrade', rootId: 'r0', rel: 'plugin-upgrade/SKILL.md', desc: 'Inspect or upgrade installed DSH plugins' },
+      { name: 'imagegen', rootId: 'r0', rel: 'imagegen/SKILL.md', desc: 'Generate images' },
+    ],
+  })
+}
+
+test('shared-root sibling skill read: otherSkills.opened with the sibling name, target untouched', () => {
+  const { trialDir } = initTrial()
+  writeTrialWithEvents(trialDir, {
+    skills: withSharedRootSkills(),
+    events: [execLine(3, 'cat /root/.agents/skills/imagegen/SKILL.md', '/app')],
+  })
+  const result = runAudit(trialDir)
+  assert.equal(result.targetSkill.opened, false)
+  assert.equal(result.otherSkills.opened, true)
+  assert.deepEqual(result.otherSkills.skills, ['imagegen'])
+})
+
+test('shared-root exact target not mis-attributed as other: opened remains true, otherSkills stays false', () => {
+  const { trialDir } = initTrial()
+  writeTrialWithEvents(trialDir, {
+    skills: withSharedRootSkills(),
+    events: [execLine(2, 'cat /root/.agents/skills/plugin-upgrade/SKILL.md', '/app')],
+  })
+  const result = runAudit(trialDir)
+  assert.equal(result.targetSkill.opened, true)
+  assert.equal(result.otherSkills.opened, false)
+})
+
+test('shared-root path-prefix sibling name does not match target', () => {
+  const { trialDir } = initTrial()
+  writeTrialWithEvents(trialDir, {
+    skills: skillsText({
+      roots: { r0: '/root/.agents/skills' },
+      skills: [
+        { name: 'plugin-upgrade', rootId: 'r0', rel: 'plugin-upgrade/SKILL.md', desc: 'Inspect or upgrade installed DSH plugins' },
+        { name: 'plugin-upgrade-extra', rootId: 'r0', rel: 'plugin-upgrade-extra/SKILL.md', desc: 'Extra plugin tools' },
+      ],
+    }),
+    events: [execLine(3, 'cat /root/.agents/skills/plugin-upgrade-extra/SKILL.md', '/app')],
+  })
+  const result = runAudit(trialDir)
+  assert.equal(result.targetSkill.opened, false, 'plugin-upgrade-extra should not match target plugin-upgrade')
+  assert.equal(result.otherSkills.opened, true)
+  assert.deepEqual(result.otherSkills.skills, ['plugin-upgrade-extra'])
+})
+
+test('shared-root baseline other-skill is observational', () => {
+  const { trialDir } = initTrial()
+  writeTrialWithEvents(trialDir, {
+    skills: withSharedRootSkills(),
+    events: [execLine(3, 'cat /root/.agents/skills/imagegen/SKILL.md', '/app')],
+  })
+  const baseline = runAudit(trialDir, { condition: 'no-target-skill' })
+  assert.equal(baseline.baselineHasOtherSkillAccess, true)
+  assert.equal(baseline.targetSkill.opened, false)
+  const withSkill = runAudit(trialDir, { condition: 'with-skill' })
+  assert.equal(withSkill.baselineHasOtherSkillAccess, false)
+})
+
+test('shared-root relative operand with explicit target-path: sibling still detected', () => {
+  const { trialDir } = initTrial()
+  writeTrialWithEvents(trialDir, {
+    skills: withSharedRootSkills(),
+    events: [execLine(3, 'cat imagegen/SKILL.md', '/root/.agents/skills')],
+  })
+  const result = runAudit(trialDir, { targetPaths: ['plugin-upgrade'] })
+  assert.equal(result.targetSkill.opened, false)
+  assert.equal(result.otherSkills.opened, true)
+  assert.deepEqual(result.otherSkills.skills, ['imagegen'])
+})
+
+
+test('nested catalog roots attribute a sibling only to its most specific root', () => {
+  const { trialDir } = initTrial()
+  writeTrialWithEvents(trialDir, {
+    skills: skillsText({
+      roots: { r0: '/root/.agents/skills', r1: '/root/.agents/skills/.system' },
+      skills: [
+        { name: 'plugin-upgrade', rootId: 'r0', rel: 'plugin-upgrade/SKILL.md' },
+        { name: 'imagegen', rootId: 'r1', rel: 'imagegen/SKILL.md' },
+      ],
+    }),
+    events: [execLine(3, 'cat /root/.agents/skills/.system/imagegen/SKILL.md', '/app')],
+  })
+  const result = runAudit(trialDir)
+  assert.equal(result.targetSkill.opened, false)
+  assert.deepEqual(result.otherSkills.skills, ['imagegen'])
+})
+
 test('unrelated SKILL.md with the same basename never counts', () => {
   const { trialDir } = initTrial()
   writeTrialWithEvents(trialDir, { events: [execLine(2, 'cat /app/other/SKILL.md', '/app')] })

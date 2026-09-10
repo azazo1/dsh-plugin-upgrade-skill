@@ -111,6 +111,8 @@ formal no-network scores.
 
 | Model | Skill condition | Scope | reward | mean | perfect tasks | Summed job duration | Tokens (input / cache / output) | Cost | Detailed report |
 |---|---|---|---:|---:|---:|---:|---:|---:|---|
+| `openai/gpt-6-astra` (xhigh) | With task-pinned `plugin-upgrade` | 56 tasks at `72267b6f`; initial 18 + remaining 38; 1 grader error | 43.02/56 conservative; 43.02/55 valid | 0.7682 conservative; 0.7822 valid | 32 | 9h27m14.995s (summed native trials; includes sleep) | 89,816,858 / 85,071,488 / 770,371 | $171.043738 API-equivalent | [Full-56 report](results/validation-report-2026-09-09-codex-gpt-6-astra-xhigh-full56.md) |
+| `openai/gpt-6-astra` (xhigh) | With `skills/plugin-upgrade` | Fixed 18-task subset; 2026-09-08 run at `72267b6f` | 15.40/18 | 0.8556 | 13 | 2h01m59.282s (summed native trials) | 19,624,263 / 18,362,368 / 189,414 | $40.452018 API-equivalent | [18-task report](results/validation-report-2026-09-08-codex-gpt-6-astra-xhigh-18.md) |
 | `openai/gpt-5.6-terra` | With `skills/plugin-upgrade` | 22-task 2026-09-01 snapshot; 21 rewarded + 1 verifier error | 16.75/21 scored; 16.75/22 conservative | 0.7976 scored; 0.7614 conservative | 13 | 2h33m58.860s | 54,094,444 / 51,131,904 / 355,256 | $20.4145 | [22-task report](results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22.md) |
 | `openai/gpt-5.6-terra` | Literal zero skill | 22-task 2026-09-01 snapshot; 21 rewarded + 1 verifier error | 14.93/21 scored; 14.93/22 conservative | 0.7110 scored; 0.6786 conservative | 10 | 2h51m31.853s | 46,824,114 / 44,432,640 / 283,652 | $17.0733 | [22-task literal-no-skill report](results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22-literal-no-skill.md) |
 | `openai/gpt-5.6-luna` | With `skills/plugin-upgrade` | 19-task 2026-09-01 snapshot | 15.95/19 | 0.8395 | 13 | 1h38m30.556s | 57,118,102 / 54,630,656 / 332,161 | $1.9887 | [18-task batch](results/validation-report-2026-09-01-codex-gpt-5.6-luna-other-18.md) · [real-repository task](results/validation-report-2026-09-01.md) |
@@ -126,7 +128,11 @@ Duration is the sum of the Harbor job durations represented in each report;
 concurrent jobs therefore remain additive rather than being collapsed into an
 elapsed wall-clock window. Token cells are ordered as input / cache / output.
 Cache tokens are a subset of input tokens and must not be added to input when
-calculating total consumption. Costs are the Harbor-recorded USD totals. The
+calculating total consumption. Costs are the Harbor-recorded USD totals except
+where explicitly marked API-equivalent. The Astra rows describe an initial
+18-task subset and its complete 56-task continuation. Historical snapshots and
+scopes differ; compare matched task sets as detailed in the full report, not
+unmatched aggregate means. The
 Luna resource totals were recovered from the persisted historical
 `result.json` artifacts underlying the linked reports. The Terra literal
 zero-skill row uses the exact retained result-file totals; its report notes

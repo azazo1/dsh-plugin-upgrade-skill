@@ -448,17 +448,21 @@ export function auditTrial({ trialDir, targetName, targetPaths, condition, basel
           }
           continue
         }
-        // Other skill roots from the same catalog (excluding the target root).
+        // Catalog roots may contain both the target and sibling skills.
         const resolved = candidate.startsWith('/') ? normalizePath(candidate) : joinLexical(item.workdir ?? '/', candidate)
-        for (const [rootId, rootPath] of parsedSkills.roots) {
+        let matchingRoot = null
+        for (const rootPath of parsedSkills.roots.values()) {
           const normalizedRoot = normalizePath(rootPath)
-          const isTargetRoot = targetRoots.some((root) => root.path === normalizedRoot || normalizedRoot.startsWith(root.path + '/') || root.path.startsWith(normalizedRoot + '/'))
-          if (isTargetRoot) continue
-          if (resolved.startsWith(normalizedRoot + '/')) {
-            const name = resolved.slice(normalizedRoot.length + 1).split('/')[0]
-            if (!otherSkillFiles.has(name)) otherSkillFiles.set(name, new Set())
-            otherSkillFiles.get(name).add(resolved.slice(normalizedRoot.length + 1))
+          if (resolved.startsWith(normalizedRoot + '/') &&
+              (matchingRoot === null || normalizedRoot.length > matchingRoot.length)) {
+            matchingRoot = normalizedRoot
           }
+        }
+        if (matchingRoot !== null) {
+          const relativePath = resolved.slice(matchingRoot.length + 1)
+          const name = relativePath.split('/')[0]
+          if (!otherSkillFiles.has(name)) otherSkillFiles.set(name, new Set())
+          otherSkillFiles.get(name).add(relativePath)
         }
       }
     } else if (item.kind === 'discovery') {

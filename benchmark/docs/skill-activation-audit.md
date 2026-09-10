@@ -26,7 +26,7 @@ be the observed content-bearing access to the target `SKILL.md`, not reward.
 | **skill discovered** | The agent observed the skill's existence — an `ls`/`find`/`stat`/`test`/`glob` operand or any tool output text naming the target. Discovery is not use. |
 | **skill opened** | At least one content-bearing access to the target `SKILL.md` (the **primary activation metric**). |
 | **reference accessed** | Content access to a file under the target skill's `references/`. Reading a reference does **not** upgrade `opened`. |
-| **other skill accessed** | Content access to files under other skill roots from the same catalog. Reported observationally (`observed_other_skill_access`); never a causal verdict. |
+| **other skill accessed** | Content access to files under other skill roots from the same catalog. Reported observationally (`observed_other_skill_access`); never a causal verdict. Sibling skill accesses count even when they share the target's catalog root. Nested catalog roots use the most specific matching root. |
 | **activation rate** | `opened` trials divided by `supplied` (eligible) trials. Eligibility is always stated in the output. |
 
 Prose mentions never count: the assistant writing "I should read
