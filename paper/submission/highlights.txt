@@ -1,0 +1,4 @@
+Version-pinned migration skills are studied through traceable paired records.
+A 64-output comparison shows uneven gains and substantial ceiling effects.
+A bounded AI review exposes API, path-containment, and timer-liveness issues.
+Grading sensitivity qualifies the strength of the observed score improvement.
