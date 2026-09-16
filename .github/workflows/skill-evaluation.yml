@@ -49,11 +49,11 @@ jobs:
     env:
       EVAL_DIR: .artifacts/skill-evaluation/${{ matrix.condition }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install pinned Harbor
@@ -68,7 +68,7 @@ jobs:
         run: node benchmark/scripts/skill-evaluation.mjs check --output "$EVAL_DIR"
       - name: Upload control evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: skill-evaluation-${{ matrix.condition }}
           path: |
@@ -85,17 +85,17 @@ jobs:
     needs: model
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: skill-evaluation-*
           path: .artifacts/comparison
       - name: Compare matched per-task medians and report degraded tasks
         run: node benchmark/scripts/compare-skill-evaluation.mjs .artifacts/comparison >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: skill-evaluation-comparison
           path: .artifacts/comparison/comparison.*
@@ -116,11 +116,11 @@ jobs:
       ATTEMPTS: ${{ inputs.attempts }}
       EVAL_DIR: .artifacts/skill-evaluation/${{ matrix.condition }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install pinned Harbor
@@ -144,7 +144,7 @@ jobs:
         run: node benchmark/scripts/skill-evaluation.mjs check --output "$EVAL_DIR"
       - name: Upload outcome evidence (raw model trajectories remain private to the runner)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: skill-evaluation-${{ matrix.condition }}
           path: |
