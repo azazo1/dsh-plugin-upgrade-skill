@@ -1,4 +1,4 @@
-An archived migration-skill comparison links 64 answers to 328 rubric decisions.
-Higher recorded reward coexists with a missed containment defect.
-API, boundary, and liveness cases motivate concrete checks of migration advice.
-Separate original and review scores expose sensitivity to grading decisions.
+A migration-skill archive links 64 answers to 328 original rubric decisions.
+An extracted containment predicate accepts the parent in two path algorithms.
+Timer controls distinguish a valid teardown repair from a narrower rubric.
+Full sign enumeration and review replacements qualify recorded score gains.

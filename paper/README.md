@@ -11,3 +11,5 @@ Build with `tectonic --outdir output/pdf paper/latex/acl_latex.tex`. Check the n
 The complete contract-stratified analysis covers all 64 reports and 328 recorded decisions; it is separate from targeted semantic review. Human follow-up is author-reported without a separate item-level scoring dataset. Run `npm run check:paper-contracts` and `npm run check:paper-glm53` for offline checks.
 
 The revised narrative centers the focal comparison and contract-level inspection. Historical and supplementary configurations are retained in Appendix B. Proposed maintenance checks are distinguished from empirically evaluated interventions.
+
+Offline mechanism probes extract the S11 predicate and reconstruct the S18 timer with controls. `npm run check:paper-mechanisms` checks these plus exhaustive paired-sign sensitivity for all three existing endpoints. These are not end-to-end plugin repair trials.

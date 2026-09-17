@@ -27,4 +27,15 @@ Primary related-work records are in `paper/latex/custom.bib`; the paper cites th
 
 ## Narrative revision
 
-The focal comparison now leads the main methods and results; historical and supplementary comparisons remain in Appendix B. Discussion distinguishes the S11 missed grading defect, the S18 already-penalized lifecycle shortfall, and the S6 API/responsibility disagreement. The derived review questions are implications of these cases, not a validated taxonomy, a measured intervention, or an estimated failure frequency. All numerical inputs and generated analyses remain unchanged.
+The focal comparison now leads the main methods and results; historical and supplementary comparisons remain in Appendix B. Discussion distinguishes the S11 missed grading defect, the S18 alternative teardown repair that falls outside the narrower mounted-host rubric, and the S6 API/responsibility disagreement. The derived review questions are implications of these cases, not a validated taxonomy, a measured intervention, or an estimated failure frequency. All numerical inputs and generated analyses remain unchanged.
+
+## Mechanism and small-sample evidence
+
+| Claim | Source | Boundary |
+|---|---|---|
+| S11 accepts the parent under two path algorithms; 12 other declared controls behave as expected | `mechanism-checks-20260917/results.json`, extracted source and hashes | Exact answer predicate; not a full route, native Windows filesystem or exploit test |
+| S18 explicit teardown and per-timeout unref both allow natural exit in different lifecycle conditions | Same file, five child-process conditions | Reconstructed mechanism, not the original planner; correction of interpretation, no score overwritten |
+| Three existing endpoints have sign-enumeration tail fractions 0.0781 / 0.1328 / 0.1172 | `paper/generated/focal-robustness.json` | All 256 signs per endpoint; conditional symmetry, no randomized causal inference |
+| Original repeat means 4.53 / 5.31; every original leave-one-task-out mean 2.42–5.58 | Same file | Descriptive sensitivity, not independent replications or a generalization guarantee |
+
+Reproduction: `npm run check:paper-mechanisms`. S6 remains static assessment; no fabricated API mock is presented as target implementation evidence.
