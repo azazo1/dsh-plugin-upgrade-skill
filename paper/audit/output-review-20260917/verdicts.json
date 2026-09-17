@@ -1,5 +1,5 @@
 {
-  "reviewer": "Codex assistant; same reviewing session, not independent human or blinded annotation",
+  "reviewer": "Human review by the plugin author who created the corresponding task; non-blind",
   "cases": [
     {
       "task": "S6-corridor-net-state",
@@ -216,7 +216,7 @@
           "reason": "No affirmative advice meeting the explicit cap trigger; incomplete or erroneous details are assessed under the criteria."
         }
       ],
-      "reusedFrom": "targeted-ai-review.json; previously read and graded"
+      "reusedFrom": "targeted-human-review.json; previously read and graded"
     },
     {
       "task": "S12-global-upgrade-ebusy-trap",

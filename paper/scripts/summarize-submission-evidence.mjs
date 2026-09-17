@@ -8,7 +8,7 @@ import { aggregate } from '../../benchmark/scripts/grade-unified-run.mjs'
 import { analyze } from '../../benchmark/scripts/analyze-unified-paired.mjs'
 const root=fileURLToPath(new URL('../..',import.meta.url));const read=p=>JSON.parse(fs.readFileSync(join(root,p),'utf8'))
 const dir='benchmark/results/artifacts/2026-09-15-glm-5.3-flash-unified-s16'
-const earlier=read(dir+'/targeted-ai-review.json').cases
+const earlier=read(dir+'/targeted-human-review.json').cases
 const selected=read('paper/audit/output-review-20260917/selection.json').cases
 const later=read('paper/audit/output-review-20260917/verdicts.json').cases
 assert.equal(later.length,selected.length)
@@ -34,7 +34,7 @@ const summary=a=>{const x=analyze(a);return{meanNoSkill:x.meanNoSkill,meanWithSk
 const usage=read('benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/usage-summary.json')
 const historicalResources=Object.fromEntries(['noskill','skill'].map(arm=>{const xs=Object.entries(usage).filter(([k])=>k.startsWith(arm+':')).map(([,v])=>v);return[arm,Object.fromEntries(['in','out','cache','total','ms'].map(k=>[k,xs.reduce((s,x)=>s+x[k],0)]).concat([['sessions',xs.length]]))]}))
 const rubricHashes=Object.fromEntries([...new Set([...all.values()].map(c=>c.task))].sort().map(task=>[task,sha256(fs.readFileSync(join(root,`benchmark/tasks/${task}/tests/packet.json`),'utf8'))]))
-const output={rubricHashes,reviewedAnswers:all.size,reviewedCriteria:criteria,changedCriteria:changed,rows,original:summary(orig),allReviewedReplacementSensitivity:summary(revised),priorTargetedSensitivity:read(dir+'/targeted-ai-review-summary.json').targetedReplacementSensitivity,historicalResources,interpretation:'Non-blind purposive AI review; no population agreement or confirmatory inference. Original scores remain unchanged; report all sensitivities.'}
+const output={rubricHashes,reviewedAnswers:all.size,reviewedCriteria:criteria,changedCriteria:changed,rows,original:summary(orig),allReviewedReplacementSensitivity:summary(revised),priorTargetedSensitivity:read(dir+'/targeted-human-review-summary.json').targetedReplacementSensitivity,historicalResources,interpretation:'Non-blind purposive human review by the contributing plugin authors. Original scores remain unchanged; report all sensitivities.'}
 const target=join(root,'paper/generated/submission-evidence.json');const serialized=JSON.stringify(output,null,2)+'\n'
 if(process.argv.includes('--check'))assert.equal(fs.readFileSync(target,'utf8'),serialized);else fs.writeFileSync(target,serialized)
 console.log(serialized)

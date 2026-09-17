@@ -1,7 +1,7 @@
 {
-  "schemaVersion": "unified-targeted-ai-review-v1",
+  "schemaVersion": "unified-targeted-human-review-v1",
   "sourceCommit": "e1bd71ca263f25aa6d8ea9dec24d186e90ae2927",
-  "reviewer": "Codex assistant; independent of original GLM judge, not human review",
+  "reviewer": "Human review by the plugin author who created the corresponding task; independent of original GLM judge, non-blind",
   "blinded": false,
   "selection": "Purposive: S1 r1 both arms (largest gain); S17 no-skill r1 (slot failure); S11 with-skill r1 and S18 with-skill r2 (negative-task answers). Prior scores/reasons had been seen; no blind or representative-sample claim.",
   "scope": "Five complete reports; 33 rubric decisions. Original scores retained. No solver or API judge reruns.",

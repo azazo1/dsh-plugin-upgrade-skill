@@ -1,6 +1,6 @@
 # Manuscript claim-to-evidence map — 2026-09-17
 
-All paths are repository-relative. Original scores are immutable inputs; AI review replacements are separately labelled sensitivity analyses.
+All paths are repository-relative. Original scores are immutable inputs; human review replacements are separately labelled sensitivity analyses.
 
 | Manuscript claim | Source | Boundary / reproduction |
 |---|---|---|
@@ -8,7 +8,7 @@ All paths are repository-relative. Original scores are immutable inputs; AI revi
 | Historical GLM rounds / leave-one-out | `benchmark/results/glm-pair-stability.json` | Existing stability analysis; model/judge confounds persist |
 | Focal 16×2×2, original +4.9219 | `benchmark/results/artifacts/2026-09-15-glm-5.3-flash-unified-s16/{aggregate,paired-analysis}.json` | Equal task weights; static reward, not execution success |
 | 64 report hashes, 328 original criteria | Same archive; `benchmark/scripts/audit-unified-evidence.mjs --check` | Two documented link rewrites; validates traceability/arithmetic, not semantic correctness |
-| Fixed paired review, 10 answers / 56 criteria | `paper/audit/output-review-20260917/{selection,verdicts}.json`; archive `targeted-ai-review.json` | Frozen selection commit 181aef9; non-blind purposive AI review, one overlap deduplicated |
+| Fixed paired review, 10 answers / 56 criteria | `paper/audit/output-review-20260917/{selection,verdicts}.json`; archive `targeted-human-review.json` | Frozen selection commit 181aef9; non-blind purposive human review by the contributing plugin authors, one overlap deduplicated |
 | All three endpoint sensitivities | `paper/generated/submission-evidence.json` | `node paper/scripts/summarize-submission-evidence.mjs --check`; unchanged unreviewed cells |
 | S11 parent path counterexample | Archive targeted review + evidence audit script | Predicate defect only; no complete exploit claim |
 | Focal token/duration fields | Archive `execution-log.jsonl` | 64 formal cells only; tokens unspecified, durations summed not parallel wall time |

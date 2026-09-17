@@ -14,4 +14,4 @@
 
 官方指南：<https://www.sciencedirect.com/journal/journal-of-systems-and-software/publish/guide-for-authors>。本轮访问返回 403，因此稿件采用通用单栏审阅版，没有声称通过当前 JSS 格式检查。
 
-独立人工评分尚未发生，不能填写为已完成。当前 AI 复核已经给出透明范围和敏感性；不在本轮追加模型实验或为了显著性追跑。
+第三方独立评分尚未发生，不能填写为已完成。当前各插件作者的人工复核已经给出透明范围和敏感性；不在本轮追加模型实验或为了显著性追跑。
