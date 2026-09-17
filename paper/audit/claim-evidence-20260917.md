@@ -24,3 +24,7 @@ All paths are repository-relative. Original scores are immutable inputs; targete
 Existing sources support a retrospective case study, not a capability law, operational pass rate, isolated procedural-skill effect, or universal generalization. No new experiments are required by the current work plan. Author declarations, material redistribution, permanent release and journal entry requirements remain submission checks. Unexecuted ablations are not empirical contributions.
 
 Primary related-work records are in `paper/latex/custom.bib`; the paper cites the versioned SkillsBench, SWE-Skills-Bench, SkillLens, WebDev-Skills-Bench, VersiCode and CODEMENV records. It does not claim to be the first study of heterogeneous skill effects or overhead. JSS's current guide endpoint returned 403 during this revision, so current format and declaration rules were not certified.
+
+## Narrative revision
+
+The focal comparison now leads the main methods and results; historical and supplementary comparisons remain in Appendix B. Discussion distinguishes the S11 missed grading defect, the S18 already-penalized lifecycle shortfall, and the S6 API/responsibility disagreement. The derived review questions are implications of these cases, not a validated taxonomy, a measured intervention, or an estimated failure frequency. All numerical inputs and generated analyses remain unchanged.

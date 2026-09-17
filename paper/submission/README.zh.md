@@ -6,7 +6,7 @@
 - `cover-letter-draft.md`：投稿信正文已写好，未擅自确认原创性、独家投稿或作者同意。
 - `author-information.tex.txt`：从原稿保留作者信息，需作者确认顺序、单位与通讯作者。
 - `../audit/claim-evidence-20260917.md`：主张—证据映射。
-- `../../output/pdf/migration-paper-retrospective-review.pdf`：12 页编译审阅稿（生成文件，不作为原始实验数据）。
+- `../../output/pdf/migration-paper-retrospective-review.pdf`：13 页编译审阅稿（生成文件，不作为原始实验数据）。
 
 ## 有限的最后确认
 

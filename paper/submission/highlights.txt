@@ -1,4 +1,4 @@
-Version-specific migration skills are evaluated through paired archived reports.
-Contract-stratified analysis accounts for all 64 reports and 328 judgments.
-API, containment, and lifecycle cases expose limits of recorded full credit.
-Grading sensitivity and protocol differences qualify apparent score gains.
+An archived migration-skill comparison links 64 answers to 328 rubric decisions.
+Higher recorded reward coexists with a missed containment defect.
+API, boundary, and liveness cases motivate concrete checks of migration advice.
+Separate original and review scores expose sensitivity to grading decisions.
