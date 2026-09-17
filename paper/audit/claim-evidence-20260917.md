@@ -1,6 +1,6 @@
 # Manuscript claim-to-evidence map — 2026-09-17
 
-All paths are repository-relative. Original scores are immutable inputs; human review replacements are separately labelled sensitivity analyses.
+All paths are repository-relative. Original scores are immutable inputs; targeted review replacements are separately labelled sensitivity analyses.
 
 | Manuscript claim | Source | Boundary / reproduction |
 |---|---|---|
@@ -8,12 +8,14 @@ All paths are repository-relative. Original scores are immutable inputs; human r
 | Historical GLM rounds / leave-one-out | `benchmark/results/glm-pair-stability.json` | Existing stability analysis; model/judge confounds persist |
 | Focal 16×2×2, original +4.9219 | `benchmark/results/artifacts/2026-09-15-glm-5.3-flash-unified-s16/{aggregate,paired-analysis}.json` | Equal task weights; static reward, not execution success |
 | 64 report hashes, 328 original criteria | Same archive; `benchmark/scripts/audit-unified-evidence.mjs --check` | Two documented link rewrites; validates traceability/arithmetic, not semantic correctness |
-| Fixed paired review, 10 answers / 56 criteria | `paper/audit/output-review-20260917/{selection,verdicts}.json`; archive `targeted-human-review.json` | Frozen selection commit 181aef9; non-blind purposive human review by the contributing plugin authors, one overlap deduplicated |
+| Fixed paired review, 10 answers / 56 criteria | `paper/audit/output-review-20260917/{selection,verdicts}.json`; archive `targeted-human-review.json` | Frozen selection commit 181aef9; initial non-blind AI-assisted review followed by author-reported human checking; one overlap deduplicated; no independent item-level human agreement dataset |
 | All three endpoint sensitivities | `paper/generated/submission-evidence.json` | `node paper/scripts/summarize-submission-evidence.mjs --check`; unchanged unreviewed cells |
 | S11 parent path counterexample | Archive targeted review + evidence audit script | Predicate defect only; no complete exploit claim |
 | Focal token/duration fields | Archive `execution-log.jsonl` | 64 formal cells only; tokens unspecified, durations summed not parallel wall time |
 | Historical resource totals | `benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/usage-summary.json` | Same submission summary script; 22 sessions per arm; cache separated |
-| Supplementary GLM-5.3 +1.9318 | `benchmark/results/validation-report-2026-09-15-glm-5.3-s1-s22.md`; corresponding `aggregate.json` and 44 verdicts | One attempt per arm, newer all-semantic grading; no repeated-run variability claim |
+| Supplementary GLM-5.3 three rounds, median-paired +1.5909 | `paper/generated/glm53-supplement.json`; 132 archived verdicts | `npm run check:paper-glm53`; preserves half points; mixed judges; descriptive interval crosses zero; S17 cap sensitivity reported |
+| Full-cohort contract accounting, 64 answers / 328 decisions | `paper/audit/contract-review-20260917/recorded-contracts.json` and `contract-map.json` | `npm run check:paper-contracts`; six retrospective primary domains; original judgments, not 64 independent semantic regrades |
+| Human-follow-up provenance and record alignment | `paper/audit/contract-review-20260917/human-alignment.json` | Ten archived answers / 56 decisions numerically unchanged across source commits; no separately supplied human item-level scores or measured agreement |
 | Supplementary Qwen +6.71875 | `benchmark/results/validation-report-2026-09-16-codex-qwen3.8-27b-medium-s16-paired.json` | Answers/reasons missing; reported CI not exactly reproducible; no cross-host ranking |
 | Historical snapshot and development exposure | `benchmark/snapshots/2026-09-01-main-23.json`; `paper/audit/task-exposure-ledger.csv` | Inventory is not every study denominator; no independent holdout claim |
 

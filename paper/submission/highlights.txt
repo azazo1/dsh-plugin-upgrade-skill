@@ -1,4 +1,4 @@
-Version-pinned migration skills are studied through traceable paired records.
-A 64-output comparison shows uneven gains and substantial ceiling effects.
-A bounded human review exposes API, path-containment, and timer-liveness issues.
-Grading sensitivity qualifies the strength of the observed score improvement.
+Version-specific migration skills are evaluated through paired archived reports.
+Contract-stratified analysis accounts for all 64 reports and 328 judgments.
+API, containment, and lifecycle cases expose limits of recorded full credit.
+Grading sensitivity and protocol differences qualify apparent score gains.

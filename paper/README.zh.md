@@ -1,4 +1,4 @@
-# 迁移 Skill：收益、失败与评价敏感性
+# 面向特定版本插件迁移的 Agent Skill 评估
 
 2026-09-17 稿件改为回顾性软件维护研究，按 JSS 读者定位整理。倒 U 不再作为主结论；没有新增模型调用。
 
@@ -23,3 +23,6 @@ cp output/pdf/acl_latex.pdf output/pdf/migration-paper-retrospective-review.pdf
 也可在 `paper/latex` 中使用 pdflatex + bibtex 编译。保留 `latex/` 与 `generated/` 相对路径。历史五组表与 benchmark 元数据通过各自生成脚本维护，不手改。S16 完整性不代表所有历史配置均有原始回答，静态得分不等于修复成功率。
 
 原作者信息保存在 `submission/author-information.tex.txt`，尚需确认；审阅 PDF 不擅自指定通讯作者或声明全员已同意。
+
+
+2026-09-17 补强：全量 64 报告 / 328 原判契约分层与 10 报告重点复核分开；人工后续确认保留来源，不推算一致率。新增检查：`npm run check:paper-contracts`、`npm run check:paper-glm53`。GLM-5.3 三轮混用 judge，仅作补充。

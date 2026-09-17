@@ -13,3 +13,6 @@
 原始评分不修改。原始 Δ=4.9219，95% 区间 [0.3125,10.8594]；只替换 S11 为 4.6094，[-0.2344,10.6250]；全部已复核替换为 5.3906，[0,11.7969]。后两项是局部替换敏感性，不是全量重判真值。不得只报告增益更大的一行。
 
 `selection.json` 保存冻结选择及 hash；`verdicts.json` 保存标准理由与报告行号。`node paper/scripts/summarize-submission-evidence.mjs --check` 复核 hash、计分、去重、均值和 bootstrap 汇总。没有调用新 solver 或 API judge。
+
+
+2026-09-17 来源补记：初始逐项分析由 AI 辅助完成，后续用户报告了插件作者人工复核、结论总体接近。两阶段均保留；版本间记录未变化不等于测得人工一致率。详细对齐见仓库 `paper/audit/contract-review-20260917/human-alignment.json`。

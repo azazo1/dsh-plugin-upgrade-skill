@@ -353,5 +353,11 @@
         }
       ]
     }
-  ]
+  ],
+  "provenance": {
+    "initialAnalysis": "AI-assisted, preserved in fe4db72 history",
+    "subsequentHumanReview": "Reported by the user and recorded in commit 4419da4; non-blind contributing-author review",
+    "alignmentRecord": "paper/audit/contract-review-20260917/human-alignment.json",
+    "independentAgreementMeasured": false
+  }
 }

@@ -54,3 +54,6 @@ S1 的叙事也需收窄：无 Skill r1 已明确保留 alpha.2 恢复的 ignora
 脚本离线校验全部报告/packet 哈希、原分数、二次判定及敏感性汇总，并复现 S11 边界反例。
 完整输出见 [targeted-human-review-summary.json](targeted-human-review-summary.json)。
 后续人工复核应覆盖两臂、正负/零增益，先固定抽样和分歧裁决方式，再评估剩余评分不确定性。
+
+
+2026-09-17 来源补记：初始逐项分析由 AI 辅助完成，后续用户报告了插件作者人工复核、结论总体接近。两阶段均保留；版本间记录未变化不等于测得人工一致率。详细对齐见仓库 `paper/audit/contract-review-20260917/human-alignment.json`。
