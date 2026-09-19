@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "published-version-evidence",
+      "verdict": "pass",
+      "reason": "Grounds in fixture package.json (^0.1.2-alpha.1 devDependency) and README claim, contrasts with the brief-supplied published list (0.1.1-rc.1/rc.2/0.1.2-alpha.2), states alpha.1 was never published and alpha.2 exists, and proposes concrete package-specific verification (pnpm list, npm view dist-tags) without executing network queries."
+    },
+    {
+      "id": "caret-resolution",
+      "verdict": "pass",
+      "reason": "Explains ^0.1.2-alpha.1 desugars to >=0.1.2-alpha.1 <0.2.0, applies the prerelease tuple-match rule to show 0.1.2-alpha.2 satisfies the range and the missing lower-bound release does not make it unresolvable; identifies the silent type-baseline mismatch (alpha.1 surface vs alpha.2 install) and forward-drift uncertainty; makes no 'all alphas missing' or 'caret guarantees alpha.1' claim."
+    },
+    {
+      "id": "workable-baseline-plan",
+      "verdict": "pass",
+      "reason": "Gives multiple complete feasible plans with tradeoffs: Path A (exact pin to published 0.1.2-alpha.2, explicitly acknowledging alpha.1 is not validated) and Path B (checkout verified upstream alpha.1 git tag, build, pack, resolve via file: tarball overrides), each with cost/fidelity tradeoffs and exit paths."
+    },
+    {
+      "id": "reproducibility-and-exit",
+      "verdict": "pass",
+      "reason": "Specifies one consistent package manager (pnpm), committed lockfile or exact pin for frozen install, proposed typecheck/validation layers against the intended target, explicit exit for overrides (drop once published / move to Path A), and an honest, specific unverified-items list (registry state, tag content, peer floors, pnpm sensitivity)."
+    }
+  ],
+  "caps": [
+    {
+      "id": "install-unpublished-registry-version",
+      "triggered": false,
+      "reason": "The report never prescribes installing alpha.1 from npm as if available; it consistently states alpha.1 was never published, and its alpha.1 plan builds local tarballs from a verified source tag, with the unpublished-install expectation explicitly rejected as the naive-wrong example."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "phantom-pixel-sgr",
+      "verdict": "pass",
+      "reason": "Grounded in renderer-excerpt.ts: explains SGR background persisting through the half-filled fg-only branches, names outline/sleep-Z/heart edge cells as exposed, and gives the explicit ESC[49m default-background fix for each half-filled cell."
+    },
+    {
+      "id": "ghost-frame-trim",
+      "verdict": "pass",
+      "reason": "Grounded in the trailing-space trim and symptom log: explains stale wide-frame cells never overwritten, and gives both required fixes — full sprite-width padding plus ESC[K erase-to-EOL (with an equivalent overwrite alternative)."
+    },
+    {
+      "id": "frame-digest-gate",
+      "verdict": "pass",
+      "reason": "Grounded in frames-digest-report.txt: identifies tail2 as the hand-ported drifted frame (23 cells, 1-col shift) and the excerpt regression added for a different frame as the miss; prescribes digesting every frame against source art in CI."
+    },
+    {
+      "id": "timer-unref-hang",
+      "verdict": "pass",
+      "reason": "Grounded in ci-hang-evidence.txt: self-re-arming setTimeout keeps Timeout handles alive, hosts mount the sprite without unmounting so teardown never runs, interactive TTY unaffected; recommends the timer.unref() one-liner, not CI slowness or unmount rework."
+    },
+    {
+      "id": "prevention-checklist",
+      "verdict": "pass",
+      "reason": "Checklist includes explicit bg per half-filled cell (SGR 49), full-width repaint with erase-to-EOL, and per-frame digests pinned to source art; the default-on rollout audit inventories every host's mount/unmount/teardown and timer unref/clear hygiene."
+    }
+  ],
+  "caps": []
+}

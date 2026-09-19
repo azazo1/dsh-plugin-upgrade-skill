@@ -1,0 +1,156 @@
+[
+  {
+    "task": "S1-static-scan",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 75,
+    "notes": "Both reports locate all seven touchpoints correctly and handle corridor folding; A maps #4 to A1-04 exactly per rubric (pass across the board), while B misroutes #4 to A1-13 and explicitly declares A1-04 non-intersecting, contradicting the expected mapping (host-path partial, mapping capped at fail)."
+  },
+  {
+    "task": "S10-paste-rename-and-version-chip",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly identify live occurrences as the conflict authority, the stale CDN cache root cause with PLUGIN_VERSION display rule, concrete regressions for both follow-ups, and lib-only release hygiene; skill run adds more precision (path rewrite, per-batch tests) but both earn full passes."
+  },
+  {
+    "task": "S11-mermaid-lazyload-trap",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S12-global-upgrade-ebusy-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly identify PID 42432 web host as the koffi.node lock holder, latest->rc.2 dist-tag downgrade, pinned exact-version install with TUI + verify, and README pinning guidance; near-identical quality, all criteria pass."
+  },
+  {
+    "task": "S13-peer-range-vs-runtime",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S14-link-install-lock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S15-slot-error-boundary-crash",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly identify the dangling busy in AttachmentChips, slot error-boundary whole-entry unmount, pre-v0.2.11 attribution with data/phase latency via short-circuit plus empty-state early return, correct fix with both hardening patterns, data-present render regression, and node --check insufficiency; B additionally nuances the primary mask as the data condition, but both meet every criterion."
+  },
+  {
+    "task": "S16-self-host-upgrade-trap",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S17-external-ui-plugin-onboarding-trap",
+    "method": "official-keyword-judge",
+    "noskill": 20,
+    "skill": 40,
+    "notes": ""
+  },
+  {
+    "task": "S18-terminal-sprite-render-trap",
+    "method": "official-keyword-judge",
+    "noskill": 60,
+    "skill": 20,
+    "notes": ""
+  },
+  {
+    "task": "S19-phantom-update-stale-host",
+    "method": "official-keyword-judge",
+    "noskill": 0,
+    "skill": 0,
+    "notes": ""
+  },
+  {
+    "task": "S2-negative-scan",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly locate the apiProxy hit mapped to A1-01 (plus dead dependency, llm split), clear all six negative categories with evidence (patch.yml as composition, session-notes as pure utility), explain zero-hits ≠ compatibility, and give build/typecheck + isolated cold-boot + real provider-call verification plans."
+  },
+  {
+    "task": "S20-msvc-flock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 95,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S21-resource-service-unavailable-trap",
+    "method": "official-keyword-judge",
+    "noskill": 60,
+    "skill": 60,
+    "notes": ""
+  },
+  {
+    "task": "S22-duplicate-insert-boot-crash-trap",
+    "method": "official-keyword-judge",
+    "noskill": 60,
+    "skill": 60,
+    "notes": ""
+  },
+  {
+    "task": "S3-snapshot-migration",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 100,
+    "notes": "Both reports fully cover snapshot projection, lifecycle seat, type/inject re-homing, and card mapping; no-skill only partially addresses slot-registration (misses ctx.inject ordering edge and Context augmentation/service ownership around slots.register)."
+  },
+  {
+    "task": "S4-legacy-client-imports",
+    "method": "llm-rubric",
+    "noskill": 38,
+    "skill": 100,
+    "notes": "Both locate all four touchpoints with correct cards; skill run supplies verified migration targets and activation verification, no-skill run defers to unconfirmed details with no migration direction for session-content and connection-face and omits A1-26 activation verification."
+  },
+  {
+    "task": "S5-negative-naming",
+    "method": "llm-rubric",
+    "noskill": 88,
+    "skill": 100,
+    "notes": "Both restrained four-state reports; A hedged the valid official short name as registry-dependent (partial), B affirmed it; service warning, shared-event info, and registry-unknown restraint pass in both; no all-clear cap."
+  },
+  {
+    "task": "S6-corridor-net-state",
+    "method": "llm-rubric",
+    "noskill": 75,
+    "skill": 100,
+    "notes": "Both reject the trap and delete the defense; skill run fully covers producer semantics, retention-not-filtering, and the append capability gap, while the no-skill run covers those only partially."
+  },
+  {
+    "task": "S7-unpublished-cohort",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly resolve ^0.1.2-alpha.1 to published 0.1.2-alpha.2 (no install failure), distinguish declaration from registry facts, give a complete exact-pin plan with tradeoffs/exit paths and lockfile+typecheck reproducibility, and mark closed-book facts unconfirmed; skill report's extra rollup claims are flagged unconfirmed and trigger no cap (tarball path builds from source)."
+  },
+  {
+    "task": "S8-release-routing-trap",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 100,
+    "notes": "Both diagnose tag-distribution and alpha.1-vs-rc.2 direction correctly from sources; noskill's remedy pins unverified v0.9.1 instead of the rubric's v0.9.3-after-tag-publication, so partial; with-skill passes all criteria including conditional SHA alternative and cohort-routed docs."
+  },
+  {
+    "task": "S9-composer-coordinate-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports fully derive the clipboard-vs-detect coordinate misread with host-source evidence, correct conversion at both call sites, gated bookkeeping, and complete regression sequences; all criteria pass."
+  }
+]

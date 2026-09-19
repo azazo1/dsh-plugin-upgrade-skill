@@ -1,0 +1,163 @@
+{
+  "status": "scored",
+  "score": 80,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "native-module-owner",
+      "verdict": "pass",
+      "reason": "Correctly identifies PID 42432 as the native-module owner and explains why its loaded binary causes npm's EBUSY until the host exits.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "The lock holder is the dsh web-host process, `node.exe` PID **42432**."
+        },
+        {
+          "report": "report.md",
+          "quote": "`koffi.node` is a native Windows `.node` binary, so Windows keeps the file\nopen/locked while the host process has the addon loaded. The npm process (PID\n23920) therefore cannot copy the old file while replacing it and reports\n`EBUSY`."
+        }
+      ],
+      "sources": [
+        {
+          "path": "running-processes.txt",
+          "quote": "node.exe          42432  Console     <- dsh web host (holds koffi.node)"
+        },
+        {
+          "path": "running-processes.txt",
+          "quote": "# The dsh web host process loaded @koromix/koffi (a native FFI addon for\n# sandbox/filesystem operations) at startup. koffi.node is a native .node\n# binary - once loaded into a process, the OS holds a file lock on it until\n# the process exits."
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "browser-versus-host-sequence",
+      "verdict": "partial",
+      "reason": "Correctly distinguishes browser refresh from host termination and orders confirmed host exit before installation without targeting unrelated Node processes. It omits restarting the host afterward.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "The browser is only a client of the host. Refreshing a page reloads the SPA in\nthe browser; it does not terminate or restart PID 42432, so it does not\nrelease the native addon."
+        },
+        {
+          "report": "report.md",
+          "quote": "First stop dsh using its normal stop/exit action. If the captured host is\nstill running and does not exit cleanly, target that process specifically\n(do not kill all `node.exe` processes):"
+        },
+        {
+          "report": "report.md",
+          "quote": "Run the install only after the final check shows no PID 42432."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 20,
+      "awarded": 10
+    },
+    {
+      "id": "unpinned-dist-tag-resolution",
+      "verdict": "pass",
+      "reason": "Correctly identifies implicit latest resolution, the captured latest and alpha targets, and why an existing prerelease is not preserved. The exact tag mappings unambiguously identify the fixture evidence.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "`@deepseek-ai/dsh` has no version or tag specifier. npm therefore follows the\npackage's `latest` dist-tag."
+        },
+        {
+          "report": "report.md",
+          "quote": "latest -> 0.1.1-rc.2\nnext   -> 0.1.1-rc.2\nalpha  -> 0.1.2-alpha.5"
+        },
+        {
+          "report": "report.md",
+          "quote": "Thus npm deliberately selected `0.1.1-rc.2`; it did not compare the installed\nversion with available versions and it did not infer that the desired alpha\nshould be retained or advanced to."
+        }
+      ],
+      "sources": [
+        {
+          "path": "npm-dist-tags.txt",
+          "quote": "{\n  next: '0.1.1-rc.2',\n  latest: '0.1.1-rc.2',\n  alpha: '0.1.2-alpha.5'\n}"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "safe-exact-commands",
+      "verdict": "partial",
+      "reason": "Provides the exact pinned core and TUI installation after confirmed host exit, plus the expected version check, but omits restarting the host.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "Run the install only after the final check shows no PID 42432."
+        },
+        {
+          "report": "report.md",
+          "quote": "npm install -g @deepseek-ai/dsh@0.1.2-alpha.5 @deepseek-harness-tui/dsh-tui\ndsh --version"
+        },
+        {
+          "report": "report.md",
+          "quote": "The expected version check is `0.1.2-alpha.5`."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 20,
+      "awarded": 10
+    },
+    {
+      "id": "readme-prevention",
+      "verdict": "pass",
+      "reason": "Explicitly rejects unpinned combined installs and recommends an exact tested core pin whenever core is included, explaining the prerelease downgrade risk.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "That command silently follows whatever `latest` means in the registry and can\ndowngrade an installed prerelease."
+        },
+        {
+          "report": "report.md",
+          "quote": "or pin the core and the plugin to a tested compatible pair:\n\n```bat\nnpm install -g @deepseek-ai/dsh@0.1.2-alpha.5 @deepseek-harness-tui/dsh-tui@<tested-tui-version>\n```"
+        },
+        {
+          "report": "report.md",
+          "quote": "README authors should state the compatibility matrix and use exact versions\nfor reproducible upgrade instructions."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    }
+  ],
+  "caps": [],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 7872,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1378,
+      "reasoning_output_tokens": 82
+    },
+    "request_id": "01a08aec-a26b-7231-8795-cf3685a75a06",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "5f9a18af26c1e828112413315330688ae45c8b610e09bf31e9d329f8d6398daa",
+    "response_sha256": "b12be5c1ab0c8a909804ade7c3598bb4d53b0aa973c7523265da7bcbcd01d448"
+  },
+  "citation_audit": [],
+  "reports": {
+    "report.md": "4601e85c4a51527de19534f827559f81e3fdb5a7f338317a1943f810ae3598a5"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "599b5c14dc22a2bf610ba190f2c876c03cead0667ebedcd52de46436014c9718",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

@@ -1,0 +1,156 @@
+[
+  {
+    "task": "S1-static-scan",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both arms 100 this round (R1: 95/100)."
+  },
+  {
+    "task": "S10-paste-rename-and-version-chip",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S11-mermaid-lazyload-trap",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 80,
+    "notes": "Both arms partial on modal-wheel-ownership mechanism (document-level capture ordering missed); skill also partial on regression coverage (R1: 80/90)."
+  },
+  {
+    "task": "S12-global-upgrade-ebusy-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S13-peer-range-vs-runtime",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S14-link-install-lock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S15-slot-error-boundary-crash",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 90,
+    "notes": "skill partial on attribution (speculative historical-usage claims without evidence caveat) (R1: 100/90)."
+  },
+  {
+    "task": "S16-self-host-upgrade-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S17-external-ui-plugin-onboarding-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S18-terminal-sprite-render-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S19-phantom-update-stale-host",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S2-negative-scan",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S20-msvc-flock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S21-resource-service-unavailable-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S22-duplicate-insert-boot-crash-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S3-snapshot-migration",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 100,
+    "notes": "noskill partial on slot-registration mechanics (R1: 90/100); skill 100."
+  },
+  {
+    "task": "S4-legacy-client-imports",
+    "method": "llm-rubric",
+    "noskill": 88,
+    "skill": 100,
+    "notes": "noskill partial on registration-id activation verification (R1: 63/100); skill 100 both rounds."
+  },
+  {
+    "task": "S5-negative-naming",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S6-corridor-net-state",
+    "method": "llm-rubric",
+    "noskill": 88,
+    "skill": 100,
+    "notes": "noskill partial on informational-producer semantics both rounds (R1: 88/100); skill 100 both rounds."
+  },
+  {
+    "task": "S7-unpublished-cohort",
+    "method": "llm-rubric",
+    "noskill": 88,
+    "skill": 100,
+    "notes": "noskill partial on reproducibility/exit (no target typecheck proposed) (R1: 100/100); skill 100 both rounds."
+  },
+  {
+    "task": "S8-release-routing-trap",
+    "method": "llm-rubric",
+    "noskill": 80,
+    "skill": 90,
+    "notes": "Both arms dinged on frozen-runtime-remedy: the reports install command presents v0.9.3 as immediately installable from the mirror while the fixture tag list omits it (noskill fail, skill partial without a tag-publication precondition). R1 was 100/100."
+  },
+  {
+    "task": "S9-composer-coordinate-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  }
+]

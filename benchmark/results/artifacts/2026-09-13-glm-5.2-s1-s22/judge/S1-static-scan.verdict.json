@@ -1,0 +1,50 @@
+{
+  "decisions": [
+    {
+      "id": "source-patch",
+      "verdict": "pass",
+      "reason": "Locates patch.yml:2-6 target/find-replace, cordis.patch.yml:5-6 patch: declaration, and apply-patch.mjs:5-9; distinguishes the composition insert row from the genuine source-patch surface (API-08 rule); explains the session-view internals coupling under A1-03 with exact-tag re-validation."
+    },
+    {
+      "id": "events",
+      "verdict": "pass",
+      "reason": "Grounds producer at src/index.ts:15-19 (ignorable:true) and observer :20-22; explains A1-02 alpha.1 removal folded with A2-01 alpha.2 restoration, correctly keeping the marker for the corridor, and notes Session.append has no ignorable parameter so the producer seam is a capability gap rather than a cast."
+    },
+    {
+      "id": "host-services",
+      "verdict": "pass",
+      "reason": "Locates ctx.get('apiProxy') at :26-31 with session.rename and llm.providers; explains A1-01 removal, prescribes host-plane domain-service injection instead of the client Remote facade, and correctly splits llm.providers into llm/listProviders + llm/listConfigurableProviders; adds A2-02 RemoteResult handling."
+    },
+    {
+      "id": "host-path",
+      "verdict": "pass",
+      "reason": "Locates the hardcoded join(homedir(),'.dsh','profiles','default') write at src/index.ts:36-37; prescribes runtime DSH_HOME/profile as source of truth per A1-04; makes no claim that --profile was introduced in alpha.1."
+    },
+    {
+      "id": "ui",
+      "verdict": "pass",
+      "reason": "Locates both the /internal SessionView import at src/index.ts:10 (flagged as an undeclared phantom dependency) and registerCommand at :41-43; explains rebuilding by owning module against the exact tag and marking the no-public-seam capability 'pending confirmation'."
+    },
+    {
+      "id": "channel",
+      "verdict": "pass",
+      "reason": "Locates the loopback HTTP server at src/index.ts:47-54 (port 43121, unconditional handler, no teardown); explicitly states loopback does not excuse authentication per A1-08 and distinguishes Connection-gated official routes from raw routes needing requestRejection or a Connection-owned carrier."
+    },
+    {
+      "id": "subprocess",
+      "verdict": "pass",
+      "reason": "Locates both dsh subprocess call sites and the JSON.parse-per-line/per-chunk parsing; explains stdout was already final text at the corridor's from edge (JSONL assumption wrong, not an alpha.2 change), stderr carries reasoning/errors, and success must be judged by exit code; notes fragmentation and missing teardown."
+    },
+    {
+      "id": "mapping",
+      "verdict": "pass",
+      "reason": "Each located coupling is mapped to A1-03, A1-02+A2-01 (folded corridor net state), A1-01+A2-02, A1-04, and A1-08 with concrete reasoning; A1-05 is correctly used as the additional stdout mapping; not a bare card list, and mappings match the reference cards."
+    },
+    {
+      "id": "limits",
+      "verdict": "pass",
+      "reason": "States all seven categories hit with no no-hit categories, verifies card-level non-hits, explains static limits (no lockfile, no dependency cohort, curated card list), and proposes baseline build/typecheck, exact-tag compare, cold-boot, and a message→tool→response flow without requiring execution of the static fixture."
+    }
+  ],
+  "caps": []
+}

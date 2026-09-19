@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "trials": [
+    {
+      "schemaVersion": 1,
+      "trial": {
+        "id": "S5-negative-naming__WZvsHLK",
+        "task": "S5-negative-naming",
+        "condition": "literal-zero-skill"
+      },
+      "targetSkill": {
+        "name": "plugin-upgrade",
+        "supplied": false,
+        "discovered": false,
+        "opened": false,
+        "openCount": 0,
+        "firstOpenEvent": null,
+        "openedFiles": [],
+        "referencesOpened": [],
+        "anyTargetSkillContentAccess": false,
+        "contentAuditable": true
+      },
+      "otherSkills": {
+        "opened": false,
+        "skills": [],
+        "files": []
+      },
+      "baselineHasOtherSkillAccess": false,
+      "evidence": [],
+      "warnings": []
+    },
+    {
+      "schemaVersion": 1,
+      "trial": {
+        "id": "S6-corridor-net-state__zD8ULao",
+        "task": "S6-corridor-net-state",
+        "condition": "literal-zero-skill"
+      },
+      "targetSkill": {
+        "name": "plugin-upgrade",
+        "supplied": false,
+        "discovered": false,
+        "opened": false,
+        "openCount": 0,
+        "firstOpenEvent": null,
+        "openedFiles": [],
+        "referencesOpened": [],
+        "anyTargetSkillContentAccess": false,
+        "contentAuditable": true
+      },
+      "otherSkills": {
+        "opened": false,
+        "skills": [],
+        "files": []
+      },
+      "baselineHasOtherSkillAccess": false,
+      "evidence": [],
+      "warnings": []
+    },
+    {
+      "schemaVersion": 1,
+      "trial": {
+        "id": "S7-unpublished-cohort__Q9Tx8vU",
+        "task": "S7-unpublished-cohort",
+        "condition": "literal-zero-skill"
+      },
+      "targetSkill": {
+        "name": "plugin-upgrade",
+        "supplied": false,
+        "discovered": false,
+        "opened": false,
+        "openCount": 0,
+        "firstOpenEvent": null,
+        "openedFiles": [],
+        "referencesOpened": [],
+        "anyTargetSkillContentAccess": false,
+        "contentAuditable": true
+      },
+      "otherSkills": {
+        "opened": false,
+        "skills": [],
+        "files": []
+      },
+      "baselineHasOtherSkillAccess": false,
+      "evidence": [],
+      "warnings": []
+    },
+    {
+      "schemaVersion": 1,
+      "trial": {
+        "id": "S8-release-routing-trap__PdvQmXK",
+        "task": "S8-release-routing-trap",
+        "condition": "literal-zero-skill"
+      },
+      "targetSkill": {
+        "name": "plugin-upgrade",
+        "supplied": false,
+        "discovered": false,
+        "opened": false,
+        "openCount": 0,
+        "firstOpenEvent": null,
+        "openedFiles": [],
+        "referencesOpened": [],
+        "anyTargetSkillContentAccess": false,
+        "contentAuditable": true
+      },
+      "otherSkills": {
+        "opened": false,
+        "skills": [],
+        "files": []
+      },
+      "baselineHasOtherSkillAccess": false,
+      "evidence": [],
+      "warnings": []
+    },
+    {
+      "schemaVersion": 1,
+      "trial": {
+        "id": "S9-composer-coordinate-trap__3dAufee",
+        "task": "S9-composer-coordinate-trap",
+        "condition": "literal-zero-skill"
+      },
+      "targetSkill": {
+        "name": "plugin-upgrade",
+        "supplied": false,
+        "discovered": false,
+        "opened": false,
+        "openCount": 0,
+        "firstOpenEvent": null,
+        "openedFiles": [],
+        "referencesOpened": [],
+        "anyTargetSkillContentAccess": false,
+        "contentAuditable": true
+      },
+      "otherSkills": {
+        "opened": false,
+        "skills": [],
+        "files": []
+      },
+      "baselineHasOtherSkillAccess": false,
+      "evidence": [],
+      "warnings": [
+        "exec-call-pairing-mismatch:event-19"
+      ]
+    }
+  ],
+  "aggregate": {
+    "trials": 5,
+    "targetSupplied": "0/5",
+    "targetSkillOpened": "0/5",
+    "activationRateEligible": null,
+    "eligibilityDefinition": "trials where the trajectory declares the target skill (supplied)",
+    "anyTargetSkillContentAccess": "0/5",
+    "byCondition": {
+      "literal-zero-skill": {
+        "trials": 5,
+        "supplied": "0/5",
+        "opened": "0/5",
+        "otherSkillAccess": "0/5"
+      }
+    },
+    "baselineHasOtherSkillAccess": "0/5",
+    "baselineCondition": "no-target-skill"
+  }
+}

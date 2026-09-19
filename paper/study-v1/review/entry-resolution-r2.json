@@ -1,0 +1,375 @@
+{
+  "revision": "document-only-r2",
+  "reviewer": "Codex, single nonblind AI",
+  "scope": "Material equality and instruction adaptation; no independent API correctness certification",
+  "originalPendingUnits": [
+    {
+      "unitId": "5f7234ba4e00-L24",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "29014efbae9e80dbc2c0616884538a0fe503512ff6f619262199dc070296f1b6"
+    },
+    {
+      "unitId": "5f7234ba4e00-L47",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "3a68e9061c88f70cfdde996c5ba8ec03470e74774fd6f61d556cc9c459ab90a2"
+    },
+    {
+      "unitId": "5f7234ba4e00-L60",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "85a3c22241a8331ef6ab1d79bd28b1aff7df0e9761baa6f38103f4dfb51f5f58"
+    },
+    {
+      "unitId": "5f7234ba4e00-L90",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "0a29b6eb4d6fb910d1244d0207ed697071b90367945e3666a79a5a02f35476b8"
+    },
+    {
+      "unitId": "5f7234ba4e00-L112",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "eb6328c918413840360fd3f1bc3b5b375c3dc5ff8642a74fb8071e0ee45d44f8"
+    },
+    {
+      "unitId": "5f7234ba4e00-L113",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "087234ae62ffb59f44aab63953a09a613a12966464a9ff1111057ab17b679e49"
+    },
+    {
+      "unitId": "5f7234ba4e00-L114",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "263ca9c2a19e18eefc9fc3c15d3a168b2e44a624c774b46bb6b0d9b9935d33fb"
+    },
+    {
+      "unitId": "5f7234ba4e00-L115",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "f31b35ede0fbf3116875098ff48aa8f44d4b99b7a26a150321f08ab0e0b0f06b"
+    },
+    {
+      "unitId": "5f7234ba4e00-L116",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "b919fd554552a4cf3262ced7c3110831871b71eac006f238fe2c02b281a875b6"
+    },
+    {
+      "unitId": "7d33bf4c492d-L26",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "d7003ae2f6be53a6fa94587ad912188c9c79e19f36cb4e63abb2d9231237fe49"
+    },
+    {
+      "unitId": "7d33bf4c492d-L42",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "f4c01109ae0cf0fe226ad006f0ccbc726e1d2ef5ad5de8100064e420c9221014"
+    },
+    {
+      "unitId": "7d33bf4c492d-L51",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "52c9c6b06f86818f5d87d1327af5cea99d48cf73bfb59f37bba2ec79a5ab68ad"
+    },
+    {
+      "unitId": "7d33bf4c492d-L72",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "22ffe76d9e23c027deeccd837f0238973254331020a71769d8537ef239c338ce"
+    },
+    {
+      "unitId": "7d33bf4c492d-L92",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "9e958c3edbb7b0f98f5bc415fba4639a1db28396fe9845960cc95ef41e12174d"
+    },
+    {
+      "unitId": "7d33bf4c492d-L93",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "fd35c3275672c871732be8bad17ecc7fdee6cfbee2b09cb75b1903219ca1e23f"
+    },
+    {
+      "unitId": "7d33bf4c492d-L94",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "ccc94f829b172158bff3229a3b3f0106428c446a6b8e6b14acad6635406c952c"
+    },
+    {
+      "unitId": "7d33bf4c492d-L95",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "f2e9d57e8c62cce28f45157bbea990596dedec1581d0315c5e5e7b2fe3cb9681"
+    },
+    {
+      "unitId": "7d33bf4c492d-L96",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "427d01423e845c3a327cef60c60c942d61fb0d711835d3926e81306d600924f0"
+    },
+    {
+      "unitId": "7d33bf4c492d-L97",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "bf731d203aee05c4a1bd03171d31c304458a29ec800ac1966d5db5ac4e90ede2"
+    },
+    {
+      "unitId": "7d33bf4c492d-L98",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "cac9d892e3027c0f185818587602153c2eacfa0106eb7f5a3f69897ce138376a"
+    },
+    {
+      "unitId": "a43afbea03fe-L26",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "887a71da85986e937abd9fd40ee4a2926193a9e2084a21740b7a1cf69e2cd4f4"
+    },
+    {
+      "unitId": "a43afbea03fe-L34",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "1cb3afd0461e363e953ca0203bdc5d438647b4ca86a4ed8f26d1ba42ed0ca13d"
+    },
+    {
+      "unitId": "a43afbea03fe-L41",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "6c8b77842204e2e438c3df4aba916adf49b8522db23d8d5894a715d14fc2df9f"
+    },
+    {
+      "unitId": "a43afbea03fe-L48",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "cd7572e862e3ea728b1e2d2eec00d17b900a544ebfd9f2caca0a1293154095d8"
+    },
+    {
+      "unitId": "a43afbea03fe-L64",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "f4c01109ae0cf0fe226ad006f0ccbc726e1d2ef5ad5de8100064e420c9221014"
+    },
+    {
+      "unitId": "a43afbea03fe-L73",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "52c9c6b06f86818f5d87d1327af5cea99d48cf73bfb59f37bba2ec79a5ab68ad"
+    },
+    {
+      "unitId": "a43afbea03fe-L94",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "a8d85f285b858ab64aff9d700491f665f4d4b9784a6ec8ba565fe619a85e0f0c"
+    },
+    {
+      "unitId": "a43afbea03fe-L114",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "9e958c3edbb7b0f98f5bc415fba4639a1db28396fe9845960cc95ef41e12174d"
+    },
+    {
+      "unitId": "a43afbea03fe-L115",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "fd35c3275672c871732be8bad17ecc7fdee6cfbee2b09cb75b1903219ca1e23f"
+    },
+    {
+      "unitId": "a43afbea03fe-L116",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "ccc94f829b172158bff3229a3b3f0106428c446a6b8e6b14acad6635406c952c"
+    },
+    {
+      "unitId": "a43afbea03fe-L117",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "32363b680791144cd572e33596f134283299351a42394b7ca8e5e97804f3b0f1"
+    },
+    {
+      "unitId": "a43afbea03fe-L118",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "23001701f0aa1dc4c7d4d29c957c017260305c7d32583785eb25d258ff03b3c2"
+    },
+    {
+      "unitId": "a43afbea03fe-L119",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "f2e9d57e8c62cce28f45157bbea990596dedec1581d0315c5e5e7b2fe3cb9681"
+    },
+    {
+      "unitId": "a43afbea03fe-L120",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "427d01423e845c3a327cef60c60c942d61fb0d711835d3926e81306d600924f0"
+    },
+    {
+      "unitId": "a43afbea03fe-L121",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "683c1cbaf4fcbc23c012d9d50d6a4cf55cf42d87c4f8e35497fb0914543cd0a0"
+    },
+    {
+      "unitId": "a43afbea03fe-L122",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "007664d60673c02e1a6fed60e0f30d970d457ca2af521518eeecea3e51b1a0d1"
+    },
+    {
+      "unitId": "a43afbea03fe-L123",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "ba2207aa84902bed454462a360d01852fe69a622fa58f3c0ea6f0d4c737b6c5f"
+    },
+    {
+      "unitId": "a43afbea03fe-L124",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "e3a2f621028dc3fc47d81970cf53a3b3a97c2aa98ada40e5c636a74caba21044"
+    },
+    {
+      "unitId": "a43afbea03fe-L125",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "9d484e55ea150f96f1fedb732f59ea561f53d3666872af161b1c74cd9ff99777"
+    },
+    {
+      "unitId": "a43afbea03fe-L126",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "133587f0d4c23c51219a5c18b965cbd4465994e0b9f562adebdb7dc7eb29217d"
+    },
+    {
+      "unitId": "a43afbea03fe-L127",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "a6ad98b26f5405b23bf139c4d4bfe811fa829557143899abe2e17da1fcef04c4"
+    },
+    {
+      "unitId": "a43afbea03fe-L128",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "487c492583abe9685888d04f8cbd3abe4aae95a8dcdfb331f9eaf782fd3f1607"
+    },
+    {
+      "unitId": "a43afbea03fe-L129",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "a8d55e5c2f9890c5e85731ce59e218fe38068588473a5001759bd6a38c2ba068"
+    },
+    {
+      "unitId": "a43afbea03fe-L130",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "2aa0ec26c29e2d58cb35f7ce5316f5a9aa7b079d8ab3765de993819f6edd7502"
+    },
+    {
+      "unitId": "a43afbea03fe-L131",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "bf731d203aee05c4a1bd03171d31c304458a29ec800ac1966d5db5ac4e90ede2"
+    },
+    {
+      "unitId": "a43afbea03fe-L132",
+      "oldClassification": "reference-summary",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Remove version-summary assertions from D; same neutral reference index in C/D.",
+      "originalSourceTextSha256": "7ff4c12eb116cf9ab1ac6498e94ba8531aac725a61ea8121c2be5ff12e0b0b40"
+    },
+    {
+      "unitId": "a43afbea03fe-L133",
+      "oldClassification": "mixed",
+      "resolution": "superseded-in-D-adaptation",
+      "action": "Replace mixed block with procedure-only guidance. Keep specific source facts in identical references/shared supplement; no claim that the original block was fully entailed.",
+      "originalSourceTextSha256": "7fbc36781a1a3dbced3ea02d6c73c29f79724fd13b67cfcbf5ea4193600fbe2f"
+    }
+  ],
+  "newGuidanceReview": [
+    {
+      "part": "scope/baseline",
+      "kind": "procedure plus shared identity facts",
+      "evidence": "same-version fact-supplement.md; references/pre-flight.md"
+    },
+    {
+      "part": "corridor/net-state",
+      "kind": "procedure already available in C",
+      "evidence": "references/README.md opening corridor rule"
+    },
+    {
+      "part": "seven touchpoints",
+      "kind": "shared category list",
+      "evidence": "references/pre-flight.md seven classes"
+    },
+    {
+      "part": "plan/minimal authorized edits",
+      "kind": "procedure/treatment",
+      "evidence": "original Mode B/C; common material-access.md controls authority"
+    },
+    {
+      "part": "layered verification",
+      "kind": "procedure already available in C",
+      "evidence": "references/rollup-0.1.2.md layered checklist; no missing helper invocation"
+    },
+    {
+      "part": "reporting/uncertainty/retry",
+      "kind": "procedure/treatment",
+      "evidence": "original reporting/safety sections; no exact API or version claims added"
+    }
+  ],
+  "materialReviewDisposition": "ready for development pilot of adapted skill; original full-skill equivalence not claimed",
+  "limitations": [
+    "source references remain curated and partly procedural",
+    "retrospective task/material development exposure persists",
+    "human agreement not measured",
+    "runtime tool feasibility and model sensitivity untested"
+  ]
+}

@@ -1,0 +1,321 @@
+{
+  "status": "scored",
+  "score": 75,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "runtime-removal",
+      "verdict": "pass",
+      "reason": "Locates the removed type import, identifies Web Client/plugin impact and the correct card, and requires a supported replacement while appropriately deferring unavailable package details.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "| [`src/client/index.ts:1`](/app/fixture/src/client/index.ts:1) | Web Client plugin (confirmed by the source location and `package.json:6`) | `DSH-0.1.2-A1-25` | The plugin has a type-only import from `@deepseek-ai/dsh-client-runtime/client`. The fixture’s maintainer reference says this package is removed (`README.md:6`). Remove the obsolete import and update `ClientContext` to the 0.1.2-alpha.2-supported type/package source. **The successor package/path is unconfirmed by the fixture.** |"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/index.ts",
+          "quote": "import type { ClientContext } from '@deepseek-ai/dsh-client-runtime/client'"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-25",
+        "API-10"
+      ],
+      "points": 25,
+      "awarded": 25
+    },
+    {
+      "id": "registration-id",
+      "verdict": "partial",
+      "reason": "Correctly compares both IDs and requires exact package-name alignment under A1-26, but omits client activation verification.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "| [`src/client/index.ts:10`](/app/fixture/src/client/index.ts:10), [`package.json:2`](/app/fixture/package.json:2) | Web Client/plugin registration boundary; the Host-side loader detail is unconfirmed | `DSH-0.1.2-A1-26` | `__ModuleLoader__.load` registers `pet-legacy-bundle`, while the package name is `dsh-pet-session-bench`; the source comment also identifies the ID as not being the package name (`index.ts:10`, `package.json:2`). Change the registration ID to the package name, `dsh-pet-session-bench`. |"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/index.ts",
+          "quote": "  __ModuleLoader__.load('pet-legacy-bundle', () => { /* legacy bundle id, not package name */ })"
+        },
+        {
+          "path": "package.json",
+          "quote": "  \"name\": \"dsh-pet-session-bench\","
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-26"
+      ],
+      "points": 25,
+      "awarded": 12.5
+    },
+    {
+      "id": "session-content",
+      "verdict": "partial",
+      "reason": "Locates the flat snapshot and array lookup, maps A1-27, and proposes replacing the accessor. However, updating the first-node lookup alone does not establish preservation of content ordering.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "| [`src/client/index.ts:12`](/app/fixture/src/client/index.ts:12) and [`:13`](/app/fixture/src/client/index.ts:13) | Web Client plugin | `DSH-0.1.2-A1-27` | The plugin destructures a flat `nodes` value from `useSession()` and indexes it as an array (`index.ts:12-13`). The maintainer reference identifies this flat `useSession()` `nodes` snapshot as the breaking touchpoint (`README.md:6`). Migrate the read to the 0.1.2-alpha.2 session shape/accessor and update the first-node lookup. **The new shape/accessor is unconfirmed by the fixture.** |"
+        },
+        {
+          "report": "report.md",
+          "quote": "No additional runtime touchpoint is asserted: `src/client/Pet.tsx` contains only `export function Pet() {}` (`Pet.tsx:1`), and the remaining `index.ts` declarations/imports do not match any of the four named breaking contracts (`index.ts:2-9`)."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/index.ts",
+          "quote": "  const { nodes } = useSession()\n  const first = nodes[0]"
+        },
+        {
+          "path": "src/client/Pet.tsx",
+          "quote": "export function Pet() {}"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-27",
+        "API-10"
+      ],
+      "points": 25,
+      "awarded": 12.5
+    },
+    {
+      "id": "connection-face",
+      "verdict": "pass",
+      "reason": "Identifies the exact preset-list call and deleted face, maps A1-30, and requires migration away from it. Replacement details are defensibly deferred to target documentation rather than invented.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "| [`src/client/index.ts:11`](/app/fixture/src/client/index.ts:11) | Web Client plugin connection surface | `DSH-0.1.2-A1-30` | The plugin calls `ctx.connection.api.agentPresets.list()`, and the source comment labels `connection.api` the legacy face (`index.ts:11`). The maintainer reference says that face is removed (`README.md:6`). Migrate the call away from `ctx.connection.api` to the 0.1.2-alpha.2 connection/API surface. **The replacement path is unconfirmed by the fixture.** |"
+        },
+        {
+          "report": "report.md",
+          "quote": "Only the concrete registration replacement is fully determined from local source (`package.json:2`); the other three successor package/API paths require the actual 0.1.2-alpha.2 upgrade-card text or documentation, which is not present in this closed fixture."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/index.ts",
+          "quote": "  ctx.connection.api.agentPresets.list().then(presets => { /* legacy connection.api face */ })"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-30"
+      ],
+      "points": 25,
+      "awarded": 25
+    }
+  ],
+  "caps": [
+    {
+      "id": "invented-migration",
+      "triggered": false,
+      "reason": "No unsupported lifecycle replacement or general requirement to move service injection into a manifest is asserted.",
+      "evidence": [],
+      "total": 70
+    }
+  ],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 12930,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1812,
+      "reasoning_output_tokens": 363
+    },
+    "request_id": "01a08ae8-f397-7481-bfe4-a575eb5ee9fb",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "a49bac4c25613f49dbb6ce9f540e1ebb20f96e39c6a405f87973a14d1cc93d07",
+    "response_sha256": "a8167a5f0831d310ddf8c7e3b458e435d0b2efbfcbf68f5f110a7dcb22004736"
+  },
+  "citation_audit": [
+    {
+      "report": "report.md",
+      "citation": "package.json:6",
+      "path": "package.json",
+      "start": 6,
+      "end": 6,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "package.json:4",
+      "path": "package.json",
+      "start": 4,
+      "end": 4,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "src/client/index.ts:1",
+      "path": "src/client/index.ts",
+      "start": 1,
+      "end": 1,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "/app/fixture/src/client/index.ts:1",
+      "path": "src/client/index.ts",
+      "start": 1,
+      "end": 1,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "package.json:6",
+      "path": "package.json",
+      "start": 6,
+      "end": 6,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "src/client/index.ts:10",
+      "path": "src/client/index.ts",
+      "start": 10,
+      "end": 10,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "/app/fixture/src/client/index.ts:10",
+      "path": "src/client/index.ts",
+      "start": 10,
+      "end": 10,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "package.json:2",
+      "path": "package.json",
+      "start": 2,
+      "end": 2,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "/app/fixture/package.json:2",
+      "path": "package.json",
+      "start": 2,
+      "end": 2,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "index.ts:10",
+      "path": "src/client/index.ts",
+      "start": 10,
+      "end": 10,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "package.json:2",
+      "path": "package.json",
+      "start": 2,
+      "end": 2,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "src/client/index.ts:12",
+      "path": "src/client/index.ts",
+      "start": 12,
+      "end": 12,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "/app/fixture/src/client/index.ts:12",
+      "path": "src/client/index.ts",
+      "start": 12,
+      "end": 12,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "/app/fixture/src/client/index.ts:13",
+      "path": "src/client/index.ts",
+      "start": 13,
+      "end": 13,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "index.ts:12-13",
+      "path": "src/client/index.ts",
+      "start": 12,
+      "end": 13,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "src/client/index.ts:11",
+      "path": "src/client/index.ts",
+      "start": 11,
+      "end": 11,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "/app/fixture/src/client/index.ts:11",
+      "path": "src/client/index.ts",
+      "start": 11,
+      "end": 11,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "index.ts:11",
+      "path": "src/client/index.ts",
+      "start": 11,
+      "end": 11,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "Pet.tsx:1",
+      "path": "src/client/Pet.tsx",
+      "start": 1,
+      "end": 1,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "index.ts:2-9",
+      "path": "src/client/index.ts",
+      "start": 2,
+      "end": 9,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "package.json:2",
+      "path": "package.json",
+      "start": 2,
+      "end": 2,
+      "valid": true
+    }
+  ],
+  "reports": {
+    "report.md": "81f99a46e1fe3c41577edb303056f2f98f8224d25bb060f2efa9199b49df57dc"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "8bd3ac500af9ecd190d013a7211249f53bad8c2ed11e2d5beb3d2f6bb04ac5d9",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

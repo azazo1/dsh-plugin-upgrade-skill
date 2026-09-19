@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "self-host-root-cause",
+      "verdict": "pass",
+      "reason": "Section 1 explains the session/tool worker runs inside the host process whose package tree npm removes (cites log 16:41:02 cleaning / 16:41:05 remove before fetch), so the host dies mid-install and the tool result is never durably recorded; grounded in fixture log and env-state."
+    },
+    {
+      "id": "shim-signature",
+      "verdict": "pass",
+      "reason": "Section 2 identifies content-present-but-shims-missing (dsh/dsh.cmd missing, dsh.ps1 stale from env-state.txt), explains shims vs package directory, and argues hand-swapping/hand-writing shims is wrong repair."
+    },
+    {
+      "id": "external-pinned-repair",
+      "verdict": "pass",
+      "reason": "Section 3 grounds the fix in repair-notes.md: external re-run of pinned `npm install -g @deepseek-ai/dsh@0.1.2-rc.1` regenerates shims, verify with dsh --version -> 0.1.2-rc.1; explicitly rejects hand-patching and notes unpinned floating installs as wrong."
+    },
+    {
+      "id": "refuse-and-hand-off-protocol",
+      "verdict": "pass",
+      "reason": "Section 4: agent must never execute the global host install from inside, refuse and hand off an external procedure, with step 1 fully stopping every dsh process before npm runs and pinned version in the hand-off command; best-effort in-place explicitly excluded."
+    },
+    {
+      "id": "prevention-guard-checklist",
+      "verdict": "pass",
+      "reason": "Section 5 proposes a self-host-mutation intent guard before tool execution (resolve target against running process module origin) plus a checklist covering dsh --version/shim verification, plugin load verification after upgrade, and dsh-old-* backup cleanup; notes zero-diff version-bump hop as valid no-remigration outcome."
+    }
+  ],
+  "caps": []
+}

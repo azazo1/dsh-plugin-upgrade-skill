@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "projection-contract",
+      "verdict": "pass",
+      "reason": "Report distinguishes clipboard-text projection (InputState.draft, Occurrence.offset/length, chip expands to 28-char clipboardText) from detect-text TokenSpan coordinates (chip = one U+FFFC), citing host-input-contract.ts EditorProjection fields and host-input-facade.ts JSDoc; normal text/spaces contribute normal width."
+    },
+    {
+      "id": "repeat-paste-failure",
+      "verdict": "pass",
+      "reason": "Quotes snapshot.draft.length in add(); explains paste #1 succeeds only because empty composer makes coordinates coincide; paste #2 sends 29 into a 2-char detect text, splice fails, insertReference returns false → changed-composer toast; explicitly rules out stale draftRev and inconsistent capture counts."
+    },
+    {
+      "id": "removal-and-bookkeeping",
+      "verdict": "pass",
+      "reason": "Traces remove(): occurrence.offset/length passed unconverted, consumeToken returns false (ignored), records.delete runs unconditionally; live occurrence keeps the chip while missing record flips dock meta to 'unavailable'; ties both symptoms to the same coordinate mismatch rather than an upload failure."
+    },
+    {
+      "id": "conversion-and-success-gate",
+      "verdict": "pass",
+      "reason": "Derives detectPos = clipboardPos − Σ preceding (length−1); applies it at insert (end-of-draft = draft.length − Σ(occ.length−1)) and removal (map offset, span of one detect char); keeps draftRev guard; retires records only after successful consumption or verified clipboard-coordinate fallback (setDraft correctly clipboard-currency)."
+    },
+    {
+      "id": "regression-sequences",
+      "verdict": "pass",
+      "reason": "Proposes two successive pastes asserting both occurrences/chips, then removes a chip with a preceding chip asserting occurrence+chip+record removed together and survivor intact; adds middle/last removal, failed-removal bookkeeping, and fallback-parity variants with concrete assertions."
+    }
+  ],
+  "caps": []
+}

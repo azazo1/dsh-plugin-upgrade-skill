@@ -1,0 +1,182 @@
+{
+  "status": "scored",
+  "score": 87.5,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "official-short-name",
+      "verdict": "pass",
+      "reason": "Distinguishes the official short name from its coordinate and package name, correctly treating prefixes as optional collision mitigation.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "| Official plugin name / `pluginNames` | `greet` | **collision recommendation** | The fixture README identifies the short name as valid, with no compatibility error. It is unprefixed and common, so a prefix could reduce collision risk; that is a recommendation, not an error. |"
+        },
+        {
+          "report": "report.md",
+          "quote": "| Plugin coordinate | `acme/greet` | **needs registry context** | The coordinate is namespace-qualified and no local incompatibility is shown. Whether the namespace/name pair is claimed or reserved is unqueried. |"
+        },
+        {
+          "report": "report.md",
+          "quote": "| Package name / `packageName` | `dsh-greet` | **needs registry context** | The two local declarations agree. Publication-name availability, reservation, and collision status cannot be determined without the relevant registry context. |"
+        }
+      ],
+      "sources": [
+        {
+          "path": "dsh-plugin.naming.json",
+          "quote": "\"plugin\": { \"namespace\": \"acme\", \"name\": \"greet\", \"coordinate\": \"acme/greet\", \"packageName\": \"dsh-greet\" }"
+        },
+        {
+          "path": "README.md",
+          "quote": "the official short name `greet` is valid (no compatibility error; prefixes are only collision recommendations)"
+        }
+      ],
+      "references": [],
+      "points": 25,
+      "awarded": 25
+    },
+    {
+      "id": "service-collision-advice",
+      "verdict": "pass",
+      "reason": "Identifies the generic service and correctly classifies its collision risk as a recommendation, not incompatibility.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "| Service | `search` | **collision recommendation** | The fixture README describes this unprefixed service as a warning, not a compatibility error. It is generic; a plugin-specific prefix would reduce ambiguity. No reservation claim is made. |"
+        }
+      ],
+      "sources": [
+        {
+          "path": "dsh-plugin.naming.json",
+          "quote": "\"services\": [\"search\"]"
+        },
+        {
+          "path": "README.md",
+          "quote": "the unprefixed service `search` is a warning not an error"
+        }
+      ],
+      "references": [],
+      "points": 25,
+      "awarded": 25
+    },
+    {
+      "id": "shared-event-context",
+      "verdict": "partial",
+      "reason": "Correctly identifies an informational shared channel and leaves existing usage unknown, but does not explain publisher schema compatibility or that matching names alone cannot establish a conflict.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "| Event | `web-search/ready` | **collision recommendation** | The fixture README characterizes this as a shared channel and informational, not a compatibility error. It is appropriate only if sharing is intended; a plugin-private event would benefit from a plugin namespace. Existing channel usage is unknown. |"
+        }
+      ],
+      "sources": [
+        {
+          "path": "dsh-plugin.naming.json",
+          "quote": "\"events\": [\"web-search/ready\"]"
+        },
+        {
+          "path": "README.md",
+          "quote": "the event `web-search/ready` is a shared channel (informational)"
+        }
+      ],
+      "references": [],
+      "points": 25,
+      "awarded": 12.5
+    },
+    {
+      "id": "coverage-and-registry-limits",
+      "verdict": "pass",
+      "reason": "Covers all remaining surfaces with local reasoning, preserves unknown registry status, identifies required registry/runtime and route-table verification without claiming execution, and correctly excludes private:true as a naming error.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "No online or external registry query was made. Consequently, no identifier is\nreported as reserved, unreserved, globally available, or globally unique.\nThose registry facts are **unknown / not checked**."
+        },
+        {
+          "report": "report.md",
+          "quote": "- **needs registry context** — local shape appears usable, but ownership,\n  reservation, or collision status requires a registry/runtime query;"
+        },
+        {
+          "report": "report.md",
+          "quote": "| Loader ID | `acme-greet` | **needs registry context** | It is prefixed and locally well-formed on the supplied evidence. Global or host-level uniqueness was not checked. |"
+        },
+        {
+          "report": "report.md",
+          "quote": "| Tool | `acme_greet_hi` | **needs registry context** | It is plugin-prefixed and no local compatibility problem is evidenced. Tool-ID ownership or collision status remains unqueried. |\n| Command | `acme-greet-hi` | **needs registry context** | It is plugin-prefixed and no local compatibility problem is evidenced. Command-ID ownership or collision status remains unqueried. |\n| Skill | `greet` | **collision recommendation** | The short, unprefixed skill name is locally compatible on the supplied evidence, but a prefix would reduce collision risk. Availability is unknown. |\n| Skill provider | `acme-greet-filesystem` | **needs registry context** | The provider ID is prefixed and no local error is shown. Whether it conflicts with a registered provider was not checked. |"
+        },
+        {
+          "report": "report.md",
+          "quote": "| Settings namespace | `acme-greet` | **needs registry context** | It is namespace-qualified and no local incompatibility is evidenced. Registry/host collision status is unknown. |\n| Route | exact `/api/plugins/acme-greet/hi` | **needs registry context** | The route is explicit and plugin-namespaced. An exact-path collision can only be checked against the host's route table, which was not available. |"
+        },
+        {
+          "report": "report.md",
+          "quote": "The package also has `private: true`; the\nfixture README identifies that as test-material discipline and outside this\nnaming judgment, so it is not classified as a naming verdict here."
+        }
+      ],
+      "sources": [
+        {
+          "path": "dsh-plugin.naming.json",
+          "quote": "\"loaderIds\": [\"acme-greet\"]"
+        },
+        {
+          "path": "dsh-plugin.naming.json",
+          "quote": "\"tools\": [\"acme_greet_hi\"],\n    \"commands\": [\"acme-greet-hi\"],\n    \"skills\": [\"greet\"],\n    \"skillProviders\": [\"acme-greet-filesystem\"]"
+        },
+        {
+          "path": "dsh-plugin.naming.json",
+          "quote": "\"settingsNamespaces\": [\"acme-greet\"],\n    \"routes\": [{ \"kind\": \"exact\", \"path\": \"/api/plugins/acme-greet/hi\" }]"
+        },
+        {
+          "path": "README.md",
+          "quote": "A community plugin naming declaration (`private: true` is the repository's \"test material, do not publish\" discipline, not part of the brief)."
+        },
+        {
+          "path": "README.md",
+          "quote": "an unqueried registry is unknown."
+        }
+      ],
+      "references": [],
+      "points": 25,
+      "awarded": 25
+    }
+  ],
+  "caps": [
+    {
+      "id": "unsupported-all-clear",
+      "triggered": false,
+      "reason": "The report limits its no-error conclusion to local evidence and explicitly leaves availability, reservation, registration, and actual collisions unknown.",
+      "evidence": [],
+      "total": 30
+    }
+  ],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 7212,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2193,
+      "reasoning_output_tokens": 495
+    },
+    "request_id": "01a08ead-40c9-7511-bd22-d9b1753d2ddc",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "f8fb2aecb8b64187406fe0db7c92eb4272d1069a467b9d9cc351c9dc689f5314",
+    "response_sha256": "9a1971600b33b62f7f438f43f83541cef0cdf7b7c60cf830c5e54ccdb15c94ff"
+  },
+  "citation_audit": [],
+  "reports": {
+    "report.md": "1f313187ba4fb3fedbe57c9a7355d729e996af5502204164f9d4134b5cbcaea0"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "c5e11f75d910ce04cc3bdadad706cf9ad3266cbdc37e719cab05284ee24a002c",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

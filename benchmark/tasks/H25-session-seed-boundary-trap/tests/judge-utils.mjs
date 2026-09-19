@@ -7,20 +7,24 @@
 //                  init+apply correct 10 / valid seq+offset construction 5 /
 //                  invalid constructors still throw 5)
 //   migration  25 (no stale seedLength 5 / makeForkMeta isSeeded true with
-//                  no seedLength key 5 / fresh session header isSeeded 5 /
+//                  no seedLength key 5 / declared inherited count 5 /
 //                  eventPosition uses SessionSeq 5 / logOffset uses
 //                  SessionLogOffset 5)
-//   hygiene    10 (no alpha.3 dependency pin)
+//   hygiene    10 (exact required runtime dependencies)
 //   hard caps  — as-cast bypass → 30; unsafe position/offset construction
 //                bypass → 40; SessionSeq used for offsets → 60;
-//                SessionLogOffset used for positions → 60; resume uses the
-//                current log length → 65; resume uses firstLiveSeq → 65;
+//                SessionLogOffset used for positions → 60; resumed boundary
+//                fails real-session probes → 65;
 //                isSeeded true without the inherited count → 40;
 //                inherited count without isSeeded → 40; stale seedLength
 //                kept → 70; alpha.3 pin → 20; spec/helpers fail to load
 //                → 30.
 //   flat 0     — fixture untouched, node_modules/host modified, or the git
 //                baseline rewritten (judge.mjs gates).
+
+export const REQUIRED_DEPENDENCIES = Object.freeze({
+  '@deepseek-ai/dsh-session': '0.1.2-alpha.4',
+})
 
 /** Remove // line and / * block * / comments (string-aware). */
 export function stripComments(source) {
@@ -148,7 +152,6 @@ export function scanSource(source) {
   const bodies = extractNamedFunctions(text)
   const eventPos = bodies.get('eventPosition') ?? ''
   const logOff = bodies.get('logOffset') ?? ''
-  const resume = bodies.get('resumeForkSession') ?? ''
   return {
     staleSeedLength: /seedLength/.test(text),
     asCasts: /as\s+(any|unknown)|as\s+unknown\s+as/.test(text),
@@ -156,8 +159,6 @@ export function scanSource(source) {
     logOffsetHasSessionLogOffset: /SessionLogOffset\s*\(/.test(logOff),
     seqUsedForOffsets: /SessionSeq\s*\(/.test(logOff),
     offsetUsedForPositions: /SessionLogOffset\s*\(/.test(eventPos),
-    resumeUsesLogLength: /\.length/.test(resume),
-    resumeUsesFirstLive: /firstLiveSeq/.test(resume),
   }
 }
 
@@ -179,7 +180,10 @@ export function scanPackageJson(packageJson) {
       }
     }
   }
-  return { pinsAlpha3 }
+  const dependencyErrors = Object.entries(REQUIRED_DEPENDENCIES)
+    .filter(([name, version]) => parsed?.dependencies?.[name] !== version)
+    .map(([name, version]) => `${name} must remain in dependencies at ${version}`)
+  return { pinsAlpha3, dependencyErrors }
 }
 
 /**
@@ -225,7 +229,7 @@ export function scoreMigration(runtime, scan) {
 
 /** Migration hygiene (max 10). */
 export function scoreHygiene(packageScan) {
-  return packageScan.pinsAlpha3 ? 7 : 10
+  return packageScan.pinsAlpha3 ? 7 : packageScan.dependencyErrors.length ? 0 : 10
 }
 
 /**
@@ -239,12 +243,12 @@ export function capFor({ scan, packageScan, observations, runtime, loadFailed })
   if (!observations.invalidRejected && !loadFailed) caps.push(40)
   if (scan.seqUsedForOffsets) caps.push(60)
   if (scan.offsetUsedForPositions) caps.push(60)
-  if (scan.resumeUsesLogLength) caps.push(65)
-  if (scan.resumeUsesFirstLive) caps.push(65)
+  if (!loadFailed && observations.resumedBoundaryPreserved === false) caps.push(65)
   if (runtime.metaShape.isSeeded === true && runtime.metaShape.inheritedEventCount === undefined) caps.push(40)
   if (runtime.metaShape.inheritedEventCount !== undefined && runtime.metaShape.isSeeded !== true) caps.push(40)
   if (scan.staleSeedLength) caps.push(70)
   if (packageScan.pinsAlpha3) caps.push(20)
+  if (packageScan.dependencyErrors.length) caps.push(20)
   return caps.length > 0 ? Math.min(...caps) : null
 }
 
@@ -269,12 +273,12 @@ export function assembleScore({ behavioral, runtime, source, packageJson, observ
   if (!observations.invalidRejected && !loadFailed) reasons.push('invalid position/offset constructors no longer throw — cap 40')
   if (scan.seqUsedForOffsets) reasons.push('SessionSeq used for offsets — cap 60')
   if (scan.offsetUsedForPositions) reasons.push('SessionLogOffset used for positions — cap 60')
-  if (scan.resumeUsesLogLength) reasons.push('resume uses the current log length instead of the original cut — cap 65')
-  if (scan.resumeUsesFirstLive) reasons.push('resume uses firstLiveSeq instead of the original cut — cap 65')
+  if (!loadFailed && observations.resumedBoundaryPreserved === false) reasons.push('resumed fork does not preserve the original inherited boundary — cap 65')
   if (runtime.metaShape.isSeeded === true && runtime.metaShape.inheritedEventCount === undefined) reasons.push('isSeeded true without the inherited count — cap 40')
   if (runtime.metaShape.inheritedEventCount !== undefined && runtime.metaShape.isSeeded !== true) reasons.push('inherited count without isSeeded — cap 40')
   if (scan.staleSeedLength) reasons.push('stale seedLength kept — cap 70')
   if (packageScan.pinsAlpha3) reasons.push('alpha.3 dependency pin — cap 20')
+  if (packageScan.dependencyErrors.length) reasons.push(`required runtime dependencies missing or changed — cap 20: ${packageScan.dependencyErrors.join('; ')}`)
   let score = behavioral + migration.score + hygiene
   const cap = capFor({ scan, packageScan, observations, runtime, loadFailed })
   if (cap !== null && score > cap) {

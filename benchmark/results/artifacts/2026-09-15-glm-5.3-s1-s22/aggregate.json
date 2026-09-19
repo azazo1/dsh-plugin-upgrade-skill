@@ -1,0 +1,156 @@
+[
+  {
+    "task": "S1-static-scan",
+    "method": "llm-rubric",
+    "noskill": 95,
+    "skill": 100,
+    "notes": "noskill partial on limits (no explicit post-migration validation plan proposed); skill all pass."
+  },
+  {
+    "task": "S10-paste-rename-and-version-chip",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S11-mermaid-lazyload-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S12-global-upgrade-ebusy-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S13-peer-range-vs-runtime",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S14-link-install-lock-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S15-slot-error-boundary-crash",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 100,
+    "notes": "noskill 90: the solver report is truncated at the model output-length limit (159 lines, ends mid code block) and was judged as-is per the single-attempt protocol; skill 100."
+  },
+  {
+    "task": "S16-self-host-upgrade-trap",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 100,
+    "notes": "noskill partial on handoff-protocol: report swaps which rules are established vs new (stop-host-first called new, outside-session execution called known); skill 100."
+  },
+  {
+    "task": "S17-external-ui-plugin-onboarding-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 90,
+    "notes": "skill partial on diagnosis-and-packaging: node --check/rg probes instead of a vm.Script-style classic-script parse; noskill 100."
+  },
+  {
+    "task": "S18-terminal-sprite-render-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 90,
+    "notes": "skill partial on timer-liveness: proposes teardown unmount/disposal instead of timer.unref; noskill 100."
+  },
+  {
+    "task": "S19-phantom-update-stale-host",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S2-negative-scan",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S20-msvc-flock-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S21-resource-service-unavailable-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S22-duplicate-insert-boot-crash-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S3-snapshot-migration",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S4-legacy-client-imports",
+    "method": "llm-rubric",
+    "noskill": 75,
+    "skill": 100,
+    "notes": "noskill partials on registration-id activation check and session-content ordering (R1 glm-5.3-flash: 38; glm-5.2 median: 63); skill 100 in every model record."
+  },
+  {
+    "task": "S5-negative-naming",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S6-corridor-net-state",
+    "method": "llm-rubric",
+    "noskill": 87.5,
+    "skill": 100,
+    "notes": "noskill partial on informational-producer semantics (retention-not-filtering point not explicit); skill 100 in every model record. Maintainer verification: exact rubric total is 87.5; initial aggregate rounded it to 88."
+  },
+  {
+    "task": "S7-unpublished-cohort",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S8-release-routing-trap",
+    "method": "llm-rubric",
+    "noskill": 80,
+    "skill": 80,
+    "notes": "Both arms 80: the frozen-runtime remedy presents v0.9.3 as present/installable on the mirror while the fixture tag list omits it — the same real rubric miss seen in glm-5.2 rounds 2-3. Version selection itself was correct."
+  },
+  {
+    "task": "S9-composer-coordinate-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  }
+]

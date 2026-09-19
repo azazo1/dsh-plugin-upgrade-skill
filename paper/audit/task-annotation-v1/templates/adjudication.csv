@@ -1,0 +1,5 @@
+# task-annotation-v1 Adjudication template (THIRD PARTY ONLY — not annotator A, not annotator B; the role is adjudicator, never "annotator C")
+# adjudicator_id: <fill>
+# independence_declaration: <fill> — I saw only the task evidence, A label + rationale, and B label + rationale for the disagreed tasks below.
+# Fill one row per disagreement listed by measure-task-annotation-agreement.mjs; choice: A | B | new
+task_id,dimension,choice,chosen_family_id,chosen_trap_type,adjudication_reason

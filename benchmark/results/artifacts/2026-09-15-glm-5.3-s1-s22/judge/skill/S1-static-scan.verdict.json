@@ -1,0 +1,50 @@
+{
+  "decisions": [
+    {
+      "id": "source-patch",
+      "verdict": "pass",
+      "reason": "Locates cordis.patch.yml:5-6 patch: declaration, patch.yml:2-6 target (SessionView.ts/renderSessionView), and apply-patch.mjs; explicitly distinguishes ordinary profile composition from the source-patch surface; explains the private session-view coupling via A1-03's split."
+    },
+    {
+      "id": "events",
+      "verdict": "pass",
+      "reason": "Locates producer (src/index.ts:15-19, legacy/informational-note with ignorable:true) and ctx.on observer; correctly folds A1-02 removal and A2-01 restoration, advising to preserve the producer marker (not a consumer whitelist) and explicitly noting public Session.append has no ignorable parameter — no overclaim."
+    },
+    {
+      "id": "host-services",
+      "verdict": "pass",
+      "reason": "Locates ctx.get('apiProxy') with session.rename and llm.providers (src/index.ts:26-31); prescribes host-plane domain-service injection (inject llm) rather than ctx.remote, which it correctly identifies as the Web Client face; does not invent a nonexistent Host remote service."
+    },
+    {
+      "id": "host-path",
+      "verdict": "pass",
+      "reason": "Locates join(homedir(),'.dsh','profiles','default') at src/index.ts:36-37 and explains resolution via runtime DSH_HOME/profiles; never claims --profile was introduced in alpha.1."
+    },
+    {
+      "id": "ui",
+      "verdict": "pass",
+      "reason": "Locates both the internal SessionView import (src/index.ts:10) and registerCommand (41-43); explains exact-tag re-derivation, owner-module rebuild, and marking seams without a stable public interface as pending confirmation."
+    },
+    {
+      "id": "channel",
+      "verdict": "pass",
+      "reason": "Locates the loopback createServer on 127.0.0.1:43121 (/api/legacy); explicitly states loopback does not exempt from auth, and distinguishes Connection-gated official /api routes from raw ctx.webServer.register routes needing requestRejection."
+    },
+    {
+      "id": "subprocess",
+      "verdict": "pass",
+      "reason": "Locates both spawn and execFileSync JSON.parse sites; explains stdout is final text and stderr carries reasoning/errors, and correctly states the JSONL assumption was already wrong in rc.2 (pre-existing bug), not an alpha.2 stdout change."
+    },
+    {
+      "id": "mapping",
+      "verdict": "pass",
+      "reason": "Grounds each hit in file:line and maps to A1-03, A2-01+A1-02, A1-01, A1-04, A1-08, plus A1-05 for stdout — all required mappings present, correct, and evidence-based, not a bare card list."
+    },
+    {
+      "id": "limits",
+      "verdict": "pass",
+      "reason": "Accounts for all seven categories as hits with concrete absence evidence for ruled-out cards, states scan limits (heuristic regex, no dataflow, curated card list, non-executable fixture), and proposes layered validation: dependency resolution, build/typecheck, isolated cold profile mount, and a functional path; never executes the fixture."
+    }
+  ],
+  "caps": []
+}

@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "phantom-pixel-sgr",
+      "verdict": "pass",
+      "reason": "Grounds diagnosis in renderer-excerpt.ts: partial SGR prefixes (fg only) leave the empty half of a half-filled cell painted with the stale background persisted from the previous cell; names outline/sleep-Z/heart edge cells and symptom-log; fix is explicit default background (\\x1b[49m) per half-filled cell."
+    },
+    {
+      "id": "ghost-frame-trim",
+      "verdict": "pass",
+      "reason": "Cites out.replace(/[ ]+$/,'') dropping trailing cells and the text pipeline not erasing beyond written text; two-part fix given: full-sprite-width padded rows plus explicit erase-to-EOL (\\x1b[K) / canvas clear."
+    },
+    {
+      "id": "frame-digest-gate",
+      "verdict": "pass",
+      "reason": "Reads frames-digest-report.txt: tail2 MISMATCH (23 cells, upper-right cluster shifted 1 col, hand-copied during conversion), existing per-excerpt regression for a different frame missed it; gate digests every frame against source art with CI assertion."
+    },
+    {
+      "id": "timer-unref-hang",
+      "verdict": "pass",
+      "reason": "From ci-hang-evidence.txt: rescheduling setTimeout per animation tick keeps the loop alive; probe hosts mount without unmounting so cleanup never runs; interactive terminal unaffected (TTY/stdin keeps it alive); one-line fix timer.unref()."
+    },
+    {
+      "id": "prevention-checklist",
+      "verdict": "pass",
+      "reason": "Checklist includes concrete items: explicit 39m/49m default SGR per half-filled cell, fixed-width rows plus EL erase, per-frame golden digests pinned in CI; rollout audit covers timer unref/clear and unmount behavior of every embedding host."
+    }
+  ],
+  "caps": []
+}

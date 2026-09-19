@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "native-module-owner",
+      "verdict": "pass",
+      "reason": "Report names the running dsh web host node.exe PID 42432 from running-processes.txt as the koffi.node loader, explains Windows locks the mapped .node binary until that process exits, and ties npm's copyfile EBUSY (attempt1-ebusy.log) to the blocked copy."
+    },
+    {
+      "id": "browser-versus-host-sequence",
+      "verdict": "pass",
+      "reason": "Explicitly states refresh only reloads the SPA while the host keeps running, and gives an ordered numbered procedure: stop/verify all dsh host and worker processes, run install from an external terminal, then restart and verify. It targets dsh-related processes only, not every Node process."
+    },
+    {
+      "id": "unpinned-dist-tag-resolution",
+      "verdict": "pass",
+      "reason": "Grounded in npm-dist-tags.txt: bare name resolves to latest=0.1.1-rc.2 (alpha only on the alpha tag), so attempt 2 replaced alpha.4 with rc.2 — a downgrade, not a preserve/upgrade; correctly identified as the resolution mechanism, not a version-label slip."
+    },
+    {
+      "id": "safe-exact-commands",
+      "verdict": "pass",
+      "reason": "Provides `npm install -g @deepseek-ai/dsh@0.1.2-alpha.5 @deepseek-harness-tui/dsh-tui` after stopping the host, then restart dsh web and verify `dsh --version` prints 0.1.2-alpha.5; explicitly warns @alpha is a moving tag and cannot substitute for the exact pin."
+    },
+    {
+      "id": "readme-prevention",
+      "verdict": "pass",
+      "reason": "Advises README authors to never publish unpinned install commands, always pin exact tested core (and plugin) versions since a bare name follows latest and can silently downgrade prerelease users; accepts both pinned-combined and separate-command guidance, and no quoted BAD example is treated as endorsement."
+    }
+  ],
+  "caps": []
+}

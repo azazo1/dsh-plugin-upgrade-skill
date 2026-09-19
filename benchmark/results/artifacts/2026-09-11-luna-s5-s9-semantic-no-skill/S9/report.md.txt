@@ -1,0 +1,161 @@
+# S9 · Composer Coordinate Trap
+
+## 1. Why paste #1 works and later pastes fail
+
+The plugin mixes two different projections of the same editor document.
+
+- `InputState.draft` and `Occurrence.offset`/`length` are in the
+  `clipboardText` projection. A reference chip expands to its full
+  `occurrence.clipboardText` there.
+- `insertReference` passes its `TokenSpan` to
+  `$replaceDetectSpanWithNodes`, which splices `EditorProjection.detectText`.
+  In that projection, a chip is one U+FFFC character.
+
+The plugin therefore computes the insertion point incorrectly after the first
+chip. After paste #1, the state is:
+
+```text
+clipboard/draft: [attachment: screenshot.png]     (length 29, including the space)
+detectText:     U+FFFC + " "                    (length 2)
+```
+
+The first insertion uses `[0, 0]`, where the two coordinate systems coincide,
+so it succeeds. On the next paste the plugin passes `[29, 29]` as a detect
+span. The host needs `[2, 2]`. The host's revision CAS (`draftRev ===
+this.rev`) can still pass; the span is nevertheless applied against the wrong
+text projection, so the detect-span replacement returns false and the plugin
+emits the reported toast. Every successful prior chip increases the gap by
+`clipboardText.length - 1`, so an end-of-draft clipboard offset remains too
+large for the detect text on every subsequent paste.
+
+This is why the symptom is specifically “first works, later fails”: with no
+chips, clipboard and detect coordinates are identical; once a chip exists,
+the projections diverge.
+
+## 2. Why removal produces `unavailable`
+
+The dock's remove handler receives an occurrence whose coordinates are also
+clipboard coordinates. For the first chip it computes:
+
+```text
+start = occurrence.offset                 = 0
+end   = occurrence.offset + occurrence.length = 28
+```
+
+It passes `[0, 28]` to `consumeToken`. The host's span branch checks the
+revision, then calls `$replaceDetectSpanWithText`, which again operates on
+`detectText`. The chip occupies only `[0, 1)` there, not `[0, 28)`, so the
+replacement does not apply. The captured unchanged composer confirms that the
+effective result was false.
+
+The plugin then makes the bookkeeping error visible:
+
+1. It ignores the boolean result from `consumeToken`.
+2. It unconditionally executes `records.delete(occurrence.ref)`.
+3. It calls `changed()`.
+4. Rendering looks up the now-missing record and deliberately displays
+   `unavailable`.
+
+The host chip remains because the host edit failed; the dock chip changes
+because the plugin deleted its record. Thus this is the same coordinate
+contract misread as the insert failure, followed by an unchecked-failure
+bookkeeping bug—not an independent attachment-state problem.
+
+## 3. Fix direction
+
+Convert only span coordinates; do not rewrite the reference's
+`clipboardText` metadata. The host source establishes this boundary rule:
+each occurrence contributes `occurrence.length` UTF-16 code units in the
+clipboard projection but exactly one code unit (U+FFFC) in the detect
+projection. For a clipboard boundary `p`, map it to detect coordinates as:
+
+```text
+toDetect(p) = p - sum(o.length - 1
+                      for each occurrence o with o.offset + o.length <= p)
+```
+
+The `<=` condition matters: a boundary at an occurrence's start must not
+compress that occurrence, while a boundary at its end must. A position inside
+an occurrence is not a valid ordinary detect boundary and should be rejected
+or normalized to the chip boundary rather than passed through.
+
+Insert path: after any `setDraft` and after every accepted insertion, refresh
+the snapshot as the plugin already does. For the end-of-draft insertion,
+replace both uses of `snapshot.draft.length` with:
+
+```text
+detectEnd = toDetect(snapshot.draft.length, snapshot.occurrences)
+start: detectEnd
+end:   detectEnd
+```
+
+For the first paste this is 0; after the captured first paste it is
+`29 - (28 - 1) = 2`. The `draftRev` must continue to come from that same
+fresh snapshot, since the host compares it with `this.rev` as a CAS.
+
+Removal path: map both occurrence boundaries against the current snapshot,
+then pass the mapped values to `consumeToken`:
+
+```text
+detectStart = toDetect(occurrence.offset, snapshot.occurrences)
+detectEnd   = toDetect(occurrence.offset + occurrence.length,
+                      snapshot.occurrences)
+consumeToken({
+  kind: 'span',
+  span: { start: detectStart, end: detectEnd, draftRev: snapshot.draftRev }
+})
+```
+
+For the first chip that becomes `[0, 1]`; for a second chip after the first,
+its expanded clipboard range maps to its one-character detect range. Keep the
+existing `setDraft` fallback in clipboard coordinates because it slices
+`snapshot.draft` directly; it does not pass a span to the detect-text helper.
+
+In both paths, treat a false host return as “nothing was committed.” In
+particular, the remove path must delete the record and call `changed()` only
+after `consumeToken` succeeds. On failure it should retain the record (and
+surface an appropriate retry/error state), never render `unavailable` merely
+because the attempted host edit failed.
+
+## 4. Regression test plan
+
+1. Start with a fresh, empty composer and paste `screenshot.png` once.
+   Assert that insertion succeeds, exactly one dock record and one composer
+   chip exist, and the submitted span is `[0, 0]`.
+
+2. Without reloading or clearing the composer, paste a second screenshot.
+   Assert no toast, two records, two composer occurrences, and two dock chips.
+   Inspect the host call and assert that its span is the clipboard end mapped
+   to detect coordinates (`[2, 2]` for the captured first-paste state), not
+   `[29, 29]`.
+
+3. Paste a third screenshot in the same session. Assert the same outcomes
+   again and that the span is based on the newly refreshed snapshot (for the
+   fixture's two trailing-space insertions, the detect end is 4). This catches
+   code that handles one repeat but fails after accumulated chips.
+
+4. In a fresh session, paste once and click the dock chip's `×`. Assert that
+   `consumeToken` is called with `[0, 1]` and the current revision, returns
+   true, the composer chip disappears, its occurrence disappears, its record
+   disappears, and no `unavailable` label is rendered.
+
+5. In another fresh session, paste A and then B. Remove B first, then A;
+   assert each selected chip alone is removed and the other remains. Repeat
+   with A first, then B. Assert spans are calculated from each current
+   occurrence (including a nonzero detect offset), and that no stale dock or
+   composer chip remains after the second removal.
+
+6. Add a failure-path test in which the host returns false (for example, a
+   stale revision). Assert that the plugin keeps the record and dock chip,
+   leaves the composer unchanged, and does not render `unavailable`. This
+   protects the bookkeeping fix as well as the coordinate conversion.
+
+## 5. Routine host-source check
+
+Before calling an input-machine verb, read its implementation and contract
+for: the coordinate projection used by every offset/length, the unit used for
+special nodes, revision and phase guards, range/boundary rules, and the
+meaning of a false return. Treat published state as a projection rather than
+assuming its coordinates are editor coordinates; refresh the snapshot after
+each edit and update plugin-owned bookkeeping only after the host reports
+success.

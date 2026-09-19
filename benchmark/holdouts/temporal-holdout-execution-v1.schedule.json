@@ -1,0 +1,1624 @@
+{
+  "schemaVersion": 1,
+  "executionId": "temporal-holdout-execution-v1",
+  "selectionDefinitionCommit": "2338be4fad1e21f578756689cb44c0b143bfc15d",
+  "scheduleSeed": "temporal-holdout-v1-t2-2026-09",
+  "logicalSlots": 120,
+  "conditions": [
+    "frozen-skill",
+    "no-injected-skill"
+  ],
+  "models": [
+    "deepseek/deepseek-v4-flash",
+    "openai/gpt-5.6-luna"
+  ],
+  "generatedBy": "benchmark/scripts/generate-temporal-holdout-schedule.mjs",
+  "generation": {
+    "seed": "temporal-holdout-v1-t2-2026-09",
+    "slotCount": 120
+  },
+  "groups": [
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H4-tsbuildinfo-trap",
+      "sequence": "BAABBA",
+      "digest": "f3089ded7d8afba727a5eea4b785b7fb4f2c3c42995fd92df010b741627c6207",
+      "slots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H7-locale-trap",
+      "sequence": "BAABBA",
+      "digest": "6335b1b64fb1d8d8715ab46b00340fcd15650aaa40b258339aa6c4f6fc2bb70d",
+      "slots": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H13-ghost-host-trap",
+      "sequence": "BAABBA",
+      "digest": "a9b2887c407223435d8f17d1a002bb4aa54215bfe8f3569778d8a8e9d7b0b6a6",
+      "slots": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M3-session-projection",
+      "sequence": "BAABBA",
+      "digest": "fb97b69dd75646576430c9c0d50d9e5f047dc1472de27ce3b4b5efe51702c1ce",
+      "slots": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M4-peer-prerelease-range",
+      "sequence": "ABBAAB",
+      "digest": "5ab7479a4b0ea0a7c74730ee945bada45bd8c4da882f813e0d6998c98b08cf8d",
+      "slots": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "S8-release-routing-trap",
+      "sequence": "ABBAAB",
+      "digest": "4a4ce3d0a48d7a311c391c0368e2068ee5745d6d7896d11dcb83597f66b852c9",
+      "slots": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H20-session-events-ledger",
+      "sequence": "BAABBA",
+      "digest": "4740ee7b1576483753a1fe5811ecd9d224507c9f8822656b3aa0b371934ab768",
+      "slots": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H21-question-answerer-waterfall",
+      "sequence": "ABBAAB",
+      "digest": "1273e894426dbc335eb57cdcd1540132e0d506bec1bd9819377ac4d4c5e2cbea",
+      "slots": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M13-repository-plugins-removal",
+      "sequence": "BAABBA",
+      "digest": "6ba19f404bc947d3d1198410f6bf8ee3d799f05b923260c4c381607840f90b36",
+      "slots": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M14-service-renames-0812",
+      "sequence": "ABBAAB",
+      "digest": "c28c4fe2f4602e981a4a3e39f6285e39d7e4f7e2207a90bd0452dbdd93346133",
+      "slots": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "H4-tsbuildinfo-trap",
+      "sequence": "BAABBA",
+      "digest": "077ac5e0636c9f59e79c5e6423c1272dc69657dab69309a3c046a2d9934c3365",
+      "slots": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "H7-locale-trap",
+      "sequence": "BAABBA",
+      "digest": "c360af5a4959ab4d70210f7e6093905dccfd43cb3066773d55b0dc82bda2ff16",
+      "slots": [
+        67,
+        68,
+        69,
+        70,
+        71,
+        72
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "H13-ghost-host-trap",
+      "sequence": "ABBAAB",
+      "digest": "088ac1be1ecff71a7d8a25bcd25e25549959c0bfc7566ef868cc28b867b74c4c",
+      "slots": [
+        73,
+        74,
+        75,
+        76,
+        77,
+        78
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "M3-session-projection",
+      "sequence": "ABBAAB",
+      "digest": "4a494633ede18278a67dc57045dcd0cc2e9d887eff04b7deb0237d7501cad586",
+      "slots": [
+        79,
+        80,
+        81,
+        82,
+        83,
+        84
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "M4-peer-prerelease-range",
+      "sequence": "ABBAAB",
+      "digest": "f6c5fc962484ac39d1d8c7b9c106d5dfc3a0624bb48307947868fbe48de827b2",
+      "slots": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "S8-release-routing-trap",
+      "sequence": "BAABBA",
+      "digest": "678ce127568c2144248faa5e647bba1bc3a1705937de27d06bff82021e76302c",
+      "slots": [
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "H20-session-events-ledger",
+      "sequence": "BAABBA",
+      "digest": "f1dc5c50591d9d045cf04b3099985b75d280aa6cf04d8f3996c54e5b5ebcd94a",
+      "slots": [
+        97,
+        98,
+        99,
+        100,
+        101,
+        102
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "H21-question-answerer-waterfall",
+      "sequence": "BAABBA",
+      "digest": "672bb0fa54f6efd9a7edc586d9923b0f25acfde33d65f5cbc4ec5a4084e799cc",
+      "slots": [
+        103,
+        104,
+        105,
+        106,
+        107,
+        108
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "M13-repository-plugins-removal",
+      "sequence": "ABBAAB",
+      "digest": "eef31e7e77a8f9547b145b2d11545e6907fd4364e66f4e3a19c92a787d8d2b35",
+      "slots": [
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "task": "M14-service-renames-0812",
+      "sequence": "BAABBA",
+      "digest": "2fc66d0e6e897d0b26888b308d81f364326584a98046dfb47e8d84d0efa2201e",
+      "slots": [
+        115,
+        116,
+        117,
+        118,
+        119,
+        120
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "f3089ded7d8afba727a5eea4b785b7fb4f2c3c42995fd92df010b741627c6207"
+    },
+    {
+      "slot": 2,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "f3089ded7d8afba727a5eea4b785b7fb4f2c3c42995fd92df010b741627c6207"
+    },
+    {
+      "slot": 3,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "f3089ded7d8afba727a5eea4b785b7fb4f2c3c42995fd92df010b741627c6207"
+    },
+    {
+      "slot": 4,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "f3089ded7d8afba727a5eea4b785b7fb4f2c3c42995fd92df010b741627c6207"
+    },
+    {
+      "slot": 5,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "f3089ded7d8afba727a5eea4b785b7fb4f2c3c42995fd92df010b741627c6207"
+    },
+    {
+      "slot": 6,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "f3089ded7d8afba727a5eea4b785b7fb4f2c3c42995fd92df010b741627c6207"
+    },
+    {
+      "slot": 7,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H7-locale-trap",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "6335b1b64fb1d8d8715ab46b00340fcd15650aaa40b258339aa6c4f6fc2bb70d"
+    },
+    {
+      "slot": 8,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H7-locale-trap",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "6335b1b64fb1d8d8715ab46b00340fcd15650aaa40b258339aa6c4f6fc2bb70d"
+    },
+    {
+      "slot": 9,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H7-locale-trap",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "6335b1b64fb1d8d8715ab46b00340fcd15650aaa40b258339aa6c4f6fc2bb70d"
+    },
+    {
+      "slot": 10,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H7-locale-trap",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "6335b1b64fb1d8d8715ab46b00340fcd15650aaa40b258339aa6c4f6fc2bb70d"
+    },
+    {
+      "slot": 11,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H7-locale-trap",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "6335b1b64fb1d8d8715ab46b00340fcd15650aaa40b258339aa6c4f6fc2bb70d"
+    },
+    {
+      "slot": 12,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H7-locale-trap",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "6335b1b64fb1d8d8715ab46b00340fcd15650aaa40b258339aa6c4f6fc2bb70d"
+    },
+    {
+      "slot": 13,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H13-ghost-host-trap",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "a9b2887c407223435d8f17d1a002bb4aa54215bfe8f3569778d8a8e9d7b0b6a6"
+    },
+    {
+      "slot": 14,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H13-ghost-host-trap",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "a9b2887c407223435d8f17d1a002bb4aa54215bfe8f3569778d8a8e9d7b0b6a6"
+    },
+    {
+      "slot": 15,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H13-ghost-host-trap",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "a9b2887c407223435d8f17d1a002bb4aa54215bfe8f3569778d8a8e9d7b0b6a6"
+    },
+    {
+      "slot": 16,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H13-ghost-host-trap",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "a9b2887c407223435d8f17d1a002bb4aa54215bfe8f3569778d8a8e9d7b0b6a6"
+    },
+    {
+      "slot": 17,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H13-ghost-host-trap",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "a9b2887c407223435d8f17d1a002bb4aa54215bfe8f3569778d8a8e9d7b0b6a6"
+    },
+    {
+      "slot": 18,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H13-ghost-host-trap",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "a9b2887c407223435d8f17d1a002bb4aa54215bfe8f3569778d8a8e9d7b0b6a6"
+    },
+    {
+      "slot": 19,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M3-session-projection",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "fb97b69dd75646576430c9c0d50d9e5f047dc1472de27ce3b4b5efe51702c1ce"
+    },
+    {
+      "slot": 20,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M3-session-projection",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "fb97b69dd75646576430c9c0d50d9e5f047dc1472de27ce3b4b5efe51702c1ce"
+    },
+    {
+      "slot": 21,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M3-session-projection",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "fb97b69dd75646576430c9c0d50d9e5f047dc1472de27ce3b4b5efe51702c1ce"
+    },
+    {
+      "slot": 22,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M3-session-projection",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "fb97b69dd75646576430c9c0d50d9e5f047dc1472de27ce3b4b5efe51702c1ce"
+    },
+    {
+      "slot": 23,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M3-session-projection",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "fb97b69dd75646576430c9c0d50d9e5f047dc1472de27ce3b4b5efe51702c1ce"
+    },
+    {
+      "slot": 24,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M3-session-projection",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "fb97b69dd75646576430c9c0d50d9e5f047dc1472de27ce3b4b5efe51702c1ce"
+    },
+    {
+      "slot": 25,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M4-peer-prerelease-range",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "ABBAAB",
+      "sequencePosition": 0,
+      "sequenceDigest": "5ab7479a4b0ea0a7c74730ee945bada45bd8c4da882f813e0d6998c98b08cf8d"
+    },
+    {
+      "slot": 26,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M4-peer-prerelease-range",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "ABBAAB",
+      "sequencePosition": 1,
+      "sequenceDigest": "5ab7479a4b0ea0a7c74730ee945bada45bd8c4da882f813e0d6998c98b08cf8d"
+    },
+    {
+      "slot": 27,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M4-peer-prerelease-range",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "ABBAAB",
+      "sequencePosition": 2,
+      "sequenceDigest": "5ab7479a4b0ea0a7c74730ee945bada45bd8c4da882f813e0d6998c98b08cf8d"
+    },
+    {
+      "slot": 28,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M4-peer-prerelease-range",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "ABBAAB",
+      "sequencePosition": 3,
+      "sequenceDigest": "5ab7479a4b0ea0a7c74730ee945bada45bd8c4da882f813e0d6998c98b08cf8d"
+    },
+    {
+      "slot": 29,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M4-peer-prerelease-range",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "ABBAAB",
+      "sequencePosition": 4,
+      "sequenceDigest": "5ab7479a4b0ea0a7c74730ee945bada45bd8c4da882f813e0d6998c98b08cf8d"
+    },
+    {
+      "slot": 30,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M4-peer-prerelease-range",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "ABBAAB",
+      "sequencePosition": 5,
+      "sequenceDigest": "5ab7479a4b0ea0a7c74730ee945bada45bd8c4da882f813e0d6998c98b08cf8d"
+    },
+    {
+      "slot": 31,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "S8-release-routing-trap",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "ABBAAB",
+      "sequencePosition": 0,
+      "sequenceDigest": "4a4ce3d0a48d7a311c391c0368e2068ee5745d6d7896d11dcb83597f66b852c9"
+    },
+    {
+      "slot": 32,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "S8-release-routing-trap",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "ABBAAB",
+      "sequencePosition": 1,
+      "sequenceDigest": "4a4ce3d0a48d7a311c391c0368e2068ee5745d6d7896d11dcb83597f66b852c9"
+    },
+    {
+      "slot": 33,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "S8-release-routing-trap",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "ABBAAB",
+      "sequencePosition": 2,
+      "sequenceDigest": "4a4ce3d0a48d7a311c391c0368e2068ee5745d6d7896d11dcb83597f66b852c9"
+    },
+    {
+      "slot": 34,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "S8-release-routing-trap",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "ABBAAB",
+      "sequencePosition": 3,
+      "sequenceDigest": "4a4ce3d0a48d7a311c391c0368e2068ee5745d6d7896d11dcb83597f66b852c9"
+    },
+    {
+      "slot": 35,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "S8-release-routing-trap",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "ABBAAB",
+      "sequencePosition": 4,
+      "sequenceDigest": "4a4ce3d0a48d7a311c391c0368e2068ee5745d6d7896d11dcb83597f66b852c9"
+    },
+    {
+      "slot": 36,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "S8-release-routing-trap",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "ABBAAB",
+      "sequencePosition": 5,
+      "sequenceDigest": "4a4ce3d0a48d7a311c391c0368e2068ee5745d6d7896d11dcb83597f66b852c9"
+    },
+    {
+      "slot": 37,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H20-session-events-ledger",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "4740ee7b1576483753a1fe5811ecd9d224507c9f8822656b3aa0b371934ab768"
+    },
+    {
+      "slot": 38,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H20-session-events-ledger",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "4740ee7b1576483753a1fe5811ecd9d224507c9f8822656b3aa0b371934ab768"
+    },
+    {
+      "slot": 39,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H20-session-events-ledger",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "4740ee7b1576483753a1fe5811ecd9d224507c9f8822656b3aa0b371934ab768"
+    },
+    {
+      "slot": 40,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H20-session-events-ledger",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "4740ee7b1576483753a1fe5811ecd9d224507c9f8822656b3aa0b371934ab768"
+    },
+    {
+      "slot": 41,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H20-session-events-ledger",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "4740ee7b1576483753a1fe5811ecd9d224507c9f8822656b3aa0b371934ab768"
+    },
+    {
+      "slot": 42,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H20-session-events-ledger",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "4740ee7b1576483753a1fe5811ecd9d224507c9f8822656b3aa0b371934ab768"
+    },
+    {
+      "slot": 43,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "ABBAAB",
+      "sequencePosition": 0,
+      "sequenceDigest": "1273e894426dbc335eb57cdcd1540132e0d506bec1bd9819377ac4d4c5e2cbea"
+    },
+    {
+      "slot": 44,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "ABBAAB",
+      "sequencePosition": 1,
+      "sequenceDigest": "1273e894426dbc335eb57cdcd1540132e0d506bec1bd9819377ac4d4c5e2cbea"
+    },
+    {
+      "slot": 45,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "ABBAAB",
+      "sequencePosition": 2,
+      "sequenceDigest": "1273e894426dbc335eb57cdcd1540132e0d506bec1bd9819377ac4d4c5e2cbea"
+    },
+    {
+      "slot": 46,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "ABBAAB",
+      "sequencePosition": 3,
+      "sequenceDigest": "1273e894426dbc335eb57cdcd1540132e0d506bec1bd9819377ac4d4c5e2cbea"
+    },
+    {
+      "slot": 47,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "ABBAAB",
+      "sequencePosition": 4,
+      "sequenceDigest": "1273e894426dbc335eb57cdcd1540132e0d506bec1bd9819377ac4d4c5e2cbea"
+    },
+    {
+      "slot": 48,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "ABBAAB",
+      "sequencePosition": 5,
+      "sequenceDigest": "1273e894426dbc335eb57cdcd1540132e0d506bec1bd9819377ac4d4c5e2cbea"
+    },
+    {
+      "slot": 49,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M13-repository-plugins-removal",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "6ba19f404bc947d3d1198410f6bf8ee3d799f05b923260c4c381607840f90b36"
+    },
+    {
+      "slot": 50,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M13-repository-plugins-removal",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "6ba19f404bc947d3d1198410f6bf8ee3d799f05b923260c4c381607840f90b36"
+    },
+    {
+      "slot": 51,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M13-repository-plugins-removal",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "6ba19f404bc947d3d1198410f6bf8ee3d799f05b923260c4c381607840f90b36"
+    },
+    {
+      "slot": 52,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M13-repository-plugins-removal",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "6ba19f404bc947d3d1198410f6bf8ee3d799f05b923260c4c381607840f90b36"
+    },
+    {
+      "slot": 53,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M13-repository-plugins-removal",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "6ba19f404bc947d3d1198410f6bf8ee3d799f05b923260c4c381607840f90b36"
+    },
+    {
+      "slot": 54,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M13-repository-plugins-removal",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "6ba19f404bc947d3d1198410f6bf8ee3d799f05b923260c4c381607840f90b36"
+    },
+    {
+      "slot": 55,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M14-service-renames-0812",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "ABBAAB",
+      "sequencePosition": 0,
+      "sequenceDigest": "c28c4fe2f4602e981a4a3e39f6285e39d7e4f7e2207a90bd0452dbdd93346133"
+    },
+    {
+      "slot": 56,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M14-service-renames-0812",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "ABBAAB",
+      "sequencePosition": 1,
+      "sequenceDigest": "c28c4fe2f4602e981a4a3e39f6285e39d7e4f7e2207a90bd0452dbdd93346133"
+    },
+    {
+      "slot": 57,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M14-service-renames-0812",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "ABBAAB",
+      "sequencePosition": 2,
+      "sequenceDigest": "c28c4fe2f4602e981a4a3e39f6285e39d7e4f7e2207a90bd0452dbdd93346133"
+    },
+    {
+      "slot": 58,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M14-service-renames-0812",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "ABBAAB",
+      "sequencePosition": 3,
+      "sequenceDigest": "c28c4fe2f4602e981a4a3e39f6285e39d7e4f7e2207a90bd0452dbdd93346133"
+    },
+    {
+      "slot": 59,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M14-service-renames-0812",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "ABBAAB",
+      "sequencePosition": 4,
+      "sequenceDigest": "c28c4fe2f4602e981a4a3e39f6285e39d7e4f7e2207a90bd0452dbdd93346133"
+    },
+    {
+      "slot": 60,
+      "model": "deepseek/deepseek-v4-flash",
+      "task": "M14-service-renames-0812",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "ABBAAB",
+      "sequencePosition": 5,
+      "sequenceDigest": "c28c4fe2f4602e981a4a3e39f6285e39d7e4f7e2207a90bd0452dbdd93346133"
+    },
+    {
+      "slot": 61,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "077ac5e0636c9f59e79c5e6423c1272dc69657dab69309a3c046a2d9934c3365"
+    },
+    {
+      "slot": 62,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "077ac5e0636c9f59e79c5e6423c1272dc69657dab69309a3c046a2d9934c3365"
+    },
+    {
+      "slot": 63,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "077ac5e0636c9f59e79c5e6423c1272dc69657dab69309a3c046a2d9934c3365"
+    },
+    {
+      "slot": 64,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "077ac5e0636c9f59e79c5e6423c1272dc69657dab69309a3c046a2d9934c3365"
+    },
+    {
+      "slot": 65,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "077ac5e0636c9f59e79c5e6423c1272dc69657dab69309a3c046a2d9934c3365"
+    },
+    {
+      "slot": 66,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H4-tsbuildinfo-trap",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "077ac5e0636c9f59e79c5e6423c1272dc69657dab69309a3c046a2d9934c3365"
+    },
+    {
+      "slot": 67,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H7-locale-trap",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "c360af5a4959ab4d70210f7e6093905dccfd43cb3066773d55b0dc82bda2ff16"
+    },
+    {
+      "slot": 68,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H7-locale-trap",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "c360af5a4959ab4d70210f7e6093905dccfd43cb3066773d55b0dc82bda2ff16"
+    },
+    {
+      "slot": 69,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H7-locale-trap",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "c360af5a4959ab4d70210f7e6093905dccfd43cb3066773d55b0dc82bda2ff16"
+    },
+    {
+      "slot": 70,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H7-locale-trap",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "c360af5a4959ab4d70210f7e6093905dccfd43cb3066773d55b0dc82bda2ff16"
+    },
+    {
+      "slot": 71,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H7-locale-trap",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "c360af5a4959ab4d70210f7e6093905dccfd43cb3066773d55b0dc82bda2ff16"
+    },
+    {
+      "slot": 72,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H7-locale-trap",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "c360af5a4959ab4d70210f7e6093905dccfd43cb3066773d55b0dc82bda2ff16"
+    },
+    {
+      "slot": 73,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H13-ghost-host-trap",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "ABBAAB",
+      "sequencePosition": 0,
+      "sequenceDigest": "088ac1be1ecff71a7d8a25bcd25e25549959c0bfc7566ef868cc28b867b74c4c"
+    },
+    {
+      "slot": 74,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H13-ghost-host-trap",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "ABBAAB",
+      "sequencePosition": 1,
+      "sequenceDigest": "088ac1be1ecff71a7d8a25bcd25e25549959c0bfc7566ef868cc28b867b74c4c"
+    },
+    {
+      "slot": 75,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H13-ghost-host-trap",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "ABBAAB",
+      "sequencePosition": 2,
+      "sequenceDigest": "088ac1be1ecff71a7d8a25bcd25e25549959c0bfc7566ef868cc28b867b74c4c"
+    },
+    {
+      "slot": 76,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H13-ghost-host-trap",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "ABBAAB",
+      "sequencePosition": 3,
+      "sequenceDigest": "088ac1be1ecff71a7d8a25bcd25e25549959c0bfc7566ef868cc28b867b74c4c"
+    },
+    {
+      "slot": 77,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H13-ghost-host-trap",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "ABBAAB",
+      "sequencePosition": 4,
+      "sequenceDigest": "088ac1be1ecff71a7d8a25bcd25e25549959c0bfc7566ef868cc28b867b74c4c"
+    },
+    {
+      "slot": 78,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H13-ghost-host-trap",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "ABBAAB",
+      "sequencePosition": 5,
+      "sequenceDigest": "088ac1be1ecff71a7d8a25bcd25e25549959c0bfc7566ef868cc28b867b74c4c"
+    },
+    {
+      "slot": 79,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M3-session-projection",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "ABBAAB",
+      "sequencePosition": 0,
+      "sequenceDigest": "4a494633ede18278a67dc57045dcd0cc2e9d887eff04b7deb0237d7501cad586"
+    },
+    {
+      "slot": 80,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M3-session-projection",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "ABBAAB",
+      "sequencePosition": 1,
+      "sequenceDigest": "4a494633ede18278a67dc57045dcd0cc2e9d887eff04b7deb0237d7501cad586"
+    },
+    {
+      "slot": 81,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M3-session-projection",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "ABBAAB",
+      "sequencePosition": 2,
+      "sequenceDigest": "4a494633ede18278a67dc57045dcd0cc2e9d887eff04b7deb0237d7501cad586"
+    },
+    {
+      "slot": 82,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M3-session-projection",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "ABBAAB",
+      "sequencePosition": 3,
+      "sequenceDigest": "4a494633ede18278a67dc57045dcd0cc2e9d887eff04b7deb0237d7501cad586"
+    },
+    {
+      "slot": 83,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M3-session-projection",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "ABBAAB",
+      "sequencePosition": 4,
+      "sequenceDigest": "4a494633ede18278a67dc57045dcd0cc2e9d887eff04b7deb0237d7501cad586"
+    },
+    {
+      "slot": 84,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M3-session-projection",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "ABBAAB",
+      "sequencePosition": 5,
+      "sequenceDigest": "4a494633ede18278a67dc57045dcd0cc2e9d887eff04b7deb0237d7501cad586"
+    },
+    {
+      "slot": 85,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M4-peer-prerelease-range",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "ABBAAB",
+      "sequencePosition": 0,
+      "sequenceDigest": "f6c5fc962484ac39d1d8c7b9c106d5dfc3a0624bb48307947868fbe48de827b2"
+    },
+    {
+      "slot": 86,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M4-peer-prerelease-range",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "ABBAAB",
+      "sequencePosition": 1,
+      "sequenceDigest": "f6c5fc962484ac39d1d8c7b9c106d5dfc3a0624bb48307947868fbe48de827b2"
+    },
+    {
+      "slot": 87,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M4-peer-prerelease-range",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "ABBAAB",
+      "sequencePosition": 2,
+      "sequenceDigest": "f6c5fc962484ac39d1d8c7b9c106d5dfc3a0624bb48307947868fbe48de827b2"
+    },
+    {
+      "slot": 88,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M4-peer-prerelease-range",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "ABBAAB",
+      "sequencePosition": 3,
+      "sequenceDigest": "f6c5fc962484ac39d1d8c7b9c106d5dfc3a0624bb48307947868fbe48de827b2"
+    },
+    {
+      "slot": 89,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M4-peer-prerelease-range",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "ABBAAB",
+      "sequencePosition": 4,
+      "sequenceDigest": "f6c5fc962484ac39d1d8c7b9c106d5dfc3a0624bb48307947868fbe48de827b2"
+    },
+    {
+      "slot": 90,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M4-peer-prerelease-range",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "ABBAAB",
+      "sequencePosition": 5,
+      "sequenceDigest": "f6c5fc962484ac39d1d8c7b9c106d5dfc3a0624bb48307947868fbe48de827b2"
+    },
+    {
+      "slot": 91,
+      "model": "openai/gpt-5.6-luna",
+      "task": "S8-release-routing-trap",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "678ce127568c2144248faa5e647bba1bc3a1705937de27d06bff82021e76302c"
+    },
+    {
+      "slot": 92,
+      "model": "openai/gpt-5.6-luna",
+      "task": "S8-release-routing-trap",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "678ce127568c2144248faa5e647bba1bc3a1705937de27d06bff82021e76302c"
+    },
+    {
+      "slot": 93,
+      "model": "openai/gpt-5.6-luna",
+      "task": "S8-release-routing-trap",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "678ce127568c2144248faa5e647bba1bc3a1705937de27d06bff82021e76302c"
+    },
+    {
+      "slot": 94,
+      "model": "openai/gpt-5.6-luna",
+      "task": "S8-release-routing-trap",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "678ce127568c2144248faa5e647bba1bc3a1705937de27d06bff82021e76302c"
+    },
+    {
+      "slot": 95,
+      "model": "openai/gpt-5.6-luna",
+      "task": "S8-release-routing-trap",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "678ce127568c2144248faa5e647bba1bc3a1705937de27d06bff82021e76302c"
+    },
+    {
+      "slot": 96,
+      "model": "openai/gpt-5.6-luna",
+      "task": "S8-release-routing-trap",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "678ce127568c2144248faa5e647bba1bc3a1705937de27d06bff82021e76302c"
+    },
+    {
+      "slot": 97,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H20-session-events-ledger",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "f1dc5c50591d9d045cf04b3099985b75d280aa6cf04d8f3996c54e5b5ebcd94a"
+    },
+    {
+      "slot": 98,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H20-session-events-ledger",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "f1dc5c50591d9d045cf04b3099985b75d280aa6cf04d8f3996c54e5b5ebcd94a"
+    },
+    {
+      "slot": 99,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H20-session-events-ledger",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "f1dc5c50591d9d045cf04b3099985b75d280aa6cf04d8f3996c54e5b5ebcd94a"
+    },
+    {
+      "slot": 100,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H20-session-events-ledger",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "f1dc5c50591d9d045cf04b3099985b75d280aa6cf04d8f3996c54e5b5ebcd94a"
+    },
+    {
+      "slot": 101,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H20-session-events-ledger",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "f1dc5c50591d9d045cf04b3099985b75d280aa6cf04d8f3996c54e5b5ebcd94a"
+    },
+    {
+      "slot": 102,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H20-session-events-ledger",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "f1dc5c50591d9d045cf04b3099985b75d280aa6cf04d8f3996c54e5b5ebcd94a"
+    },
+    {
+      "slot": 103,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "672bb0fa54f6efd9a7edc586d9923b0f25acfde33d65f5cbc4ec5a4084e799cc"
+    },
+    {
+      "slot": 104,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "672bb0fa54f6efd9a7edc586d9923b0f25acfde33d65f5cbc4ec5a4084e799cc"
+    },
+    {
+      "slot": 105,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "672bb0fa54f6efd9a7edc586d9923b0f25acfde33d65f5cbc4ec5a4084e799cc"
+    },
+    {
+      "slot": 106,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "672bb0fa54f6efd9a7edc586d9923b0f25acfde33d65f5cbc4ec5a4084e799cc"
+    },
+    {
+      "slot": 107,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "672bb0fa54f6efd9a7edc586d9923b0f25acfde33d65f5cbc4ec5a4084e799cc"
+    },
+    {
+      "slot": 108,
+      "model": "openai/gpt-5.6-luna",
+      "task": "H21-question-answerer-waterfall",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "672bb0fa54f6efd9a7edc586d9923b0f25acfde33d65f5cbc4ec5a4084e799cc"
+    },
+    {
+      "slot": 109,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M13-repository-plugins-removal",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "ABBAAB",
+      "sequencePosition": 0,
+      "sequenceDigest": "eef31e7e77a8f9547b145b2d11545e6907fd4364e66f4e3a19c92a787d8d2b35"
+    },
+    {
+      "slot": 110,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M13-repository-plugins-removal",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "ABBAAB",
+      "sequencePosition": 1,
+      "sequenceDigest": "eef31e7e77a8f9547b145b2d11545e6907fd4364e66f4e3a19c92a787d8d2b35"
+    },
+    {
+      "slot": 111,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M13-repository-plugins-removal",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "ABBAAB",
+      "sequencePosition": 2,
+      "sequenceDigest": "eef31e7e77a8f9547b145b2d11545e6907fd4364e66f4e3a19c92a787d8d2b35"
+    },
+    {
+      "slot": 112,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M13-repository-plugins-removal",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "ABBAAB",
+      "sequencePosition": 3,
+      "sequenceDigest": "eef31e7e77a8f9547b145b2d11545e6907fd4364e66f4e3a19c92a787d8d2b35"
+    },
+    {
+      "slot": 113,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M13-repository-plugins-removal",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "ABBAAB",
+      "sequencePosition": 4,
+      "sequenceDigest": "eef31e7e77a8f9547b145b2d11545e6907fd4364e66f4e3a19c92a787d8d2b35"
+    },
+    {
+      "slot": 114,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M13-repository-plugins-removal",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "ABBAAB",
+      "sequencePosition": 5,
+      "sequenceDigest": "eef31e7e77a8f9547b145b2d11545e6907fd4364e66f4e3a19c92a787d8d2b35"
+    },
+    {
+      "slot": 115,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M14-service-renames-0812",
+      "condition": "no-injected-skill",
+      "attempt": 1,
+      "groupSeq": 1,
+      "sequence": "BAABBA",
+      "sequencePosition": 0,
+      "sequenceDigest": "2fc66d0e6e897d0b26888b308d81f364326584a98046dfb47e8d84d0efa2201e"
+    },
+    {
+      "slot": 116,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M14-service-renames-0812",
+      "condition": "frozen-skill",
+      "attempt": 1,
+      "groupSeq": 2,
+      "sequence": "BAABBA",
+      "sequencePosition": 1,
+      "sequenceDigest": "2fc66d0e6e897d0b26888b308d81f364326584a98046dfb47e8d84d0efa2201e"
+    },
+    {
+      "slot": 117,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M14-service-renames-0812",
+      "condition": "frozen-skill",
+      "attempt": 2,
+      "groupSeq": 3,
+      "sequence": "BAABBA",
+      "sequencePosition": 2,
+      "sequenceDigest": "2fc66d0e6e897d0b26888b308d81f364326584a98046dfb47e8d84d0efa2201e"
+    },
+    {
+      "slot": 118,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M14-service-renames-0812",
+      "condition": "no-injected-skill",
+      "attempt": 2,
+      "groupSeq": 4,
+      "sequence": "BAABBA",
+      "sequencePosition": 3,
+      "sequenceDigest": "2fc66d0e6e897d0b26888b308d81f364326584a98046dfb47e8d84d0efa2201e"
+    },
+    {
+      "slot": 119,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M14-service-renames-0812",
+      "condition": "no-injected-skill",
+      "attempt": 3,
+      "groupSeq": 5,
+      "sequence": "BAABBA",
+      "sequencePosition": 4,
+      "sequenceDigest": "2fc66d0e6e897d0b26888b308d81f364326584a98046dfb47e8d84d0efa2201e"
+    },
+    {
+      "slot": 120,
+      "model": "openai/gpt-5.6-luna",
+      "task": "M14-service-renames-0812",
+      "condition": "frozen-skill",
+      "attempt": 3,
+      "groupSeq": 6,
+      "sequence": "BAABBA",
+      "sequencePosition": 5,
+      "sequenceDigest": "2fc66d0e6e897d0b26888b308d81f364326584a98046dfb47e8d84d0efa2201e"
+    }
+  ]
+}

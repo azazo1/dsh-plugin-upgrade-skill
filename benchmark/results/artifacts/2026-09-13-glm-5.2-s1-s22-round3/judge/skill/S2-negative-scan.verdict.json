@@ -1,0 +1,25 @@
+{
+  "decisions": [
+    {
+      "id": "host-break",
+      "verdict": "pass",
+      "reason": "Grounds diagnosis in index.js:2 inject=[\"apiProxy\"] and index.js:9 ctx.apiProxy.llm.providers(), plus the @deepseek-ai/dsh-host-apiproxy dependency in package.json; maps to DSH-0.1.2-A1-01, explains llm.providers → listProviders and that the removed apiproxy dependency must be dropped — not just a card name."
+    },
+    {
+      "id": "negative-coverage",
+      "verdict": "pass",
+      "reason": "Each of the six other categories has a No verdict with scanned-file pattern evidence; session-notes.js correctly identified as pure string/array utility; cordis.patch.yml correctly classified as composition insert, not a host-source patch, without denying the file's existence or misclassifying it."
+    },
+    {
+      "id": "inference-boundary",
+      "verdict": "pass",
+      "reason": "Explicitly argues zero hits ≠ compatible (pattern-based scan limits, dependency/config/runtime evidence needed separately) and contrasts the single decisive #3 apiProxy break with the six clean categories, noting the plugin would not even activate."
+    },
+    {
+      "id": "verification-plan",
+      "verdict": "pass",
+      "reason": "Specifies post-migration build/typecheck against the target cohort, isolated cold boot with no pending service (verify-runtime.mjs), and an actual providers call asserted to succeed and return data; explicitly states these are recorded, not executed in the static fixture."
+    }
+  ],
+  "caps": []
+}

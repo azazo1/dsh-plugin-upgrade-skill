@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "chat-projection",
+      "verdict": "pass",
+      "reason": "Locates Pet.tsx:19-21 reads of partial/runningCalls/turnEnds and explains the two-step pattern: temporary views.get('chat')?.legacy projection (A1-03 field note) then field-by-field move to useChat keyed ChatSnapshot and view timeline; not merely a 'legacy' mention."
+    },
+    {
+      "id": "session-lifecycle",
+      "verdict": "pass",
+      "reason": "Locates Pet.tsx:18 running selector, explains lifecycle fields are not in the legacy projection and must stay on the useSession seat (outside chat legacy), and does not claim useSession must be renamed."
+    },
+    {
+      "id": "type-and-inject",
+      "verdict": "pass",
+      "reason": "Locates removed dsh-client-runtime imports (index.ts:5, Pet.tsx:6) and the package.json client.inject entry; repoints Context as ClientContext to @deepseek-ai/cordis and snapshot types to dsh-client-ui-chat, without claiming cordis exports snapshot types; explicitly defers unknown exact snapshot field names to target-tag exports."
+    },
+    {
+      "id": "slot-registration",
+      "verdict": "pass",
+      "reason": "Locates the scoped ctx.inject(['slots','conversation'], scope => scope.slots.register(...)) in index.ts, explains the ordering/strict-injection rationale, keeps the slot name and resident lifetime, and covers Context augmentation via owning-package type-only imports (ui-conversation SlotMap, locale)."
+    },
+    {
+      "id": "mapping-and-plan",
+      "verdict": "pass",
+      "reason": "Ties the located snapshot/lifecycle/slot changes to DSH-0.1.2-A1-03 (plus A1-25 as the package-removal card, with concrete mapping), and §2's table separates the temporary legacy projection from immediate type/inject/manifest/id changes."
+    }
+  ],
+  "caps": []
+}

@@ -1,0 +1,36 @@
+{
+  "decisions": [
+    {
+      "id": "duplicate-loader-attribution",
+      "verdict": "pass",
+      "reason": "Report grounds the diagnosis in both excerpts (identical insert id workspace-files → @deepseek-ai/dsh-api-workspace-files) and boot-crash-log.txt (EntryGroup.update, Include._apply during cordis:include), explains fail-closed instead of last-write-wins, and explicitly rejects the profile comment's '冗余/harmless' assumption."
+    },
+    {
+      "id": "three-layering-cases",
+      "verdict": "pass",
+      "reason": "Table distinguishes all three cases: config-by-id override safe, novel-id insert safe, insert of bundle-provided id fatal; classifies the maintainer's row as the fatal third case, proven against the two excerpts, with session-controller/settings-controller corroboration."
+    },
+    {
+      "id": "minimal-profile-fix",
+      "verdict": "pass",
+      "reason": "Recommends deleting only the manually added workspace-files insert block (and its comments) from the profile cordis.patch.yml, preserving the bundle row and all other entries; explicitly says config changes go via patching the existing id, not a second insert; rejects plugin-side edits."
+    },
+    {
+      "id": "plugin-and-failure-boundary",
+      "verdict": "pass",
+      "reason": "Explains the crash is a profile-composition error before any plugin module loads, so editing plugin code cannot fix it; and notes the fix only restores boot possibility while the original 文件资源服务不可用 read failure remains a separate problem needing verification."
+    },
+    {
+      "id": "author-and-host-prevention",
+      "verdict": "pass",
+      "reason": "Advises grepping the installed web-app bundle cordis.patch.yml for the id before inserting and distinguishing override (config-by-id) from insert; proposes a concrete host diagnostic naming workspace-files and both declaration origins with file/line attribution and a remediation hint pointing to removing the profile block."
+    }
+  ],
+  "caps": [
+    {
+      "id": "retain-or-add-duplicate",
+      "triggered": false,
+      "reason": "Final advice consistently removes the duplicate profile insert and warns that keeping a 'possibly redundant' row is fatal; external plugin edits are explicitly rejected as a cure. No affirmative advice keeps or adds the duplicate or asserts silent merging."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "phantom-pixel-sgr",
+      "verdict": "pass",
+      "reason": "Grounds diagnosis in renderer-excerpt.ts: half-filled branches emit fg-only SGR, so the stale 48;2 background from the previous opaque cell paints the empty half of ▀/▄ at the sprite right edge (outline, sleep-Z, heart per symptom-log). Gives an explicit background fix for every partial sequence, explicitly listing RESET / full fg+bg pairs as the equivalent strict form; no blame on the terminal emulator."
+    },
+    {
+      "id": "ghost-frame-trim",
+      "verdict": "partial",
+      "reason": "Correctly traces `replace(/[ ]+$/, '')` dropping trailing cells plus pipeline trailing-whitespace trimming, and mandates per-row ESC[K (EL) plus a region clear on frame switch. However it does not re-emit full sprite-width rows with padded empty halves — it deliberately keeps the trim and substitutes EL-only erasure, omitting one of the rubric's two fix parts (though EL is arguably an equivalent overwrite)."
+    },
+    {
+      "id": "frame-digest-gate",
+      "verdict": "pass",
+      "reason": "Reads frames-digest-report.txt: tail2 is the sole MISMATCH (23 cells, upper-right cluster shifted 1 col left = the drifted frame), explains the excerpt-based regression for a different frame couldn't cover it, and prescribes digesting every frame's full 25 rows against canonical source art as a hard CI gate — not rendering, not sampling."
+    },
+    {
+      "id": "timer-unref-hang",
+      "verdict": "pass",
+      "reason": "From ci-hang-evidence.txt: re-arming setTimeout chain per animation tick keeps live Timeout ref'd handles alive after PASS; channel-ui hosts mount the header component and never unmount so dispose never runs; interactive terminal unaffected via TTY/stdin handles; one-line fix setTimeout(...).unref(). No blame on runner slowness."
+    },
+    {
+      "id": "prevention-checklist",
+      "verdict": "pass",
+      "reason": "Concrete renderer contract checklist: explicit fg+bg per half-filled cell (empty halves get explicit background, no inherited SGR channels), per-row EL / erase-to-EOL with frame-switch region erasure assuming whitespace trimming, and per-frame full digests pinned to source art; plus a default-on rollout audit covering timer hygiene (unref/clear census) and mount/unmount coverage of every embedding host."
+    }
+  ],
+  "caps": []
+}

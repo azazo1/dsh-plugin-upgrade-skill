@@ -1,0 +1,603 @@
+{
+  "date": "2026-09-11",
+  "scope": "S5-S9 default semantic verifiers; working-tree changes, not a frozen benchmark comparison",
+  "task_version": "3.0.0",
+  "protocol": "report-judge-v1",
+  "transport": "codex-exec-v1",
+  "repeats": 1,
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "rubrics_sha256": "c8c7c486791ac197a3556509d631def541575f29f525001c367e600ca8ad47e7",
+  "live_samples": 20,
+  "in_expected_band": 20,
+  "node_tests_remaining_suite": 559,
+  "node_test_failures": 0,
+  "full_npm_test": "blocked by 6 pre-existing broken links in benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/report.md",
+  "harbor_container_run": false,
+  "limitations": [
+    "One repeat per sample; expected bands are calibration hypotheses, not independent human labels.",
+    "Only complete, keywords, paraphrase-zh and contradiction samples were scored live.",
+    "Codex login transport tested; a live Docker/API endpoint run was not performed."
+  ],
+  "runs": [
+    {
+      "task": "S5-negative-naming",
+      "sample": "keywords",
+      "score": 0,
+      "expected": [
+        0,
+        10
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "c5e11f75d910ce04cc3bdadad706cf9ad3266cbdc37e719cab05284ee24a002c",
+      "report_sha256": "17ee8a1059e510fee54dea7b12b5666afb4d0f62742f3c15b7e0cb9a1172b0d7",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6203,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1069,
+          "reasoning_output_tokens": 714
+        },
+        "request_sha256": "5d75dbe05aaaf07295b0417f605447454b3dbda08bd2c3dd4c96e294659ed50a",
+        "response_sha256": "3a8a0d7c3eaefc6f3d5af25636c285ebf0f2b8a4a87f0aa851b100918fc11500"
+      }
+    },
+    {
+      "task": "S5-negative-naming",
+      "sample": "complete",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "c5e11f75d910ce04cc3bdadad706cf9ad3266cbdc37e719cab05284ee24a002c",
+      "report_sha256": "9d7829ced6c2f3608d06c18970e3c4b0b0a20a8702044be3a42ea1a8365ea622",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6536,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1265,
+          "reasoning_output_tokens": 45
+        },
+        "request_sha256": "cd92a2f1dd185e4aeb5308c8618398b96aa82a0bcabc69d4cfc7838898594ac4",
+        "response_sha256": "3c9235bfd68f3b7307b12e37885fbd1acc0ab15a3de55613ebdbf117fde5baca"
+      }
+    },
+    {
+      "task": "S5-negative-naming",
+      "sample": "paraphrase-zh",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "c5e11f75d910ce04cc3bdadad706cf9ad3266cbdc37e719cab05284ee24a002c",
+      "report_sha256": "406421263fea9a64ab84f14dc23539b15022f9ed09010f65de1609f819629ca2",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6460,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1240,
+          "reasoning_output_tokens": 51
+        },
+        "request_sha256": "a7ffb78a37e15a495bbe5f555d28dc1ffbeda6893b991a4b9416815a05bbf079",
+        "response_sha256": "89fad131ebda63ebfb6735ea2b704314a6b7706860c8e7b9d6404cb3d714de83"
+      }
+    },
+    {
+      "task": "S5-negative-naming",
+      "sample": "contradiction",
+      "score": 30,
+      "expected": [
+        0,
+        30
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "c5e11f75d910ce04cc3bdadad706cf9ad3266cbdc37e719cab05284ee24a002c",
+      "report_sha256": "690e5b52b63102947d01a3c511bd41d92fd0de50ef8dd5a0f0c92fa6f50fb728",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6564,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1625,
+          "reasoning_output_tokens": 300
+        },
+        "request_sha256": "fdbc61f987b863574e6842088b43ce191f97a492f975a1568c22f1087a5f09ba",
+        "response_sha256": "bd0ebd97f15079e321d5062ba2b1d63b48f6ddae53cd122c25ba22289161fd8d"
+      }
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "sample": "complete",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "9ce41e8afc6fb8aa4c5c0bbbd6ba2a55b404c06d1a6ab5f0bf29e3287f3dc0c7",
+      "report_sha256": "ff28747e74e9c3100cb45f3871e392c51951577415bef9d258e3a9f6fb870f2f",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 7512,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1334,
+          "reasoning_output_tokens": 76
+        },
+        "request_sha256": "910e896ffa16ae3202cdf70567a3cf9a6adfe2bca7598ee90d141d50e0122adf",
+        "response_sha256": "20b9779d2dc967c0c8cbce4f126c548e43afe3ae0a196c831d0982188c203246"
+      }
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "sample": "keywords",
+      "score": 0,
+      "expected": [
+        0,
+        10
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "9ce41e8afc6fb8aa4c5c0bbbd6ba2a55b404c06d1a6ab5f0bf29e3287f3dc0c7",
+      "report_sha256": "1ddc116e22ac6238e8a22090ddb1b8b9e398014be9956d466c11a8a28912828b",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 7218,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 733,
+          "reasoning_output_tokens": 242
+        },
+        "request_sha256": "7dadd6656e3026aac994c767ca466f39c7d8bfa270c0b48671c98dbdb4cbc5db",
+        "response_sha256": "09344d5750d8a0d4c23471142993004454b15c27b4681cbc46ecd202d1ffb42d"
+      }
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "sample": "paraphrase-zh",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "9ce41e8afc6fb8aa4c5c0bbbd6ba2a55b404c06d1a6ab5f0bf29e3287f3dc0c7",
+      "report_sha256": "c4a0177d345510763dedab7c92825a0b26840008a5109af2e78dd3d18e817a1d",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 7443,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1150,
+          "reasoning_output_tokens": 92
+        },
+        "request_sha256": "d3af52785e2578ef4fb35bf20c63a3aef7dbf9219d42a3eec9188227169410a2",
+        "response_sha256": "8cdbf87eb81cb55fff085910d56cd1aeb32619ae5447f5af83314986d8e253f8"
+      }
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "sample": "contradiction",
+      "score": 10,
+      "expected": [
+        0,
+        10
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "9ce41e8afc6fb8aa4c5c0bbbd6ba2a55b404c06d1a6ab5f0bf29e3287f3dc0c7",
+      "report_sha256": "177b23404832a3463c3dfd9701e9037c45f06b352db13001a85ace8539d3d9a3",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 7539,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1322,
+          "reasoning_output_tokens": 220
+        },
+        "request_sha256": "5aa0e8e04bfd343ed677248fe3fe55cb1b9640227d36f60727a0155d6b65570e",
+        "response_sha256": "8c502710e478c4db96e5c03613a52bda5ca137005e24fb8caba7ff99086f8dc1"
+      }
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "sample": "keywords",
+      "score": 0,
+      "expected": [
+        0,
+        10
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "26e36c55977102373115c7ffbd168425e9193fb81c4a869afaeefc7d252d308f",
+      "report_sha256": "5fc6489bcacf24f855889e2c8b03ae4c930c831dbb06194202ea56fd58599820",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6147,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 569,
+          "reasoning_output_tokens": 229
+        },
+        "request_sha256": "9b38bcccc762aa63f714b8f49cbc6ad745eacc452d397ffa682552e1ff84e12d",
+        "response_sha256": "bb15387d60387b26256c9243c884bb08b0eaaefcdcdf45a9bf427c2491b442a1"
+      }
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "sample": "complete",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "26e36c55977102373115c7ffbd168425e9193fb81c4a869afaeefc7d252d308f",
+      "report_sha256": "0be68b79719dbdafebf117307b6bee8e9086f4aa8e27cf8a34dfe50c62ea5e8f",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6508,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1251,
+          "reasoning_output_tokens": 184
+        },
+        "request_sha256": "bcb2539c145a188a69b24cf79e4b4a64b1d8dd14baa11de48ff5e68ad7d40916",
+        "response_sha256": "17ef1342d6692bc9c74d306bede3ec18206e085cd4db5c2a521a6e400f6c743c"
+      }
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "sample": "paraphrase-zh",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "26e36c55977102373115c7ffbd168425e9193fb81c4a869afaeefc7d252d308f",
+      "report_sha256": "cab45624f3e9428bf14b0cdfb323b553996ca3ecaf914c48303fadaefe9960c6",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6385,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1098,
+          "reasoning_output_tokens": 101
+        },
+        "request_sha256": "dc9ca7c457d0b6194e03b00159befbe7eadbc5d7e83f03179ccda9af97361b32",
+        "response_sha256": "33f26b8de349bcd92b83bfbbf6ecf80ccb4cb8df14eb7276e1580fb0c9f3fcb4"
+      }
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "sample": "contradiction",
+      "score": 10,
+      "expected": [
+        0,
+        10
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "26e36c55977102373115c7ffbd168425e9193fb81c4a869afaeefc7d252d308f",
+      "report_sha256": "af419619d2701398232f7fe8157eae8f1c5b0c792ffb31052e81ba11982ec726",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6555,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1565,
+          "reasoning_output_tokens": 373
+        },
+        "request_sha256": "74696201b44c9864a73b0a40bb134b47684bff2fac24c550ad2b46132b0979fa",
+        "response_sha256": "e97306cca43e71184fb81d6a2cf182e47779d86cbbcc0a8ccc3942059a3dc3eb"
+      }
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "sample": "keywords",
+      "score": 0,
+      "expected": [
+        0,
+        10
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "5881a09cc0361d929400d969f1bdef86340925092ce7c25a15957bcdac250b23",
+      "report_sha256": "eb37d9dfd2f902b2b685f84c646f8b53fa9357bfe50d522ea9ad7ec86cd9a349",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6545,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 514,
+          "reasoning_output_tokens": 208
+        },
+        "request_sha256": "b2b529d52c002f4fea3110e96813a7f632f5d4010c087194f6b7c437abb98836",
+        "response_sha256": "5aa23fb6af6612aaa1fbb9263937319682c60f580895b0a1989ec4b207364460"
+      }
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "sample": "complete",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "5881a09cc0361d929400d969f1bdef86340925092ce7c25a15957bcdac250b23",
+      "report_sha256": "313f64b2656cf23304a85be1600a64ad833b8ddd914b8d792cf2bf03d98a86d0",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 7048,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1708,
+          "reasoning_output_tokens": 93
+        },
+        "request_sha256": "200a25810fb2208ce00b8fbd2c36c22f14c996b327440f6fa5597b5d75b3db21",
+        "response_sha256": "8cb7ac30342c5b403cbeaabea5d4699ed8eacd738d9fa3f0512043756ada26b2"
+      }
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "sample": "paraphrase-zh",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "5881a09cc0361d929400d969f1bdef86340925092ce7c25a15957bcdac250b23",
+      "report_sha256": "15b02f3786d33b5095404db9dacb7e1201a8adbec90a5306c358de687f713cc3",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 6836,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1804,
+          "reasoning_output_tokens": 123
+        },
+        "request_sha256": "7ad562368b6b3fcd437adf2ff305c5947fe935a5a3ae28310b5b98c984d17208",
+        "response_sha256": "29d62710967861796837d80e6fbd5b5a8218f0a0fc6c3f73aec945882982a285"
+      }
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "sample": "contradiction",
+      "score": 90,
+      "expected": [
+        0,
+        90
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "5881a09cc0361d929400d969f1bdef86340925092ce7c25a15957bcdac250b23",
+      "report_sha256": "2693bc75347a442d69aa54b034788886404598fe0d6921bdba595821d81915b5",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 7081,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1850,
+          "reasoning_output_tokens": 188
+        },
+        "request_sha256": "12a7167c1cda256ec27826c2c1c2198e73853e9347e8851b35981aae0e0b53db",
+        "response_sha256": "eb6ff99df633ad46e4f051147085e8d611f661a122bb442362b83958c70ca775"
+      }
+    },
+    {
+      "task": "S9-composer-coordinate-trap",
+      "sample": "keywords",
+      "score": 0,
+      "expected": [
+        0,
+        10
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "45da7f41451b1a48195f483031410769a91267dce0126d8d80281aec8fa31276",
+      "report_sha256": "642d92d20bdcb922051b98fb33f078c759f2b9b6d82a219881630de8bf4d5b53",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 8431,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 812,
+          "reasoning_output_tokens": 330
+        },
+        "request_sha256": "b839d00450bc03f067391332d8387979f2952018e08e574833084b3aa172fcd6",
+        "response_sha256": "d02801846149a57186eae0f4b069b99a69a3d3258b6b86ca1b30fe53e84b734b"
+      }
+    },
+    {
+      "task": "S9-composer-coordinate-trap",
+      "sample": "complete",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "45da7f41451b1a48195f483031410769a91267dce0126d8d80281aec8fa31276",
+      "report_sha256": "63034cf548ec0cb3e988c2276d50a506e0e56d048dd228944d818ada48b71ae0",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 8925,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1849,
+          "reasoning_output_tokens": 160
+        },
+        "request_sha256": "30d85484211ba22cc19e1e636e88fe122d0e1320c69b31c101833a7fb3c59278",
+        "response_sha256": "bcfcc38fd5696d34472e872cbfefb200274ab799d182e48bae46da68aef9bf38"
+      }
+    },
+    {
+      "task": "S9-composer-coordinate-trap",
+      "sample": "paraphrase-zh",
+      "score": 100,
+      "expected": [
+        90,
+        100
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "45da7f41451b1a48195f483031410769a91267dce0126d8d80281aec8fa31276",
+      "report_sha256": "713648c10442c38beb1373d7a385d243058d98d9c51c3e02f8e41e09b2f2e708",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 8758,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1660,
+          "reasoning_output_tokens": 80
+        },
+        "request_sha256": "d519824233eb4dbd9f89ba788a7bb07909a8ed18445b22ca822f39bc7cdc342f",
+        "response_sha256": "48f47502afec8fe78391a16a5256a1344def35618ea56585f89173a0a986f3d0"
+      }
+    },
+    {
+      "task": "S9-composer-coordinate-trap",
+      "sample": "contradiction",
+      "score": 80,
+      "expected": [
+        0,
+        80
+      ],
+      "in_expected_band": true,
+      "packet_sha256": "45da7f41451b1a48195f483031410769a91267dce0126d8d80281aec8fa31276",
+      "report_sha256": "a26a5046be5b2e0bb82d12cdf76ec3525269f974ab8b5e51f5031c7acace1499",
+      "model": {
+        "requested": "gpt-6-astra",
+        "resolved": "gpt-6-astra",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "tool_calls": 0,
+        "usage": {
+          "input_tokens": 8951,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1667,
+          "reasoning_output_tokens": 249
+        },
+        "request_sha256": "eb3a35d7a6e85af0f615274d7c154607f53f32bde1cf73c4fe8086d72dfee280",
+        "response_sha256": "1e1a88685103106145a86650739bf56ec4538a6c0a24a21081479dd51e0335cb"
+      }
+    }
+  ],
+  "resource_accounting": {
+    "usage": {
+      "input_tokens": 143645,
+      "cached_input_tokens": 2944,
+      "output_tokens": 26085
+    },
+    "wall_seconds": 468.603,
+    "summed_native_call_seconds": 887.362,
+    "timing_source": "Earliest to latest timestamp in the 20 native Codex judge traces; this calibration did not use Harbor."
+  },
+  "pr_validation": {
+    "base_commit": "35275ac72d42b6d2f22fc1b6cb79f5fdecd57537",
+    "npm_test": "passed",
+    "node_tests": 704,
+    "node_test_failures": 0,
+    "semantic_default_tasks": 12,
+    "unchanged_task_input_and_solution_files": 38,
+    "live_tested_judge_packet_config_unchanged": true,
+    "historical_workspace_results_preserved": true
+  }
+}

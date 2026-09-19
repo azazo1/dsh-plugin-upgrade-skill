@@ -1,0 +1,174 @@
+{
+  "status": "scored",
+  "score": 62.5,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "corridor-net-state",
+      "verdict": "partial",
+      "reason": "Correctly identifies removal followed by restoration and applies alpha.2 preservation to the located producer. However, it incorrectly endorses stripping as appropriate for alpha.1; the reference instead requires stopping unsupported unknown events or using known vocabulary.",
+      "evidence": [
+        {
+          "report": "migration-report.md",
+          "quote": "alpha.1: SessionEvent.ignorable was temporarily removed\n       -> alpha.2: retention semantics were restored"
+        },
+        {
+          "report": "migration-report.md",
+          "quote": "The source\nimplements the obsolete workaround at `src/events.ts:3-6`"
+        },
+        {
+          "report": "migration-report.md",
+          "quote": "The alpha.1 workaround was appropriate only for the temporary alpha.1 state\ndescribed by the fixture."
+        }
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "quote": "The target alpha.2 restored the retention semantics (DSH-0.1.2-A1-02 → DSH-0.1.2-A2-01 remove-then-restore)"
+        },
+        {
+          "path": "src/events.ts",
+          "quote": "export function produceExternalEvent(session: any, payload: any): void {"
+        },
+        {
+          "path": "src/events.ts",
+          "quote": "  delete (event as any).ignorable"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-02",
+        "DSH-0.1.2-A2-01"
+      ],
+      "points": 25,
+      "awarded": 12.5
+    },
+    {
+      "id": "remove-marker-stripping",
+      "verdict": "pass",
+      "reason": "Explicitly removes the stripping statement and obsolete rationale, rejects keeping them on alpha.2, and distinguishes preserving the marker from removing the defense. Also correctly recognizes the current literal's no-op deletion.",
+      "evidence": [
+        {
+          "report": "migration-report.md",
+          "quote": "Delete the defense code: remove the `delete (event as any).ignorable` statement\nand its alpha.1-only rationale. It must not be kept for alpha.2."
+        },
+        {
+          "report": "migration-report.md",
+          "quote": "The exact function currently constructs an object containing only `type` and\n`payload`, so on this literal object the `delete` is also a no-op unless some\noutside behavior adds the property."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/events.ts",
+          "quote": "  const event = { type: 'third-party/informational', payload }"
+        },
+        {
+          "path": "src/events.ts",
+          "quote": "  // reader 拒绝，所以这里先把 marker 删掉再写。迁移到 alpha.2 时这段要继续\n  // 保留。——社区注释（陷阱：alpha.2 已恢复保留语义，这段防御应当删除）\n  delete (event as any).ignorable"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A2-01"
+      ],
+      "points": 25,
+      "awarded": 25
+    },
+    {
+      "id": "informational-producer",
+      "verdict": "partial",
+      "reason": "Establishes producer-side preservation, but omits the reconstruction-safe informational-only condition, the prohibition on marking required events ignorable, and the distinction between omitting semantics and retaining marked events in the loaded log.",
+      "evidence": [
+        {
+          "report": "migration-report.md",
+          "quote": "For alpha.2, a producer must preserve an existing `ignorable` marker on a\npersistent event. It must not strip the marker as a compatibility workaround."
+        },
+        {
+          "report": "migration-report.md",
+          "quote": "This is a preservation rule; the fixture does not establish whether this\nparticular third-party informational event should be newly marked `ignorable`,\nso that separate decision is **unconfirmed**."
+        }
+      ],
+      "sources": [],
+      "references": [
+        "DSH-0.1.2-A2-01"
+      ],
+      "points": 25,
+      "awarded": 12.5
+    },
+    {
+      "id": "public-append-gap",
+      "verdict": "partial",
+      "reason": "Correctly discourages invented append arguments and acknowledges missing API verification. However, it leaves the established absence of a supported ignorable parameter unconfirmed and conditionally assigns handling to the host rather than explicitly deferring a verified producer/persistence integration.",
+      "evidence": [
+        {
+          "report": "migration-report.md",
+          "quote": "It should remove the manual `delete`, avoid direct persistence surgery, and\navoid inventing an `ignorable` argument to `Session.append(...)`."
+        },
+        {
+          "report": "migration-report.md",
+          "quote": "whether the real alpha.2 public signature exposes such a\nparameter is **unconfirmed**. If it does not expose one, marker handling must\nremain with the host/append pipeline"
+        }
+      ],
+      "sources": [],
+      "references": [
+        "DSH-0.1.2-A2-01"
+      ],
+      "points": 25,
+      "awarded": 12.5
+    }
+  ],
+  "caps": [
+    {
+      "id": "keep-stripping-marker",
+      "triggered": false,
+      "reason": "The final recommendation explicitly removes the stripping defense on alpha.2.",
+      "evidence": [],
+      "total": 10
+    }
+  ],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 7987,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1869,
+      "reasoning_output_tokens": 663
+    },
+    "request_id": "01a08eac-776f-7313-bc66-87a0d9d0ceef",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "cd30d2a64c7e174886f2b09c7ba216f0ec63ca2bae4aa3be5ad6a1093ad829eb",
+    "response_sha256": "5a2bf94377ea412f87f5fc1a07cd02a8264e3c775c8ccea7f53cf58ee9a04bb3"
+  },
+  "citation_audit": [
+    {
+      "report": "migration-report.md",
+      "citation": "src/events.ts:3-6",
+      "path": "src/events.ts",
+      "start": 3,
+      "end": 6,
+      "valid": true
+    },
+    {
+      "report": "migration-report.md",
+      "citation": "src/events.ts:7",
+      "path": "src/events.ts",
+      "start": 7,
+      "end": 7,
+      "valid": true
+    }
+  ],
+  "reports": {
+    "migration-report.md": "0e22f15e7c4520e1f45f377cbb526b32a97bdb28086617b04ccb209839f8df6b"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "9ce41e8afc6fb8aa4c5c0bbbd6ba2a55b404c06d1a6ab5f0bf29e3287f3dc0c7",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

@@ -1,0 +1,88 @@
+# S8 — Release Routing Trap
+
+## 1. Attempt 1: `v0.9.5` cannot resolve
+
+This is a tag-distribution defect in the public mirror, not a consumer command or
+network problem. The mirror evidence lists `v0.9.7` but has no `v0.9.5`:
+
+```text
+refs/tags/v0.9.0
+refs/tags/v0.9.1
+refs/tags/v0.9.7
+```
+
+The release sync excerpt pushes only the branch ref:
+
+```sh
+git push --force-with-lease "$remote" HEAD:main
+```
+
+That does not publish release tags. Therefore GitHub cannot resolve the requested
+`#v0.9.5` ref on `public-org/dsh-ui-progress`, so pnpm fails before installation.
+
+## 2. Attempt 2: `v0.9.7` is routed to the wrong DSH runtime
+
+`v0.9.7` is the newer plugin artifact, but its compatibility entry targets
+`dsh-v0.1.2-alpha.1` and says it migrated to the alpha.1 client API, including the
+`useConversation` seat.
+
+The consumer's actual runtime is `dsh 0.1.1-rc.2`. That is the older RC line. The
+alpha-targeted plugin is consequently being loaded into a host that does not expose
+the API it expects, producing `TypeError: useConversation is not a function`.
+Restarting cannot change the host/plugin API mismatch.
+
+## 3. Remedy for the consumer now
+
+The correct artifact is `v0.9.3`: the compatibility table lists it for
+`@deepseek-ai/dsh@0.1.1-rc.1` and explicitly notes that rc.2 is rc.1 plus additive
+image preprocessing, so it is the compatible choice for the consumer's
+`0.1.1-rc.2` runtime.
+
+However, the supplied `public-org` tag listing also lacks `v0.9.3`. Therefore no
+command against that mirror is both resolvable and compatibility-supported right
+now; `v0.9.1` is present but its compatibility is not established by this evidence.
+Once the maintainer publishes `v0.9.3` to that mirror (or if the second public
+mirror already has that tag), the exact consumer command is:
+
+```sh
+dsh plugin --profile web add '@org/dsh-ui-progress@github:public-org/dsh-ui-progress#v0.9.3'
+```
+
+If using the second mirror, substitute its GitHub owner/repository in the same
+command. The maintainer should make that tag available before asking this consumer
+to retry; switching to `v0.9.7` cannot work without upgrading the frozen DSH
+runtime.
+
+## 4. Maintainer-side prevention
+
+### Release tooling
+
+- Make mirror synchronization publish the release refs as well as `main`. For
+  annotated release tags, the minimal correction is:
+
+  ```sh
+  git push --force-with-lease "$remote" HEAD:main --follow-tags
+  ```
+
+  Alternatively, push each release tag explicitly (and verify the result) rather
+  than relying on a branch-only push.
+- Add a release CI gate that compares the intended release tag set with
+  `git ls-remote --tags` on every public mirror and fails if any documented tag is
+  missing. The gate should also verify that the tag resolves to the intended commit.
+- Run a compatibility smoke test for each supported DSH line before publishing,
+  and publish only after the tag exists on all mirrors and the matrix agrees with
+  the artifact.
+
+### Documentation
+
+- Keep install instructions version-routed: document the `v0.9.3` pin for DSH
+  `0.1.1-rc.2` and the `v0.9.7` pin only for DSH `0.1.2-alpha.1` (or newer
+  explicitly tested versions).
+- Do not define “newest tag” as the default for all DSH runtimes. Show a small
+  plugin-version/DSH-version compatibility table and an install command for each
+  supported runtime.
+- Have documentation CI check every command's referenced tag against every public
+  mirror, so a README cannot advertise an unpublished or incompatible ref.
+
+Evidence used: `fixture/ls-remote-tags.txt`, `fixture/sync-script.sh`,
+`fixture/compat-table.md`, and `fixture/dsh-version.txt`.

@@ -1,0 +1,50 @@
+{
+  "decisions": [
+    {
+      "id": "source-patch",
+      "verdict": "pass",
+      "reason": "Locates cordis.patch.yml patch declaration, patch.yml surface (src/session/view/SessionView.ts), and scripts/apply-patch.mjs; explicitly distinguishes profile composition from the genuine source-patch declaration and explains the session-view-internals coupling with re-validation per exact tag (A1-03)."
+    },
+    {
+      "id": "events",
+      "verdict": "pass",
+      "reason": "Locates producer (src/index.ts:15-19, ignorable:true) and observer (20-22); explains A1-02 removal and A2-01 restoration with corridor folding, advises keeping the marker (no delete/re-add, no consumer whitelist), and notes public Session.append has no ignorable parameter."
+    },
+    {
+      "id": "host-services",
+      "verdict": "pass",
+      "reason": "Locates both ctx.get('apiProxy') call sites and the alpha.1 removal; correctly prescribes host-plane domain-service injection (llm/listProviders split, session domain service) and keeps the Remote table client-plane only — no nonexistent Host remote service prescribed."
+    },
+    {
+      "id": "host-path",
+      "verdict": "pass",
+      "reason": "Locates the hardcoded homedir()/'.dsh'/'profiles'/'default' path and prescribes runtime DSH_HOME/profile resolution; explicitly states --profile existed in rc.2 and is not new in alpha.1."
+    },
+    {
+      "id": "ui",
+      "verdict": "pass",
+      "reason": "Locates both the private @deepseek-ai/dsh-session-view/internal import (line 10) and registerCommand + new SessionView (41-43); explains rebuilding imports by owning module, public owner verification against target-tag exports, and 'pending confirmation' when no public seam exists."
+    },
+    {
+      "id": "channel",
+      "verdict": "pass",
+      "reason": "Locates the private loopback HTTP server (127.0.0.1:43121, /api/legacy); states loopback is not an auth exemption, and distinguishes official /api Connection-auth-gated routes from raw ctx.webServer.register routes needing requestRejection or a Connection-owned carrier (A1-08)."
+    },
+    {
+      "id": "subprocess",
+      "verdict": "pass",
+      "reason": "Locates both dsh --profile headless calls and stdout JSON.parse (src/index.ts:57-66, apply-patch.mjs:12-18); explains stdout is already final text in rc.2 (never JSONL) with stderr gaining dsh: reasoning:, exit-code judging — no invented alpha.2 stdout change."
+    },
+    {
+      "id": "mapping",
+      "verdict": "pass",
+      "reason": "Maps located couplings to A1-01, A1-02+A2-01 (folded to net-restored A2-01), A1-03, A1-04, A1-08, with A1-05 as the stdout mapping; grounded in specific files/lines, not a bare card list. Complete and substantively correct."
+    },
+    {
+      "id": "limits",
+      "verdict": "partial",
+      "reason": "Accounts for all seven hit categories (no no-hit classes) and states scan limits thoroughly (curated cards, static-only, unexecuted validation layers), but the recommendations never explicitly propose a target-version build/typecheck, isolated cold boot, or a functional end-to-end path as next steps — they are only implied in the limits narrative."
+    }
+  ],
+  "caps": []
+}

@@ -1,0 +1,50 @@
+{
+  "decisions": [
+    {
+      "id": "source-patch",
+      "verdict": "pass",
+      "reason": "Locates patch.yml find/replace surface, apply-patch.mjs, and the cordis.patch.yml composition row; explicitly distinguishes real source patching (patch.yml+script) from ordinary composition via API-08, and ties the patched target (src/session/view/SessionView.ts, renderSessionView) to the private session-view coupling under A1-03."
+    },
+    {
+      "id": "events",
+      "verdict": "pass",
+      "reason": "Grounds the producer (ctx.emit 'session/event' with ignorable:true) and consumer in src/index.ts lines; explains alpha.1 removal (A1-02) and alpha.2 restoration (A2-01), argues omission-safe informational markers must be kept and not turned into a whitelist, and explicitly notes public Session.append has no ignorable parameter rather than claiming it does."
+    },
+    {
+      "id": "host-services",
+      "verdict": "pass",
+      "reason": "Locates both ctx.get('apiProxy') call sites and the A1-01 removal; distinguishes host-plane domain-service injection (llm domain service, llm/listProviders split) from Web Client Remote, and warns that host-plane remote injection stalls instead of prescribing a nonexistent Host remote service."
+    },
+    {
+      "id": "host-path",
+      "verdict": "pass",
+      "reason": "Locates join(homedir(),'.dsh','profiles','default') in src/index.ts and recommends resolving via runtime DSH_HOME/profile and the official launcher; never claims --profile was introduced in alpha.1."
+    },
+    {
+      "id": "ui",
+      "verdict": "pass",
+      "reason": "Locates both the @deepseek-ai/dsh-session-view/internal import (line 10) and registerCommand consumption (lines 41-43), and explains rebuilding against owning modules with pending-confirmation for capabilities lacking a stable public seam after the A1-03 split."
+    },
+    {
+      "id": "channel",
+      "verdict": "pass",
+      "reason": "Locates the never-invoked loopback createServer on 127.0.0.1:43121; states loopback is not exempt from authentication, a private unauthenticated route is a security hole, and distinguishes official gated /api routes from raw ctx.webServer.register-style routes needing requestRejection/Connection-owned carriers."
+    },
+    {
+      "id": "subprocess",
+      "verdict": "pass",
+      "reason": "Locates execFileSync and spawn dsh calls plus per-line stdout JSON.parse in both files; explains stdout is the final assistant text (already so in rc.2, JSONL assumption wrong for the whole corridor), reasoning/errors go to stderr, and correctly maps A1-05 without inventing an alpha.2 stdout change."
+    },
+    {
+      "id": "mapping",
+      "verdict": "pass",
+      "reason": "Maps #3→A1-01(+A2-02), #2→A1-02+A2-01 folded, #1/#5→A1-03, #4→A1-04, #6→A1-08, and gives A1-05 as the additional stdout mapping for #7, each with located evidence and substantive reasoning, not a bare card list."
+    },
+    {
+      "id": "limits",
+      "verdict": "pass",
+      "reason": "Accounts for all seven categories as hits (no no-hit category, matching the fixture), states scan limits (heuristic static scan cannot prove compatibility, fixture non-executable), and proposes target-tag build/typecheck, isolated profile mount/cold boot, and functional smoke tests; does not require executing the fixture."
+    }
+  ],
+  "caps": []
+}

@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "published-version-evidence",
+      "verdict": "pass",
+      "reason": "Report cites fixture package.json declaration ^0.1.2-alpha.1 and README claim, and distinguishes them from the published list (0.1.1-rc.1/rc.2, 0.1.2-alpha.2), stating alpha.1 was never published while alpha.2 was; it credits the supplied registry fact and proposes package-specific npm view verification without requiring a live query."
+    },
+    {
+      "id": "caret-resolution",
+      "verdict": "pass",
+      "reason": "Explains ^0.1.2-alpha.1 desugars to >=0.1.2-alpha.1 <0.2.0-0 so published alpha.2 satisfies it (maxSatisfying demonstrated), that install silently succeeds with the wrong version, and identifies the type-baseline mismatch and prerelease drift risks; grounded in the fixture and local semver check, with no claim that all alphas are missing."
+    },
+    {
+      "id": "workable-baseline-plan",
+      "verdict": "pass",
+      "reason": "Path A is a complete feasible plan: exact pin 0.1.2-alpha.2 + lockfile, with explicit tradeoff that it does not validate the declared alpha.1 (source migrates one corridor edge); Path B (build alpha.1 from the git tag into local tarballs pinned via overrides) is an additional coherent alternative."
+    },
+    {
+      "id": "reproducibility-and-exit",
+      "verdict": "pass",
+      "reason": "Uses one consistent package manager (pnpm, npm ls equivalent allowed), requires committed lockfile / exact pin against floating caret, proposes typecheck against the intended target with card-set triage, gives an exit path for Path B overrides (delete overrides once registry covers the cohort) and Path A future upgrades, and honestly marks unverified registry/tag/resolver items in §4."
+    }
+  ],
+  "caps": [
+    {
+      "id": "install-unpublished-registry-version",
+      "triggered": false,
+      "reason": "Final recommendation is Path A: pin the published 0.1.2-alpha.2 from npm. The alpha.1 route explicitly builds local tarballs from the upstream git tag via file: overrides, not an npm install of the unpublished version; registry alpha.1 installs appear only as impossible/rejected context."
+    }
+  ]
+}

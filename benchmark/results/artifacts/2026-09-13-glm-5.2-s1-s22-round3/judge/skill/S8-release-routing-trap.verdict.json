@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "missing-mirror-tag",
+      "verdict": "pass",
+      "reason": "Grounds attempt-1 failure in sync-script.sh pushing only HEAD:main with no tag push, and ls-remote-tags.txt showing refs/tags/v0.9.5 absent; explicitly rejects network/typo explanations."
+    },
+    {
+      "id": "runtime-compatibility-direction",
+      "verdict": "pass",
+      "reason": "Uses dsh-version.txt (0.1.1-rc.2) and compat-table.md (v0.9.7 targets 0.1.2-alpha.1) to explain the plugin-artifact-ahead-of-runtime direction: the useConversation seat is missing on the older runtime; notes install/restart success does not imply API compatibility."
+    },
+    {
+      "id": "frozen-runtime-remedy",
+      "verdict": "fail",
+      "reason": "Correctly selects v0.9.3 with rc.1 verification and the additive rc.2 note, but falsely asserts 'v0.9.3 exists on the consumer's mirror per ls-remote-tags.txt' — the listing contains only v0.9.0, v0.9.1, v0.9.7, so v0.9.3 is absent. It fails to notice this and presents the absent tag as immediately installable, which the criterion forbids; it also offers no conditional fallback (published tag or verified reachable commit)."
+    },
+    {
+      "id": "tag-distribution-repair",
+      "verdict": "pass",
+      "reason": "Proposes explicit 'git push \"$remote\" refs/tags/$RELEASE_TAG' per mirror in the sync script plus a post-sync gate verifying the tag object via git ls-remote --tags on every mirror, grounded in the branch-only script; non-forced tag push, equivalent implementation."
+    },
+    {
+      "id": "version-routing-docs",
+      "verdict": "pass",
+      "reason": "Routes README install pins by consumer DSH corridor (rc.x users get v0.9.3, alpha.1 users v0.9.7), requires 'dsh --version' check against the compat matrix, warns against newest-tag defaults, and does not generalize to untested future alphas."
+    }
+  ],
+  "caps": []
+}

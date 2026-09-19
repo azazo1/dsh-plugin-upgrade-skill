@@ -1,0 +1,213 @@
+{
+  "status": "scored",
+  "score": 100,
+  "max": 100,
+  "passed": true,
+  "decisions": [
+    {
+      "id": "projection-contract",
+      "verdict": "pass",
+      "reason": "Correctly distinguishes clipboard-coordinate state from detect-coordinate verb spans. The space example and conversion formula preserve ordinary text widths.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "- `InputState.draft` and `Occurrence.offset`/`length` are in the\n  `clipboardText` projection. A reference chip expands to its full\n  `occurrence.clipboardText` there.\n- `insertReference` passes its `TokenSpan` to\n  `$replaceDetectSpanWithNodes`, which splices `EditorProjection.detectText`.\n  In that projection, a chip is one U+FFFC character."
+        },
+        {
+          "report": "report.md",
+          "quote": "revision, then calls `$replaceDetectSpanWithText`, which again operates on\n`detectText`."
+        }
+      ],
+      "sources": [
+        {
+          "path": "host-input-contract.ts",
+          "quote": "  /** Offset in the clipboard-text projection. */\n  readonly offset: number\n  /** Length in the clipboard-text projection; the occurrence occupies exactly [offset, offset+length). */\n  readonly length: number"
+        },
+        {
+          "path": "host-input-contract.ts",
+          "quote": "  /** Trigger/TokenSpan coordinate text (chip = one U+FFFC). */\n  readonly detectText: string\n  /** Persistence/InputState draft text (chip = clipboardText). */\n  readonly clipboardText: string"
+        },
+        {
+          "path": "host-input-facade.ts",
+          "quote": "// the two verbs and their guards; $replaceDetectSpanWithText /\n// $replaceDetectSpanWithNodes splice the DETECT text and apply the edit."
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "repeat-paste-failure",
+      "verdict": "pass",
+      "reason": "Locates the incorrect draft-length insertion coordinates and explains empty-state coincidence, subsequent overshoot, false return, and misleading toast without alleging concurrency.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "The first insertion uses `[0, 0]`, where the two coordinate systems coincide,\nso it succeeds. On the next paste the plugin passes `[29, 29]` as a detect\nspan. The host needs `[2, 2]`. The host's revision CAS (`draftRev ===\nthis.rev`) can still pass; the span is nevertheless applied against the wrong\ntext projection, so the detect-span replacement returns false and the plugin\nemits the reported toast."
+        },
+        {
+          "report": "report.md",
+          "quote": "For the end-of-draft insertion,\nreplace both uses of `snapshot.draft.length` with:"
+        }
+      ],
+      "sources": [
+        {
+          "path": "plugin-client.js",
+          "quote": "      // insert at the end of the draft\n      start: snapshot.draft.length,\n      end: snapshot.draft.length,\n      draftRev: snapshot.draftRev,\n    });\n    if (!accepted) {\n      records.delete(ref);\n      throw new Error('The DSH composer changed before the attachment could be inserted');"
+        },
+        {
+          "path": "host-input-facade.ts",
+          "quote": "      applied = $replaceDetectSpanWithNodes(span, nodes)\n    })\n    return applied"
+        },
+        {
+          "path": "console-session.txt",
+          "quote": "[12:40:05]   insertReference returned false; no second chip anywhere"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "removal-and-bookkeeping",
+      "verdict": "pass",
+      "reason": "Traces the unconverted removal span, ignored failure, unconditional record deletion, and unavailable rendering, tying both symptoms to the same projection mismatch.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "It passes `[0, 28]` to `consumeToken`. The host's span branch checks the\nrevision, then calls `$replaceDetectSpanWithText`, which again operates on\n`detectText`. The chip occupies only `[0, 1)` there, not `[0, 28)`, so the\nreplacement does not apply."
+        },
+        {
+          "report": "report.md",
+          "quote": "1. It ignores the boolean result from `consumeToken`.\n2. It unconditionally executes `records.delete(occurrence.ref)`.\n3. It calls `changed()`.\n4. Rendering looks up the now-missing record and deliberately displays\n   `unavailable`."
+        },
+        {
+          "report": "report.md",
+          "quote": "Thus this is the same coordinate\ncontract misread as the insert failure, followed by an unchecked-failure\nbookkeeping bug—not an independent attachment-state problem."
+        }
+      ],
+      "sources": [
+        {
+          "path": "plugin-client.js",
+          "quote": "  const end = occurrence.offset + (occurrence.length ?? 1);\n  if (typeof input.consumeToken === 'function') {\n    input.consumeToken({\n      kind: 'span',\n      span: { start: occurrence.offset, end, draftRev: snapshot.draftRev },\n    });"
+        },
+        {
+          "path": "plugin-client.js",
+          "quote": "  records.delete(occurrence.ref);\n  changed();"
+        },
+        {
+          "path": "plugin-client.js",
+          "quote": "//   : status === 'uploaded' ? 'copied' : record === undefined ? 'unavailable' : humanBytes(record.total);"
+        },
+        {
+          "path": "host-input-facade.ts",
+          "quote": "        applied = $replaceDetectSpanWithText(guard.span, '')\n      })\n      return applied"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "conversion-and-success-gate",
+      "verdict": "pass",
+      "reason": "Derives the preceding-chip compression rule, applies it to insertion and both removal boundaries, retains revision CAS, and explicitly gates record deletion on successful consumption.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "toDetect(p) = p - sum(o.length - 1\n                      for each occurrence o with o.offset + o.length <= p)"
+        },
+        {
+          "report": "report.md",
+          "quote": "detectEnd = toDetect(snapshot.draft.length, snapshot.occurrences)\nstart: detectEnd\nend:   detectEnd"
+        },
+        {
+          "report": "report.md",
+          "quote": "detectStart = toDetect(occurrence.offset, snapshot.occurrences)\ndetectEnd   = toDetect(occurrence.offset + occurrence.length,\n                      snapshot.occurrences)\nconsumeToken({\n  kind: 'span',\n  span: { start: detectStart, end: detectEnd, draftRev: snapshot.draftRev }\n})"
+        },
+        {
+          "report": "report.md",
+          "quote": "The `draftRev` must continue to come from that same\nfresh snapshot, since the host compares it with `this.rev` as a CAS."
+        },
+        {
+          "report": "report.md",
+          "quote": "In\nparticular, the remove path must delete the record and call `changed()` only\nafter `consumeToken` succeeds. On failure it should retain the record"
+        }
+      ],
+      "sources": [
+        {
+          "path": "host-input-contract.ts",
+          "quote": "  /** Trigger/TokenSpan coordinate text (chip = one U+FFFC). */\n  readonly detectText: string\n  /** Persistence/InputState draft text (chip = clipboardText). */\n  readonly clipboardText: string\n  /** InputState-compatible occurrence view (clipboardText coordinates). */\n  readonly occurrences: readonly Occurrence[]"
+        },
+        {
+          "path": "host-input-facade.ts",
+          "quote": "    if (span.draftRev !== this.rev) return false"
+        },
+        {
+          "path": "host-input-facade.ts",
+          "quote": "      if (guard.span.draftRev !== this.rev || guard.span.start === guard.span.end) return false\n      let applied = false as boolean\n      this.applyEdit(() => {\n        applied = $replaceDetectSpanWithText(guard.span, '')\n      })\n      return applied"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "regression-sequences",
+      "verdict": "pass",
+      "reason": "Covers successive pastes, removal with a preceding chip, both removal orders, coordinated chip/occurrence/record cleanup, and declined-consumption bookkeeping.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "2. Without reloading or clearing the composer, paste a second screenshot.\n   Assert no toast, two records, two composer occurrences, and two dock chips."
+        },
+        {
+          "report": "report.md",
+          "quote": "4. In a fresh session, paste once and click the dock chip's `×`. Assert that\n   `consumeToken` is called with `[0, 1]` and the current revision, returns\n   true, the composer chip disappears, its occurrence disappears, its record\n   disappears, and no `unavailable` label is rendered."
+        },
+        {
+          "report": "report.md",
+          "quote": "5. In another fresh session, paste A and then B. Remove B first, then A;\n   assert each selected chip alone is removed and the other remains. Repeat\n   with A first, then B. Assert spans are calculated from each current\n   occurrence (including a nonzero detect offset), and that no stale dock or\n   composer chip remains after the second removal."
+        },
+        {
+          "report": "report.md",
+          "quote": "6. Add a failure-path test in which the host returns false (for example, a\n   stale revision). Assert that the plugin keeps the record and dock chip,\n   leaves the composer unchanged, and does not render `unavailable`."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    }
+  ],
+  "caps": [],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 10190,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2481,
+      "reasoning_output_tokens": 208
+    },
+    "request_id": "01a08eb1-2083-7d81-8664-0b696025c006",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "bfe1101eb67efc4bf56e8d5389a43c8195edc854d248c791a168a8cb3e23ff61",
+    "response_sha256": "1b057822366ef57f7b12daf0f401cb3068f4a7973535f7d055ca4bfd37d3d536"
+  },
+  "citation_audit": [],
+  "reports": {
+    "report.md": "368c0d08f65475a31c7dbc717271aa3619961d6383cbbdb18b072565ddfb30b3"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "45da7f41451b1a48195f483031410769a91267dce0126d8d80281aec8fa31276",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

@@ -1,0 +1,107 @@
+# S7 · Unpublished Cohort — Installation / Type-Baseline Plan (Read-Only Diagnostic Report)
+
+Fixture inspected (read-only, nothing modified, no install executed):
+- environment/fixture/package.json
+- environment/fixture/README.md
+
+## Evidence from the fixture
+
+package.json (verbatim, complete file):
+
+```json
+{
+  "name": "dsh-cohort-bench",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": { "@deepseek-ai/dsh-llm": "^0.1.2-alpha.1" }
+}
+```
+
+README.md (verbatim, complete file):
+
+> # S7 fixture · Unpublished cohort (S7-specific copy)
+>
+> A plugin whose type baseline declares `@deepseek-ai/dsh-llm: ^0.1.2-alpha.1` while the README claims "npm install gives you the type baseline". npm reality: `@deepseek-ai/*` has only 0.1.1-rc.1 / 0.1.1-rc.2 / 0.1.2-alpha.2 — **alpha.1 was never published**. **Test material only — do not execute or publish** (`"private": true`). This task's grading requires the fixture to be unchanged relative to git HEAD.
+
+---
+
+## Item 1 — Real consequence of `"devDependencies": { "@deepseek-ai/dsh-llm": "^0.1.2-alpha.1" }`
+
+### 1.1 The install will NOT fail, and it will not install alpha.1 either
+
+The premise "alpha.1 was never published, so install fails" is **false**. Reasoning from npm semver semantics:
+
+1. **Caret range on a 0.x version.** `^0.1.2-alpha.1` desugars to the comparator range `>=0.1.2-alpha.1 <0.2.0`. Because the floor's minor is non-zero (0.1.x), the caret locks major at 0 and the upper bound is `<0.2.0` (the narrower `<0.1.3` applies only to `^0.0.x`).
+2. **Prerelease-in-range rule.** npm's semver implementation only lets a version carrying a prerelease suffix satisfy a range if **at least one comparator in the set has a prerelease and shares the same [major, minor, patch] tuple** as the candidate. Here the floor comparator `>=0.1.2-alpha.1` has a prerelease on tuple 0.1.2, so **prereleases of 0.1.2 are explicitly eligible**.
+3. **Apply to the published set given in the brief** (0.1.1-rc.1, 0.1.1-rc.2, 0.1.2-alpha.2; alpha.1 missing):
+   - 0.1.2-alpha.2: inside `<0.2.0`, tuple 0.1.2 matches the floor comparator's tuple, and alpha.2 > alpha.1 → **satisfies**.
+   - 0.1.1-rc.1 / 0.1.1-rc.2: below the 0.1.2 floor (tuple mismatch 0.1.1 ≠ 0.1.2, and plain order 0.1.1 < 0.1.2) → excluded.
+   - Therefore npm/yarn/pnpm resolve the range to **`@deepseek-ai/dsh-llm@0.1.2-alpha.2`**.
+
+### 1.2 What actually goes wrong (the real risks)
+
+- **Silent version drift, not failure.** The maintainer believes the baseline is 0.1.2-alpha.1 (README: "npm install gives you the type baseline"), but a fresh install actually resolves 0.1.2-alpha.2. Any API difference between alpha.1 and alpha.2 (renamed/added types, changed service signatures) makes the "type baseline" claim false: `tsc` runs against a different d.ts set than the author intended. This is the classic unpublished-cohort hazard — the failure surfaces later as type errors or code that compiles against unintended API.
+- **When install WOULD fail:** if no `0.1.2-alpha.*` existed at all, the range would be unsatisfiable and the install would die with `ETARGET` / "No matching version found for @deepseek-ai/dsh-llm@^0.1.2-alpha.1". With 0.1.2-alpha.2 present, that scenario does not apply here.
+- **Prerelease fragility / no lockfile:** any future 0.1.2-alpha.3 (or 0.1.2 stable — a non-prerelease 0.1.2 also satisfies `>=0.1.2-alpha.1 <0.2.0`) is preferred by a fresh install, so reproducibility depends entirely on a lockfile, and none exists in the fixture (no package-lock.json / pnpm-lock.yaml).
+- **"private": true** prevents `npm publish` of this package; it has no effect on dependency resolution. "Do not execute or publish" was honored — nothing was installed.
+
+**Bottom line for Item 1:** install succeeds; the resolved version is 0.1.2-alpha.2; the real consequence is an untracked type-baseline drift away from the intended alpha.1, which the README incorrectly papers over.
+
+---
+
+## Item 2 — Workable installation / type-baseline plan (multiple paths, tradeoffs, exit paths)
+
+### Path A — Re-pin to a version npm actually has (recommended if alpha.2 is acceptable)
+
+Change the devDependency to an exact pin of an existing version:
+
+```json
+"devDependencies": { "@deepseek-ai/dsh-llm": "0.1.2-alpha.2" }
+```
+
+- **Tradeoffs:** the exact pin removes the caret's silent drift to future alpha.3 / 0.1.2 stable and honestly documents that the baseline is alpha.2, not alpha.1. It loses automatic patch/minor pickup — appropriate for a prerelease dependency, where caret ranges are a known footgun.
+- **Exit path:** once 0.1.2 stable (or a cohort the team standardizes on) is published, widen deliberately back to `^0.1.2` and commit the lockfile.
+- **Cost:** requires editing package.json (forbidden on the grading fixture; this is the plan for the real plugin, applied after the report).
+
+### Path B — Keep `^0.1.2-alpha.1` and lock the resolution
+
+The range is technically satisfiable, so keep it and commit the lockfile generated by one install (`npm install` / `pnpm install` → package-lock.json / pnpm-lock.yaml), so every machine resolves the same 0.1.2-alpha.2. CI using `npm ci` then enforces it.
+
+- **Tradeoffs:** zero manifest change; reproducibility achieved. But the lockfile encodes the same misleading story as the README — anyone diffing "declared alpha.1, installed alpha.2" trips over it again.
+- **Exit path:** pair with the README correction below and a scheduled migration to Path A.
+
+### Path C — Request publication of the intended version (blocked dependency)
+
+If alpha.1-exact types are genuinely required (the plugin was written against alpha.1's API and alpha.2 broke it), ask the owning team to publish 0.1.2-alpha.1 or a successor.
+
+- **Tradeoffs:** no local hack; but the plugin stays uninstallable-against-intent until it lands, and npm effectively discourages (re)publishing a version string once metadata exists — the realistic outcome is "use alpha.2 or later", so this path usually collapses into Path A.
+- **Exit path:** interim bridge via Path B; abandon if upstream refuses.
+
+### Path D — Vendored type baseline (no registry dependency)
+
+Check in the `.d.ts` type surface the plugin actually compiles against and drop or loosen the registry devDependency.
+
+- **Tradeoffs:** deterministic and install-failure-proof, but forks type truth from the real package, drifts silently on upstream changes, and is the heaviest maintenance burden. Justified only for a tiny, stable type surface.
+- **Exit path:** delete the vendored types when Path A/B lands.
+
+### Recommended combination
+
+Path A (exact-pin 0.1.2-alpha.2) + README correction + committed lockfile. Path B is the fallback if the manifest must stay untouched; Path C only if alpha.2 demonstrably breaks the plugin's compile.
+
+---
+
+## Item 3 — README claim correction
+
+The README sentence "npm install gives you the type baseline" is false as written. Suggested replacement:
+
+> "`npm install` resolves `^0.1.2-alpha.1` to `@deepseek-ai/dsh-llm@0.1.2-alpha.2` (the intended 0.1.2-alpha.1 was never published). The effective type baseline is whatever the committed lockfile pins — see the exact-pin note in package.json."
+
+---
+
+## Item 4 — Unconfirmed items
+
+- **The published-version list itself** (0.1.1-rc.1, 0.1.1-rc.2, 0.1.2-alpha.2) comes **only from the task brief and the fixture README**; network access was out of scope, so the live npm registry was **not** queried — **unconfirmed against the registry**. If the registry additionally hosts newer matching versions (e.g. 0.1.2-alpha.3 or 0.1.2 stable), the caret range resolves to the highest such version instead; the mechanism analysis in Item 1 is unchanged, only the exact resolved version shifts.
+- **API differences between alpha.1 and alpha.2**: neither version's contents are available in the fixture; whether the type baseline actually diverges is **unconfirmed**. The plan treats drift as a risk to eliminate (exact pin + lockfile), not as an established break.
+- **Preferred package manager** (npm vs pnpm vs yarn): no lockfile or `packageManager` field exists in the fixture — **unconfirmed**; the plan is manager-agnostic.
+- Per the brief, no file under the fixture was modified and no install was executed.
+

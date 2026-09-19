@@ -1,0 +1,156 @@
+{
+  "status": "scored",
+  "score": 100,
+  "max": 100,
+  "passed": true,
+  "decisions": [
+    {
+      "id": "published-version-evidence",
+      "verdict": "pass",
+      "reason": "Distinguishes the manifest range from the supplied publication facts without assuming internal-package availability, and reserves registry/artifact verification for the maintainer's environment.",
+      "evidence": [
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "The manifest declares:\n\n```json\n\"@deepseek-ai/dsh-llm\": \"^0.1.2-alpha.1\"\n```"
+        },
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "Per the task brief and fixture README, the published versions to consider are `0.1.1-rc.1`, `0.1.1-rc.2`, and `0.1.2-alpha.2`; `0.1.2-alpha.1` was never published."
+        },
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "The exact registry metadata, npm version/configuration, cache state, package tarball contents, exported type declarations, and the eventual lockfile are **unconfirmed** here. They should be verified only in the maintainer's normal installation environment."
+        }
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "quote": "\"devDependencies\": { \"@deepseek-ai/dsh-llm\": \"^0.1.2-alpha.1\" }"
+        },
+        {
+          "path": "README.md",
+          "quote": "npm reality: `@deepseek-ai/*` has only 0.1.1-rc.1 / 0.1.1-rc.2 / 0.1.2-alpha.2 — **alpha.1 was never published**."
+        }
+      ],
+      "references": [],
+      "points": 25,
+      "awarded": 25
+    },
+    {
+      "id": "caret-resolution",
+      "verdict": "pass",
+      "reason": "Correctly resolves the range to alpha.2 under the supplied availability and explains that this neither pins nor validates an alpha.1 type baseline.",
+      "evidence": [
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "The missing `alpha.1` does **not** by itself make `npm install` fail. `^0.1.2-alpha.1` is a semver range, not an exact-version request."
+        },
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "Under the version availability stated in the brief, an ordinary `npm install` from this fixture should select `0.1.2-alpha.2`."
+        },
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "If the plugin specifically depends on types/API from `alpha.1`, the published `alpha.2` is not an automatic substitute."
+        },
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "A real-environment typecheck must confirm that `alpha.2` exposes the required declarations; package contents and compatibility are **unconfirmed** by this read-only fixture inspection."
+        }
+      ],
+      "sources": [
+        {
+          "path": "package.json",
+          "quote": "\"devDependencies\": { \"@deepseek-ai/dsh-llm\": \"^0.1.2-alpha.1\" }"
+        },
+        {
+          "path": "README.md",
+          "quote": "A plugin whose type baseline declares `@deepseek-ai/dsh-llm: ^0.1.2-alpha.1` while the README claims \"npm install gives you the type baseline\"."
+        }
+      ],
+      "references": [],
+      "points": 25,
+      "awarded": 25
+    },
+    {
+      "id": "workable-baseline-plan",
+      "verdict": "pass",
+      "reason": "Path B includes a feasible exact published-alpha.2 pin with its maintenance tradeoff; the report separately warns that alpha.2 does not establish alpha.1 compatibility.",
+      "evidence": [
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "If the type baseline must be exactly `alpha.2`, use the exact version `0.1.2-alpha.2` and commit the lockfile instead."
+        },
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "The exact-pin option gives the strongest reproducibility, at the cost of deliberate maintenance when upgrading."
+        },
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "If the plugin specifically depends on types/API from `alpha.1`, the published `alpha.2` is not an automatic substitute."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 25,
+      "awarded": 25
+    },
+    {
+      "id": "reproducibility-and-exit",
+      "verdict": "pass",
+      "reason": "The npm-based exact-pin option commits a lockfile, proposes target-specific typechecking, calls for deliberate upgrades, and marks unverified package details honestly.",
+      "evidence": [
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "If the type baseline must be exactly `alpha.2`, use the exact version `0.1.2-alpha.2` and commit the lockfile instead."
+        },
+        {
+          "report": "installation-type-baseline-plan.md",
+          "quote": "The exact-pin option gives the strongest reproducibility, at the cost of deliberate maintenance when upgrading. A real-environment typecheck must confirm that `alpha.2` exposes the required declarations; package contents and compatibility are **unconfirmed** by this read-only fixture inspection."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 25,
+      "awarded": 25
+    }
+  ],
+  "caps": [
+    {
+      "id": "install-unpublished-registry-version",
+      "triggered": false,
+      "reason": "No prescription treats exact alpha.1 as currently available from npm. Path C conditions installation on first obtaining or publishing a verifiable artifact.",
+      "evidence": [],
+      "total": 10
+    }
+  ],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 7164,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1609,
+      "reasoning_output_tokens": 297
+    },
+    "request_id": "01a08eac-3f50-7280-9715-baedd0169da8",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "1d7c3cfd0238c9bc22fe9807b09f30001e77fc2c882428a135a58ff93e00e1c5",
+    "response_sha256": "61c3d2155b91ed35a019b857209e4ba154641c4df6c3f707dea2b22f93fd64f3"
+  },
+  "citation_audit": [],
+  "reports": {
+    "installation-type-baseline-plan.md": "c693281daf30e848bcf55d9a7e3077d45a2728df8206d084b5d3549da1b86bb9"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "26e36c55977102373115c7ffbd168425e9193fb81c4a869afaeefc7d252d308f",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

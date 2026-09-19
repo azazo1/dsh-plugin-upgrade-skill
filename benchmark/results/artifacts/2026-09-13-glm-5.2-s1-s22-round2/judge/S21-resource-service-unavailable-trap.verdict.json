@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "resource-chain-attribution",
+      "verdict": "pass",
+      "reason": "Attributes the empty tab to the workspace-files resource-service chain (api-workspace-files Remote, client-resources, host provider chain), grounded in symptom-log.txt and contrast-probe.txt; notes the correct title proves the claim layer works and meta.status staying 'none' means the metadata read never arrives; explicitly rejects render code/file/disk blame."
+    },
+    {
+      "id": "contrast-probe-localization",
+      "verdict": "pass",
+      "reason": "Uses contrast-probe.txt directly: file-trace reads the same file via its own host RPC while the sidebar workspaceFiles read never arrives, ruling out the file, disk, workspace scope and claim layer, and localizes the failure to the resource-provider/RPC delivery on the upgraded profile."
+    },
+    {
+      "id": "probe-validity",
+      "verdict": "pass",
+      "reason": "Credits the 62/62 per-module sweep as the valid measurement of static serving and explicitly rejects the all-62 join (404, zero-length, ~4–5 KB) as a synthesized URL the loader never constructs with zero evidentiary value; misses the exact 3 KB cap constant but gives the equivalent loader-never-makes-this-request reasoning."
+    },
+    {
+      "id": "distractor-separation",
+      "verdict": "pass",
+      "reason": "Separates the paste-input fold-skip warnings as an unrelated self-contained plugin bug, and attributes the absolute-scope claim error to the textpreview→documentpreview rename/canOpen scope change while stating it cannot explain the empty session-scoped tab content."
+    },
+    {
+      "id": "mitigation-and-upstream",
+      "verdict": "pass",
+      "reason": "Orders actions: clean host restart first, then read-only wiring verification, then verified rollback to @deepseek-ai/dsh@0.1.3-alpha.2 as escape hatch, upstream to #5999; explicitly refuses plugin-side rewrite/retry/fallback; packages forensics (sweep 62/62, contrast reader, roster excerpt, invalid-join caveat) and proposes boot-time roster↔serving and service-availability fail-loud checks."
+    }
+  ],
+  "caps": []
+}

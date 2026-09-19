@@ -1,0 +1,83 @@
+{
+  "status": "scored",
+  "score": 85,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "artifact-attribution",
+      "verdict": "pass",
+      "reason": "Correctly locates the obsolete import and call in lib/index.js, identifies the stale tsbuildinfo dependency graph, and explains why emitted artifacts and incremental state can surface the error despite source typecheck success.",
+      "points": 30,
+      "awarded": 30
+    },
+    {
+      "id": "clean-rebuild-plan",
+      "verdict": "partial",
+      "reason": "Provides the clean, rebuild, and typecheck procedure and explains cache verification, but does not explicitly include rechecking tests or give a complete test-verification step.",
+      "points": 30,
+      "awarded": 15
+    },
+    {
+      "id": "no-source-migration",
+      "verdict": "pass",
+      "reason": "Grounds the recommendation in src/index.ts having no reference to the removed export, contrasts it with stale lib artifacts, and correctly rejects applying the migration recipe to already-migrated source.",
+      "points": 40,
+      "awarded": 40
+    }
+  ],
+  "caps": [
+    {
+      "id": "unnecessary-source-migration",
+      "triggered": false,
+      "reason": "The report explicitly recommends leaving src/ unchanged and rejects the colleague's source rewrite.",
+      "total": 30
+    }
+  ],
+  "model": {
+    "requested": "gpt-5.6-luna",
+    "returned": null,
+    "resolved": "gpt-5.6-luna",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 5708,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1242,
+      "reasoning_output_tokens": 1034
+    },
+    "request_id": "01a09530-69b2-7b20-a491-e5fdcc7ad7cf",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "852c737b17771d72700776a137deb9d0ff7ff982c0b56e1316ac2f525754dc36",
+    "response_sha256": "f3f05a3ceb926bd576f80592530893491453a0aea7ca751b1c62324fb15e83ba"
+  },
+  "citation_audit": [
+    {
+      "report": "report.md",
+      "citation": "/app/fixture/lib/index.js:2",
+      "path": "lib/index.js",
+      "start": 2,
+      "end": 2,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "/app/fixture/lib/index.js:4",
+      "path": "lib/index.js",
+      "start": 4,
+      "end": 4,
+      "valid": true
+    }
+  ],
+  "reports": {
+    "report.md": "9cc928eed457b63d2e52672034ae84d0916d0ff655d55ac4996061f443115b7b"
+  },
+  "protocol": "report-judge-v2",
+  "packet_sha256": "0f90f3a7585f73e743c3bbaad5b0afcfba7c6ebfe2729f1017f724e22fc8feed",
+  "judge_sha256": "be5a6b2464f2fc875b42db2cc579da9d62367cbdddd6b6373e673993e43a9cfa",
+  "adapter_sha256": "e10886300f85ccd814ee56f4ad590ed129e12ca7818fe704c0296df7f01120f7"
+}

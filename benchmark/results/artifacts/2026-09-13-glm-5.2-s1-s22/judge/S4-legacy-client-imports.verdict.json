@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "runtime-removal",
+      "verdict": "pass",
+      "reason": "Locates the deleted @deepseek-ai/dsh-client-runtime/client type import at src/client/index.ts:1, maps DSH-0.1.2-A1-25, and requires replacing it with Context from @deepseek-ai/cordis plus direct owning-package type dependencies; notes typecheck/boot-graph symptoms and treats type erasure as insufficient. No invented replacement names."
+    },
+    {
+      "id": "registration-id",
+      "verdict": "pass",
+      "reason": "Compares the literal 'pet-legacy-bundle' loader id (index.ts:5,10) with package.json name dsh-pet-session-bench, maps A1-26, requires exact id == package.json name alignment including assembly-row bare name, and gives concrete activation verification (dump-config, window.__DSH_BOOT__.entries, loaded-without-registering assertion)."
+    },
+    {
+      "id": "session-content",
+      "verdict": "pass",
+      "reason": "Locates useSession/nodes destructure and nodes[0] (index.ts:2,12-13), maps A1-27 and API-10, and requires replacing flat array access with ordered ChatSnapshot.order + nodes.get(id), plus the SessionBinding durable event window for raw content; correctly flags the top-level hook call and notes Pet.tsx is an empty component with no breaking surface."
+    },
+    {
+      "id": "connection-face",
+      "verdict": "pass",
+      "reason": "Locates ctx.connection.api.agentPresets.list() (index.ts:11), maps A1-30, requires removing the deleted face in favor of verified public targets (session/page|follow Remotes for ordinary sessions, plugin host routes for subagent-origin), and correctly observes no 'connection' entry exists in the fixture's inject list so no removal is needed there."
+    }
+  ],
+  "caps": [
+    {
+      "id": "invented-migration",
+      "triggered": false,
+      "reason": "The report never asserts apply→setup/activate replacement or that service inject must move into a manifest; it explicitly confirms the fixture's inject=['slots','conversation'] stays as-is and only removes the dead connection.api call."
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import { execFileSync } from 'node:child_process'
 import { apiConfig, auditCitations, callJudge, collectFiles, grade, JudgeError, scoreDecisions, sha256, SubmissionError, SYSTEM, writeResult } from './judge.mjs'
 import { makePacket, prepare, REPO } from './prepare.mjs'
 import { RUBRICS } from './rubrics.mjs'
-import { legacyScore, samples } from './calibrate.mjs'
+import { samples } from './calibrate.mjs'
 
 function sandbox(t) {
   const root = mkdtempSync(join(tmpdir(), 'report-judge-test-'))
@@ -15,12 +15,8 @@ function sandbox(t) {
   return root
 }
 function responseFor(packet, verdict = 'pass') {
-  const source = Object.entries(packet.fixture).find(([p]) => p.endsWith('.ts') || p.endsWith('.js'))
-  return { decisions: packet.rubric.criteria.map(c => ({ id: c.id, verdict, reason: 'Protocol test only, not semantic calibration.',
-    evidence: verdict === 'missing' ? [] : [{ report: 'report.md', quote: 'candidate evidence' }],
-    sources: c.sourceRequired ? [{ path: source[0], quote: source[1].text.split('\n').find(x => x.trim()) }] : [],
-    references: [packet.references[0].id] })),
-  caps: packet.rubric.caps.map(c => ({ id: c.id, triggered: false, reason: 'No assertion.', evidence: [] })) }
+  return { decisions: packet.rubric.criteria.map(c => ({ id: c.id, verdict, reason: 'Protocol test only, not semantic calibration.' })),
+    caps: packet.rubric.caps.map(c => ({ id: c.id, triggered: false, reason: 'No assertion.' })) }
 }
 const report = { 'report.md': 'candidate evidence' }
 const config = { url: 'https://judge.example/v1/chat/completions', key: 'private-test-key', model: 'test-model' }
@@ -29,7 +25,7 @@ function apiResponse(content, extra = {}) {
     choices: [{ finish_reason: 'stop', message: { content: JSON.stringify(content) } }], ...extra }), { status: 200 })
 }
 
-test('all four packets use exact source bytes, bounded excerpts and 100-point rubrics', () => {
+test('all registered packets use exact source bytes, bounded excerpts and 100-point rubrics', () => {
   for (const task of Object.keys(RUBRICS)) {
     const packet = makePacket(task)
     assert.equal(packet.rubric.criteria.reduce((sum, c) => sum + c.points, 0), 100)
@@ -51,13 +47,15 @@ test('aggregation is deterministic: full, half and missing; model totals ignored
   }
 })
 
-test('declared caps require quoted claims and apply after aggregation', () => {
-  const packet = makePacket('S4-legacy-client-imports')
-  const response = responseFor(packet)
-  response.caps[0].triggered = true
-  assert.throws(() => scoreDecisions(packet, report, response), /missing report evidence/)
-  response.caps[0].evidence = [{ report: 'report.md', quote: 'candidate evidence' }]
-  assert.equal(scoreDecisions(packet, report, response).score, 70)
+test('declared caps use decisions and reasons and apply after aggregation', () => {
+  for (const [task, rubric] of Object.entries(RUBRICS)) {
+    for (const [index, cap] of (rubric.caps ?? []).entries()) {
+      const packet = makePacket(task)
+      const response = responseFor(packet)
+      response.caps[index].triggered = true
+      assert.equal(scoreDecisions(packet, report, response).score, cap.total)
+    }
+  }
 })
 
 test('unknown, duplicate and omitted criteria/caps cannot produce a reward', () => {
@@ -71,17 +69,19 @@ test('unknown, duplicate and omitted criteria/caps cannot produce a reward', () 
   }
 })
 
-test('judge cannot invent report quotes, fixture evidence or reference IDs', () => {
-  const packet = makePacket('S1-static-scan')
+test('grading accepts explanations without quotations but still requires bounded reasons', () => {
+  const packet = makePacket('H4-tsbuildinfo-trap')
+  const response = responseFor(packet)
+  response.decisions[0].reason = 'The answer locates the old emitted import and distinguishes it from the current source.'
+  assert.equal(scoreDecisions(packet, { 'report.md': 'A differently formatted report.\n\n| A | B |' }, response).score, 100)
+  assert.deepEqual(Object.keys(scoreDecisions(packet, report, response).decisions[0]), ['id', 'verdict', 'reason', 'points', 'awarded'])
   for (const mutate of [
-    r => { r.decisions[0].evidence[0].quote = 'not in report' },
-    r => { r.decisions[0].sources[0].path = 'nonexistent.ts' },
-    r => { r.decisions[0].sources[0].quote = 'invented code' },
-    r => { r.decisions[0].sources = [] },
-    r => { r.decisions[0].references = ['imaginary-card'] },
+    r => { r.decisions[0].reason = '' }, r => { r.decisions[0].reason = ' '.repeat(3) },
+    r => { r.decisions[0].reason = 'x'.repeat(4001) }, r => { delete r.caps[0].reason },
+    r => { r.caps[0].reason = 'x'.repeat(4001) }, r => { r.caps[0].triggered = 'yes' },
   ]) {
-    const response = responseFor(packet); mutate(response)
-    assert.throws(() => scoreDecisions(packet, report, response), JudgeError)
+    const invalid = responseFor(packet); mutate(invalid)
+    assert.throws(() => scoreDecisions(packet, report, invalid), JudgeError)
   }
 })
 
@@ -127,7 +127,7 @@ test('symlinks, special paths and oversized reports cannot escape or get silentl
   await assert.rejects(grade({ packet: makePacket(task), appRoot: root }), SubmissionError)
 })
 
-test('transport sends a text-only blinded request and validates returned evidence', async () => {
+test('transport sends complete reports and validates returned decisions', async () => {
   const packet = makePacket('S2-negative-scan')
   const result = await callJudge(packet, report, config, { fetchImpl: async (url, init) => {
     assert.equal(url, config.url); assert.equal(init.redirect, 'error')
@@ -191,16 +191,16 @@ test('CLI failure produces details and nonzero exit, never a default-zero reward
   assert.equal(existsSync(join(logs, 'reward.txt')), false)
 })
 
-test('pilot preparation keeps agent prompts/fixtures exact and puts references/keys only in verifier', t => {
+test('preparation keeps agent prompts/fixtures exact and puts references/keys only in verifier', t => {
   const dir = sandbox(t); const out = join(dir, 'pilot')
   const manifest = prepare(out)
-  assert.equal(manifest.tasks.length, 4)
+  assert.equal(manifest.tasks.length, 25)
   for (const { task } of manifest.tasks) {
     assert.equal(readFileSync(join(out, task, 'instruction.md'), 'utf8'), readFileSync(join(REPO, 'benchmark/tasks', task, 'instruction.md'), 'utf8'))
     assert.deepEqual(collectFiles(join(out, task, 'environment/fixture')), makePacket(task).fixture)
     const toml = readFileSync(join(out, task, 'task.toml'), 'utf8')
     assert.match(toml, /environment_mode = "separate"/)
-    assert.match(toml, /version = "2.0.0"/)
+    assert.ok(toml.includes(`version = "${RUBRICS[task].taskVersion ?? '4.0.0'}"`))
     assert.match(toml, /\[verifier.env\]/)
     assert.doesNotMatch(toml, /source = "\/app\/\.git"/)
     assert.doesNotMatch(readFileSync(join(out, task, 'environment/Dockerfile'), 'utf8'), /REPORT_JUDGE|packet.json|COPY .*tests/)
@@ -221,12 +221,87 @@ test('generated standalone entry executes through symlinked paths (including mac
   assert.equal(JSON.parse(readFileSync(join(logs, 'details.json'))).status, 'scored')
 })
 
-test('calibration includes adversarial and alternative cases; legacy keyword exploit remains reproducible', () => {
+test('calibration retains keyword, wrong, injection and copied-prompt cases for every semantic task', () => {
   for (const task of Object.keys(RUBRICS)) {
     const cases = samples(task)
-    assert.equal(cases.length, 7)
-    const keywords = cases.find(c => c.id === 'keywords')
-    assert.equal(legacyScore(task, keywords.report), 100)
+    assert.ok(cases.length >= 8)
+    assert.equal(new Set(cases.map(c => c.id)).size, cases.length)
+    assert.ok(cases.every(c => typeof c.report === 'string' && c.report.trim()))
+    assert.deepEqual(cases.find(c => c.id === 'prompt-echo').expected, [0, 0])
     assert.equal(cases.find(c => c.id === 'historical-oracle').expected, null)
   }
+})
+
+test('S5-S9 retain bilingual, negated and contradictory reports as live calibration cases', () => {
+  for (const task of Object.keys(RUBRICS).filter(task => /^S[5-9]-/.test(task))) {
+    const cases = samples(task)
+    assert.deepEqual(cases.find(c => c.id === 'paraphrase-zh').expected, [90, 100])
+    assert.deepEqual(cases.find(c => c.id === 'correct-negation').expected, [90, 100])
+    assert.ok(cases.find(c => c.id === 'contradiction').expected[1] < 100)
+  }
+})
+
+
+test('H4 allows only original lib artifact deletion and keeps sealed evidence after clean', async t => {
+  const task = 'H4-tsbuildinfo-trap'; const packet = makePacket(task)
+  assert.deepEqual(packet.allowedDeletions.sort(), ['lib/index.js', 'lib/tsconfig.tsbuildinfo'])
+  for (const mutate of [
+    dir => rmSync(join(dir, 'lib'), { recursive: true }),
+    dir => rmSync(join(dir, 'lib/tsconfig.tsbuildinfo')),
+  ]) {
+    const root = sandbox(t)
+    cpSync(join(REPO, 'benchmark/tasks', task, 'environment/fixture'), join(root, 'fixture'), { recursive: true })
+    const out = join(root, 'agent-output', task); mkdirSync(out, { recursive: true })
+    writeFileSync(join(out, 'report.md'), 'Original stale import in lib/index.js:1; clean lib then rebuild, no source migration.')
+    mutate(join(root, 'fixture'))
+    let called = false
+    const result = await grade({ packet, appRoot: root, evaluate: async sealed => {
+      called = true
+      assert.match(sealed.fixture['lib/index.js'].text, /resolveSessionPreset/)
+      return { score: 30 }
+    } })
+    assert.ok(called); assert.equal(result.status, 'scored')
+    assert.equal(result.citation_audit.find(c => c.path === 'lib/index.js')?.valid, true)
+  }
+  for (const mutate of [
+    dir => rmSync(join(dir, 'src/index.ts')),
+    dir => writeFileSync(join(dir, 'src/index.ts'), 'changed'),
+    dir => writeFileSync(join(dir, 'package.json'), '{}'),
+    dir => writeFileSync(join(dir, 'lib/index.js'), 'rewritten artifact'),
+    dir => writeFileSync(join(dir, 'lib/new.js'), 'new artifact'),
+    dir => writeFileSync(join(dir, 'allowedDeletions.json'), '["src/index.ts"]'),
+  ]) {
+    const root = sandbox(t)
+    cpSync(join(REPO, 'benchmark/tasks', task, 'environment/fixture'), join(root, 'fixture'), { recursive: true })
+    mutate(join(root, 'fixture'))
+    const result = await grade({ packet, appRoot: root, evaluate: () => assert.fail('invalid submission must not call model') })
+    assert.equal(result.status, 'invalid_submission'); assert.equal(result.score, 0)
+  }
+})
+
+for (const task of ['H6-remote-error-trap', 'H12-remote-result-boundary-trap']) {
+  test(`${task}: fixture mutations fail before model evaluation`, async t => {
+    const packet = makePacket(task); assert.equal(packet.allowedDeletions, undefined)
+    for (const mutation of ['delete', 'rewrite', 'add']) {
+      const root = sandbox(t)
+      cpSync(join(REPO, 'benchmark/tasks', task, 'environment/fixture'), join(root, 'fixture'), { recursive: true })
+      const file = join(root, 'fixture', mutation === 'add' ? 'extra.txt' : 'package.json')
+      if (mutation === 'delete') rmSync(file)
+      else writeFileSync(file, 'modified')
+      const result = await grade({ packet, appRoot: root, evaluate: () => assert.fail('network') })
+      assert.equal(result.status, 'invalid_submission')
+    }
+  })
+}
+
+
+test('H diagnosis calibration covers contradictions and equivalent code without fake semantic assertions', () => {
+  for (const task of ['H4-tsbuildinfo-trap', 'H6-remote-error-trap', 'H12-remote-result-boundary-trap']) {
+    const cases = samples(task)
+    assert.ok(cases.every(c => typeof c.report === 'string' && c.report.trim()))
+    assert.ok(cases.find(c => c.id === 'correct-negation'))
+    assert.ok(cases.find(c => c.id === 'contradiction'))
+  }
+  const sample = samples('H12-remote-result-boundary-trap').find(c => c.id === 'equivalent-success-first')
+  assert.match(sample.report, /if \(response.ok\) return response.value/)
 })

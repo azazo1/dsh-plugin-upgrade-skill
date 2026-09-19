@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "self-host-root-cause",
+      "verdict": "pass",
+      "reason": "§1 explains the session/tool worker IS the host process, npm removes the tree out from under the live host, and no result recorder survives; grounded in the fixture's host path, 'npm info remove', and '<no result recorded>' log lines."
+    },
+    {
+      "id": "shim-signature",
+      "verdict": "pass",
+      "reason": "§2 identifies the two-phase install, death at linkStuff before shim generation: content present but dsh/dsh.cmd MISSING and dsh.ps1 stale, and explains hand-swapping creates a non-standard install that makes things worse, citing env-state.txt and repair-notes.md."
+    },
+    {
+      "id": "external-pinned-repair",
+      "verdict": "pass",
+      "reason": "§3 describes the external, pinned re-run of 'npm install -g @deepseek-ai/dsh@0.1.2-rc.1' from outside the host, shim regeneration, dsh --version → 0.1.2-rc.1 verification, and rejection of hand-patching."
+    },
+    {
+      "id": "refuse-and-hand-off-protocol",
+      "verdict": "pass",
+      "reason": "§4 states the agent should recognize the self-host situation, refuse to execute (never-run-from-inside as a hard rule), fully stop all dsh processes before npm, and hand the user the ordered pinned external procedure; no best-effort in-place attempt is endorsed."
+    },
+    {
+      "id": "prevention-guard-checklist",
+      "verdict": "pass",
+      "reason": "§5 gives a pre-execution self-upgrade intent guard (identity/pattern check, refuse with external hand-off, equivalents covered) plus a checklist with version-marker verification, plugin load verification, backup/rollback cleanup, and treats the zero-diff (252 files, version bumps only, cardCount 0) outcome as no-re-migration/already-current."
+    }
+  ],
+  "caps": []
+}

@@ -33,6 +33,9 @@ set, and trajectory critique — those do not fit this benchmark's scope.
 - **Gate** — environment health, scored before any checkpoint (fixture untouched →
   0, dsh unavailable → 0, etc.). Gates are not task checkpoints; they protect the
   scoring from infrastructure noise.
+  Command wrappers report timeouts, signal termination, and spawn failures
+  with nonzero status. Successful commands return zero; normal numeric exit
+  statuses and captured output are preserved.
 - **Checkpoint type**:
   - `fail-to-pass` — patched must pass **and** the pristine baseline must not pass.
     If the baseline already passes, the trap fixture has drifted: the judge stops

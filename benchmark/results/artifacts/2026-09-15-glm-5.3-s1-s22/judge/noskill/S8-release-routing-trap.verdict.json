@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "missing-mirror-tag",
+      "verdict": "pass",
+      "reason": "Grounds the diagnosis in ls-remote-tags.txt (v0.9.1 then v0.9.7, no v0.9.5) and sync-script.sh pushing only HEAD:main, correctly tying attempt 1 to tag-distribution failure rather than network/typo/npm faults."
+    },
+    {
+      "id": "runtime-compatibility-direction",
+      "verdict": "pass",
+      "reason": "Uses dsh-version.txt (0.1.1-rc.2) and compat-table.md (v0.9.7 targets 0.1.2-alpha.1 client API with useConversation seat) to explain the newer-client-artifact-on-older-runtime direction and notes restart cannot fix a static API mismatch."
+    },
+    {
+      "id": "frozen-runtime-remedy",
+      "verdict": "fail",
+      "reason": "Selects v0.9.3 correctly and honors the freeze, but affirms v0.9.3 'does exist on the public mirror' and gives an unconditional install command; ls-remote-tags.txt shows no v0.9.3 tag, and the rubric forbids presenting the absent tag as immediately installable without conditioning on maintainer tag publication or a verified reachable commit."
+    },
+    {
+      "id": "tag-distribution-repair",
+      "verdict": "pass",
+      "reason": "Grounds the fix in the branch-only sync script and proposes git push --tags (or per-tag refs/tags push) to every mirror in the same loop, plus a post-push ls-remote --tags verification asserting each documented tag resolves on every mirror, failing loudly on divergence."
+    },
+    {
+      "id": "version-routing-docs",
+      "verdict": "pass",
+      "reason": "Proposes per-tag runtime requirements, marking v0.9.4–v0.9.7 as needing the 0.1.2-alpha client API and routing frozen rc.x consumers to #v0.9.3, plus two documented install commands per runtime line (rc.x → v0.9.3, alpha.1 → v0.9.7); no newest-tag default or restart advice."
+    }
+  ],
+  "caps": []
+}

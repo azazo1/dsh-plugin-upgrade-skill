@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "projection-contract",
+      "verdict": "pass",
+      "reason": "Grounded in host-input-contract.ts and host-input-facade.ts: distinguishes clipboard-text projection (draft/Occurrence.offset/length, chip expanded to clipboardText) from detectText spans used by $replaceDetectSpanWith* in insertReference/consumeToken (chip = one U+FFFC); notes ordinary text and separating spaces contribute normal width."
+    },
+    {
+      "id": "repeat-paste-failure",
+      "verdict": "pass",
+      "reason": "Quotes snapshot.draft.length in add() as the span source; explains paste #1 coincides on empty composer, after a chip draft length 29 overshoots detectText length 2 so the splice returns false and the plugin throws the changed-composer toast; explicitly states draftRev CAS is satisfied and failure is span geometry, not a concurrent edit."
+    },
+    {
+      "id": "removal-and-bookkeeping",
+      "verdict": "pass",
+      "reason": "Traces remove(): clipboard offset/length passed unconverted to consumeToken, its false return ignored, records.delete runs unconditionally; chip stays, record lookup undefined renders 'unavailable'; explicitly ties both symptoms to the same coordinate mismatch, not a separate upload failure."
+    },
+    {
+      "id": "conversion-and-success-gate",
+      "verdict": "pass",
+      "reason": "Derives detect(c) = c − Σ(length−1) over preceding occurrences and applies it at both call sites: insert converts end-of-draft position accounting for all preceding chips (29−27=2 check), removal maps occurrence.offset and uses a one-detect-character span; keeps the fresh draftRev guard and gates records.delete on consumeToken success."
+    },
+    {
+      "id": "regression-sequences",
+      "verdict": "pass",
+      "reason": "Sequence 2/3 assert two successive pastes with both chips/occurrences present (no toast, both dock chips show sizes); sequence 6 removes a middle chip with other chips preceding, asserting occurrence/dock chip/record removed together and other chips survive; sequences 7/8 add declined-consumption bookkeeping; first-paste and stale-revision variants included."
+    }
+  ],
+  "caps": []
+}

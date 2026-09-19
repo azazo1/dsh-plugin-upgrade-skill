@@ -1,0 +1,59 @@
+# S5 naming compatibility and registry judgment
+
+## Scope and limits
+
+Reviewed read-only:
+
+- `/app/fixture/package.json`
+- `/app/fixture/dsh-plugin.naming.json`
+- `/app/fixture/README.md`
+
+No online or external registry query was made. Consequently, no identifier is
+reported as reserved, unreserved, globally available, or globally unique.
+Those registry facts are **unknown / not checked**.
+
+The verdicts below use the requested four states:
+
+- **compatibility error** — a concrete local incompatibility is evidenced;
+- **collision recommendation** — the value is locally acceptable, but a
+  namespace or prefix would reduce ambiguity;
+- **needs registry context** — local shape appears usable, but ownership,
+  reservation, or collision status requires a registry/runtime query;
+- **unknown** — the supplied fixture does not establish the relevant rule or
+  fact.
+
+## Surface judgments
+
+| Surface | Value | Verdict | Reasoning |
+|---|---|---|---|
+| Plugin namespace | `acme` | **needs registry context** | The manifest supplies a namespace, but its ownership or registry status is not established locally. |
+| Official plugin name / `pluginNames` | `greet` | **collision recommendation** | The fixture README identifies the short name as valid, with no compatibility error. It is unprefixed and common, so a prefix could reduce collision risk; that is a recommendation, not an error. |
+| Plugin coordinate | `acme/greet` | **needs registry context** | The coordinate is namespace-qualified and no local incompatibility is shown. Whether the namespace/name pair is claimed or reserved is unqueried. |
+| Package name / `packageName` | `dsh-greet` | **needs registry context** | The two local declarations agree. Publication-name availability, reservation, and collision status cannot be determined without the relevant registry context. |
+| Loader ID | `acme-greet` | **needs registry context** | It is prefixed and locally well-formed on the supplied evidence. Global or host-level uniqueness was not checked. |
+| Service | `search` | **collision recommendation** | The fixture README describes this unprefixed service as a warning, not a compatibility error. It is generic; a plugin-specific prefix would reduce ambiguity. No reservation claim is made. |
+| Tool | `acme_greet_hi` | **needs registry context** | It is plugin-prefixed and no local compatibility problem is evidenced. Tool-ID ownership or collision status remains unqueried. |
+| Command | `acme-greet-hi` | **needs registry context** | It is plugin-prefixed and no local compatibility problem is evidenced. Command-ID ownership or collision status remains unqueried. |
+| Skill | `greet` | **collision recommendation** | The short, unprefixed skill name is locally compatible on the supplied evidence, but a prefix would reduce collision risk. Availability is unknown. |
+| Skill provider | `acme-greet-filesystem` | **needs registry context** | The provider ID is prefixed and no local error is shown. Whether it conflicts with a registered provider was not checked. |
+| Event | `web-search/ready` | **collision recommendation** | The fixture README characterizes this as a shared channel and informational, not a compatibility error. It is appropriate only if sharing is intended; a plugin-private event would benefit from a plugin namespace. Existing channel usage is unknown. |
+| Settings namespace | `acme-greet` | **needs registry context** | It is namespace-qualified and no local incompatibility is evidenced. Registry/host collision status is unknown. |
+| Route | exact `/api/plugins/acme-greet/hi` | **needs registry context** | The route is explicit and plugin-namespaced. An exact-path collision can only be checked against the host's route table, which was not available. |
+
+### Non-surface metadata
+
+The manifest declares `schemaVersion: 1` and policy `dsh-plugin-naming/v1`,
+but the fixture does not provide an independent validator or full policy
+definition. Their external applicability is therefore **unknown**, rather
+than a claimed compatibility error. The package also has `private: true`; the
+fixture README identifies that as test-material discipline and outside this
+naming judgment, so it is not classified as a naming verdict here.
+
+## Overall judgment
+
+No **compatibility error** is evidenced by the supplied fixture. The concrete
+local recommendations are the unprefixed `greet` and `search` names and the
+informational shared event channel `web-search/ready`. All claims about
+reservation, global availability, prior registration, or actual collisions
+remain **unknown / not checked** because no registry or runtime lookup was
+performed.

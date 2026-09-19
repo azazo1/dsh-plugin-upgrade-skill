@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "split-chunk-sibling-imports",
+      "verdict": "pass",
+      "reason": "Grounds diagnosis in console-split-chunks.txt: relative imports resolve against the served chunk URL, hashed siblings (src-BfvxrPJe.js, pie-WAS4IAKB-CQHCQWWM.js) never shipped, entry 200 but sibling 404 aborts the whole import, fallback to code block; fix is one self-contained chunk with splitting off. All required elements present."
+    },
+    {
+      "id": "windows-realpath-case-403",
+      "verdict": "pass",
+      "reason": "Names the precise mechanism from ci-note.md and chunk-route.ts: realpathSync lowercases the drive letter (E: vs e:), case-sensitive startsWith(LIB_DIR + sep) misjudges a contained path as escaping and answers 403; Linux CI passes only because casing never diverges; explicitly rejects 'Windows paths are unreliable' folklore."
+    },
+    {
+      "id": "relative-containment-and-mime",
+      "verdict": "pass",
+      "reason": "Gives path.relative(LIB_DIR, candidate) with non-empty, not starting with '..', not-absolute checks, keeps the realpath pass under the same relative rule as defense-in-depth, and covers the MIME requirement (route already sends application/javascript; browsers refuse text/plain/octet-stream module imports)."
+    },
+    {
+      "id": "modal-wheel-ownership",
+      "verdict": "partial",
+      "reason": "Ownership rule is right (modal owns gestures with preventDefault+stopPropagation, pane handler stands down via a modal-presence check), but the stated mechanism is wrong: the report claims bubbling to an ancestor pane and implies modal-side stopPropagation alone would suffice, missing the required document-level capture listener that runs before the modal handlers and therefore cannot be disarmed by stopPropagation alone."
+    },
+    {
+      "id": "regression-coverage",
+      "verdict": "pass",
+      "reason": "Proposes tests for all three incidents: unreachable chunk URL degrades to code-block fallback, build assertion of exactly one chunk with no hashed siblings, case-differing contained path serves 200 while a real ../ escape is refused, and with the modal open Ctrl+wheel zooms the diagram while the pane font stays untouched."
+    }
+  ],
+  "caps": []
+}

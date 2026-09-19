@@ -1,0 +1,36 @@
+{
+  "decisions": [
+    {
+      "id": "half-cell-background",
+      "verdict": "pass",
+      "reason": "Grounded in renderer-excerpt.ts: identifies fg-only upper/lower branches leaving prior SGR background active so the empty half paints stale bg; proposes explicit ESC[49m on half-filled cells (plus equivalent run-end reset), notes row-end RESET is too late, and ties the mechanism to the outline/sleep-Z/heart edge symptoms."
+    },
+    {
+      "id": "frame-clearing",
+      "verdict": "pass",
+      "reason": "Cites the out.replace(/[ ]+$/,'') trim, explains downstream whitespace handling never overwrites surplus columns of a wider previous frame, and proposes ESC[K erase-to-EOL per row plus full-width padding with trimming demoted to byte optimization, keeping SGR reset-controlled."
+    },
+    {
+      "id": "frame-data-integrity",
+      "verdict": "pass",
+      "reason": "Uses frames-digest-report.txt: identifies tail2 as sole MISMATCH with 23 changed cells, 1-col left shift plus extra pixels, hand-copied drift distinct from renderer artifacts, explains the later excerpt regression on a different frame missed it, and proposes per-frame source-art digest gates for every frame."
+    },
+    {
+      "id": "timer-liveness",
+      "verdict": "partial",
+      "reason": "Grounded in ci-hang-evidence.txt: correctly explains the self-rearming planner timeout chain keeping the loop alive in probe hosts that mount without unmounting, and the TTY/stdin independence of the interactive process. But the primary fix is teardown unmount/disposal, not the required unref of each newly scheduled planner timeout so animation continues without keeping probes alive; unref is never proposed."
+    },
+    {
+      "id": "renderer-and-rollout-prevention",
+      "verdict": "pass",
+      "reason": "Provides a consolidated renderer checklist (explicit empty-half background, RESET+ESC[K row finality, no whitespace-dependent clearing, whole-frame digests, effect ownership, determinism) and a default-on rollout audit covering host inventory, timer teardown, edge-art phantoms, frame-transition tests, and treating a passing non-exiting CI job as a liveness failure."
+    }
+  ],
+  "caps": [
+    {
+      "id": "contradictory-render-advice",
+      "triggered": false,
+      "reason": "The report's final advice consistently recommends the background reset, ESC[K/full-width clearing, source-backed all-frame digests, and timer disposal; it never denies the background reset, defends trimming without clearing, rejects source-backed checks, endorses a referenced planner timer, or blames the terminal emulator."
+    }
+  ]
+}

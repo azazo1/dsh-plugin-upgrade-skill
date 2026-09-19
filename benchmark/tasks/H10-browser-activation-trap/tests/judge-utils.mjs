@@ -14,10 +14,10 @@ export function emit(score, reasons) {
   process.exit(0)
 }
 
-function run(file, args, { cwd, timeout = 60000 } = {}) {
+export function run(file, args, { cwd, timeout = 60000 } = {}) {
   return new Promise((resolve) => {
     execFile(file, args, { cwd, timeout }, (error, stdout, stderr) => resolve({
-      code: error?.code ?? 0,
+      code: typeof error?.code === 'number' ? error.code : error ? 1 : 0,
       stdout: stdout ?? '',
       stderr: stderr ?? '',
     }))

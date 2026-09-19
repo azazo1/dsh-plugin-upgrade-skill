@@ -1,0 +1,1113 @@
+{
+  "schema_version": 2,
+  "date": "2026-09-10",
+  "publication_note": "Compact export of the completed run. Candidate text, judge decisions and sealed packets are byte-preserved. Raw Codex traces and command/event logs remain in the local archive; configuration paths below are normalized for publication.",
+  "source": {
+    "frozen_at": "2026-09-10T10:34:52.040448+00:00",
+    "head": "b49ccee20498cf8fe240d723b491d4de10b451f8",
+    "branch": "codex/fix-h24-h25-grading",
+    "files": {
+      "config.json": "508c8ed691f43a23fa5a3f453d56046b24285bb473ef84d99dcbd02c567a9b9c",
+      "harbor_codex_node24.py": "fe84e6b54242dd051e344379875842ed884e55a9015030112204002f49450872",
+      "tasks/report-judge-manifest.json": "ba76cbee76f4bfa7990c98405be7781cc0ab01bcad3f6845d7a6f536776ae56a",
+      "report-judge/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "report-judge/codex-judge.mjs": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6",
+      "report-judge/rubrics.mjs": "3c2751192e878e53189cfe5441c3d1fd6adf136433f8b037205473e654d95b27",
+      "tasks/S4-legacy-client-imports/instruction.md": "9bfec7614b9b1f4339ad08c1a9bdd52e19a3a69c84ebad437ee1985a9f6e4c13",
+      "tasks/S4-legacy-client-imports/task.toml": "8e51df52db3508afd8119dbba40f04b3e531656314d8623fc33850f81c86d65e",
+      "tasks/S10-paste-rename-and-version-chip/instruction.md": "2482b5d523ee9e470fac9d4ad83db1e14df7f414eeda859ce73a92159dbfc5b1",
+      "tasks/S10-paste-rename-and-version-chip/task.toml": "3864bca681712b7361eaecacb56966ee47f9c4946968b6ba826d1c50aa145956",
+      "tasks/S3-snapshot-migration/instruction.md": "1de567a59962a180dbd34a04f4dedd06f6c035823495669b243b3fb94db3903b",
+      "tasks/S3-snapshot-migration/task.toml": "643f0cec1b991446856aeb685bb2cc6873c9b76b158ed834728764f636d88ac9",
+      "tasks/S15-slot-error-boundary-crash/instruction.md": "1ce2c3886e8fa140c41b7533076f03faea50838ab574bf8bbe79684af7256d0b",
+      "tasks/S15-slot-error-boundary-crash/task.toml": "e0b3905343d325563090712fec92f885c35f3f6f8612471e0b87ae05a02f4f71",
+      "tasks/S1-static-scan/instruction.md": "a0a86d166c09d2b52b10232157b9fc872e7f5f9e7f7c7cd2f66a3d81c939b0a2",
+      "tasks/S1-static-scan/task.toml": "a8a3f2315fec109fe3e4fbd1317c50b0b26adba82cbde125be873b305389ad50",
+      "tasks/S12-global-upgrade-ebusy-trap/instruction.md": "dee9fc9b809e00edeae26113b807af19ace050dd6d06c4b6f2a0e852e7e7bfa0",
+      "tasks/S12-global-upgrade-ebusy-trap/task.toml": "ccb2c8923f3deedbef8e13268f75664f608064f91619748c86893280ccedd848",
+      "tasks/S2-negative-scan/instruction.md": "72c48fa1a9a2d405b8e810e668c98b2c284a9920944a75550d08d4ab73033e89",
+      "tasks/S2-negative-scan/task.toml": "66d009a03ccebcd4499e70867df8679bba6822352ef1ad217b60dd8cf1365e20",
+      "tasks/S4-legacy-client-imports/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S4-legacy-client-imports/tests/packet.json": "82e53a41278d4448067c45c3d17035983805f71044b52bcbd02ff1c87e966ccc",
+      "tasks/S4-legacy-client-imports/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S4-legacy-client-imports/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S4-legacy-client-imports/solution/report.md": "2bdceecb62595071a02e4184a3031faa97b0f65847f568553a920794e65ef3e8",
+      "tasks/S4-legacy-client-imports/solution/solve.sh": "bb85613e1e9b7d95db67f7d2fdca608dfd8c66f29cee9a6d768b32f39aa727ec",
+      "tasks/S4-legacy-client-imports/solution/SOLUTION.md": "8074c36cba5dfc94a818a27be7c60b6b5d612e4cfd5dacc5eab7e330a8861d21",
+      "tasks/S4-legacy-client-imports/environment/Dockerfile": "a9abe04af2b9ee08d64f909fcc2818aa96bb9c4aa42ca04736ee8a65997e574d",
+      "tasks/S4-legacy-client-imports/environment/fixture/README.md": "4dc7a7c599d9fa440f4a98f7a31f907cf72bfbc5210e9491cbeb6e4714365ecb",
+      "tasks/S4-legacy-client-imports/environment/fixture/package.json": "ffd9e5ccaab6dd032995df4dff93403c5c58bf7cc60d2e98dd0b637e23c76142",
+      "tasks/S4-legacy-client-imports/environment/fixture/src/client/index.ts": "98183cf3d7455ccd3b23b128e7911307795c7f3f3bfdcec5625ea1849807a063",
+      "tasks/S4-legacy-client-imports/environment/fixture/src/client/Pet.tsx": "037f6c3b5dd30b8db5674de69b803f8877f2c07450282f7d2c402a01b099bd27",
+      "tasks/S10-paste-rename-and-version-chip/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S10-paste-rename-and-version-chip/tests/packet.json": "bf3d3fefb8ffe33d747d2bc1246c0cd40d17b35842847dce20b1e13cb1fa2478",
+      "tasks/S10-paste-rename-and-version-chip/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S10-paste-rename-and-version-chip/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S10-paste-rename-and-version-chip/solution/report.md": "2077ac7703845bebdaadcaa0c505eb227d50fec1e3e876e34fc851c4541d06f0",
+      "tasks/S10-paste-rename-and-version-chip/solution/solve.sh": "77a19c6a767ccf138df58e22b955eb3ef7cbd4bedb0a44bac4027dcf1059ea63",
+      "tasks/S10-paste-rename-and-version-chip/solution/SOLUTION.md": "2a962909ecfcca14ea0014a35b683f9c8b449f1780b896645f0df417e5389f0c",
+      "tasks/S10-paste-rename-and-version-chip/environment/Dockerfile": "3371f9177f68e30672a1a9e54494ffc16acc3d7bdfcfcd58ab121610643259d1",
+      "tasks/S10-paste-rename-and-version-chip/environment/fixture/tags-api-response.txt": "2afe48ffdb7fcbcc194ec11dea579c29efbc312b12d27fba01c16ee0d12fbd7a",
+      "tasks/S10-paste-rename-and-version-chip/environment/fixture/README.md": "cc50e09bf81daa08a66c5b718a9d4fcda550a64dabc0e5acac84fb7caaa08a66",
+      "tasks/S10-paste-rename-and-version-chip/environment/fixture/user-threads.md": "f27063af372ca524f4d4658d780baf9bdfc7adbfe47b641ad6fca66146ddfaf7",
+      "tasks/S10-paste-rename-and-version-chip/environment/fixture/plugin-attachment-flow.js": "5ca0f59df19a031217105b9fc6bac12549bb6d0e8e71d3a3667ca4b8d39616aa",
+      "tasks/S10-paste-rename-and-version-chip/environment/fixture/plugin-version-chip.js": "b560ae3ab5e268f3b3cea1614979dcc723bddce067fcb731fcb09639a7e9a1f9",
+      "tasks/S3-snapshot-migration/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S3-snapshot-migration/tests/packet.json": "114b0b2f99e29aa595be0cc0577172dc5c6f0add4959aa83c7c94a114dd69cd0",
+      "tasks/S3-snapshot-migration/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S3-snapshot-migration/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S3-snapshot-migration/solution/report.md": "641a32a51d6f0e61943cedae4554cb962877f12bd3c37d97b7ad84562beeeb06",
+      "tasks/S3-snapshot-migration/solution/solve.sh": "de24ba335f5a9c916658c503c3e75e3f00b7b71d5aca220d2ae800ab62cc739b",
+      "tasks/S3-snapshot-migration/environment/Dockerfile": "5502078b212d93718a39a0ee6976404e8e050efef4ab4315c3859b2f20e6db09",
+      "tasks/S3-snapshot-migration/environment/fixture/cordis.patch.yml": "73d74cf519c91984daef5148cf17a4ab7275dc36b0a3f4c98c755e93ff218f0a",
+      "tasks/S3-snapshot-migration/environment/fixture/README.md": "c1114413138587e985b76c1fd8e43e91c9cd0e06f43b19c17b09bcca2a8b72d8",
+      "tasks/S3-snapshot-migration/environment/fixture/package.json": "154e9fd5f8e1b9006571b0d842f7670476411b793b291e6938ade40701f1f903",
+      "tasks/S3-snapshot-migration/environment/fixture/src/client/locales.ts": "d56aa3aaff649bdd3aad777d4272e8e690b2918fb168e573953102dfddeec5ff",
+      "tasks/S3-snapshot-migration/environment/fixture/src/client/index.ts": "94533a879790cdcbbe47624c4409352ea0b2f7a637284cda0e88db1f18d0dd05",
+      "tasks/S3-snapshot-migration/environment/fixture/src/client/Pet.tsx": "777a963ffa454f0ba340babb7269f378d6daca8f0f2aacbfd2c08187345b3ec3",
+      "tasks/S15-slot-error-boundary-crash/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S15-slot-error-boundary-crash/tests/packet.json": "084f7a5fa23075c2a4c7475bccccbfa539e18734bae948c9d6a084ada88d74b1",
+      "tasks/S15-slot-error-boundary-crash/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S15-slot-error-boundary-crash/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S15-slot-error-boundary-crash/solution/report.md": "325b61f6e3977dfcb3e5b864560b76a28a560efe0fc6a1667c9b3b1b262f7556",
+      "tasks/S15-slot-error-boundary-crash/solution/solve.sh": "08f2ba5032b9c7c555e343532016b85512f5d5f4bf017e8ccb6c2f1dc3f5bcaf",
+      "tasks/S15-slot-error-boundary-crash/solution/SOLUTION.md": "860711c0f5a034f85efe6159ffd1f55bceeebe561424d70cc4474a0d98ce8395",
+      "tasks/S15-slot-error-boundary-crash/environment/Dockerfile": "3371f9177f68e30672a1a9e54494ffc16acc3d7bdfcfcd58ab121610643259d1",
+      "tasks/S15-slot-error-boundary-crash/environment/fixture/user-thread.md": "ce124526a60a65668fb4282c75eee48cf3342d9243afde3ac9ec197472745872",
+      "tasks/S15-slot-error-boundary-crash/environment/fixture/README.md": "95bd395a400bae5d39e892ae716cc2ac8a21dfe67204f752993d3ff050379f23",
+      "tasks/S15-slot-error-boundary-crash/environment/fixture/plugin-dock-chips.js": "5a1e75c62265eafb824ed68ef3716ef3379bcacba7c37c7378c4886f9a44bb99",
+      "tasks/S15-slot-error-boundary-crash/environment/fixture/feature.diff": "95c131250ecfa734425df34821ef7e4cfa61e1272925f1d82a3ae234aa0e1270",
+      "tasks/S1-static-scan/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S1-static-scan/tests/packet.json": "11ee4d4c62f7b4c98a0d065633ffdedf4f17796964354a0a751e40d69b4b8b58",
+      "tasks/S1-static-scan/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S1-static-scan/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S1-static-scan/solution/report.md": "927f9717ff6dd76d0014f6e1b819994a12a2ee98be07c5e11c931eac27f68e12",
+      "tasks/S1-static-scan/solution/solve.sh": "ef25129d17cee82d7ed30e0996056f282b104c3352e69d691c675462a9513a8c",
+      "tasks/S1-static-scan/solution/SOLUTION.md": "0f0409cf904c06c06fd03ba81a2f4442bd5b9a97b89e78aed031a5e8f884c33a",
+      "tasks/S1-static-scan/environment/Dockerfile": "bbebd74985148f581cedc80f914c8b56baeb402722309b84de6afc8079351ae3",
+      "tasks/S1-static-scan/environment/fixture/cordis.patch.yml": "a9feaa3ec0f63cedf8e84416f532b53086a7c4ef508dbc280957e79f16dd9668",
+      "tasks/S1-static-scan/environment/fixture/patch.yml": "de622598fc298f54f2f86ee48734c0c615f02bc9bab6fe9ba234339e6c595b3b",
+      "tasks/S1-static-scan/environment/fixture/README.md": "84b8fd89d9e05abcc4543381a5c50d81fd0f57344879d8bf560dcf3495e79800",
+      "tasks/S1-static-scan/environment/fixture/package.json": "af1e498ca6f80b65329c7a1dd017d97761391d7032cf7d02f3f44832f920446e",
+      "tasks/S1-static-scan/environment/fixture/scripts/apply-patch.mjs": "4d6744baf58fe05524bdcf23a5e289a6292e059bb2272342a5a0448e091221f0",
+      "tasks/S1-static-scan/environment/fixture/src/index.ts": "429979274fe9776e22809e0a2725c88c70b7b3127926a8efcc0e4335d7c086d0",
+      "tasks/S12-global-upgrade-ebusy-trap/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S12-global-upgrade-ebusy-trap/tests/packet.json": "9fc74b8164fa4fd6f2559b15f2e92fcc398727500fc328fcdf880ca4a9d32e10",
+      "tasks/S12-global-upgrade-ebusy-trap/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S12-global-upgrade-ebusy-trap/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S12-global-upgrade-ebusy-trap/solution/report.md": "fd4c33087918e955ebfbf55b76e51cf3b49ae61bc23495bdb0788405051627d0",
+      "tasks/S12-global-upgrade-ebusy-trap/solution/solve.sh": "2fa71217040bc666c5832569188b1b0ebf9267ba377403c39401d30b805f4a1c",
+      "tasks/S12-global-upgrade-ebusy-trap/solution/SOLUTION.md": "44110047698427e70bb81930bb56bc8ec61eccd54b0ef3e3fda66b8f2918e11e",
+      "tasks/S12-global-upgrade-ebusy-trap/environment/Dockerfile": "3371f9177f68e30672a1a9e54494ffc16acc3d7bdfcfcd58ab121610643259d1",
+      "tasks/S12-global-upgrade-ebusy-trap/environment/fixture/attempt2-downgrade.log": "5efb5e94a96a34ee4dec2955883cb91b66e86e612390c2c63ab5d363ca5fcb8e",
+      "tasks/S12-global-upgrade-ebusy-trap/environment/fixture/npm-dist-tags.txt": "3bdf3bcef12e441b4984f0069cc9fae379e11541e775834ce3777c44ca8821fc",
+      "tasks/S12-global-upgrade-ebusy-trap/environment/fixture/running-processes.txt": "488bdccdfdddd4b1deac07afcbdb18f7bf0e76dab1d57644dbbd9d4f3ba3d46b",
+      "tasks/S12-global-upgrade-ebusy-trap/environment/fixture/README.md": "23a5f512c665a64bfd734d8a87f2bef9dd75fb29d0fa9599b3158074d1a12be5",
+      "tasks/S12-global-upgrade-ebusy-trap/environment/fixture/attempt1-ebusy.log": "a5b412bc432e91402826d822c02641b2bfe11ced91efbe4c6fc979c7d2fa59b4",
+      "tasks/S2-negative-scan/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S2-negative-scan/tests/packet.json": "bd6aa750e61a947db7a1890f3ecc6d44d7e95d9ce5610ecfe8167edb457683ae",
+      "tasks/S2-negative-scan/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S2-negative-scan/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S2-negative-scan/solution/report.md": "c9273179cc42f08fb42f61dfb8f65976341026bcc4efcb6d3af47af5c076d6bc",
+      "tasks/S2-negative-scan/solution/solve.sh": "951096665979a787d046f3bfb2ee0fcffd7e2e79dccdf020d90c5409989e247a",
+      "tasks/S2-negative-scan/solution/SOLUTION.md": "2ad49f7d5edde421cdb578caf7cc7284f44502f897882629e153c9834e19359a",
+      "tasks/S2-negative-scan/environment/Dockerfile": "bbebd74985148f581cedc80f914c8b56baeb402722309b84de6afc8079351ae3",
+      "tasks/S2-negative-scan/environment/fixture/cordis.patch.yml": "d50c34ae80e26e0dd0ab56b9e2835a6b3049665b8777027033ff52695ca02abe",
+      "tasks/S2-negative-scan/environment/fixture/index.js": "7306621926891cdf7d26ef268725b5f386213ce8410259947a30662117b0a866",
+      "tasks/S2-negative-scan/environment/fixture/README.md": "fdca9077f0c9fb810f365d890f677e1cab35208e1ffc78ae9d1b3f54aa39d479",
+      "tasks/S2-negative-scan/environment/fixture/package.json": "414adb496685d6467d57740acf03aeccdb343f1d231b2b3f05e354124508602e",
+      "tasks/S2-negative-scan/environment/fixture/src/session-notes.js": "7a3219984c595f4c927e386b54e688c9ace2d0a50cad0e72a436f93c9c673748"
+    },
+    "grading": "same sealed semantic protocol via host-side Codex transport after solver artifact export; no Harbor verifier reward",
+    "startup_note": "Initial Harbor preflight exited before any solver run because disabled verifier still requires declared env variables. Restarted with explicit inert localhost:1 placeholders solely for verifier.disable=true; no API request uses these values.",
+    "artifact_note": "Task and job both declare fixture/output collection; Harbor deduplicates identical sources. Exported fixture inventory is validated against the sealed packet before judging.",
+    "publication_base": "ecab245c6c1831c51b0240aca13573b94a6e525e"
+  },
+  "configuration": {
+    "job_name": "codex-luna-seven-literal-zero-skill",
+    "jobs_dir": "HARBOR_JOB_DIRECTORY",
+    "agent_setup_timeout_multiplier": 4.0,
+    "n_concurrent_trials": 4,
+    "n_attempts": 1,
+    "environment": {
+      "type": "docker",
+      "force_build": true
+    },
+    "agents": [
+      {
+        "name": "harbor_codex_node24:CodexNode24",
+        "model_name": "openai/gpt-5.6-luna",
+        "n_concurrent": 4,
+        "skills": [],
+        "extra_allowed_hosts": [
+          "chatgpt.com"
+        ],
+        "kwargs": {
+          "version": "0.153.4",
+          "reasoning_effort": "xhigh",
+          "web_search": "disabled",
+          "config": {
+            "skills": {
+              "include_instructions": false,
+              "bundled": {
+                "enabled": false
+              }
+            }
+          }
+        },
+        "env": {
+          "CODEX_AUTH_JSON_PATH": "${CODEX_AUTH_JSON_PATH}"
+        }
+      }
+    ],
+    "skills": [],
+    "datasets": [
+      {
+        "path": "FROZEN_TASK_DIRECTORY"
+      }
+    ],
+    "extra_instructions": [
+      "This is a literal zero-skill evaluation. Do not search for, open, read, quote, or follow any SKILL.md file or any skill directory. Do not use Codex-native or bundled skills. Use only the task prompt, /app/fixture, and non-skill local documentation and tools. Skip any skill file if encountered."
+    ],
+    "artifacts": [
+      "/app/agent-output",
+      "/app/fixture"
+    ],
+    "verifier": {
+      "disable": true
+    }
+  },
+  "summary": {
+    "scores": {
+      "S1": 45,
+      "S2": 60,
+      "S3": 10,
+      "S4": 75,
+      "S10": 100,
+      "S12": 80,
+      "S15": 100
+    },
+    "total": 470,
+    "mean": 67.14285714285714,
+    "full_credit_tasks": 2,
+    "solver_runs": 7,
+    "judge_calls": 7,
+    "solver_errors": 0,
+    "judge_errors": 0,
+    "solver_wall_seconds": 712.01216,
+    "solver_and_judge_wall_seconds": 781.958124,
+    "solver_usage": {
+      "n_input_tokens": 1407941,
+      "n_cache_tokens": 1037568,
+      "n_output_tokens": 51589
+    },
+    "judge_usage": {
+      "input_tokens": 78201,
+      "cached_input_tokens": 0,
+      "output_tokens": 14981
+    },
+    "transport": "codex-exec-v1; host-side semantic judge after Harbor artifact export; internal Harbor verifier disabled"
+  },
+  "job_result": {
+    "id": "3a3c818f-ed07-45f4-92c9-3fd8df87b6a6",
+    "started_at": "2026-09-10T18:35:44.918707",
+    "updated_at": "2026-09-10T18:47:36.930867",
+    "finished_at": "2026-09-10T18:47:36.930867",
+    "n_total_trials": 7,
+    "stats": {
+      "n_completed_trials": 7,
+      "n_errored_trials": 0,
+      "n_running_trials": 0,
+      "n_pending_trials": 0,
+      "n_cancelled_trials": 0,
+      "n_retries": 0,
+      "evals": {
+        "codex__gpt-5.6-luna__tasks": {
+          "n_trials": 0,
+          "n_errors": 0,
+          "metrics": [
+            {
+              "mean": 0.0
+            }
+          ],
+          "pass_at_k": {},
+          "reward_stats": {},
+          "exception_stats": {}
+        }
+      },
+      "n_input_tokens": 1407941,
+      "n_cache_tokens": 1037568,
+      "n_output_tokens": 51589,
+      "cost_usd": 0.15673275999999997
+    }
+  },
+  "trials": [
+    {
+      "task": "S1-static-scan",
+      "trial_name": "S1-static-scan__NCKWySJ",
+      "task_checksum": "d6286806416439a08575f93294db91eac68deaf562987d645ce357caf593e26d",
+      "agent_info": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": 156781,
+        "n_cache_tokens": 132608,
+        "n_output_tokens": 6984,
+        "cost_usd": 0.01586756,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "started_at": "2026-09-10T10:41:52.197803Z",
+      "finished_at": "2026-09-10T10:46:50.965036Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T10:44:01.112675Z",
+        "finished_at": "2026-09-10T10:46:46.369766Z"
+      },
+      "solver_seconds": 165.257,
+      "trial_seconds": 298.767,
+      "exception_info": null,
+      "fixture_unchanged": true,
+      "reports": [
+        {
+          "path": "S1-static-scan/touchpoint-report.md",
+          "bytes": 6580,
+          "sha256": "68206776fac46e54fda15aa992ce4c469c75778cd7823a9a615012774b30f877"
+        }
+      ],
+      "artifacts": {
+        "answer": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/touchpoint-report.md",
+        "judge": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/judge.details.json",
+        "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/packet.json"
+      },
+      "score": 45,
+      "judge_model": {
+        "requested": "gpt-6-astra",
+        "returned": null,
+        "resolved": "gpt-6-astra",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 16481,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3718,
+          "reasoning_output_tokens": 402
+        },
+        "request_id": "01a08aed-755f-72c1-bf44-b407731e5db0",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "0d57fe8c2a215f68d0b6a05e8c17d029b98442a1c96ddafafe57d547a71fe799",
+        "response_sha256": "d61ceda10772f64096db0f6f2bf8c081768d7467fc15756b63bbe1c6f18757db"
+      },
+      "audit": {
+        "native_contexts": [
+          [
+            "gpt-5.6-luna",
+            "xhigh",
+            "/app"
+          ]
+        ],
+        "skill_instruction_blocks": 0,
+        "tool_names": [
+          "exec"
+        ],
+        "tool_calls": 9,
+        "command_count": 8,
+        "manual_warning_resolutions": []
+      }
+    },
+    {
+      "task": "S2-negative-scan",
+      "trial_name": "S2-negative-scan__5rRJimz",
+      "task_checksum": "f5a4c974b5fde9d8fb3aa33a660386df25d32b6ed80dee135cddeabf1b65bd9a",
+      "agent_info": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": 129532,
+        "n_cache_tokens": 103168,
+        "n_output_tokens": 7286,
+        "cost_usd": 0.016079359999999997,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "started_at": "2026-09-10T10:42:35.793941Z",
+      "finished_at": "2026-09-10T10:47:36.925202Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T10:44:46.263234Z",
+        "finished_at": "2026-09-10T10:47:32.240691Z"
+      },
+      "solver_seconds": 165.977,
+      "trial_seconds": 301.131,
+      "exception_info": null,
+      "fixture_unchanged": true,
+      "reports": [
+        {
+          "path": "S2-negative-scan/report.md",
+          "bytes": 4643,
+          "sha256": "25d2b86a4d9df1836b02c021ce9fab454c0aaa2a39f9878d7d7a9bc0979a7b3c"
+        }
+      ],
+      "artifacts": {
+        "answer": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/report.md",
+        "judge": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/judge.details.json",
+        "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/packet.json"
+      },
+      "score": 60,
+      "judge_model": {
+        "requested": "gpt-6-astra",
+        "returned": null,
+        "resolved": "gpt-6-astra",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 9900,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1483,
+          "reasoning_output_tokens": 255
+        },
+        "request_id": "01a08aee-252f-73a1-bc64-c52641da9883",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "91a48d8e9676b760b1f7f0368dd2f4a25d5d4bf7349f6605b0c57dbe9f44bfad",
+        "response_sha256": "873401b5a78b0323bc3bdfe8eeee179c1106b8e01cd2b4c60a946ba2eae1b59b"
+      },
+      "audit": {
+        "native_contexts": [
+          [
+            "gpt-5.6-luna",
+            "xhigh",
+            "/app"
+          ]
+        ],
+        "skill_instruction_blocks": 0,
+        "tool_names": [
+          "exec"
+        ],
+        "tool_calls": 8,
+        "command_count": 8,
+        "manual_warning_resolutions": []
+      }
+    },
+    {
+      "task": "S3-snapshot-migration",
+      "trial_name": "S3-snapshot-migration__4uSHfgj",
+      "task_checksum": "970de5addd313e14a99da7a6b7814c4bf2e06f163986d52042aea85abc5e456a",
+      "agent_info": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": 726398,
+        "n_cache_tokens": 580096,
+        "n_output_tokens": 9942,
+        "cost_usd": 0.05279272,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "started_at": "2026-09-10T10:35:49.366095Z",
+      "finished_at": "2026-09-10T10:43:53.225234Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T10:39:09.088276Z",
+        "finished_at": "2026-09-10T10:43:48.249814Z"
+      },
+      "solver_seconds": 279.162,
+      "trial_seconds": 483.859,
+      "exception_info": null,
+      "fixture_unchanged": true,
+      "reports": [
+        {
+          "path": "S3-snapshot-migration/assessment.md",
+          "bytes": 5932,
+          "sha256": "e7032a45f77ed0158a6017ae10ed707fab261c10fe18c733c44f55397c16e5fd"
+        }
+      ],
+      "artifacts": {
+        "answer": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/assessment.md",
+        "judge": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/judge.details.json",
+        "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/packet.json"
+      },
+      "score": 10,
+      "judge_model": {
+        "requested": "gpt-6-astra",
+        "returned": null,
+        "resolved": "gpt-6-astra",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 11665,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1807,
+          "reasoning_output_tokens": 351
+        },
+        "request_id": "01a08aea-d19d-72a1-946a-10287e12a59a",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "55ae327e842bc540a25c18ccb35843d8c07f60cbf1f017378204d879d50e73e8",
+        "response_sha256": "f660d9ed8632f01b5027689d1e15cade769b6d443d2101293896ad90d06cd10e"
+      },
+      "audit": {
+        "native_contexts": [
+          [
+            "gpt-5.6-luna",
+            "xhigh",
+            "/app"
+          ]
+        ],
+        "skill_instruction_blocks": 0,
+        "tool_names": [
+          "exec"
+        ],
+        "tool_calls": 14,
+        "command_count": 22,
+        "manual_warning_resolutions": []
+      }
+    },
+    {
+      "task": "S4-legacy-client-imports",
+      "trial_name": "S4-legacy-client-imports__VEmJFQA",
+      "task_checksum": "cebc474c4a15370aee4c303b6d5cd0e9bad53f55c0897c42badd59aa99628e3f",
+      "agent_info": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": 126600,
+        "n_cache_tokens": 84224,
+        "n_output_tokens": 5011,
+        "cost_usd": 0.01617288,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "started_at": "2026-09-10T10:35:49.311334Z",
+      "finished_at": "2026-09-10T10:41:52.186133Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T10:39:32.692746Z",
+        "finished_at": "2026-09-10T10:41:42.195341Z"
+      },
+      "solver_seconds": 129.503,
+      "trial_seconds": 362.875,
+      "exception_info": null,
+      "fixture_unchanged": true,
+      "reports": [
+        {
+          "path": "S4-legacy-client-imports/report.md",
+          "bytes": 3652,
+          "sha256": "81f99a46e1fe3c41577edb303056f2f98f8224d25bb060f2efa9199b49df57dc"
+        }
+      ],
+      "artifacts": {
+        "answer": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/report.txt",
+        "judge": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/judge.details.json",
+        "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/packet.json"
+      },
+      "score": 75,
+      "judge_model": {
+        "requested": "gpt-6-astra",
+        "returned": null,
+        "resolved": "gpt-6-astra",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 12930,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1812,
+          "reasoning_output_tokens": 363
+        },
+        "request_id": "01a08ae8-f397-7481-bfe4-a575eb5ee9fb",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "a49bac4c25613f49dbb6ce9f540e1ebb20f96e39c6a405f87973a14d1cc93d07",
+        "response_sha256": "a8167a5f0831d310ddf8c7e3b458e435d0b2efbfcbf68f5f110a7dcb22004736"
+      },
+      "audit": {
+        "native_contexts": [
+          [
+            "gpt-5.6-luna",
+            "xhigh",
+            "/app"
+          ]
+        ],
+        "skill_instruction_blocks": 0,
+        "tool_names": [
+          "exec"
+        ],
+        "tool_calls": 8,
+        "command_count": 6,
+        "manual_warning_resolutions": []
+      }
+    },
+    {
+      "task": "S10-paste-rename-and-version-chip",
+      "trial_name": "S10-paste-rename-and-version-chi__LLcAJPk",
+      "task_checksum": "353149f72ea8dd9ab5c6d4e37475f3ef2e616b0ba7e50d685feff1d240c93ebf",
+      "agent_info": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": 87885,
+        "n_cache_tokens": 23808,
+        "n_output_tokens": 9261,
+        "cost_usd": 0.02440476,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "started_at": "2026-09-10T10:35:49.362435Z",
+      "finished_at": "2026-09-10T10:42:35.781479Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T10:38:12.079640Z",
+        "finished_at": "2026-09-10T10:42:30.793811Z"
+      },
+      "solver_seconds": 258.714,
+      "trial_seconds": 406.419,
+      "exception_info": null,
+      "fixture_unchanged": true,
+      "reports": [
+        {
+          "path": "S10-paste-rename-and-version-chip/REPORT.md",
+          "bytes": 8435,
+          "sha256": "77d8b050e893d62780205fd92ae5675ffa764589e05f00132cca87acfacc92d5"
+        }
+      ],
+      "artifacts": {
+        "answer": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/REPORT.md",
+        "judge": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/judge.details.json",
+        "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/packet.json"
+      },
+      "score": 100,
+      "judge_model": {
+        "requested": "gpt-6-astra",
+        "returned": null,
+        "resolved": "gpt-6-astra",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 10097,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2529,
+          "reasoning_output_tokens": 158
+        },
+        "request_id": "01a08ae9-8fa5-7c81-9368-04d7d9357774",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "42d445181b0755473e3c65d1bdf62fcc0552023155d3b216928a1f202cae4dc7",
+        "response_sha256": "14062b07b4ccc961ec7023af09bc859e0e77affd4c77eba4291c376e140d8f6b"
+      },
+      "audit": {
+        "native_contexts": [
+          [
+            "gpt-5.6-luna",
+            "xhigh",
+            "/app"
+          ]
+        ],
+        "skill_instruction_blocks": 0,
+        "tool_names": [
+          "exec"
+        ],
+        "tool_calls": 5,
+        "command_count": 9,
+        "manual_warning_resolutions": [
+          {
+            "task": "S10",
+            "warning": "exec-call-pairing-mismatch:event-21",
+            "resolution": "Manually checked native event 21 and corresponding completed command events: a Promise.all loop reads exactly five fixture files with sed. No skill file or skill directory is read.",
+            "paths": [
+              "README.md",
+              "plugin-attachment-flow.js",
+              "plugin-version-chip.js",
+              "user-threads.md",
+              "tags-api-response.txt"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "task": "S12-global-upgrade-ebusy-trap",
+      "trial_name": "S12-global-upgrade-ebusy-trap__NSEhzLB",
+      "task_checksum": "615f889f6bdfcabbcec03e1c0d4d3329e4b7aa2f987fbcf40ff109679f4884b3",
+      "agent_info": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": 76546,
+        "n_cache_tokens": 57856,
+        "n_output_tokens": 4399,
+        "cost_usd": 0.01017392,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "started_at": "2026-09-10T10:42:02.938990Z",
+      "finished_at": "2026-09-10T10:45:56.640178Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T10:43:28.611292Z",
+        "finished_at": "2026-09-10T10:45:52.006205Z"
+      },
+      "solver_seconds": 143.395,
+      "trial_seconds": 233.701,
+      "exception_info": null,
+      "fixture_unchanged": true,
+      "reports": [
+        {
+          "path": "S12-global-upgrade-ebusy-trap/report.md",
+          "bytes": 3845,
+          "sha256": "4601e85c4a51527de19534f827559f81e3fdb5a7f338317a1943f810ae3598a5"
+        }
+      ],
+      "artifacts": {
+        "answer": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/report.md",
+        "judge": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/judge.details.json",
+        "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/packet.json"
+      },
+      "score": 80,
+      "judge_model": {
+        "requested": "gpt-6-astra",
+        "returned": null,
+        "resolved": "gpt-6-astra",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 7872,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1378,
+          "reasoning_output_tokens": 82
+        },
+        "request_id": "01a08aec-a26b-7231-8795-cf3685a75a06",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "5f9a18af26c1e828112413315330688ae45c8b610e09bf31e9d329f8d6398daa",
+        "response_sha256": "b12be5c1ab0c8a909804ade7c3598bb4d53b0aa973c7523265da7bcbcd01d448"
+      },
+      "audit": {
+        "native_contexts": [
+          [
+            "gpt-5.6-luna",
+            "xhigh",
+            "/app"
+          ]
+        ],
+        "skill_instruction_blocks": 0,
+        "tool_names": [
+          "exec"
+        ],
+        "tool_calls": 5,
+        "command_count": 10,
+        "manual_warning_resolutions": [
+          {
+            "task": "S12",
+            "warning": "exec-call-pairing-mismatch:event-21",
+            "resolution": "Manually checked native event 21 and corresponding completed command events: a Promise.all loop reads exactly five fixture files with sed. No skill file or skill directory is read.",
+            "paths": [
+              "README.md",
+              "attempt1-ebusy.log",
+              "running-processes.txt",
+              "attempt2-downgrade.log",
+              "npm-dist-tags.txt"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "task": "S15-slot-error-boundary-crash",
+      "trial_name": "S15-slot-error-boundary-crash__gnQNNTL",
+      "task_checksum": "73f1c44e552ba7a0f1d73a44335876cb09cac5c06e76471a26c4d6352b75f520",
+      "agent_info": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": 104199,
+        "n_cache_tokens": 55808,
+        "n_output_tokens": 8706,
+        "cost_usd": 0.021241559999999996,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "started_at": "2026-09-10T10:35:49.368753Z",
+      "finished_at": "2026-09-10T10:42:02.931001Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T10:37:59.407043Z",
+        "finished_at": "2026-09-10T10:41:58.243427Z"
+      },
+      "solver_seconds": 238.836,
+      "trial_seconds": 373.562,
+      "exception_info": null,
+      "fixture_unchanged": true,
+      "reports": [
+        {
+          "path": "S15-slot-error-boundary-crash/report.md",
+          "bytes": 6318,
+          "sha256": "17810295b02e50698e831db9bb60091d5886d5b1867051d17c351c897e789ec5"
+        }
+      ],
+      "artifacts": {
+        "answer": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/report.md",
+        "judge": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/judge.details.json",
+        "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/packet.json"
+      },
+      "score": 100,
+      "judge_model": {
+        "requested": "gpt-6-astra",
+        "returned": null,
+        "resolved": "gpt-6-astra",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 9256,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2254,
+          "reasoning_output_tokens": 241
+        },
+        "request_id": "01a08ae9-1f7d-71c2-a2d6-7f3e4e462939",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "6f0173119e78461f3ba8a4e39e55cbeb1f5f321139be9f053e72ccc8e2686aa0",
+        "response_sha256": "ec178870c009fab762c1c1f4dc9dba52ce9585e91cf1ce4c711bc4dcacb839a7"
+      },
+      "audit": {
+        "native_contexts": [
+          [
+            "gpt-5.6-luna",
+            "xhigh",
+            "/app"
+          ]
+        ],
+        "skill_instruction_blocks": 0,
+        "tool_names": [
+          "exec"
+        ],
+        "tool_calls": 6,
+        "command_count": 12,
+        "manual_warning_resolutions": []
+      }
+    }
+  ],
+  "skill_audit": {
+    "schemaVersion": 1,
+    "trials": [
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S1-static-scan__NCKWySJ",
+          "task": "S1-static-scan",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": true,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S10-paste-rename-and-version-chi__LLcAJPk",
+          "task": "S10-paste-rename-and-version-chi",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": [
+          "exec-call-pairing-mismatch:event-21"
+        ]
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S12-global-upgrade-ebusy-trap__NSEhzLB",
+          "task": "S12-global-upgrade-ebusy-trap",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": [
+          "exec-call-pairing-mismatch:event-21"
+        ]
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S15-slot-error-boundary-crash__gnQNNTL",
+          "task": "S15-slot-error-boundary-crash",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S2-negative-scan__5rRJimz",
+          "task": "S2-negative-scan",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S3-snapshot-migration__4uSHfgj",
+          "task": "S3-snapshot-migration",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S4-legacy-client-imports__VEmJFQA",
+          "task": "S4-legacy-client-imports",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      }
+    ],
+    "aggregate": {
+      "trials": 7,
+      "targetSupplied": "0/7",
+      "targetSkillOpened": "0/7",
+      "activationRateEligible": null,
+      "eligibilityDefinition": "trials where the trajectory declares the target skill (supplied)",
+      "anyTargetSkillContentAccess": "0/7",
+      "byCondition": {
+        "literal-zero-skill": {
+          "trials": 7,
+          "supplied": "0/7",
+          "opened": "0/7",
+          "otherSkillAccess": "0/7"
+        }
+      },
+      "baselineHasOtherSkillAccess": "0/7",
+      "baselineCondition": "no-target-skill"
+    }
+  },
+  "manual_audit_resolutions": [
+    {
+      "task": "S10",
+      "warning": "exec-call-pairing-mismatch:event-21",
+      "resolution": "Manually checked native event 21 and corresponding completed command events: a Promise.all loop reads exactly five fixture files with sed. No skill file or skill directory is read.",
+      "paths": [
+        "README.md",
+        "plugin-attachment-flow.js",
+        "plugin-version-chip.js",
+        "user-threads.md",
+        "tags-api-response.txt"
+      ]
+    },
+    {
+      "task": "S12",
+      "warning": "exec-call-pairing-mismatch:event-21",
+      "resolution": "Manually checked native event 21 and corresponding completed command events: a Promise.all loop reads exactly five fixture files with sed. No skill file or skill directory is read.",
+      "paths": [
+        "README.md",
+        "attempt1-ebusy.log",
+        "running-processes.txt",
+        "attempt2-downgrade.log",
+        "npm-dist-tags.txt"
+      ]
+    }
+  ],
+  "artifact_sha256_manifest": {
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/provenance.json": "5fa9e3dc4bdda806b22c35f8cd880c591f8a563fefb7551c95d2d747ccc5c975",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/skill-audit.json": "cfe36c7812d91f4aff9b82c0ad87dea5b5adeaab74431e16d68126a7d4cd5b91",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/judge.details.json": "4652b5b8e01320150dbe9400904485ed62c4302f2a02c6e079199bad0b00bb74",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/report.md": "25d2b86a4d9df1836b02c021ce9fab454c0aaa2a39f9878d7d7a9bc0979a7b3c",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/packet.json": "bd6aa750e61a947db7a1890f3ecc6d44d7e95d9ce5610ecfe8167edb457683ae",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/judge.details.json": "610393755262fa64948c34b2339ef38f5799c7472eaa9616efc0b4db5974637e",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/packet.json": "114b0b2f99e29aa595be0cc0577172dc5c6f0add4959aa83c7c94a114dd69cd0",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/assessment.md": "e7032a45f77ed0158a6017ae10ed707fab261c10fe18c733c44f55397c16e5fd",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/judge.details.json": "70b25096b76f8c96a396a9ccecbe8c3cd5bb2be0a13aff246be6cff91e011b92",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/packet.json": "82e53a41278d4448067c45c3d17035983805f71044b52bcbd02ff1c87e966ccc",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/report.txt": "81f99a46e1fe3c41577edb303056f2f98f8224d25bb060f2efa9199b49df57dc",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/judge.details.json": "8c1ed39a9f98177407a5ac2e10f1e5ad42f5690f0730a36b3e026bfe5dd085ae",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/REPORT.md": "77d8b050e893d62780205fd92ae5675ffa764589e05f00132cca87acfacc92d5",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/packet.json": "bf3d3fefb8ffe33d747d2bc1246c0cd40d17b35842847dce20b1e13cb1fa2478",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/judge.details.json": "e4326df959415266fe801bb9d642be083992735fa2ec3ef6467c97b037ed997e",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/touchpoint-report.md": "68206776fac46e54fda15aa992ce4c469c75778cd7823a9a615012774b30f877",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/packet.json": "11ee4d4c62f7b4c98a0d065633ffdedf4f17796964354a0a751e40d69b4b8b58",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/judge.details.json": "862ac6149787e3575e25a28383235c509330347b6ee6596f4518a0e11da0d92d",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/report.md": "17810295b02e50698e831db9bb60091d5886d5b1867051d17c351c897e789ec5",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/packet.json": "084f7a5fa23075c2a4c7475bccccbfa539e18734bae948c9d6a084ada88d74b1",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/judge.details.json": "be2453e5496590289c24c2c4cbef7678ae811ec7f3d6c684591871c77ed4fa84",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/report.md": "4601e85c4a51527de19534f827559f81e3fdb5a7f338317a1943f810ae3598a5",
+    "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/packet.json": "9fc74b8164fa4fd6f2559b15f2e92fcc398727500fc328fcdf880ca4a9d32e10"
+  }
+}

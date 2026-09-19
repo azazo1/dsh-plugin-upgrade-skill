@@ -1,0 +1,36 @@
+{
+  "decisions": [
+    {
+      "id": "split-chunk-attribution",
+      "verdict": "pass",
+      "reason": "Grounds the diagnosis in console-split-chunks.txt: entry chunk returned 200 while unshipped sibling imports (src-BfvxrPJe.js, pie-…) 404'd, failing the whole dynamic import; proposes a single self-contained feature bundle (inlineDynamicImports / no --splitting) with verification that no relative imports remain."
+    },
+    {
+      "id": "windows-containment-attribution",
+      "verdict": "pass",
+      "reason": "Cites chunk-route.ts startsWith guards and the ci-note.md debug print (E: vs e:), explains the case-sensitive string prefix mismatch rejects a genuinely contained file, and accounts for Linux (no case canonicalization) and the C:\\ laptop (strings coincidentally agreed). Explicitly rejects the maintainer's 'Windows paths are unreliable' folklore without overgeneralizing."
+    },
+    {
+      "id": "safe-route-fix",
+      "verdict": "pass",
+      "reason": "Proposes canonicalizing the root once (realpathSync), path.relative-based containment rejecting empty/'..'/absolute results, symlink escapes defeated by the realpath step, and preserving the JavaScript Content-Type; not a mere name-drop of path.relative."
+    },
+    {
+      "id": "modal-event-ownership",
+      "verdict": "pass",
+      "reason": "Explains one bubbling Ctrl+wheel event reaching both pane and modal listeners, gives the modal exclusive ownership (stopPropagation/preventDefault, capture/target phase, pane handler suspended while modal open), and notes stopping later cannot undo ancestor capture."
+    },
+    {
+      "id": "incident-regressions",
+      "verdict": "pass",
+      "reason": "Planned checks with expected outcomes for all three incidents: import graph/packaging gate, case-mismatch serves 200 while traversal/symlink escapes give 403 plus MIME contract, and modal zoom with pane font unchanged (plus inverse case); correctly framed as planned, not executed."
+    }
+  ],
+  "caps": [
+    {
+      "id": "unsafe-containment",
+      "triggered": false,
+      "reason": "The final fix strengthens containment (path.relative + realpath rejecting traversal/symlink escapes); no affirmative advice disables or bypasses the containment guard."
+    }
+  ]
+}

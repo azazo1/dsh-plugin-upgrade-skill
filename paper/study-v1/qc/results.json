@@ -1,0 +1,249 @@
+{
+  "mode": "offline-QC; synthetic runtime controls, not a historical H25 regrade",
+  "nodeVersion": "v24.19.0",
+  "fixtureLockSha256": "d2afe73a787b1daf6d883e2c955092847ca8353c6e574822e9197eb290545c88",
+  "originalJudgeSha256": "eaeb27a1a031f46a3b6967c5204d8c9d478143bd68219eeea6e8856fad2d2194",
+  "instrumentedJudgeSha256": "e33a77b2e4eddcf16b703a9bb7c0420f5cd9d1a6a6c87274b52578578adacd38",
+  "historicalDecisionReplay": [
+    {
+      "task": "H4",
+      "identity": {
+        "instruction": true,
+        "fixture": true,
+        "references": true,
+        "rubric": true
+      },
+      "priorStatus": "judge_error",
+      "currentScore": 85,
+      "interpretation": "reassembly of archived decisions; not a new semantic judgment",
+      "answerHashes": {
+        "report.md": "9cc928eed457b63d2e52672034ae84d0916d0ff655d55ac4996061f443115b7b"
+      },
+      "beforePacketSha256": "dc527436d5320a565fd9573a92575d542c014a68d8d7534707d5851345dc775f",
+      "afterPacketSha256": "30d34533e03ab7e2001253800d99e89b707d688fadca087c7866d6ae51b1b192"
+    },
+    {
+      "task": "H6",
+      "identity": {
+        "instruction": true,
+        "fixture": true,
+        "references": true,
+        "rubric": true
+      },
+      "priorStatus": "judge_error",
+      "currentScore": 75,
+      "interpretation": "reassembly of archived decisions; not a new semantic judgment",
+      "answerHashes": {
+        "migration-report.md": "8768f33e8f969c413d0d60f1865fa43490b8dc03f7951e65ae938662182bdaae"
+      },
+      "beforePacketSha256": "47486dc58e0f0ca4822bbb17365b734fbcebada8bcf95f1613af38c31b531f92",
+      "afterPacketSha256": "d4184389d90efacaa5cdfb323bd42b3b9f670cbe46fb9e26c50c95eed9245d02"
+    },
+    {
+      "task": "H12",
+      "identity": {
+        "instruction": true,
+        "fixture": true,
+        "references": true,
+        "rubric": true
+      },
+      "priorStatus": "scored",
+      "currentScore": 82.5,
+      "interpretation": "reassembly of archived decisions; not a new semantic judgment",
+      "answerHashes": {
+        "report.md": "f339a7304dee0035216fd4323ab2a6ebd477d1f33106ee0a851df6d596b54497"
+      },
+      "beforePacketSha256": "44ba1a61113c8f79ba4433d384e3f9c5fd46e26fe28ad8abe916a6f074bd6c95",
+      "afterPacketSha256": "2281bc568cd6d6a977a27e1a5f3a0f95ea6a1c54867bce3f098a7072c6415914"
+    }
+  ],
+  "h25Controls": [
+    {
+      "id": "oracle",
+      "synthetic": true,
+      "sourceSha256": "b13935be98352f447370421a5a809eeb103b33342b4e39ee0b38f61d06078c26",
+      "result": {
+        "score": 100,
+        "max": 100,
+        "reasons": [
+          "+15 fresh fork reports inherited cut 3",
+          "+20 resumed forks retain the ORIGINAL cuts 3/1/5 (log grew to 8)",
+          "+10 unforked session has inherited 0",
+          "+10 projection init+apply classifies own vs inherited correctly",
+          "+5 valid seq/offset construction works",
+          "+5 invalid constructors still throw TypeError",
+          "behavioral 65/65; migration 25/25 (seedLength-gone:5 isSeeded:5 inheritedEventCount:5 SessionSeq-position:5 SessionLogOffset-offset:5); hygiene 10/10"
+        ],
+        "metrics": {
+          "behavioral": 65,
+          "observations": {
+            "invalidRejected": true,
+            "resumedBoundaryPreserved": true
+          },
+          "runtime": {
+            "metaShape": {
+              "isSeeded": true,
+              "hasSeedLengthKey": false,
+              "inheritedEventCount": 3
+            },
+            "freshHeaderIsSeeded": true
+          },
+          "loadFailed": false
+        }
+      }
+    },
+    {
+      "id": "equivalent-direct-cut",
+      "synthetic": true,
+      "sourceSha256": "da329cc513bc98632c23207751acd9e7e7990dbd4134cf9819eadde5292815fd",
+      "result": {
+        "score": 40,
+        "max": 100,
+        "reasons": [
+          "+15 fresh fork reports inherited cut 3",
+          "+20 resumed forks retain the ORIGINAL cuts 3/1/5 (log grew to 8)",
+          "+10 unforked session has inherited 0",
+          "+10 projection init+apply classifies own vs inherited correctly",
+          "+5 valid seq/offset construction works",
+          "+5 invalid constructors still throw TypeError",
+          "behavioral 65/65; migration 20/25 (seedLength-gone:5 isSeeded:5 inheritedEventCount:0 SessionSeq-position:5 SessionLogOffset-offset:5); hygiene 10/10",
+          "isSeeded true without the inherited count — cap 40",
+          "capped at 40 (was 95)"
+        ],
+        "metrics": {
+          "behavioral": 65,
+          "observations": {
+            "invalidRejected": true,
+            "resumedBoundaryPreserved": true
+          },
+          "runtime": {
+            "metaShape": {
+              "isSeeded": true,
+              "hasSeedLengthKey": false
+            },
+            "freshHeaderIsSeeded": true
+          },
+          "loadFailed": false
+        }
+      }
+    },
+    {
+      "id": "wrong-restored-cut",
+      "synthetic": true,
+      "sourceSha256": "ce7d75d2f5ec1740233bfdb19e86dc2937a5c36526b350928537a66c22dc2fbd",
+      "result": {
+        "score": 65,
+        "max": 100,
+        "reasons": [
+          "+15 fresh fork reports inherited cut 3",
+          "+0 resumed fork cut wrong (inherited=8, own=1)",
+          "+10 unforked session has inherited 0",
+          "+10 projection init+apply classifies own vs inherited correctly",
+          "+5 valid seq/offset construction works",
+          "+5 invalid constructors still throw TypeError",
+          "behavioral 45/65; migration 25/25 (seedLength-gone:5 isSeeded:5 inheritedEventCount:5 SessionSeq-position:5 SessionLogOffset-offset:5); hygiene 10/10",
+          "resumed fork does not preserve the original inherited boundary — cap 65",
+          "capped at 65 (was 80)"
+        ],
+        "metrics": {
+          "behavioral": 45,
+          "observations": {
+            "invalidRejected": true,
+            "resumedBoundaryPreserved": false
+          },
+          "runtime": {
+            "metaShape": {
+              "isSeeded": true,
+              "hasSeedLengthKey": false,
+              "inheritedEventCount": 3
+            },
+            "freshHeaderIsSeeded": true
+          },
+          "loadFailed": false
+        }
+      }
+    },
+    {
+      "id": "invalid-constructor-bypass",
+      "synthetic": true,
+      "sourceSha256": "09e11ac9588d50e48a3f23a996e9fa57490d3ed0dc1b64b068e61ce9d221a30e",
+      "result": {
+        "score": 40,
+        "max": 100,
+        "reasons": [
+          "+15 fresh fork reports inherited cut 3",
+          "+20 resumed forks retain the ORIGINAL cuts 3/1/5 (log grew to 8)",
+          "+10 unforked session has inherited 0",
+          "+10 projection init+apply classifies own vs inherited correctly",
+          "+5 valid seq/offset construction works",
+          "+0 invalid constructors no longer throw (validation bypassed)",
+          "behavioral 60/65; migration 15/25 (seedLength-gone:5 isSeeded:5 inheritedEventCount:5 SessionSeq-position:0 SessionLogOffset-offset:0); hygiene 10/10",
+          "invalid position/offset constructors no longer throw — cap 40",
+          "capped at 40 (was 85)"
+        ],
+        "metrics": {
+          "behavioral": 60,
+          "observations": {
+            "invalidRejected": false,
+            "resumedBoundaryPreserved": true
+          },
+          "runtime": {
+            "metaShape": {
+              "isSeeded": true,
+              "hasSeedLengthKey": false,
+              "inheritedEventCount": 3
+            },
+            "freshHeaderIsSeeded": true
+          },
+          "loadFailed": false
+        }
+      }
+    },
+    {
+      "id": "untouched",
+      "synthetic": true,
+      "sourceSha256": null,
+      "result": {
+        "score": 0,
+        "max": 100,
+        "reasons": [
+          "fixture untouched — no migration performed"
+        ],
+        "metrics": null
+      }
+    },
+    {
+      "id": "syntax-error",
+      "synthetic": true,
+      "sourceSha256": "c590d78311c7e7915d2f1d1772fb5ac99526e50c7dca1ff7d392f7502f0a51aa",
+      "result": {
+        "score": 15,
+        "max": 100,
+        "reasons": [
+          "fixture module fails to load: Unexpected end of input",
+          "behavioral 0/65; migration 5/25 (seedLength-gone:5 isSeeded:0 inheritedEventCount:0 SessionSeq-position:0 SessionLogOffset-offset:0); hygiene 10/10",
+          "fixture module fails to load — cap 30"
+        ],
+        "metrics": {
+          "behavioral": 0,
+          "observations": {
+            "invalidRejected": false,
+            "resumedBoundaryPreserved": false
+          },
+          "runtime": {
+            "metaShape": {
+              "hasSeedLengthKey": false
+            },
+            "freshHeaderIsSeeded": false
+          },
+          "loadFailed": true
+        }
+      }
+    }
+  ],
+  "solverCalls": 0,
+  "judgeModelCalls": 0,
+  "actualModelCost": 0,
+  "decision": "Retain historical capped score. For new study report functional boundary checks separately from helper-shape diagnostics; do not infer functional failure from the 40 cap.",
+  "scratch": "/var/folders/19/mrd48f6j5znfpsq3djjxjp4m0000gn/T/study-qc-h25-s5B37Z"
+}

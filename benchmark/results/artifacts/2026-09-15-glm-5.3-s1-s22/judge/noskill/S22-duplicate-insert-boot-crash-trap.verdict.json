@@ -1,0 +1,36 @@
+{
+  "decisions": [
+    {
+      "id": "duplicate-loader-attribution",
+      "verdict": "pass",
+      "reason": "Grounds the diagnosis in both excerpts (identical workspace-files insert rows, bundle L110-111 and profile block) and boot-crash-log.txt (EntryGroup.update via Include._apply); explains duplicate is fatal (loader throws rather than overwrite/merge) and explicitly rejects the profile comment's 'redundant, keep it' claim as exactly wrong."
+    },
+    {
+      "id": "three-layering-cases",
+      "verdict": "pass",
+      "reason": "Table distinguishes all three cases: config override by existing id safe, insert of genuinely new id safe (dsh-file-trace/dsh-profiles), insert of bundle-provided id fatal; classifies the maintainer's row as the third case with the two excerpt rows as proof."
+    },
+    {
+      "id": "minimal-profile-fix",
+      "verdict": "pass",
+      "reason": "Fix deletes only the manual workspace-files insert block plus its comment from the profile cordis.patch.yml, keeps the bundle row and unrelated rows; explicitly rejects plugin-side changes; if config needed, override path is already described as the allowed case, and no rename/second insert is proposed."
+    },
+    {
+      "id": "plugin-and-failure-boundary",
+      "verdict": "pass",
+      "reason": "States the crash occurs at loader composition before any plugin module resolves or apply() runs, so no plugin-side change can fix it; and separately notes the earlier 文件资源服务不可用 symptom is an open problem to be diagnosed/verified after the duplicate is removed."
+    },
+    {
+      "id": "author-and-host-prevention",
+      "verdict": "pass",
+      "reason": "Advises grepping the installed bundle's cordis.patch.yml for the id and distinguishing overlay-config from insert before adding; proposes a concrete actionable host diagnostic naming workspace-files, both declaration origins, blame, and the exact block to remove, plus a pre-boot verify step."
+    }
+  ],
+  "caps": [
+    {
+      "id": "retain-or-add-duplicate",
+      "triggered": false,
+      "reason": "Final advice removes the duplicate and forbids re-inserting bundle-provided ids; the 'harmless redundancy' comment and plugin-edit route appear only as quoted/rejected bad examples, never as the report's own conclusion."
+    }
+  ]
+}

@@ -24,26 +24,8 @@ and the [rollup "Remote call error flow"](../../../skills/plugin-upgrade/referen
 section. Task statement in [instruction.md](instruction.md), grading logic in
 [tests/judge.mjs](tests/judge.mjs).
 
-- **Environment**: `node:24-bookworm` + git (the fixture is committed as a git baseline for the read-only gate); dsh is not installed (this task is pure diagnosis).
-- **Verifier**: the judge parses the six canonical Markdown sections and grades each section's own text (Root Cause 20 / Problems 10 / Corrected Implementation 25 / RemoteResult Control Flow 20 / Reject Boundary 15 / Error Boundary 10); the Corrected Implementation is graded from its fenced code block only; direction-aware checks plus five hard caps; 0-100 normalized to `/logs/verifier/reward.txt`.
-- **Oracle**: `harbor run -p benchmark/tasks/H12-remote-result-boundary-trap -a oracle`, expected reward 1.0.
+- **Verifier**: version-4 LLM-as-judge in a separate container, with complete reports and sealed fixture/reference inputs; the model returns decisions and short reasons, and code aggregates points. See the task rubric in [rubrics.mjs](../../report-judge/rubrics.mjs) and [scoring rules](../../docs/scoring.md). There is no keyword fallback.
+- **Configuration**: explicitly provide `REPORT_JUDGE_BASE_URL`, `REPORT_JUDGE_MODEL` and `REPORT_JUDGE_API_KEY` to the verifier. Missing configuration or transport errors fail the judge without issuing a zero reward.
+- **Validation**: `npm run test:report-judge` checks protocol and boundaries with mock transport. Reference answers and adversarial reports are calibration inputs, not guaranteed scores; model accuracy needs a live calibration run. Historical regex scores are not comparable.
 
-## Negative controls (no model API)
-
-| Control | Procedure | Expected reward |
-|---|---|---|
-| A · no report | run the verifier without writing a report | 0 |
-| B · keyword stuffing | report contains RemoteResult/result.ok/isRemoteFailure etc. but none of the six canonical sections | 0 |
-| C · H6-perfect but H12-wrong (differential) | a thorough H6-style answer (code vocabulary, retry policy, no instanceof) that still claims failures throw / are handled in catch and never mentions the ok:false / no-reject boundary | ≤ 0.30 |
-| D · wrong throw/catch model | Root Cause claims "ordinary remote failures throw, use try/catch" | ≤ 0.30 |
-| E · value without ok | correct diagnosis but the repair code reads result.value without a prior result.ok branch | ≤ 0.60 |
-| F · instanceof fix | repair code discriminates with instanceof RemoteError | ≤ 0.60 |
-| G · swallowed rejects | repair code catches rejects and retries/returns null instead of propagating | ≤ 0.60 |
-| H · oracle | solution/report.md | 1.00 |
-| I · honest quoting | inline/prose quotes of the bad current code + a fully correct fix (anti-false-positive guard) | ≥ 0.90 |
-
-```
-environment/fixture/   # read-only fixture: wrongly-bounded session-rename helper (codes already namespaced)
-tests/                 # judge.mjs + judge-utils.mjs + test.sh
-solution/              # six-section reference report + solve.sh
-```
+The complete fixture remains read-only; any file modification, addition or deletion scores zero.

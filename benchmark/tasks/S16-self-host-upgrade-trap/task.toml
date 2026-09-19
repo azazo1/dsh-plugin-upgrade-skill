@@ -1,8 +1,9 @@
 schema_version = "1.4"
+artifacts = [{ source = "/app/fixture" }, { source = "/app/agent-output" }]
 # Harbor task config: upgrading the dsh host from inside a dsh session (task S16, static, read-only)
 [task]
 name = "dsh-plugin-upgrade/s16-self-host-upgrade-trap"
-version = "1.1.0"
+version = "4.1.0"
 description = "An agent runs the global dsh upgrade from inside its own session on the running host; npm replaces the live package tree mid-install, the GUI dies mid-call, and the interrupted install leaves the package present but the dsh command gone — diagnose, repair, and state the protocol the agent should have followed"
 keywords = ["dsh", "self-upgrade", "npm", "shims", "harbor"]
 
@@ -16,7 +17,14 @@ execution_contract = "BENCHMARK-AUTH-v1"
 timeout_sec = 300.0
 
 [verifier]
-timeout_sec = 120.0
+timeout_sec = 240.0
+environment_mode = "separate"
+network_mode = "public"
+
+[verifier.env]
+REPORT_JUDGE_BASE_URL = "${REPORT_JUDGE_BASE_URL}"
+REPORT_JUDGE_MODEL = "${REPORT_JUDGE_MODEL}"
+REPORT_JUDGE_API_KEY = "${REPORT_JUDGE_API_KEY}"
 
 [environment]
 network_mode = "public"

@@ -1,0 +1,64 @@
+# S21 report — The resource service that "unavailable"
+
+## 1. Attribution: the failure is in the resource-metadata delivery chain, not the plugin
+
+The document tab opened and claimed the address — the claim/registration layer works. The
+content read goes through a DIFFERENT chain: `useResource('file', address)` → the `file`
+provider registered by `@deepseek-ai/dsh-api-workspace-files`' client half →
+`workspaceFiles.stat` over the Typert gateway → the host WorkspaceFiles service
+(injects fs, sandboxPolicy, sessions, typert). `meta.status === 'none'` means the
+resource metadata never arrived from that chain.
+
+What the contrast probe rules in and out: file-trace's own RPC (its own HTTP face,
+`/dsh-file-trace/*` routes) reads the same file fine — so the file exists, the disk is
+fine, the session workspace is fine, and the TAB's claim layer is fine. The failure is
+specifically in the workspaceFiles resource-provider/RPC delivery on this upgraded
+profile.
+
+## 2. Probe discipline
+
+- VALID: the per-module sweep — fetch each of the 62 manifest combo entries one by one.
+  Result on this host: 62/62 HTTP 200, zero 404s. Static artifact serving is complete, so
+  the alpha.1-era "missing bytes" hypothesis is ruled out.
+- INVALID: the naive all-in-one join of all 62 modules into one URL. The joined URL is
+  ~4–5 KB, above the host's 3 KB combo-URL cap (`MAX_COMBO_URL_BYTES = 3 * 1024` in
+  `packages/client/modules/src/index.ts`). The real loader PARTITIONS the roster into
+  ≤3 KB chunks; a manual all-in-one join is not a request the loader ever makes, and its
+  404 must never be cited as "modules missing".
+- Also valid: the contrast reader (two readers, same file, same moment) — file-trace's
+  own RPC reads fine while the workspaceFiles read fails, which localizes the failure to
+  the workspaceFiles resource-provider/RPC delivery.
+
+## 3. Distractor separation
+
+The repeated `dsh-paste-input: fold skipped (parse failed)` warnings are an unrelated
+paste-input bug: the fold parser only accepted the current END-marker spelling
+(`==== END DSH_PASTE_INPUT ====`) while older cached bundles wrote the V1-suffixed
+`==== END DSH_PASTE_INPUT_V1 ====` into historical messages. Fixed in paste-input
+v0.1.24 (the parser now accepts both spellings). They do not cause the content-read
+failure and must not be conflated with it.
+
+## 4. Mitigation decision
+
+No plugin-side rewrite, retry, fallback, or "repair" of the unavailable service — the
+plugin's code is not at fault. Decision order:
+
+1. Restart the host once: the 0.1.5-alpha.1 round self-healed a roster/combo mismatch on
+   a later boot (the newly-added rows entered the roster).
+2. If the restart does not heal it, roll the global package back to the previous
+   published version (`npm i -g @deepseek-ai/dsh@0.1.3-alpha.2` — verified escape hatch)
+   and keep the rollback until upstream fixes the compose/serve gap.
+3. Report upstream with the forensics: the per-module sweep (62/62 200), the contrast
+   reader, the roster excerpt, and the invalid-join caveat. Upstream thread:
+   [deepseek-ai/deepseek-harness discussion #5999](https://github.com/deepseek-ai/deepseek-harness/discussions/5999)
+   (round 2, comment 18371079, documents the same family on alpha.1).
+
+## 5. Prevention / upstream
+
+A complete upstream report carries: the per-module sweep result (62/62 200 = static
+serving complete), the contrast reader (a different reader of the same file works), the
+roster excerpt (the modules the composition declares), and the invalid-join caveat (so
+nobody repeats the all-in-one 404). What the host could do to fail loud: a boot-time
+roster-vs-served-combo consistency check, or a named error when a rostered module's
+bytes are absent from the served combo — instead of the browser showing an unrelated
+service-unavailable line that invites plugin-side misdiagnosis.

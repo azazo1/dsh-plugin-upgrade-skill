@@ -1,0 +1,185 @@
+{
+  "report_date": "2026-09-10",
+  "base_commit": "5724542b1bf072f5f9255a55b8ee3519854d2a52",
+  "source_state": "H24/H25 working-tree grading fixes, frozen before the run",
+  "task_file_sha256": {
+    "H24-invalid-record-salvage-trap/README.md": "f2af098e3c5168d9748259d44e0e72028847f755e7f13585a48ce084957e890f",
+    "H24-invalid-record-salvage-trap/environment/Dockerfile": "7a0b826e2d60cecdefa37b08f7b2ffca0456fcfce804863ecf314e9212ccdc38",
+    "H24-invalid-record-salvage-trap/environment/fixture/README.md": "7464c0811c8538698040fa3ecd8e33dad393ef19442d0d49f722493c5ca30d30",
+    "H24-invalid-record-salvage-trap/environment/fixture/data/artifact_index/entries/A.json": "97ecfc8ebf4bc2d5d4a0984c2f72cdc231b82190af3b5f997656824094a882e9",
+    "H24-invalid-record-salvage-trap/environment/fixture/data/artifact_index/entries/B.json": "ba2578cecbc6ab331ce2fe9f45552bad665352208837cb0141a133f4600a0b2b",
+    "H24-invalid-record-salvage-trap/environment/fixture/data/artifact_index/entries/broken.json": "42cc6f9688695f03bcbd0f97a430643393fa146012113a8ec1b70f94179ecb6a",
+    "H24-invalid-record-salvage-trap/environment/fixture/package-lock.json": "9f1e95ea4af15cb1c6a0e3d246ed62488fb0e0137e996b88080d9dd3633f42a7",
+    "H24-invalid-record-salvage-trap/environment/fixture/package.json": "e2fe8d1e8ca1b426341a1aed8de9a489093a086f96c352ef08d95e4f7997158b",
+    "H24-invalid-record-salvage-trap/environment/fixture/source/source-items.json": "e5c238bbac03f5e2ea2968a9fe4f1a920a00a528a54ef133eee83cded55f76ca",
+    "H24-invalid-record-salvage-trap/environment/fixture/src/app.mjs": "3adc1c884e3dcf5bef6126de6774fdb42cd1cc1caa3189bd4df192f60eb98585",
+    "H24-invalid-record-salvage-trap/environment/fixture/src/domain-spec.mjs": "bf8f56026efc5d4dffa34383f3efb26d1da4a034475bd1bedf8b4285d661a1a9",
+    "H24-invalid-record-salvage-trap/instruction.md": "6bce5c5df6afd0e6b565481bc125257d5897a52aa38f0f10600e823b36249b5f",
+    "H24-invalid-record-salvage-trap/solution/SOLUTION.md": "8fd167c4ffa1291d7478ad251aeb3affcd3dc8c9de8086b8c6156f6684dda3bd",
+    "H24-invalid-record-salvage-trap/solution/solve.sh": "9db3ee97ef31105a62d4f6027d2f21560774acc185b6abd8d469d9a1a182f296",
+    "H24-invalid-record-salvage-trap/solution/src/domain-spec.mjs": "d0e99e70ea7b8a7e26689323f9a9f21ea747114ab62cd96fbda971f55f6849f4",
+    "H24-invalid-record-salvage-trap/task.toml": "a22fca50fc1638fae96fc7be74a0f9c154733a30361c95f32344a839fbcf21af",
+    "H24-invalid-record-salvage-trap/tests/fixture-integrity.mjs": "3b774f283cd58aedd39a2979b5e5fa4826572ec0cf446a2f7cc6880adeebc2f0",
+    "H24-invalid-record-salvage-trap/tests/judge-utils.mjs": "3470458753530cd2c9ea714ee2bdb90dc9728e1d4cf4e72ecf2a7b5e5a76dca5",
+    "H24-invalid-record-salvage-trap/tests/judge-utils.test.mjs": "861d4c8051e5b1c363ea66e5e0f31c598bc3a2466705b9700d64b93d3532a6c3",
+    "H24-invalid-record-salvage-trap/tests/judge.mjs": "f29b8557765a56f3d93691859a43b397a6e64dc9a3c202af6b8e884947c542fd",
+    "H24-invalid-record-salvage-trap/tests/judge.test.mjs": "f806afca8698c052db4d9e3658165e8b265e0ed6e0a8faa2f08d6fcac01d1fa7",
+    "H24-invalid-record-salvage-trap/tests/test.sh": "debf042f232084854bedce30ec63cd5f5f24888380b4f509e532ae122490de1d",
+    "H25-session-seed-boundary-trap/README.md": "a0216f9dc77e49f19ff44a4c2eb1221c02a6516d6806cd2de5d324845fcc502c",
+    "H25-session-seed-boundary-trap/environment/Dockerfile": "f51d9ad17020e5ab3c7f11524c621a13e541ae2ab702bcb6986b4e73b6f740f0",
+    "H25-session-seed-boundary-trap/environment/fixture/README.md": "4f323c99739b4d5a4778cde8289094fbc93da6a693d0205daa57b047a848d036",
+    "H25-session-seed-boundary-trap/environment/fixture/package-lock.json": "d2afe73a787b1daf6d883e2c955092847ca8353c6e574822e9197eb290545c88",
+    "H25-session-seed-boundary-trap/environment/fixture/package.json": "7d35ee8804be3c82d35f28f6946a2442dd18d06f9a3c42eefa89e2dc9f0d7c5e",
+    "H25-session-seed-boundary-trap/environment/fixture/src/app.mjs": "c5a6070515fed02fa4ddd3ec28a590dcd7bc9091e5a466da2020d891e26d2f27",
+    "H25-session-seed-boundary-trap/environment/fixture/src/fork-state.mjs": "3aa9d07742f23e565e42cd685d01bea4fd9241eb73075a9529597332326b18bc",
+    "H25-session-seed-boundary-trap/instruction.md": "3e69b3b2bc161c68c47cab0ce838977f3ee09664f3fd0b9a55a68b63032f1fa2",
+    "H25-session-seed-boundary-trap/solution/SOLUTION.md": "8db1fc7773d36a2372a41394c1c21f05c69fc47486e44dfa137d05583b258c41",
+    "H25-session-seed-boundary-trap/solution/solve.sh": "fb612cb2c497d8f421ff08589c88270ae22910122c11d3da325230e0978d6056",
+    "H25-session-seed-boundary-trap/solution/src/fork-state.mjs": "b13935be98352f447370421a5a809eeb103b33342b4e39ee0b38f61d06078c26",
+    "H25-session-seed-boundary-trap/task.toml": "a8afbab8da7b5b1aaa587bf53a9cd08ad063cd96cc8b435982259be319254748",
+    "H25-session-seed-boundary-trap/tests/fixture-integrity.mjs": "3b774f283cd58aedd39a2979b5e5fa4826572ec0cf446a2f7cc6880adeebc2f0",
+    "H25-session-seed-boundary-trap/tests/judge-utils.mjs": "63b74656cae19b74a7fed25a007d27e67087094cc7da47792fd6a5ea0304b401",
+    "H25-session-seed-boundary-trap/tests/judge-utils.test.mjs": "c3f8b7d3dbfb7b275602abdd13342c520a049b9400fed0f971978fbfc59af168",
+    "H25-session-seed-boundary-trap/tests/judge.mjs": "eaeb27a1a031f46a3b6967c5204d8c9d478143bd68219eeea6e8856fad2d2194",
+    "H25-session-seed-boundary-trap/tests/judge.test.mjs": "c39760acec640f75ad353f3e542c124e0fa7b34674b3a25b45b8af6dfd4cc6ba",
+    "H25-session-seed-boundary-trap/tests/test.sh": "debf042f232084854bedce30ec63cd5f5f24888380b4f509e532ae122490de1d"
+  },
+  "configuration": {
+    "harbor_version": "0.22.0",
+    "codex_version": "0.153.4",
+    "model": "openai/gpt-5.6-luna",
+    "reasoning_effort": "xhigh",
+    "attempts_per_task": 1,
+    "retries": 0,
+    "concurrency": 2,
+    "injected_skills": [],
+    "native_skills_enabled": false,
+    "web_search": "disabled",
+    "task_network_mode": "public",
+    "docker_version": "29.7.2",
+    "node_major": 24
+  },
+  "results": [
+    {
+      "task": "H24-invalid-record-salvage-trap",
+      "trial": "H24-invalid-record-salvage-trap__nAKcnMX",
+      "model": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "score": 100,
+      "reward": 1.0,
+      "reasons": [
+        "+20 domain open resolves",
+        "+15 healthy A+B intact with correct values",
+        "+15 corrupt document moved to a backup file",
+        "+10 backup bytes equal the sealed baseline bytes",
+        "+5 damaged key absent before rebuild",
+        "+5 rebuilt key persists across reopen",
+        "behavioral 70/70; migration 20/20 (backup-and-skip:10 schema-honest:5 contract:5); hygiene 10/10"
+      ],
+      "agent_seconds": 101.597985,
+      "usage": {
+        "n_input_tokens": 227731,
+        "n_cache_tokens": 179456,
+        "n_output_tokens": 2742,
+        "cost_usd": 0.016534519999999997,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "exception": null,
+      "completed_commands": 5,
+      "skill_catalog_blocks": 0,
+      "started_at": "2026-09-10T03:15:37.724431Z",
+      "finished_at": "2026-09-10T03:19:09.651625Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T03:17:16.982347Z",
+        "finished_at": "2026-09-10T03:18:58.580332Z"
+      },
+      "no_skill_path_commands_observed": true
+    },
+    {
+      "task": "H25-session-seed-boundary-trap",
+      "trial": "H25-session-seed-boundary-trap__B56RyuY",
+      "model": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "score": 40,
+      "reward": 0.4,
+      "reasons": [
+        "+15 fresh fork reports inherited cut 3",
+        "+20 resumed forks retain the ORIGINAL cuts 3/1/5 (log grew to 8)",
+        "+10 unforked session has inherited 0",
+        "+10 projection init+apply classifies own vs inherited correctly",
+        "+5 valid seq/offset construction works",
+        "+5 invalid constructors still throw TypeError",
+        "behavioral 65/65; migration 20/25 (seedLength-gone:5 isSeeded:5 inheritedEventCount:0 SessionSeq-position:5 SessionLogOffset-offset:5); hygiene 10/10",
+        "isSeeded [REDACTED] without the inherited count — cap 40",
+        "capped at 40 (was 95)"
+      ],
+      "agent_seconds": 205.99189,
+      "usage": {
+        "n_input_tokens": 589315,
+        "n_cache_tokens": 517376,
+        "n_output_tokens": 9101,
+        "cost_usd": 0.03565652,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "exception": null,
+      "completed_commands": 9,
+      "skill_catalog_blocks": 0,
+      "started_at": "2026-09-10T03:15:37.678731Z",
+      "finished_at": "2026-09-10T03:21:05.139263Z",
+      "agent_execution": {
+        "started_at": "2026-09-10T03:17:34.141082Z",
+        "finished_at": "2026-09-10T03:21:00.132972Z"
+      },
+      "no_skill_path_commands_observed": true
+    }
+  ],
+  "oracle_controls": [
+    {
+      "trial": "H24-invalid-record-salvage-trap__k3Drgc2",
+      "judge": {
+        "score": 100,
+        "max": 100,
+        "reasons": [
+          "+20 domain open resolves",
+          "+15 healthy A+B intact with correct values",
+          "+15 corrupt document moved to a backup file",
+          "+10 backup bytes equal the sealed baseline bytes",
+          "+5 damaged key absent before rebuild",
+          "+5 rebuilt key persists across reopen",
+          "behavioral 70/70; migration 20/20 (backup-and-skip:10 schema-honest:5 contract:5); hygiene 10/10"
+        ]
+      }
+    },
+    {
+      "trial": "H25-session-seed-boundary-trap__gYmeRXK",
+      "judge": {
+        "score": 100,
+        "max": 100,
+        "reasons": [
+          "+15 fresh fork reports inherited cut 3",
+          "+20 resumed forks retain the ORIGINAL cuts 3/1/5 (log grew to 8)",
+          "+10 unforked session has inherited 0",
+          "+10 projection init+apply classifies own vs inherited correctly",
+          "+5 valid seq/offset construction works",
+          "+5 invalid constructors still throw TypeError",
+          "behavioral 65/65; migration 25/25 (seedLength-gone:5 isSeeded:5 inheritedEventCount:5 SessionSeq-position:5 SessionLogOffset-offset:5); hygiene 10/10"
+        ]
+      }
+    }
+  ],
+  "record_limitations": "Harbor scrubbed the non-secret true auth switch into [REDACTED], including JSON booleans and source artifacts. Raw files are unchanged; summary parses only unquoted JSON placeholders as null. Missing optional /app/agent-output artifact produced a warning; source/package artifacts and verifier results were collected."
+}

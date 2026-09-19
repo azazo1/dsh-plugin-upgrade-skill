@@ -1,0 +1,50 @@
+{
+ "decisions": [
+  {
+   "id": "source-patch",
+   "verdict": "pass",
+   "reason": "Locates patch.yml:3-6 target/anchor, cordis.patch.yml patch declaration, and scripts/apply-patch.mjs:5-9; explicitly distinguishes the profile-composition row from the patch surface; explains the patch targets the private session-view surface split by A1-03."
+  },
+  {
+   "id": "events",
+   "verdict": "pass",
+   "reason": "Locates producer (index.ts:15-19, ignorable:true) and consumer (20-22); explains A1-02 removal / A2-01 restoration as corridor fold, advises keeping omission-safe informational markers, and correctly notes public Session.append has no ignorable parameter."
+  },
+  {
+   "id": "host-services",
+   "verdict": "pass",
+   "reason": "Locates both ctx.get('apiProxy') call sites (index.ts:26-31); maps session.rename and the llm.providers split to llm/listProviders + listConfigurableProviders; distinguishes host-plane direct domain-service injection from client-plane ctx.remote and explicitly avoids prescribing a nonexistent Host remote service."
+  },
+  {
+   "id": "host-path",
+   "verdict": "pass",
+   "reason": "Locates index.ts:36-37 fixed join(homedir(),'.dsh','profiles','default'); prescribes runtime DSH_HOME/profile + official launcher; does not claim --profile was new in alpha.1 (correctly notes which bins/profiles changed)."
+  },
+  {
+   "id": "ui",
+   "verdict": "pass",
+   "reason": "Locates both the private import (index.ts:10, dsh-session-view/internal) and registerCommand (41-43) constructing SessionView; prescribes rebuilding imports by owning module against the exact tag and marking capabilities without a stable public seam 'pending confirmation'."
+  },
+  {
+   "id": "channel",
+   "verdict": "pass",
+   "reason": "Locates the loopback server (index.ts:47-53, 127.0.0.1:43121 /api/legacy); explains loopback does not bypass the Connection auth gate, official /api routes are gated, and custom routes need requestRejection or a Connection-owned seam per A1-08."
+  },
+  {
+   "id": "subprocess",
+   "verdict": "pass",
+   "reason": "Locates apply-patch.mjs:12-18 and index.ts:57-67 dsh subprocess + stdout JSON.parse; explains stdout is final assistant text while stderr gains dsh: reasoning: and carries errors, and correctly states the JSONL assumption was already wrong in rc.2 rather than inventing an alpha.2 stdout change."
+  },
+  {
+   "id": "mapping",
+   "verdict": "pass",
+   "reason": "Maps category 3→A1-01, 2→A1-02+A2-01 fold, 1 and 5→A1-03, 4→A1-04 (plus 7 secondary), 6→A1-08, and adds valid A1-05 for #7; all mappings grounded in cited lines, far beyond a bare card list."
+  },
+  {
+   "id": "limits",
+   "verdict": "pass",
+   "reason": "States all seven categories hit (no-hit discussion handled per-category with explicit ruled-out cards), documents scan limits (static copy, curated card set, silent-exclusion/locale risks), and proposes build/typecheck, cold boot with pending-row watching, and headless exit-code/functional classification without requiring execution of the fixture."
+  }
+ ],
+ "caps": []
+}

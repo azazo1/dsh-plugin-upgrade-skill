@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "split-chunk-sibling-imports",
+      "verdict": "pass",
+      "reason": "Grounded in console-split-chunks.txt: entry 200, siblings src-BfvxrPJe.js/pie-... 404, siblings unshipped; explains browser resolves the chunk's own relative imports relative to the chunk URL, first 404 fails the whole module graph, fallback to code block; fix is one self-contained chunk with splitting off."
+    },
+    {
+      "id": "windows-realpath-case-403",
+      "verdict": "pass",
+      "reason": "Grounded in chunk-route.ts startsWith guards plus the ci-note.md LIB_DIR (E:\\) vs realpath (e:\\) printout: realpathSync canonicalizes the drive letter to lowercase while LIB_DIR keeps uppercase, the case-sensitive startsWith misjudges containment, and Linux CI passes only because casing never diverges; explicitly rejects the 'Windows paths are unreliable' folklore."
+    },
+    {
+      "id": "relative-containment-and-mime",
+      "verdict": "pass",
+      "reason": "Anchors the fix to the failing startsWith comparisons and proposes path.relative(LIB_DIR, candidate) accepted iff non-empty, not starting with '..', not absolute, with the realpath pass kept under the same relative-based rule; also states the JavaScript MIME requirement (browsers refuse module imports served as text/plain or octet-stream) and notes the route already sends application/javascript."
+    },
+    {
+      "id": "modal-wheel-ownership",
+      "verdict": "partial",
+      "reason": "Ownership rule is complete (modal preventDefault+stopPropagation while open, pane handler must explicitly stand down via modal-presence/target check), but the why-both-fire mechanism is partly wrong: it describes wheel as bubbling with the modal handler firing first via propagation, rather than the pane's document-level capture listener running before the modal handlers."
+    },
+    {
+      "id": "regression-coverage",
+      "verdict": "partial",
+      "reason": "Strong coverage for incidents 2 and 3 (mixed-case contained path must 200 while ../ escape stays 403; modal-open Ctrl+wheel zooms diagram and pane font untouched, including a capture variant) and a valid incident-1 build gate plus module-graph import smoke, but it omits the specific test that a stubbed/unreachable chunk URL degrades the fence to the original code block rather than an error."
+    }
+  ],
+  "caps": []
+}

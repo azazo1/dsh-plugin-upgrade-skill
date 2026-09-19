@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "missing-mirror-tag",
+      "verdict": "pass",
+      "reason": "Grounds attempt-1 failure in ls-remote-tags.txt (v0.9.5 absent; tags jump v0.9.1→v0.9.7) and sync-script.sh pushing only HEAD:main per remote, explicitly rejecting network/typo causes."
+    },
+    {
+      "id": "runtime-compatibility-direction",
+      "verdict": "pass",
+      "reason": "Uses dsh-version.txt (0.1.1-rc.2) and compat-table.md (v0.9.7 targets 0.1.2-alpha.1) to explain a forward-built artifact whose useConversation seat is absent on the older rc.2 runtime; explains why successful install/restart proves nothing."
+    },
+    {
+      "id": "frozen-runtime-remedy",
+      "verdict": "partial",
+      "reason": "Selects v0.9.3 citing rc.1 real-boot verification and the additive rc.2 note, and its evidence table notes v0.9.2–v0.9.6 absent. But the remedy command asserts v0.9.3 'actually exists on the public mirror' and is immediately installable, contradicting the tag listing and the packet rule against presenting the absent tag as installable; no conditional tag-publication step or verified-commit alternative."
+    },
+    {
+      "id": "tag-distribution-repair",
+      "verdict": "pass",
+      "reason": "Proposes explicit per-release tag push (git push \"$remote\" vX.Y.Z or --tags) grounded in the branch-only sync script, plus an ls-remote --tags verification gate per mirror before release announcement."
+    },
+    {
+      "id": "version-routing-docs",
+      "verdict": "pass",
+      "reason": "Routes README install pins by consumer DSH version: 0.1.1-rc.x stays on v0.9.3, versions ≥v0.9.7 require 0.1.2-alpha.1; keeps compat matrix adjacent to the install command and adds a checklist gate; avoids a single newest-tag default and does not generalize to untested future alphas."
+    }
+  ],
+  "caps": []
+}

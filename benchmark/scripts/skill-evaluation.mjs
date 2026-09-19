@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { basename, join, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { summarize, renderJson, renderMarkdown } from './summarize-runs.mjs'
+import { RUBRICS } from '../report-judge/rubrics.mjs'
 
 export const CONDITIONS = ['oracle', 'nop', 'no-injected-skill', 'upgrade-only', 'all-skills']
 export const HARBOR_VERSION = '0.22.0'
 const root = fileURLToPath(new URL('../../', import.meta.url))
 export const TASKS = JSON.parse(readFileSync(new URL('../skill-evaluation/suite.json', import.meta.url), 'utf8')).tasks
+export const SEMANTIC_TASKS = TASKS.filter(task => Object.hasOwn(RUBRICS, task))
+export const CONTROL_TASKS = TASKS.filter(task => !SEMANTIC_TASKS.includes(task))
 
 export function evaluationConfig({ condition, model, attempts = 1, output, repoRoot = root }) {
   if (!CONDITIONS.includes(condition)) throw new Error(`Unknown condition: ${condition}`)
@@ -34,7 +37,7 @@ export function evaluationConfig({ condition, model, attempts = 1, output, repoR
     retry: { max_retries: 0 },
     environment: { type: 'docker' },
     agents: [{ name: control ? condition : 'terminus-2', ...(control ? {} : { model_name: model }), skills }],
-    tasks: TASKS.map((task) => ({ path: join(repoRoot, 'benchmark/tasks', task) })),
+    tasks: (control ? CONTROL_TASKS : TASKS).map((task) => ({ path: join(repoRoot, 'benchmark/tasks', task) })),
   }
 }
 
@@ -67,7 +70,11 @@ export function prepare(options) {
     schemaVersion: 1, harborVersion: HARBOR_VERSION, sourceCommit: git('rev-parse', 'HEAD'),
     dirty: git('status', '--porcelain', '--untracked-files=normal') !== '',
     condition: options.condition, model: config.agents[0].model_name ?? null,
-    attempts: config.n_attempts, tasks: TASKS,
+    attempts: config.n_attempts, tasks: config.tasks.map(task => basename(task.path)),
+    sourceSuiteTasks: TASKS,
+    // A model-free job cannot judge semantic correctness. CI covers the report
+    // verifiers separately with test:report-judge, without credentials or models.
+    semanticProtocolTasks: ['oracle', 'nop'].includes(options.condition) ? SEMANTIC_TASKS : [],
     suppliedSkills: config.agents[0].skills.map((path) => path.slice(root.length)),
     // Supply is a configuration fact, not evidence that a Skill was opened.
     skillActivation: 'not-measured',
@@ -104,7 +111,7 @@ export function check(output) {
   const evidence = { ...manifest, usage, failures, complete: failures.length === 0 }
   writeFileSync(join(output, 'evidence.json'), `${JSON.stringify(evidence, null, 2)}\n`)
   const coverage = manifest.condition === 'oracle' || manifest.condition === 'nop'
-    ? 'Control run only; no model was evaluated.'
+    ? `Deterministic control run only; no model was evaluated. Semantic suite tasks (${(manifest.semanticProtocolTasks ?? []).join(', ') || 'none'}) require the separate report-judge protocol checks; these controls do not establish their semantic correctness.`
     : 'Scored outcome evaluation. Skill opening, natural-language routing and absence of semantic conflicts are not established by this report.'
   const text = `${renderMarkdown(summary)}\n\n${coverage}\n\nSource: ${manifest.sourceCommit}; dirty: ${manifest.dirty}.\n\nToken/duration accounting: ${JSON.stringify(usage)}\n\n${failures.length ? failures.map((failure) => `- ${failure}`).join('\n') : 'All expected trials produced clean verifier results.'}\n`
   writeFileSync(join(output, 'summary.md'), text)

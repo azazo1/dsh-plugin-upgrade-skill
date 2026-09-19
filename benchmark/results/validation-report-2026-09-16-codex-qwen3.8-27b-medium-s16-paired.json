@@ -1,0 +1,290 @@
+{
+  "report": "validation-report-2026-09-16-codex-qwen3.8-27b-medium-s16-paired",
+  "status": "DRAFT (inverted-U workplan §5 Qwen cell; not a formal benchmark entry)",
+  "snapshot_commit": "860f4c1423d1ae513c5d2947e0e2a7fadf4a3565",
+  "sampling": {
+    "pool": "S1-S22 (22 tasks)",
+    "n_selected": 16,
+    "seed_sha256_16": "1415dd3d7288176b",
+    "salt": "inverted-u-qwen-medium|arm=qwen3.8-27b|v1"
+  },
+  "budget_policy": {
+    "agent_timeout_uniform": 900.0,
+    "verifier_timeout_multiplier": 2,
+    "original_budgets": "300x17, 600x4, 900x1"
+  },
+  "judge": {
+    "protocol": "report-judge-v2",
+    "model": "gpt-5.4",
+    "cross_family": true,
+    "scored_trials": 64,
+    "judge_errors": 0,
+    "model_probe": [
+      [
+        "gpt-5.4",
+        "200 valid JSON",
+        "selected"
+      ],
+      [
+        "gpt-4.1",
+        "200 valid JSON",
+        "available, older generation"
+      ],
+      [
+        "gpt-5.6-sol",
+        "400 word-'json'",
+        "user-requested; rejected by judge request shape"
+      ],
+      [
+        "gpt-5.6-terra",
+        "400 word-'json'",
+        "rejected"
+      ],
+      [
+        "gpt-5.6-luna",
+        "400 word-'json'",
+        "rejected"
+      ],
+      [
+        "gpt-5.5",
+        "400 word-'json'",
+        "rejected"
+      ],
+      [
+        "gemini-3.5-flash",
+        "200 NOT JSON",
+        "fenced markdown, fails JSON.parse"
+      ],
+      [
+        "gpt-5.2 / claude-* / gemini-3.1-pro / minimax-m2.5",
+        "400 model unavailable",
+        "backend does not serve them"
+      ]
+    ]
+  },
+  "totals": {
+    "with-skill": {
+      "trials": 32,
+      "scored": 32,
+      "mean": 0.778906,
+      "perfect": 18,
+      "zero": 5,
+      "timeouts": 4,
+      "summed_trial_seconds": 14676.392
+    },
+    "no-skill": {
+      "trials": 32,
+      "scored": 32,
+      "mean": 0.711719,
+      "perfect": 13,
+      "zero": 3,
+      "timeouts": 1,
+      "summed_trial_seconds": 12141.142
+    },
+    "with_skill_tokens": {
+      "input": 13795810,
+      "cache": 13094368,
+      "output": 592951
+    },
+    "no_skill_tokens": {
+      "input": 5490991,
+      "cache": 5189296,
+      "output": 503465
+    },
+    "with_skill_job_wall_seconds": 14714,
+    "no_skill_job_wall_seconds": 12178
+  },
+  "task_delta": {
+    "value": 0.0672,
+    "bootstrap_ci_95": [
+      -0.1242,
+      0.2625
+    ],
+    "bootstrap_draws": 10000,
+    "bootstrap_seed": 20260915,
+    "positive": 8,
+    "zero": 3,
+    "negative": 5
+  },
+  "per_task": [
+    {
+      "task": "S1-static-scan",
+      "with_skill_mean": 0.5,
+      "no_skill_mean": 0.125,
+      "delta": 0.375,
+      "with_timeouts": 1,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S10-paste-rename-and-version-chip",
+      "with_skill_mean": 1.0,
+      "no_skill_mean": 0.95,
+      "delta": 0.05,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S11-mermaid-lazyload-trap",
+      "with_skill_mean": 0.45,
+      "no_skill_mean": 0.9,
+      "delta": -0.45,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S12-global-upgrade-ebusy-trap",
+      "with_skill_mean": 1.0,
+      "no_skill_mean": 1.0,
+      "delta": 0.0,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S13-peer-range-vs-runtime",
+      "with_skill_mean": 1.0,
+      "no_skill_mean": 1.0,
+      "delta": 0.0,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S14-link-install-lock-trap",
+      "with_skill_mean": 1.0,
+      "no_skill_mean": 1.0,
+      "delta": 0.0,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S15-slot-error-boundary-crash",
+      "with_skill_mean": 0.9,
+      "no_skill_mean": 1.0,
+      "delta": -0.1,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S17-external-ui-plugin-onboarding-trap",
+      "with_skill_mean": 0.95,
+      "no_skill_mean": 0.0,
+      "delta": 0.95,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S18-terminal-sprite-render-trap",
+      "with_skill_mean": 0.3,
+      "no_skill_mean": 0.75,
+      "delta": -0.45,
+      "with_timeouts": 1,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S19-phantom-update-stale-host",
+      "with_skill_mean": 0.0,
+      "no_skill_mean": 0.65,
+      "delta": -0.65,
+      "with_timeouts": 2,
+      "no_timeouts": 1
+    },
+    {
+      "task": "S2-negative-scan",
+      "with_skill_mean": 1.0,
+      "no_skill_mean": 0.45,
+      "delta": 0.55,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S21-resource-service-unavailable-trap",
+      "with_skill_mean": 0.65,
+      "no_skill_mean": 0.7,
+      "delta": -0.05,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S22-duplicate-insert-boot-crash-trap",
+      "with_skill_mean": 1.0,
+      "no_skill_mean": 0.95,
+      "delta": 0.05,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S5-negative-naming",
+      "with_skill_mean": 0.8125,
+      "no_skill_mean": 0.625,
+      "delta": 0.1875,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "with_skill_mean": 1.0,
+      "no_skill_mean": 0.4375,
+      "delta": 0.5625,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "with_skill_mean": 0.9,
+      "no_skill_mean": 0.85,
+      "delta": 0.05,
+      "with_timeouts": 0,
+      "no_timeouts": 0
+    }
+  ],
+  "exceptions": [
+    {
+      "task": "S1-static-scan",
+      "cond": "with-skill",
+      "rep": "2",
+      "reward": 0.0,
+      "exception": "AgentTimeoutError"
+    },
+    {
+      "task": "S1-static-scan",
+      "cond": "no-skill",
+      "rep": "1",
+      "reward": 0.0,
+      "exception": "NonZeroAgentExitCodeError"
+    },
+    {
+      "task": "S11-mermaid-lazyload-trap",
+      "cond": "with-skill",
+      "rep": "1",
+      "reward": 0.0,
+      "exception": "NonZeroAgentExitCodeError"
+    },
+    {
+      "task": "S18-terminal-sprite-render-trap",
+      "cond": "with-skill",
+      "rep": "2",
+      "reward": 0.0,
+      "exception": "AgentTimeoutError"
+    },
+    {
+      "task": "S19-phantom-update-stale-host",
+      "cond": "with-skill",
+      "rep": "1",
+      "reward": 0.0,
+      "exception": "AgentTimeoutError"
+    },
+    {
+      "task": "S19-phantom-update-stale-host",
+      "cond": "with-skill",
+      "rep": "2",
+      "reward": 0.0,
+      "exception": "AgentTimeoutError"
+    },
+    {
+      "task": "S19-phantom-update-stale-host",
+      "cond": "no-skill",
+      "rep": "1",
+      "reward": 0.3,
+      "exception": "AgentTimeoutError"
+    }
+  ]
+}

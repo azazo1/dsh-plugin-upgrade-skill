@@ -208,7 +208,7 @@ function auditPackageDependencies() {
 function run(file, args, cwd, timeout) {
   return new Promise((resolvePromise) => {
     execFile(file, args, { cwd, timeout }, (error, stdout, stderr) => {
-      resolvePromise({ code: error?.code ?? 0, stdout: stdout || '', stderr: stderr || '' })
+      resolvePromise({ code: typeof error?.code === 'number' ? error.code : error ? 1 : 0, stdout: stdout || '', stderr: stderr || '' })
     })
   })
 }

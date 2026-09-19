@@ -9,13 +9,16 @@ production-freeze constraint, and the maintainer-side fix. 题面见
 [instruction.md](instruction.md)，判分逻辑见 [tests/judge.mjs](tests/judge.mjs)。
 
 - **Environment**: `node:24-bookworm` + git (fixture baseline-committed for the read-only gate); no dsh (static task).
-- **Verifier**: judge checks the fixture is unchanged + five diagnosis aspects, 0-100 normalized to
-  `/logs/verifier/reward.txt`.
-- **Oracle**: `harbor run -p benchmark/tasks/S8-release-routing-trap -a oracle`, expected reward 1.0.
+- **Verifier**: [LLM-as-judge by default](../../docs/report-judge-pilot.md), task version `4.0.0`.
+  A sealed fixture hash enforces read-only work. The separate verifier reads the report,
+  judges each criterion with a verdict and short reason, and deterministically aggregates the score.
+  Configure `REPORT_JUDGE_BASE_URL`, `REPORT_JUDGE_MODEL` and `REPORT_JUDGE_API_KEY`
+  only for the verifier. Missing reports score 0; evaluator failures leave no reward.
+- **Oracle**: `harbor run -p benchmark/tasks/S8-release-routing-trap -a oracle`; inspect the semantic decisions (a reference answer has no assumed model score).
 
 ```
 environment/fixture/   # evidence pack: mirror tags, dsh version, compat table, sync script (crash symptom is quoted in instruction.md)
-tests/                 # judge.mjs + judge-utils.mjs + test.sh
+tests/                 # judge.mjs + packet.json + test.sh + Dockerfile
 solution/              # reference report + solve.sh
 ```
 

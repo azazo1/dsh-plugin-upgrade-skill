@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "group": "deepseek-v4-flash",
+  "source": "benchmark/results/validation-report-2026-09-01-terminus2-deepseek-v4-flash.md",
+  "extractedAt": "2026-09-15",
+  "protocol": "terminus-2 harness, Harbor 0.22.0, -k 3 -n 3, base 2de49059ec3178e23ea644cd78e7d20575b74745; per-task median of 3 runs per condition; original Harbor keyword verifiers",
+  "tasks": [
+    {
+      "task": "S1-static-scan",
+      "noskill": [
+        0.33,
+        0.0,
+        0.33
+      ],
+      "skill": [
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "S2-negative-scan",
+      "noskill": [
+        0.0,
+        0.4,
+        0.6
+      ],
+      "skill": [
+        1.0,
+        0.8,
+        1.0
+      ]
+    },
+    {
+      "task": "S3-snapshot-migration",
+      "noskill": [
+        0.6,
+        0.6,
+        0.6
+      ],
+      "skill": [
+        1.0,
+        0.8,
+        0.0
+      ]
+    },
+    {
+      "task": "S4-legacy-client-imports",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        0.7,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "S5-negative-naming",
+      "noskill": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "skill": [
+        0.5,
+        0.5,
+        0.75
+      ]
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "noskill": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "skill": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "noskill": [
+        0.5,
+        0.25,
+        0.5
+      ],
+      "skill": [
+        0.25,
+        0.1,
+        0.5
+      ]
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "noskill": [
+        0.8,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "H1-plane-trap",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "H2-baseline-trap",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "H3-client-plane",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "H4-tsbuildinfo-trap",
+      "noskill": [
+        0.3,
+        0.3,
+        0.3
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "H5-runtime-export-drift",
+      "noskill": [
+        1.0,
+        1.0,
+        0.6
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "H6-remote-error-trap",
+      "noskill": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "skill": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "task": "H7-locale-trap",
+      "noskill": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "skill": [
+        0.9,
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "task": "H8-fire-drill",
+      "noskill": [
+        0.2,
+        0.2,
+        0.2
+      ],
+      "skill": [
+        0.79,
+        0.6
+      ]
+    },
+    {
+      "task": "H9-dsh-web-alpha2",
+      "noskill": [
+        0.38,
+        0.0,
+        0.26
+      ],
+      "skill": [
+        0.05,
+        0.0,
+        0.05
+      ]
+    },
+    {
+      "task": "H10-browser-activation-trap",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "M1-host-migration",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "M2-optional-dep-trap",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "M3-session-projection",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "M4-peer-prerelease-range",
+      "noskill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "skill": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "task": "M5-token-auth-smoke",
+      "noskill": [
+        0.6,
+        0.6,
+        0.6
+      ],
+      "skill": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    }
+  ]
+}

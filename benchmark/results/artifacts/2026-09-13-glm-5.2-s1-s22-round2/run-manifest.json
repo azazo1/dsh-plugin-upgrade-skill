@@ -1,0 +1,8 @@
+﻿{
+    "harness":  "dsh web in-session subagents",
+    "solver_completed":  "2026-09-13",
+    "round":  "2",
+    "model":  "zai/glm-5.2",
+    "base_commit":  "a43afbe",
+    "notes":  "R2 of 3-round median; 44/44 reports; no silent failures; no relaunches needed this round"
+}

@@ -1,0 +1,25 @@
+{
+  "decisions": [
+    {
+      "id": "host-break",
+      "verdict": "pass",
+      "reason": "Report pinpoints index.js:3 inject=[\"apiProxy\"] and index.js:9 ctx.apiProxy.llm.providers(), maps the break to DSH-0.1.2-A1-01, explains the llm.providers migration (direct llm service / listProviders confirmed against declarations) and identifies @deepseek-ai/dsh-host-apiproxy@0.0.1-rc.1 in package.json as the removed dead dependency."
+    },
+    {
+      "id": "negative-coverage",
+      "verdict": "pass",
+      "reason": "All six other categories are tabulated with per-file scan evidence and grep-style pattern lists. session-notes.js is cleared as pure string/array utility (and dead code); cordis.patch.yml is correctly classified as ordinary profile composition, not a host-source patch, without misclassifying its insert or denying its existence."
+    },
+    {
+      "id": "inference-boundary",
+      "verdict": "pass",
+      "reason": "Section 2 explicitly argues zero hits means 'not detected by current patterns', cites heuristic scan limits (data flow, revived dead code, indirect coupling), notes dependency/config surfaces need separate checks, and distinguishes the decisive apiProxy break (plugin won't even activate) from the six negative categories."
+    },
+    {
+      "id": "verification-plan",
+      "verdict": "pass",
+      "reason": "Specifies exact-cohort install + build/typecheck, isolated-profile cold boot verifying activation with no pending services, and an actual provider-list call asserting real data (not the swallowed catch path); explicitly labeled as proposed, not executed in the static fixture."
+    }
+  ],
+  "caps": []
+}

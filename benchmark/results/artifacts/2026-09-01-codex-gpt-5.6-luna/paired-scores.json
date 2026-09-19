@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "group": "gpt-5.6-luna",
+  "source": [
+    "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-luna-other-18.md",
+    "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-luna-other-18-no-injected-skill.md"
+  ],
+  "extractedAt": "2026-09-15",
+  "protocol": "Codex 0.152.0 harness, Harbor 0.22.0, reasoning xhigh, 18 tasks (H8 not in snapshot), n=1 per arm; legacy graders; SENSITIVITY ONLY: no-skill arm H2/H3 trajectories read the Codex-native plugin-creator skill (contamination); decontaminated 16-task no-skill subset 10.42/16 = 0.6513 is diagnostic only",
+  "tasks": [
+    {
+      "task": "H1-plane-trap",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "H2-baseline-trap",
+      "noskill": 1.0,
+      "skill": 1.0,
+      "noskillContaminated": "trajectory read the Codex-native plugin-creator skill despite no Harbor skill being mounted"
+    },
+    {
+      "task": "H3-client-plane",
+      "noskill": 1.0,
+      "skill": 1.0,
+      "noskillContaminated": "trajectory read the Codex-native plugin-creator skill despite no Harbor skill being mounted"
+    },
+    {
+      "task": "H4-tsbuildinfo-trap",
+      "noskill": 0.3,
+      "skill": 1.0
+    },
+    {
+      "task": "H5-runtime-export-drift",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "H6-remote-error-trap",
+      "noskill": 0.0,
+      "skill": 0.0
+    },
+    {
+      "task": "H7-locale-trap",
+      "noskill": 1.0,
+      "skill": 0.9
+    },
+    {
+      "task": "M1-host-migration",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "M2-optional-dep-trap",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "M3-session-projection",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "M4-peer-prerelease-range",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "S1-static-scan",
+      "noskill": 0.67,
+      "skill": 1.0
+    },
+    {
+      "task": "S2-negative-scan",
+      "noskill": 0.6,
+      "skill": 1.0
+    },
+    {
+      "task": "S3-snapshot-migration",
+      "noskill": 0.0,
+      "skill": 1.0
+    },
+    {
+      "task": "S4-legacy-client-imports",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "S5-negative-naming",
+      "noskill": 0.5,
+      "skill": 0.75
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "noskill": 0.25,
+      "skill": 0.25
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "noskill": 0.1,
+      "skill": 0.25
+    }
+  ]
+}

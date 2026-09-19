@@ -27,7 +27,7 @@ export function makeProjection() { return { key: 'fork-state', stateSchema: unde
 `
 
 const ORACLE_RUNTIME = { metaShape: { isSeeded: true, hasSeedLengthKey: false, inheritedEventCount: 3 }, freshHeaderIsSeeded: true }
-const ORACLE_OBS = { invalidRejected: true }
+const ORACLE_OBS = { invalidRejected: true, resumedBoundaryPreserved: true }
 
 const UNTOUCHED_SOURCE = `
 export function makeForkMeta(cut) { return { seedLength: cut } }
@@ -49,7 +49,7 @@ export function eventPosition(n) { return SessionSeq(n) }
 export function logOffset(n) { return SessionLogOffset(n) }
 `
 const FRESH_ONLY_RUNTIME = { metaShape: { isSeeded: true, hasSeedLengthKey: false, inheritedEventCount: 3 }, freshHeaderIsSeeded: true }
-const FRESH_ONLY_OBS = { invalidRejected: true }
+const FRESH_ONLY_OBS = { invalidRejected: true, resumedBoundaryPreserved: false }
 
 const AS_CAST_SOURCE = `
 export function makeForkMeta(cut) { return { meta: { isSeeded: true }, inheritedEventCount: cut as unknown as SessionLogOffset } }
@@ -88,7 +88,7 @@ test('extractNamedFunctions handles function declarations and arrow consts', () 
   }
 })
 
-test('scanSource detects stale seedLength, casts, brand placement, resume traps', () => {
+test('scanSource detects stale seedLength, casts and brand placement', () => {
   const oracle = scanSource(ORACLE_SOURCE)
   assert.equal(oracle.staleSeedLength, false)
   assert.equal(oracle.asCasts, false)
@@ -96,16 +96,13 @@ test('scanSource detects stale seedLength, casts, brand placement, resume traps'
   assert.equal(oracle.logOffsetHasSessionLogOffset, true)
   assert.equal(oracle.seqUsedForOffsets, false)
   assert.equal(oracle.offsetUsedForPositions, false)
-  assert.equal(oracle.resumeUsesLogLength, false)
   const untouched = scanSource(UNTOUCHED_SOURCE)
   assert.equal(untouched.staleSeedLength, true)
   assert.equal(untouched.eventPositionHasSessionSeq, false)
-  assert.equal(untouched.resumeUsesLogLength, true)
   assert.equal(scanSource(AS_CAST_SOURCE).asCasts, true)
   const swapped = scanSource(SWAPPED_SOURCE)
   assert.equal(swapped.seqUsedForOffsets, true)
   assert.equal(swapped.offsetUsedForPositions, true)
-  assert.equal(scanSource(FRESH_ONLY_SOURCE).resumeUsesLogLength, true)
 })
 
 test('scanPackageJson detects the alpha.3 pin in dependency values only', () => {
@@ -222,9 +219,9 @@ export function makeProjection() { return { key: 'fork-state', init(header, seed
   assert.ok(score <= 20, `got ${score}`)
 })
 
-test('sealed-file gates: node_modules/host edits are flat 0 via judge gates', () => {
-  // judge.mjs gates: any tracked modification outside fixture/src/** and
-  // fixture/package.json is tampering; the fixture-untouched gate flattens
-  // no-op submissions. Asserted as the documented contract.
-  assert.ok(true)
+test('a valid length check is not evidence of a lost inherited boundary', () => {
+  const source = ORACLE_SOURCE.replace('export function resumeForkSession(id, seedEvents, cut) {',
+    'export function resumeForkSession(id, seedEvents, cut) { if (cut > seedEvents.length) throw new RangeError("cut");')
+  assert.equal(run(ORACLE_RUNTIME, source, { observations: ORACLE_OBS, behavioral: 65 }), 100)
+  assert.equal(run(ORACLE_RUNTIME, source, { observations: FRESH_ONLY_OBS, behavioral: 65 }), 65)
 })

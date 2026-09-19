@@ -1,22 +1,20 @@
-# Do Migration Skills Actually Help? A Community-Grounded Benchmark for Skill-Guided Framework Migration
+# When Does a Migration Skill Help?
 
-Review and experiment planning (Chinese): [review](REVIEW-2026-09-08.zh.md) · [paper TODO](GAP-ANALYSIS.zh.md), updated 2026-09-08.
+Current subtitle: **A Retrospective Study of Version-Pinned Plugin Migration**.
+
+The September 15 revision retains the inverted-U shape of absolute gains as an exploratory observation across heterogeneous historical configurations. It does not establish a capability effect. The benchmark and retrospective paired analysis are the contributions; the unexecuted source-matched protocol is in the appendix.
+
+The single active work plan is [Inverted-U work recommendations](INVERTED-U-WORKPLAN.zh.md): analyze existing data and audit output grades first, then decide whether a matched three-configuration experiment is worthwhile. Superseded plans have been removed. The [revision record](audit/REVISION-2026-09-15-retrospective.zh.md) describes completed edits.
 
 [中文说明](README.zh.md)
-
-This work-in-progress paper now plans a fresh **56-task × two-configuration × four-condition × one-trial evaluation (448 runs)**; see the [execution plan](../docs/superpowers/plans/2026-09-08-paper-56-task-rerun.md). A subset of K tasks will be fixed before formal outcomes are seen and receive two additional trials in every cell (16K extra runs), reported separately for stability. Generated tables still describe the **23-task historical snapshot** until the new 56-task inventory passes quality control and is frozen. Historical scores will not enter the new main table, and the full pool is not claimed to be independently unseen. Empirical conclusions remain pending.
-
-The [experiment and exposure audit](audit/README.zh.md) covers 22 submitted reports and 56 current task definitions. Neither inventory count establishes the size of an independent test set.
 
 ## Directory structure
 
 - `latex/` — LaTeX source of the report
   - `acl_latex.tex` — main file (title, authors, abstract, full section skeleton; based on the latest official template)
   - `acl.sty` / `acl_natbib.bst` — official ACL style (acl-org/acl-style-files master, 2026-06)
-  - `custom.bib` — bibliography (five versioned arXiv records checked; broader literature review remains pending)
+  - `custom.bib` — active bibliography; full related-work review remains pending
   - `formatting.md` — official formatting guidelines
-  - `acl_lualatex.tex` — XeLaTeX / LuaLaTeX template (unused)
-- `word/`, `archive/` — official Word template and legacy templates (unused, kept as shipped with the style package)
 
 ## Build
 
@@ -29,7 +27,7 @@ For [Overleaf](https://www.overleaf.com/), upload `latex/` and `generated/` toge
 
 ## Historical generated benchmark metadata
 
-The existing historical task metadata is **generated, never hand-written**. Switching the main table to the planned 56-task snapshot is a freeze-stage task; the old snapshot stays immutable:
+The existing historical task metadata is **generated, never hand-written**. The historical snapshot stays immutable; no switch to a future study is planned by this cleanup:
 
 - **Source of truth**: one frozen evaluation snapshot, `benchmark/snapshots/2026-09-01-main-23.json` (currently 23 tasks, 3 runs per task, `per-task-median` aggregation, 2 conditions).
 - The generator (`paper/scripts/generate-benchmark-table.mjs`) reads every task row, registry Type (`Static` / `Hands-on`), and description from **git objects at the snapshot's pinned benchmark commit** — never from the current checkout. Tasks added to the living benchmark after the pinned commit do not change the paper metadata of this experiment.
@@ -49,17 +47,25 @@ npm run check:paper-benchmark   # CI gate: fails if the committed files drift
 
 `check:paper-benchmark` and the generator unit tests run as part of `npm test`, so a snapshot/metadata drift turns CI red. The generator is deterministic: the same snapshot plus the same local git objects always produces byte-identical files (no timestamps, no host paths), and a snapshot whose pinned commit is missing locally is a hard error rather than a fallback to current `main`.
 
-## Writing status
+## Generated results table (main result)
 
-- [x] Rewrite abstract, introduction and contributions around three research questions.
-- [x] Replace unsupported positive findings with explicit evidence status and planned analyses.
-- [x] Use generated frozen task counts; distinguish prefixes from interaction modes.
-- [x] Create report and development-exposure ledgers (initial audit, not a certified split).
-- [x] Replace five active bibliography stubs with checked records; preserve old leads in `audit/`.
-- [ ] Archive available historical artifacts; complete new protocol hashes, incident grouping and provenance.
-- [ ] Validate graders independently and regrade both conditions consistently.
-- [ ] Freeze and run the 56-task single-trial four-condition study and preselected stability repeats; holdout and clean/trap are extensions.
-- [ ] Complete remaining figures, measured results, appendices, and full related-work review.
+The paper's main result table is **generated, never hand-written**:
+
+- **Source of truth**: `benchmark/results/paired-effect-stats.json`, produced by `benchmark/scripts/measure-paired-effect.mjs` (task-level paired deltas, mulberry32 seed 20260907, 10000 bootstrap replicates, two-sided Wilcoxon; input-file SHA-256s embedded).
+- `paper/generated/paired-effect-table.tex` (five main model points) and `paper/generated/paired-effect-sensitivity-table.tex` (contaminated luna group) are rendered from that JSON by `paper/scripts/generate-paired-effect-table.mjs` and `\input` into the Results section and the sensitivity appendix.
+
+Regenerate / verify (from the repo root):
+
+```bash
+npm run measure:benchmark-paired   # recompute stats + write the JSON
+npm run generate:paper-paired      # render the .tex from the JSON
+npm run check:paper-paired         # CI gate: byte-exact drift check for both
+npm run test:benchmark-paired      # unit + golden tests for the statistics
+```
+
+## Current status
+
+The manuscript retains the inverted-U as an exploratory observation; the unexecuted four-condition design is in the appendix. Statistics are reproducible and the working PDF has been compiled and inspected. Grade validation, robustness analyses, and submission preparation remain outstanding; tasks are maintained only in the [work plan](INVERTED-U-WORKPLAN.zh.md).
 
 ## Related resources
 

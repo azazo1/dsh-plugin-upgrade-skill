@@ -1,0 +1,41 @@
+{
+  "decisions": [
+    {
+      "id": "metadata-chain-attribution",
+      "verdict": "pass",
+      "reason": "Uses contrast-probe.txt (file-trace RPC reads same file fine vs meta.status stays 'none' on the documentpreview tab) to localize the fault to the api-workspace-files Remote/host metadata delivery chain; explicitly rules out disk, policy, and renderer, notes the declared host row doesn't prove the service answers, and does not demand an unseen internal function."
+    },
+    {
+      "id": "valid-probes-and-partitioning",
+      "verdict": "pass",
+      "reason": "Distinguishes the 62/62 per-module sweep (valid) from the hand-joined 4-5 KB URL 404 (invalid, never issued by the real loader, which fetches per-entry per the manifest); treats the joined 404 as route decline, not missing modules, and handles the 60-vs-62 manifest/probe count in an evidence-bounded way (reports both numbers without inventing reconciliation)."
+    },
+    {
+      "id": "distractors-and-tab-scope",
+      "verdict": "pass",
+      "reason": "Separates the dsh-paste-input fold warnings as an unrelated warning family; uses boot-manifest-excerpt.txt to explain textpreview→documentpreview and the session-only canOpen scope, attributing the absolute-address claim failure to that scope narrowing while explicitly stating it does not explain the stalled session-tab metadata."
+    },
+    {
+      "id": "ordered-mitigation",
+      "verdict": "pass",
+      "reason": "Gives restart once → rollback to a verified published version (0.1.3-alpha.2, citing #5999's escape hatch) → upstream follow-up; explicitly rejects plugin-side rewrite/retry/fallback as cures and treats the alpha.1 roster mismatch as prior art while noting alpha.2 static serving is now healthy (not missing bytes). Proposed actions only, no executed upgrade."
+    },
+    {
+      "id": "upstream-forensics-and-fail-loud",
+      "verdict": "pass",
+      "reason": "Comprehensive upstream package: versions/upgrade history, exact addresses and symptoms, roster, 62/62 sweep, contrast probe with meta.status, joined-URL caveat, console silence, #5999 round 2 reference; proposes named host diagnostics (boot-time self-test RPC through the same Remote path, roster/combo consistency assertion, RPC deadline) without relying on an unseen health-check API."
+    }
+  ],
+  "caps": [
+    {
+      "id": "invalid-probe-as-missing-bytes",
+      "triggered": false,
+      "reason": "The report affirmatively concludes the joined 404 is a non-representative probe of nothing real and explicitly flags it so maintainers don't chase missing modules; the invalid inference appears only as a rejected example."
+    },
+    {
+      "id": "plugin-workaround-or-duplicate-insert",
+      "triggered": false,
+      "reason": "The report affirmatively rejects plugin-side side channels, retry loops, and silent fallbacks as cures and never proposes inserting another workspace-files service; the fix is placed host-side/upstream."
+    }
+  ]
+}

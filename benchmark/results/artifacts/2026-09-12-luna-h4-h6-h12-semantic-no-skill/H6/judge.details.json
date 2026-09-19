@@ -1,0 +1,8 @@
+{
+  "status": "judge_error",
+  "reason": "invalid judge response: report quotation does not exist",
+  "protocol": "report-judge-v1",
+  "packet_sha256": "f8f3f69901dc2069bf82f3c97f20842d0a7bba35ce58b8d306a6722d736cce9c",
+  "judge_sha256": "589a8acc57153ac4f5a6cae7d15b4aa230b94023e71ee623427c0d83edc52257",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

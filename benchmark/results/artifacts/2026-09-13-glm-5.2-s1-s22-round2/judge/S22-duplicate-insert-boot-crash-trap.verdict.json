@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "root-cause-fatal-duplicate",
+      "verdict": "pass",
+      "reason": "Report grounds in boot-crash-log.txt (TypeError at cordis-plugin-loader EntryGroup.update:91) and both excerpts, identifies the same workspace-files id inserted by the web-app bundle patch and the manual profile row, and explains fatal-not-merge semantics (fail-loud abort before any plugin runs, id-ambiguity rationale)."
+    },
+    {
+      "id": "layering-rules",
+      "verdict": "pass",
+      "reason": "Table covers all three operations with correct safety verdicts (config-by-id safe, new-id insert safe, insert of bundle-shipped id fatal), classifies the manual row as the fatal third case, and cites web-app-patch-excerpt.txt L110-111 as evidence the bundle already provides workspace-files."
+    },
+    {
+      "id": "minimal-fix",
+      "verdict": "pass",
+      "reason": "Prescribes deleting the manually added comment lines and - insert: block for workspace-files from the profile cordis.patch.yml, leaving the bundle patch untouched, with boot succeeding after removal; no code or bundle edits prescribed."
+    },
+    {
+      "id": "plugin-not-at-fault",
+      "verdict": "pass",
+      "reason": "Explicitly states the plugin is not at fault: it never loaded (failure occurs at composition stage before instantiation) and no plugin-side change could resolve it, since the defect is in profile-patch authoring vs. bundle composition."
+    },
+    {
+      "id": "prevention-bundle-grep",
+      "verdict": "pass",
+      "reason": "Both halves present: maintainer greps the installed bundle cordis.patch.yml for the id before hand-adding any row, and a host-side actionable error naming both colliding source files, the bundle line, and the exact row to delete (with sample message)."
+    }
+  ],
+  "caps": []
+}

@@ -1,0 +1,33 @@
+schema_version = "1.4"
+artifacts = [{ source = "/app/fixture" }, { source = "/app/agent-output" }]
+# Harbor task configuration: dsh plugin upgrade exam S20 (Windows fs-ext native-build trap, static read-only task)
+[task]
+name = "dsh-plugin-upgrade/s20-msvc-flock-trap"
+version = "4.1.0"
+description = "Diagnose a Windows pnpm install failure caused by the fs-ext native build and produce a patch-based fix plan that never touches upstream or requires Visual Studio"
+keywords = ["dsh", "plugin-upgrade", "windows", "native-build", "pnpm-patch", "read-only", "harbor"]
+
+[metadata]
+difficulty = "medium"
+category = "programming"
+tags = ["dsh", "plugin-upgrade", "install-channel", "english-prompt"]
+execution_contract = "BENCHMARK-AUTH-v1"
+
+[agent]
+timeout_sec = 900.0
+
+[verifier]
+timeout_sec = 240.0
+environment_mode = "separate"
+network_mode = "public"
+
+[verifier.env]
+REPORT_JUDGE_BASE_URL = "${REPORT_JUDGE_BASE_URL}"
+REPORT_JUDGE_MODEL = "${REPORT_JUDGE_MODEL}"
+REPORT_JUDGE_API_KEY = "${REPORT_JUDGE_API_KEY}"
+
+[environment]
+network_mode = "public"
+cpus = 1
+memory_mb = 2048
+storage_mb = 4096

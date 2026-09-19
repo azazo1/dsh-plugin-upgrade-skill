@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "runtime-removal",
+      "verdict": "pass",
+      "reason": "T-1 grounds the diagnosis in src/client/index.ts:1 (ClientContext import from the deleted @deepseek-ai/dsh-client-runtime/client), maps card DSH-0.1.2-A1-25, and requires replacing it with Context from @deepseek-ai/cordis plus type augmentations from the actually-consumed owning packages (ui-chat, api-session-controller) with dependency ownership; unavailable details (SessionBinding types) are conditioned, not invented; type erasure harm addressed via skipLibCheck:false note."
+    },
+    {
+      "id": "registration-id",
+      "verdict": "pass",
+      "reason": "T-2 cites src/client/index.ts:10 __ModuleLoader__.load('pet-legacy-bundle') vs package.json name dsh-pet-session-bench (package.json:2), maps DSH-0.1.2-A1-26, and requires all three ids aligned to the bare package name with concrete activation verification (dump-config no-pending, __DSH_BOOT__.entries, combo-route script id)."
+    },
+    {
+      "id": "session-content",
+      "verdict": "pass",
+      "reason": "T-3 locates index.ts:2 and 12-13 (useSession()/nodes[0]), maps A1-27, and gives supported replacement directions: useChat keyed store (ChatSnapshot.order + nodes.get) for UI nodes and sessions.binding eventSource durable window for content, preserving order; it explicitly does not rely on the old flat nodes API (the legacy projection is marked staged/compat and not recommended as primary). Pet.tsx listed among files with no breaking surface; unreadable rc.2 hook contract marked unconfirmed."
+    },
+    {
+      "id": "connection-face",
+      "verdict": "pass",
+      "reason": "T-4 grounds the hit at index.ts:11 ctx.connection.api.agentPresets.list, maps DSH-0.1.2-A1-30, and requires removing the deleted connection face in favor of a public Remote-domain interface (ctx.remote.agentPresets.list via the Remotes client), with inject cleanup of 'connection'; exact successor name is not mandatory and the direction matches the card; error-handling and dead-face removal included."
+    }
+  ],
+  "caps": [
+    {
+      "id": "invented-migration",
+      "triggered": false,
+      "reason": "The report never claims a lifecycle replacement (setup/activate) nor that service inject generally must move into a manifest; its inject-list edits ('remote'/'remote.agentPresets' in place of 'connection') are card-directed face cleanup of the removed package/face, which the cap excludes."
+    }
+  ]
+}

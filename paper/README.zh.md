@@ -1,22 +1,20 @@
-# Do Migration Skills Actually Help? A Community-Grounded Benchmark for Skill-Guided Framework Migration
+# When Does a Migration Skill Help?
 
-审稿意见与补实验优先级：[模拟顶会审稿](REVIEW-2026-09-08.zh.md) · [论文 TODO](GAP-ANALYSIS.zh.md)（2026-09-08 更新）。
+当前标题：**A Retrospective Study of Version-Pinned Plugin Migration**。
+
+2026-09-15 本轮收束：保留五组历史配置的绝对增益倒 U 作为探索性观察，不主张模型能力导致倒 U，也不把高基线组的小增益解释为不会使用 skill。主贡献是版本迁移 benchmark 与可复算的回顾性配对分析；四条件设计已移入附录，未执行、不作为实证贡献。
+
+当前唯一执行入口：[倒 U 工作建议与投稿前清单](INVERTED-U-WORKPLAN.zh.md)。先做已有数据重分析和评分复核，是否追加统一三档实验由检查结果和预算决定。已删除相互冲突的旧计划。改稿历史见 [修改记录](audit/REVISION-2026-09-15-retrospective.zh.md)。
 
 [English README](README.md)
-
-本目录是 skill-guided framework migration 的论文工作稿。[新主实验计划](../docs/superpowers/plans/2026-09-08-paper-56-task-rerun.md)以 **56 题 × 两个配置 × 四条件 × 每格一次 = 448 次**统一重跑；正式成绩可见前选定 K 题对称补两次，稳定性额外 16K 次并单列。当前生成表仍是 **23 题历史快照**，待新 56 题版本完成 QC 和冻结后切换。旧实验不混入新主表，56 题全池不等同于独立未见测试；主要实证结论仍待实验验证。
-
-[实验与暴露账本](audit/README.zh.md) 已覆盖 22 份已提交报告和当前 56 个任务定义；这些数量不代表独立测试集规模。
 
 ## 目录结构
 
 - `latex/` — 报告 LaTeX 源码
   - `acl_latex.tex` — 主文件（标题、作者、摘要、全文骨架；基于官方最新模板）
   - `acl.sty` / `acl_natbib.bst` — ACL 官方样式（acl-org/acl-style-files master，2026-06 版）
-  - `custom.bib` — 参考文献（正文使用的五项已核对版本化 arXiv 记录，完整综述仍待补充）
+  - `custom.bib` — 正文使用的参考文献；完整相关工作复核仍待完成
   - `formatting.md` — 官方格式说明
-  - `acl_lualatex.tex` — XeLaTeX / LuaLaTeX 模板（未使用）
-- `word/`、`archive/` — 官方 Word 模板与历史模板（本文未使用，随官方样式包保留）
 
 ## 编译
 
@@ -27,17 +25,25 @@ pdflatex acl_latex && bibtex acl_latex && pdflatex acl_latex && pdflatex acl_lat
 
 使用 [Overleaf](https://www.overleaf.com/) 时，同时上传 `latex/` 和 `generated/` 并保留相对路径，选择 `latex/acl_latex.tex` 为主文件。当前使用 `review` 模式（带行号）。
 
-## 写作状态
+## 主结果表（生成，勿手改）
 
-- [x] 重写摘要、Introduction 与贡献，明确三个研究问题。
-- [x] 将未验证的正向结论改为证据状态和待检验分析。
-- [x] 正文接入固定快照宏，区分题号前缀与交互类型。
-- [x] 建立实验账本与开发暴露账本（初步审计，未认证独立 split）。
-- [x] 替换五项正文引用的 stub，旧线索保存于 `audit/`。
-- [ ] 归档可获得的历史产物；为新主实验补齐配置哈希、事件分组与 provenance。
-- [ ] 完成独立 grader 校验与双臂统一重评。
-- [ ] 冻结并完成 56 题四条件单次主实验及预选子集重复；holdout/clean-trap 作为扩展。
-- [ ] 补完图表、实测结果、附录与完整相关工作综述。
+论文主结果表来自确定性管线：**勿手改**。
+
+- 数据源：`benchmark/results/paired-effect-stats.json`，由 `benchmark/scripts/measure-paired-effect.mjs` 生成（任务级配对差值，mulberry32 seed 20260907，10000 次 bootstrap，双侧 Wilcoxon；内嵌输入文件 SHA-256）。
+- `paper/generated/paired-effect-table.tex`（主表 5 个模型点）与 `paper/generated/paired-effect-sensitivity-table.tex`（luna 污染组）由 `paper/scripts/generate-paired-effect-table.mjs` 从该 JSON 渲染，分别 `\input` 进 Results 章与敏感性附录。
+
+在仓库根目录重新生成 / 校验：
+
+```bash
+npm run measure:benchmark-paired   # 重算统计并写 JSON
+npm run generate:paper-paired      # 从 JSON 渲染 .tex
+npm run check:paper-paired         # CI 门禁：两者字节级漂移检查
+npm run test:benchmark-paired      # 统计脚本单元测试 + golden 校验
+```
+
+## 当前状态
+
+倒 U 以探索性观察进入主稿；四条件设计仅在附录。统计表可复算，工作稿已编译和检查。评分复核、稳健性分析和投稿材料整理尚未完成，统一在[工作建议](INVERTED-U-WORKPLAN.zh.md)中维护。
 
 ## 相关资源
 

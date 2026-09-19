@@ -4,9 +4,12 @@
 // are exercised here.
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { z } from '../environment/fixture/node_modules/zod/index.js'
 import {
-  assembleScore, capFor, scanPackageJson, scanSpecSource, scanSrcForCatch, scoreHygiene, scoreMigration, stripComments,
+  assembleScore, capFor, REQUIRED_DEPENDENCIES, scanPackageJson, scanSpecSource, scanSrcForCatch, schemaContractHolds, scoreHygiene, scoreMigration, stripComments,
 } from './judge-utils.mjs'
+
+const BASE_SPEC = { name: 'artifact_index', tables: { entries: { valueSchema: z.object({ id: z.string(), sourceHash: z.string(), tokens: z.number() }) } } }
 
 const ORACLE_SOURCE = `
 import { defineDomain, domainTable } from '@deepseek-ai/dsh-storage-domain'
@@ -18,7 +21,7 @@ export const spec = defineDomain({
   tables: { entries: domainTable(entrySchema) },
 })
 `
-const ORACLE_SPEC = { version: 5, layout: 'per-record', invalidRecords: 'backup-and-skip' }
+const ORACLE_SPEC = { ...BASE_SPEC, version: 5, layout: 'per-record', invalidRecords: 'backup-and-skip' }
 
 const UNTOUCHED_SOURCE = `
 // If one cache entry is corrupt, delete the entire cache directory.
@@ -29,7 +32,7 @@ export const spec = defineDomain({
   tables: { entries: domainTable(entrySchema) },
 })
 `
-const UNTOUCHED_SPEC = { version: 5, layout: 'per-record' }
+const UNTOUCHED_SPEC = { ...BASE_SPEC, version: 5, layout: 'per-record' }
 
 const CATCH_SOURCE = `
 export const spec = defineDomain({
@@ -46,7 +49,7 @@ try {
   return new Map()
 }
 `
-const CATCH_SPEC = { version: 5, layout: 'per-record' }
+const CATCH_SPEC = { ...BASE_SPEC, version: 5, layout: 'per-record' }
 
 const ZANY_SOURCE = `
 import { z } from 'zod'
@@ -58,7 +61,7 @@ export const spec = defineDomain({
   tables: { entries: domainTable(entrySchema) },
 })
 `
-const ZANY_SPEC = { version: 5, layout: 'per-record' }
+const ZANY_SPEC = { ...BASE_SPEC, version: 5, layout: 'per-record', tables: { entries: { valueSchema: z.any() } } }
 
 const COMPAT_SOURCE = `
 export const spec = defineDomain({
@@ -69,7 +72,7 @@ export const spec = defineDomain({
   tables: { entries: domainTable(entrySchema) },
 })
 `
-const COMPAT_SPEC = { version: 5, layout: 'per-record', compatibleVersions: [4] }
+const COMPAT_SPEC = { ...BASE_SPEC, version: 5, layout: 'per-record', compatibleVersions: [4] }
 
 const GLOBAL_HELPER = `
 export function makeSpec(name) {
@@ -78,7 +81,7 @@ export function makeSpec(name) {
 `
 
 const PINNED_PACKAGE = JSON.stringify({ dependencies: { '@deepseek-ai/dsh-storage': '0.1.2-alpha.4' } })
-const CLEAN_PACKAGE = JSON.stringify({ dependencies: { '@deepseek-ai/dsh-storage': '0.1.2-alpha.5' } })
+const CLEAN_PACKAGE = JSON.stringify({ dependencies: REQUIRED_DEPENDENCIES })
 
 // Calibrated behavioral totals + observation flags from the real runtime:
 //   oracle: 70, open OK, brokenFileAbsent, backupExists
@@ -127,11 +130,11 @@ test('scanPackageJson detects the alpha.4 pin in dependency values only', () => 
 })
 
 test('scoreMigration: oracle 20, untouched 10, z.any 5, compat confusion 10', () => {
-  assert.equal(scoreMigration(ORACLE_SPEC, scanSpecSource(ORACLE_SOURCE)).score, 20)
-  assert.equal(scoreMigration(UNTOUCHED_SPEC, scanSpecSource(UNTOUCHED_SOURCE)).score, 10)
-  assert.equal(scoreMigration(ZANY_SPEC, scanSpecSource(ZANY_SOURCE)).score, 5, 'z.any loses schema honesty; only the contract points remain')
-  assert.equal(scoreMigration(COMPAT_SPEC, scanSpecSource(COMPAT_SOURCE)).score, 10)
-  assert.equal(scoreMigration(null, scanSpecSource(ORACLE_SOURCE)).score, 5)
+  assert.equal(scoreMigration(ORACLE_SPEC, schemaContractHolds(ORACLE_SPEC)).score, 20)
+  assert.equal(scoreMigration(UNTOUCHED_SPEC, schemaContractHolds(UNTOUCHED_SPEC)).score, 10)
+  assert.equal(scoreMigration(ZANY_SPEC, schemaContractHolds(ZANY_SPEC)).score, 5, 'z.any loses schema honesty; only the contract points remain')
+  assert.equal(scoreMigration(COMPAT_SPEC, schemaContractHolds(COMPAT_SPEC)).score, 10)
+  assert.equal(scoreMigration(null, schemaContractHolds(null)).score, 0)
 })
 
 test('control 12: oracle scores 100', () => {
@@ -156,7 +159,8 @@ test('control 6: field-level schema loosening caps at 60', () => {
 export const entrySchema = z.object({ id: z.string(), sourceHash: z.string(), tokens: z.union([z.number(), z.string()]) })
 export const spec = defineDomain({ name: 'artifact_index', version: 5, layout: 'per-record', tables: { entries: domainTable(entrySchema) } })
 `
-  const score = run(UNTOUCHED_SPEC, looseSource, { observations: ZANY_OBS, behavioral: 45 })
+  const spec = { ...UNTOUCHED_SPEC, tables: { entries: { valueSchema: z.object({ id: z.string(), sourceHash: z.string(), tokens: z.union([z.number(), z.string()]) }) } } }
+  const score = run(spec, looseSource, { observations: ZANY_OBS, behavioral: 45 })
   assert.equal(score, 60)
 })
 
@@ -199,15 +203,15 @@ test('spec load failure caps at 30', () => {
   const badSource = `
 export const spec = defineDomain({ name: 'artifact_index', version: 5, layout: 'per-record', invalidRecords: 'delete', tables: { entries: domainTable(entrySchema) } })
 `
-  assert.equal(run(null, badSource, { observations: REJECTED_OBS, behavioral: 0 }), 15)
+  assert.equal(run(null, badSource, { observations: REJECTED_OBS, behavioral: 0 }), 10)
 })
 
 test('capFor picks the smallest triggered cap and null when clean', () => {
   const cleanScan = scanSpecSource(ORACLE_SOURCE)
   const cleanPackage = scanPackageJson(CLEAN_PACKAGE)
-  assert.equal(capFor({ spec: ORACLE_SPEC, scan: cleanScan, packageScan: cleanPackage, observations: ORACLE_OBS, specLoadFailed: false, policyOutsideSpec: false }), null)
-  assert.equal(capFor({ spec: ZANY_SPEC, scan: scanSpecSource(ZANY_SOURCE), packageScan: cleanPackage, observations: ZANY_OBS, specLoadFailed: false, policyOutsideSpec: false }), 40)
-  assert.equal(capFor({ spec: null, scan: cleanScan, packageScan: cleanPackage, observations: REJECTED_OBS, specLoadFailed: true, policyOutsideSpec: false }), 30)
+  assert.equal(capFor({ spec: ORACLE_SPEC, scan: cleanScan, schemaHonest: true, packageScan: cleanPackage, observations: ORACLE_OBS, specLoadFailed: false, policyOutsideSpec: false }), null)
+  assert.equal(capFor({ spec: ZANY_SPEC, scan: scanSpecSource(ZANY_SOURCE), schemaHonest: false, packageScan: cleanPackage, observations: ZANY_OBS, specLoadFailed: false, policyOutsideSpec: false }), 40)
+  assert.equal(capFor({ spec: null, scan: cleanScan, schemaHonest: false, packageScan: cleanPackage, observations: REJECTED_OBS, specLoadFailed: true, policyOutsideSpec: false }), 30)
 })
 
 test('scoreHygiene subtracts for the alpha.4 pin only', () => {
@@ -233,11 +237,13 @@ test('backup filename glob accepts the runtime timestamp shape only', () => {
   assert.equal(BAK_RE.test('broken.json.bak.202609060028.extra'), false)
 })
 
-test('sealed-file gates: authoritative source / healthy records / data edits are flat 0 via judge gates', () => {
-  // judge.mjs gates: any tracked modification outside fixture/src/** and
-  // fixture/package.json is tampering, except the single authorized tracked
-  // DELETION of fixture/data/artifact_index/entries/broken.json (the
-  // runtime's rename); untracked files under fixture/data/ must match the
-  // .bak.<stamp> shape. Asserted here as the documented contract.
-  assert.ok(true)
+test('schema checks reject permissive fields even with an active salvage policy', () => {
+  for (const field of ['id', 'sourceHash', 'tokens']) {
+    for (const lax of [z.any(), z.unknown(), z.string().optional()]) {
+      const fields = { id: z.string(), sourceHash: z.string(), tokens: z.number(), [field]: lax }
+      const spec = { ...ORACLE_SPEC, tables: { entries: { valueSchema: z.object(fields) } } }
+      assert.equal(schemaContractHolds(spec), false)
+      assert.ok(run(spec, ORACLE_SOURCE, { observations: ORACLE_OBS, behavioral: 70 }) <= 60)
+    }
+  }
 })

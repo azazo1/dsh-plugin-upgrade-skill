@@ -1,0 +1,79 @@
+{
+  "status": "scored",
+  "score": 75,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "namespaced-codes",
+      "verdict": "partial",
+      "reason": "It locates the legacy comparisons and trap comment and correctly requires namespaced code matching, but leaves the canonical spellings unconfirmed instead of identifying gateway/cancelled and gateway/internal.",
+      "points": 25,
+      "awarded": 12.5
+    },
+    {
+      "id": "cancel-policy",
+      "verdict": "pass",
+      "reason": "It makes cancellation an intentional terminal outcome, excludes generic failure treatment, and includes cancellation in the verification matrix.",
+      "points": 25,
+      "awarded": 25
+    },
+    {
+      "id": "internal-unknown-policy",
+      "verdict": "partial",
+      "reason": "It locates and exposes internal and unknown failures while preserving diagnostics and testing both, but does not clearly prohibit blind retries or explicitly preserve error details.",
+      "points": 25,
+      "awarded": 12.5
+    },
+    {
+      "id": "exception-boundary",
+      "verdict": "pass",
+      "reason": "It identifies the blanket catch and instanceof misuse, separates result failures from thrown exceptions, removes swallowing, propagates unexpected faults, and proposes success and exception checks using code-based structural discrimination.",
+      "points": 25,
+      "awarded": 25
+    }
+  ],
+  "caps": [
+    {
+      "id": "retain-old-codes",
+      "triggered": false,
+      "reason": "The report explicitly rejects retaining the bare legacy codes.",
+      "total": 25
+    },
+    {
+      "id": "cross-realm-instanceof",
+      "triggered": false,
+      "reason": "The report explicitly rejects instanceof as a cross-realm discriminator.",
+      "total": 50
+    }
+  ],
+  "model": {
+    "requested": "gpt-5.6-luna",
+    "returned": null,
+    "resolved": "gpt-5.6-luna",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 8152,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1288,
+      "reasoning_output_tokens": 1034
+    },
+    "request_id": "01a09530-67b8-7a50-8737-e97c378860ea",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "be5213ed6c15e50571eddebbe464b2f806fd0946164e7cffbfbc61b94ee9a78d",
+    "response_sha256": "6ff4e9337a8ae4596fdec02aa509e2c21a3e43d84689e4e9d3d92be46729c663"
+  },
+  "citation_audit": [],
+  "reports": {
+    "migration-report.md": "8768f33e8f969c413d0d60f1865fa43490b8dc03f7951e65ae938662182bdaae"
+  },
+  "protocol": "report-judge-v2",
+  "packet_sha256": "707264cba9cd30c07e6025e44e76e96d2627e66fb278c31959a7c2b6d2ac57d7",
+  "judge_sha256": "be5a6b2464f2fc875b42db2cc579da9d62367cbdddd6b6373e673993e43a9cfa",
+  "adapter_sha256": "e10886300f85ccd814ee56f4ad590ed129e12ca7818fe704c0296df7f01120f7"
+}

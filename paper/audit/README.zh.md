@@ -1,5 +1,7 @@
 # 实验与开发暴露账本
 
+> 本目录是历史证据与审核记录，不是当前 TODO。论文唯一执行入口为 [倒 U 工作建议](../INVERTED-U-WORKPLAN.zh.md)。历史审计：[09-08](../REVIEW-2026-09-08.zh.md)、[09-12](../REVIEW-2026-09-12.zh.md)；当前改稿记录：[09-15](REVISION-2026-09-15-retrospective.zh.md)。
+
 核对日期：2026-09-08；来源 checkout：`72267b6`。本轮读取已提交报告与 git 历史，没有重新运行模型、读取所有外部 runner 原始轨迹，也没有追认正式测试资格。
 
 - [实验账本](experiment-ledger.csv)：覆盖当前 `benchmark/results/validation-report-*.md` 的 **22 份报告**，记录报告 SHA-256、范围、条件、重复、配置、评分/隔离边界及主表纳入意见。

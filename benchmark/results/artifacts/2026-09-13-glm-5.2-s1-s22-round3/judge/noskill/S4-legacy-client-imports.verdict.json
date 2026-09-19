@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "runtime-removal",
+      "verdict": "partial",
+      "reason": "Correctly locates index.ts:1 import of removed @deepseek-ai/dsh-client-runtime/client, maps A1-25, and notes a type-only import still breaks; but the migration direction is only 'the successor client context module' with no supported target owning package or equivalent direction, so the required migration direction is incomplete."
+    },
+    {
+      "id": "registration-id",
+      "verdict": "partial",
+      "reason": "Correctly compares __ModuleLoader__.load id 'pet-legacy-bundle' (index.ts:10) against package.json name 'dsh-pet-session-bench', maps A1-26, and requires exact name alignment; however it never requires any client activation/boot-graph verification, which the criterion demands."
+    },
+    {
+      "id": "session-content",
+      "verdict": "partial",
+      "reason": "Locates useSession nodes destructuring at index.ts:12-13, maps A1-27, and does not claim the flat nodes API remains supported; but the migration direction is only 'the new session-snapshot accessor' with no supported content-reading surface (durable event window, selectors, keyed store) and no mention of preserving ordering."
+    },
+    {
+      "id": "connection-face",
+      "verdict": "partial",
+      "reason": "Locates ctx.connection.api.agentPresets.list at index.ts:11, maps A1-30, and requires dropping the deleted face; but the replacement direction is only 'the replacement client->Host call surface' with no named domain or verified public interface kind, leaving the migration direction vague."
+    }
+  ],
+  "caps": [
+    {
+      "id": "invented-migration",
+      "triggered": false,
+      "reason": "The report never positively asserts an unsupported setup/activate lifecycle replacement or that service inject must move into a manifest; it explicitly treats export const inject = ['slots','conversation'] as a clean non-touchpoint and invents no lifecycle claims."
+    }
+  ]
+}

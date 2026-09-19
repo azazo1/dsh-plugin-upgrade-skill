@@ -1,0 +1,14 @@
+[
+  {
+    "task": "S9",
+    "warning": "exec-call-pairing-mismatch:event-19",
+    "resolution": "Native event 19 is a Promise.all loop issuing five fixed sed reads. The corresponding completed commands read exactly the five fixture files below, without any skill content access.",
+    "paths": [
+      "README.md",
+      "plugin-client.js",
+      "console-session.txt",
+      "host-input-facade.ts",
+      "host-input-contract.ts"
+    ]
+  }
+]

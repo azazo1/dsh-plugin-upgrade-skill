@@ -1,0 +1,36 @@
+{
+  "decisions": [
+    {
+      "id": "removed-api-and-crash",
+      "verdict": "pass",
+      "reason": "Cites plugin-source-excerpt.js lines 734/657 (session.events reads, 42 refs), crash-stack.txt (events is not iterable at prepareReplayEvents), and changelog alpha.4 removal replaced by seq/eventAt()/snapshotEvents(); explains undefined/non-iterable access at apply time."
+    },
+    {
+      "id": "peer-check-boundary",
+      "verdict": "pass",
+      "reason": "Uses npm-install-output.txt: ^0.1.2-alpha.2 means >=0.1.2-alpha.2 <0.2.0-0, alpha.5 satisfies by prerelease ordering; explains npm does a static metadata semver check only — no API existence, code parsing, changelog, or runtime validation; peer range is an author claim."
+    },
+    {
+      "id": "distinct-breakage-categories",
+      "verdict": "pass",
+      "reason": "Two genuinely distinct classes: (1) API removal/rename (Session.events) and (2) semantic/type changes without a version signal (SessionSeq vs SessionLogOffset split), plus further distinct categories (behavioral/timing, async signature changes)."
+    },
+    {
+      "id": "author-prevention",
+      "verdict": "pass",
+      "reason": "Requires testing actual newest in-range versions (alpha.4/alpha.5 smoke-start) AND a compatibility policy: narrow the peer range to exclude alpha.4+ plus runtime feature detection with correct old/new paths; notes engines/metadata cannot test API behavior."
+    },
+    {
+      "id": "user-preinstall-check",
+      "verdict": "pass",
+      "reason": "Concrete pre-install steps tied to the incident: read host changelog between peer floor and installed version (alpha.4 removal), grep plugin dist for .events usage and intersect with removed-API bullets, plus optional scratch smoke-start."
+    }
+  ],
+  "caps": [
+    {
+      "id": "peers-prove-runtime",
+      "triggered": false,
+      "reason": "Report affirms the opposite: peer-range satisfaction is necessary but nowhere near sufficient, and it acknowledges the documented removal; no affirmative claim that peer satisfaction proves runtime compatibility."
+    }
+  ]
+}

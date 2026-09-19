@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "missing-mirror-tag",
+      "verdict": "pass",
+      "reason": "Grounds the v0.9.5 absence in sync-script.sh's tag-less `git push --force-with-lease HEAD:main` and ls-remote-tags.txt's missing v0.9.5 entry; ties to attempt-1 ref resolution failure and explicitly rejects network-fault/typo explanations."
+    },
+    {
+      "id": "runtime-compatibility-direction",
+      "verdict": "pass",
+      "reason": "Uses dsh-version.txt (0.1.1-rc.2) and compat-table.md (v0.9.7 targets 0.1.2-alpha.1 useConversation seat) to explain the newer-client-API artifact on an older runtime; states restart cannot fix a static API mismatch rather than just repeating the error."
+    },
+    {
+      "id": "frozen-runtime-remedy",
+      "verdict": "pass",
+      "reason": "Honors the freeze, selects v0.9.3 via its rc.1 verification plus the additive rc.2 note, notices v0.9.3 is also absent from the mirror listing, gives the #v0.9.3 install command conditionally after maintainer tag push (and an origin-remote alternative), invents no SHA, and does not require a runtime upgrade."
+    },
+    {
+      "id": "tag-distribution-repair",
+      "verdict": "pass",
+      "reason": "Proposes adding `git push \"$remote\" --tags` for every public mirror in the sync loop, grounded in the branch-only script, with a per-mirror `git ls-remote --tags` verification step and historical backfill."
+    },
+    {
+      "id": "version-routing-docs",
+      "verdict": "pass",
+      "reason": "Proposes a README version-selection table keyed by consumer `dsh --version` (0.1.1-rc.x → #v0.9.3; 0.1.2-alpha.1 → #v0.9.7) with per-corridor channels and a runtime export guard; explicitly rejects a single newest-tag default and does not generalize to untested future alphas."
+    }
+  ],
+  "caps": []
+}

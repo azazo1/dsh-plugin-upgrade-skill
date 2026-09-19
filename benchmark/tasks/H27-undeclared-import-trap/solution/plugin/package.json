@@ -1,0 +1,19 @@
+{
+  "name": "@demo/dsh-bench-undeclared",
+  "version": "0.2.0",
+  "description": "DSH plugin upgrade validation demo — installs, lists, crashes on load (exam fixture, never publish)",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm": "^0.1.2-alpha.1"
+  },
+  "private": true
+}

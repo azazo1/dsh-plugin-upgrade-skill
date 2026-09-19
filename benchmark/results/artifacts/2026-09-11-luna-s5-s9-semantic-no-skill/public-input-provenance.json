@@ -1,0 +1,32 @@
+{
+  "public_repository": "https://github.com/oh-my-dsh/dsh-plugin-upgrade-skill",
+  "public_origin_commit": "3b42968c1c5b6e8d0f191039092b32b5b169fbee",
+  "matched_public_files": {
+    "benchmark/tasks/S5-negative-naming/instruction.md": "02fa05f07f0ce2a2f92ea6a0956ba78614e436f28e3e57650f560ee3bf2a4de2",
+    "benchmark/tasks/S5-negative-naming/environment/fixture/dsh-plugin.naming.json": "2863bfaf22ab7c9ff69a03b06af2cc1808cec2054987fcf5c6d4c55df61cb6b0",
+    "benchmark/tasks/S5-negative-naming/environment/fixture/README.md": "f27373bc472e94e859b37407eaf5332fcda747a7f55110a4ea9d430644862645",
+    "benchmark/tasks/S5-negative-naming/environment/fixture/package.json": "71cd34926a4686d2098c582b93f86305c772f1e7d0bee5be9f1ca64d26ec99bc",
+    "benchmark/tasks/S6-corridor-net-state/instruction.md": "6542d1b412f9f0dd090287a0c6d364b7dd7b4309193ad65e08e65b27d13bfc79",
+    "benchmark/tasks/S6-corridor-net-state/environment/fixture/README.md": "293a9d4bbc8753f36cd4dfeb7de6d5196fa6840bef6b03eedefc866c3b6f6ecc",
+    "benchmark/tasks/S6-corridor-net-state/environment/fixture/package.json": "0f94b8a587519d508753b89b8c03d14ac266b6646b36f37abd93a9edfedb437e",
+    "benchmark/tasks/S6-corridor-net-state/environment/fixture/src/events.ts": "e0d7190ae79583ed5db16ed188821ba59ef866d68d29d023905d74e6fe36809c",
+    "benchmark/tasks/S7-unpublished-cohort/instruction.md": "14c30cd900ccc92949ca2432eb9239cd930a61187cc0f40ad959c55efab0e1f1",
+    "benchmark/tasks/S7-unpublished-cohort/environment/fixture/README.md": "b4a1f0ef2a1ce99d3e89b0c77d35fc2d55331b8eb10e41c35f7a4a172fa89ab9",
+    "benchmark/tasks/S7-unpublished-cohort/environment/fixture/package.json": "73b215c4e9632a8a3d7b7b29bd659aaa42e0e799f3e3d64b666b8cb9f2be1b4e",
+    "benchmark/tasks/S8-release-routing-trap/instruction.md": "5d02a9c3c895f73635d246c857c29073102740e40abcc8bf1b08434888c4a776",
+    "benchmark/tasks/S8-release-routing-trap/environment/fixture/dsh-version.txt": "b6ee5db84adf75de2708135790ed55c6b71254d1c8f8344f9d20a34cae126312",
+    "benchmark/tasks/S8-release-routing-trap/environment/fixture/compat-table.md": "8ba802028715c3f10895feb5d9e1205bd09f36ba3221555765f5f0cf70d9e57c",
+    "benchmark/tasks/S8-release-routing-trap/environment/fixture/README.md": "c5aaeca9d849fbe977bb2cb464322ac8bd16fe9a3c04f4628370e9c21f64b57a",
+    "benchmark/tasks/S8-release-routing-trap/environment/fixture/ls-remote-tags.txt": "e2c45cdaa277e4f88da81560bfedfe0592d6e54b20f80c85b1d7790d8d7cae7b",
+    "benchmark/tasks/S8-release-routing-trap/environment/fixture/sync-script.sh": "be565ccbe9f758d7c46e131e9b1ed3572023d1e632f5d73838d68b8436af708b",
+    "benchmark/tasks/S9-composer-coordinate-trap/instruction.md": "91f7137e07379961e08511b695a4caa273d401420244bdd28a9dd4c323eaf5eb",
+    "benchmark/tasks/S9-composer-coordinate-trap/environment/fixture/console-session.txt": "bfce1af92a4320972739bcf44a3529b03bfbcc1fcad414f58db8f1ba0b5bbb6e",
+    "benchmark/tasks/S9-composer-coordinate-trap/environment/fixture/host-input-facade.ts": "57e9fda0d3e11d9f8b9dc2aa28359d1bd8c4a73f8aa53c43dbbdf96e9f2ff376",
+    "benchmark/tasks/S9-composer-coordinate-trap/environment/fixture/README.md": "96830d3a6845542d211b8403350ef75f4eea6f51c2220124f9848c7e08d911b4",
+    "benchmark/tasks/S9-composer-coordinate-trap/environment/fixture/plugin-client.js": "514809bfb8c88e634fdec1cf54cb0c323aede73ba5371b3a4a468f5fbd16f400",
+    "benchmark/tasks/S9-composer-coordinate-trap/environment/fixture/host-input-contract.ts": "10837fa4efef064b1dc9b0e650247c46bfd89fa693b54851964c4130acdce7bb",
+    "skills/plugin-upgrade/references/v0.1.2-alpha.1.md": "fa954ad126adb18700def3dc209450c0de96df96e86d7a80554b0e5c08e696f3",
+    "skills/plugin-upgrade/references/v0.1.2-alpha.2.md": "5efde6755e6a04086f3010482c1c2d734158a522858b33a509518b3e374eae6c"
+  },
+  "additional_inputs": "Solver receives only the five public task prompts and fixtures. Judge receives the sealed rubric and references plus the freshly generated answers; no private workspace/history is supplied."
+}

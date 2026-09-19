@@ -1,0 +1,363 @@
+{
+  "schema_version": 3,
+  "created_at": "2026-09-11T04:08:31.878756Z",
+  "harbor": {
+    "version": "0.22.0",
+    "is_editable": false
+  },
+  "n_concurrent_trials": 4,
+  "retry": {
+    "max_retries": 0,
+    "exclude_exceptions": [
+      "AgentTimeoutError",
+      "RewardFileEmptyError",
+      "RewardFileNotFoundError",
+      "ApiUsageLimitError",
+      "VerifierOutputParseError",
+      "ModelNotFoundError",
+      "VerifierTimeoutError",
+      "AgentAuthenticationError",
+      "AgentSafetyRefusalError"
+    ],
+    "wait_multiplier": 1.0,
+    "min_wait_sec": 1.0,
+    "max_wait_sec": 60.0
+  },
+  "trials": [
+    {
+      "schema_version": 2,
+      "task": {
+        "name": "S5-negative-naming",
+        "version": "3.0.0",
+        "type": "local",
+        "digest": "sha256:6d8efbaf572decae6468ce8cee5252000cdca799374a59f029ab139d988db27e",
+        "path": "<local-run>/tasks/S5-negative-naming"
+      },
+      "install_only": false,
+      "timeout_multiplier": 1.0,
+      "agent_setup_timeout_multiplier": 4.0,
+      "extra_instructions": [
+        {
+          "digest": "sha256:3b1a9d116b1d3caaa83d66a9baf5a602f7916de34a613bd06f54ea4e52d983d4"
+        }
+      ],
+      "agent": {
+        "name": "harbor_codex_node24:CodexNode24",
+        "model_name": "openai/gpt-5.6-luna",
+        "n_concurrent": 4,
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [
+          "chatgpt.com"
+        ],
+        "kwargs": {
+          "version": "0.153.4",
+          "reasoning_effort": "xhigh",
+          "web_search": "disabled",
+          "config": {
+            "skills": {
+              "include_instructions": false,
+              "bundled": {
+                "enabled": false
+              }
+            },
+            "features": {
+              "skip_host_skill_discovery": true,
+              "skill_search": false,
+              "skill_mcp_dependency_install": false,
+              "memories": false
+            }
+          }
+        },
+        "env": {
+          "CODEX_AUTH_JSON_PATH": "/Use****son"
+        },
+        "mcp_servers": []
+      },
+      "bridge_inputs": {},
+      "skills": [],
+      "environment": {
+        "type": "docker",
+        "force_build": true,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+      },
+      "verifier": {
+        "disable": true,
+        "environment_mode": "separate"
+      }
+    },
+    {
+      "schema_version": 2,
+      "task": {
+        "name": "S6-corridor-net-state",
+        "version": "3.0.0",
+        "type": "local",
+        "digest": "sha256:2f3e6e58022c93556615a96ecaff42dd97356427edf5146b2fe50853f031b345",
+        "path": "<local-run>/tasks/S6-corridor-net-state"
+      },
+      "install_only": false,
+      "timeout_multiplier": 1.0,
+      "agent_setup_timeout_multiplier": 4.0,
+      "extra_instructions": [
+        {
+          "digest": "sha256:3b1a9d116b1d3caaa83d66a9baf5a602f7916de34a613bd06f54ea4e52d983d4"
+        }
+      ],
+      "agent": {
+        "name": "harbor_codex_node24:CodexNode24",
+        "model_name": "openai/gpt-5.6-luna",
+        "n_concurrent": 4,
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [
+          "chatgpt.com"
+        ],
+        "kwargs": {
+          "version": "0.153.4",
+          "reasoning_effort": "xhigh",
+          "web_search": "disabled",
+          "config": {
+            "skills": {
+              "include_instructions": false,
+              "bundled": {
+                "enabled": false
+              }
+            },
+            "features": {
+              "skip_host_skill_discovery": true,
+              "skill_search": false,
+              "skill_mcp_dependency_install": false,
+              "memories": false
+            }
+          }
+        },
+        "env": {
+          "CODEX_AUTH_JSON_PATH": "/Use****son"
+        },
+        "mcp_servers": []
+      },
+      "bridge_inputs": {},
+      "skills": [],
+      "environment": {
+        "type": "docker",
+        "force_build": true,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+      },
+      "verifier": {
+        "disable": true,
+        "environment_mode": "separate"
+      }
+    },
+    {
+      "schema_version": 2,
+      "task": {
+        "name": "S7-unpublished-cohort",
+        "version": "3.0.0",
+        "type": "local",
+        "digest": "sha256:9bfa0946f843b27a388294d502cecd3006a190a7e4834d6b777d55a2110c321e",
+        "path": "<local-run>/tasks/S7-unpublished-cohort"
+      },
+      "install_only": false,
+      "timeout_multiplier": 1.0,
+      "agent_setup_timeout_multiplier": 4.0,
+      "extra_instructions": [
+        {
+          "digest": "sha256:3b1a9d116b1d3caaa83d66a9baf5a602f7916de34a613bd06f54ea4e52d983d4"
+        }
+      ],
+      "agent": {
+        "name": "harbor_codex_node24:CodexNode24",
+        "model_name": "openai/gpt-5.6-luna",
+        "n_concurrent": 4,
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [
+          "chatgpt.com"
+        ],
+        "kwargs": {
+          "version": "0.153.4",
+          "reasoning_effort": "xhigh",
+          "web_search": "disabled",
+          "config": {
+            "skills": {
+              "include_instructions": false,
+              "bundled": {
+                "enabled": false
+              }
+            },
+            "features": {
+              "skip_host_skill_discovery": true,
+              "skill_search": false,
+              "skill_mcp_dependency_install": false,
+              "memories": false
+            }
+          }
+        },
+        "env": {
+          "CODEX_AUTH_JSON_PATH": "/Use****son"
+        },
+        "mcp_servers": []
+      },
+      "bridge_inputs": {},
+      "skills": [],
+      "environment": {
+        "type": "docker",
+        "force_build": true,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+      },
+      "verifier": {
+        "disable": true,
+        "environment_mode": "separate"
+      }
+    },
+    {
+      "schema_version": 2,
+      "task": {
+        "name": "S8-release-routing-trap",
+        "version": "3.0.0",
+        "type": "local",
+        "digest": "sha256:8075eba1c67ff1bcda22265ffcf8018b96708275607798a2f30ef939a74eef97",
+        "path": "<local-run>/tasks/S8-release-routing-trap"
+      },
+      "install_only": false,
+      "timeout_multiplier": 1.0,
+      "agent_setup_timeout_multiplier": 4.0,
+      "extra_instructions": [
+        {
+          "digest": "sha256:3b1a9d116b1d3caaa83d66a9baf5a602f7916de34a613bd06f54ea4e52d983d4"
+        }
+      ],
+      "agent": {
+        "name": "harbor_codex_node24:CodexNode24",
+        "model_name": "openai/gpt-5.6-luna",
+        "n_concurrent": 4,
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [
+          "chatgpt.com"
+        ],
+        "kwargs": {
+          "version": "0.153.4",
+          "reasoning_effort": "xhigh",
+          "web_search": "disabled",
+          "config": {
+            "skills": {
+              "include_instructions": false,
+              "bundled": {
+                "enabled": false
+              }
+            },
+            "features": {
+              "skip_host_skill_discovery": true,
+              "skill_search": false,
+              "skill_mcp_dependency_install": false,
+              "memories": false
+            }
+          }
+        },
+        "env": {
+          "CODEX_AUTH_JSON_PATH": "/Use****son"
+        },
+        "mcp_servers": []
+      },
+      "bridge_inputs": {},
+      "skills": [],
+      "environment": {
+        "type": "docker",
+        "force_build": true,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+      },
+      "verifier": {
+        "disable": true,
+        "environment_mode": "separate"
+      }
+    },
+    {
+      "schema_version": 2,
+      "task": {
+        "name": "S9-composer-coordinate-trap",
+        "version": "3.0.0",
+        "type": "local",
+        "digest": "sha256:f480747680f734ac115e5ef79dd7a1147ba3807da7781a319aa7a545830ca5ea",
+        "path": "<local-run>/tasks/S9-composer-coordinate-trap"
+      },
+      "install_only": false,
+      "timeout_multiplier": 1.0,
+      "agent_setup_timeout_multiplier": 4.0,
+      "extra_instructions": [
+        {
+          "digest": "sha256:3b1a9d116b1d3caaa83d66a9baf5a602f7916de34a613bd06f54ea4e52d983d4"
+        }
+      ],
+      "agent": {
+        "name": "harbor_codex_node24:CodexNode24",
+        "model_name": "openai/gpt-5.6-luna",
+        "n_concurrent": 4,
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [
+          "chatgpt.com"
+        ],
+        "kwargs": {
+          "version": "0.153.4",
+          "reasoning_effort": "xhigh",
+          "web_search": "disabled",
+          "config": {
+            "skills": {
+              "include_instructions": false,
+              "bundled": {
+                "enabled": false
+              }
+            },
+            "features": {
+              "skip_host_skill_discovery": true,
+              "skill_search": false,
+              "skill_mcp_dependency_install": false,
+              "memories": false
+            }
+          }
+        },
+        "env": {
+          "CODEX_AUTH_JSON_PATH": "/Use****son"
+        },
+        "mcp_servers": []
+      },
+      "bridge_inputs": {},
+      "skills": [],
+      "environment": {
+        "type": "docker",
+        "force_build": true,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+      },
+      "verifier": {
+        "disable": true,
+        "environment_mode": "separate"
+      }
+    }
+  ]
+}

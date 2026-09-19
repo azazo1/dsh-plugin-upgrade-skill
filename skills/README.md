@@ -44,6 +44,7 @@ description: 一句话说明做什么、何时触发，以及重要的只读/写
 | [plugin-runtime-debug](plugin-runtime-debug/) | 依据 DSH 源码契约排查 Web 插件运行时故障（粘贴/附件/输入机、版本 chip 等），方法级不讲答案 | [@lhh010](https://github.com/lhh010) |
 | [plugin-heavy-dep](plugin-heavy-dep/) | 给轻量 DSH Web 插件接入重依赖（mermaid 等）：懒加载单文件 chunk、宿主路由与包含防护、SVG 白名单清洗、事件所有权 | [@lhh010](https://github.com/lhh010) |
 | [dsh-benchmark-case](dsh-benchmark-case/) | 把某插件仓库的真实升级经验（或已有版本卡 references/v*.md）提取成一条可自动判分的 Harbor benchmark 考题：选材判据、fixture 与陷阱、judge 计分边界、registry 同步纪律 | [@vlln](https://github.com/vlln) |
+| [generic-migration](generic-migration/) | 框架无关的插件迁移方法论（盘点耦合面、通读版本走廊、分层验证），不含任何 DSH 专有事实；benchmark 侧对照技能，用作三条件实验的 generic-arm 控制组 | [@hikariming](https://github.com/hikariming) |
 
 ## 版本兼容审计（独立条目）
 

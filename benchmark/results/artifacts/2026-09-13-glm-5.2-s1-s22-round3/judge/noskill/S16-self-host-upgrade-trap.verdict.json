@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "self-host-root-cause",
+      "verdict": "pass",
+      "reason": "Report explains the session/tool worker is a child of the dsh host whose loaded code lives in the npm global tree being replaced; cites log lines (npm warn cleaning / npm info remove / fetch / linkStuff, no result recorded) and concludes the upgrade kills its own executor mid-install."
+    },
+    {
+      "id": "shim-signature",
+      "verdict": "pass",
+      "reason": "Identifies dsh.cmd and dsh shims missing, dsh.ps1 stale, package content present but non-standard; grounded in env-state.txt and the session log dir listing; explicitly says hand-swapping/hand-patching cannot regenerate shims and makes things worse."
+    },
+    {
+      "id": "external-pinned-repair",
+      "verdict": "pass",
+      "reason": "Describes the fix as an external re-run of the pinned formal install `npm install -g @deepseek-ai/dsh@0.1.2-rc.1` from repair-notes.md, which regenerates shims, rejects hand-patching/unpinned floating installs, and verifies with dsh --version -> 0.1.2-rc.1."
+    },
+    {
+      "id": "refuse-and-hand-off-protocol",
+      "verdict": "pass",
+      "reason": "Section 4: agent must recognize it runs inside the target host, refuse to execute the install, fully stop the running host/GUI/workers before npm runs, and hand the user the ordered external procedure with the version pinned; explicitly marks never-run-from-inside as the rule and gives no best-effort in-place fallback."
+    },
+    {
+      "id": "prevention-guard-checklist",
+      "verdict": "pass",
+      "reason": "Proposes a precise pre-tool upgrade guard detecting self-upgrade intent (mutating commands targeting @deepseek-ai/dsh while running inside the host), plus a checklist with version marker verification (dsh --version, shims consistent), post-upgrade plugin verification (dsh --profile web, plugins load), and dsh-old-* backup cleanup."
+    }
+  ],
+  "caps": []
+}

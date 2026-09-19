@@ -1,0 +1,254 @@
+{
+  "status": "scored",
+  "score": 10,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "chat-projection",
+      "verdict": "partial",
+      "reason": "Locates all three chat reads and identifies a timeline destination for turn ends, but incorrectly excludes partial and turnEnds from compatibility projection. Does not provide views.get('chat')?.legacy or a supported target-owned Chat API shape.",
+      "evidence": [
+        {
+          "report": "assessment.md",
+          "quote": "`isThinking(snapshot: ConversationSnapshot)` and `snapshot.partial?.blocks`"
+        },
+        {
+          "report": "assessment.md",
+          "quote": "`useSession(s => s.runningCalls.length > 0)`"
+        },
+        {
+          "report": "assessment.md",
+          "quote": "`useSession(s => s.turnEnds[s.turnEnds.length - 1]?.reason)`"
+        },
+        {
+          "report": "assessment.md",
+          "quote": "Read the most recent completed-turn end reason from the new turn/event/timeline read path."
+        },
+        {
+          "report": "assessment.md",
+          "quote": "The projection is suitable only as a temporary adapter for the two current-state aggregates."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/Pet.tsx",
+          "quote": "return snapshot.partial?.blocks.some(block => block.kind === 'reasoning') ?? false"
+        },
+        {
+          "path": "src/client/Pet.tsx",
+          "quote": "const toolRunning = useSession(s => s.runningCalls.length > 0)"
+        },
+        {
+          "path": "src/client/Pet.tsx",
+          "quote": "const lastTurnEnd = useSession(s => s.turnEnds[s.turnEnds.length - 1]?.reason)"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-03",
+        "API-10"
+      ],
+      "points": 20,
+      "awarded": 10
+    },
+    {
+      "id": "session-lifecycle",
+      "verdict": "fail",
+      "reason": "Locates running but reverses the required distinction: running belongs to Session/useSession, not chat legacy. The report instead recommends a replacement read API or compatibility projection.",
+      "evidence": [
+        {
+          "report": "assessment.md",
+          "quote": "Keep the boolean meaning, but obtain it from the 0.1.2-alpha.2 read API (or its explicitly documented compatibility projection), not from a top-level legacy snapshot selector."
+        },
+        {
+          "report": "assessment.md",
+          "quote": "**Projection-safe first**, provided the host exposes the documented boolean running projection; it is a scalar aggregate with no historical or nested data."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/Pet.tsx",
+          "quote": "const running = useSession(s => s.running)"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-03"
+      ],
+      "points": 20,
+      "awarded": 0
+    },
+    {
+      "id": "type-and-inject",
+      "verdict": "fail",
+      "reason": "Identifies the old snapshot import but incorrectly assigns its replacement to the removed runtime. Omits the ClientContext migration to scoped Cordis and removal of the package.json runtime inject entry.",
+      "evidence": [
+        {
+          "report": "assessment.md",
+          "quote": "Replace the removed/changed legacy snapshot type with the 0.1.2-alpha.2 snapshot-read type exported by the runtime, and type selectors against that new read result."
+        },
+        {
+          "report": "assessment.md",
+          "quote": "All affected surfaces are in `fixture/src/client/Pet.tsx`."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/Pet.tsx",
+          "quote": "import type { ConversationSnapshot } from '@deepseek-ai/dsh-client-runtime/client'"
+        },
+        {
+          "path": "src/client/index.ts",
+          "quote": "import type { ClientContext } from '@deepseek-ai/dsh-client-runtime/client'"
+        },
+        {
+          "path": "package.json",
+          "quote": "\"inject\": [\"dsh-client-runtime\", \"dsh-client-ui-conversation\", \"dsh-client-locale\"]"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-25",
+        "API-10"
+      ],
+      "points": 20,
+      "awarded": 0
+    },
+    {
+      "id": "slot-registration",
+      "verdict": "fail",
+      "reason": "Explicitly dismisses the affected registration wiring. Provides neither slots.inject around registration nor ui-renderer/client Context augmentation and service ownership.",
+      "evidence": [
+        {
+          "report": "assessment.md",
+          "quote": "The slot, locale registration, and Cordis ordering wiring in `fixture/src/client/index.ts:6-43` do not themselves read the snapshot and show no evidence of breaking from this snapshot-only migration."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/index.ts",
+          "quote": "ctx.inject(['slots', 'conversation'], (scope: ClientContext) => {\n    scope.slots.register(\n      { name: 'conversation.session.header.actions', id: 'pet', order: 10 },\n      Pet,\n    )\n  })"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-03",
+        "API-10"
+      ],
+      "points": 20,
+      "awarded": 0
+    },
+    {
+      "id": "mapping-and-plan",
+      "verdict": "fail",
+      "reason": "Supplies no actual upgrade-card mapping. Its staging plan incorrectly projects running while requiring immediate cutover for projectable chat fields, and omits immediate inject and registration changes.",
+      "evidence": [
+        {
+          "report": "assessment.md",
+          "quote": "Requirement 3 cannot be completed accurately from the allowed inputs."
+        },
+        {
+          "report": "assessment.md",
+          "quote": "The `isThinking` and `lastTurnEnd` selectors therefore need the new read surface before the host cutover; the `running` and active-call selectors can be staged behind the documented compatibility projection and then moved to the canonical path."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/client/Pet.tsx",
+          "quote": "const running = useSession(s => s.running)\n  const thinking = useSession(isThinking)\n  const toolRunning = useSession(s => s.runningCalls.length > 0)"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-03",
+        "DSH-0.1.2-A1-25",
+        "API-10"
+      ],
+      "points": 20,
+      "awarded": 0
+    }
+  ],
+  "caps": [],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 11665,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1807,
+      "reasoning_output_tokens": 351
+    },
+    "request_id": "01a08aea-d19d-72a1-946a-10287e12a59a",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "55ae327e842bc540a25c18ccb35843d8c07f60cbf1f017378204d879d50e73e8",
+    "response_sha256": "f660d9ed8632f01b5027689d1e15cade769b6d443d2101293896ad90d06cd10e"
+  },
+  "citation_audit": [
+    {
+      "report": "assessment.md",
+      "citation": "fixture/src/client/index.ts:6-43",
+      "path": "src/client/index.ts",
+      "start": 6,
+      "end": 43,
+      "valid": true
+    },
+    {
+      "report": "assessment.md",
+      "citation": "Pet.tsx:8",
+      "path": "src/client/Pet.tsx",
+      "start": 8,
+      "end": 8,
+      "valid": true
+    },
+    {
+      "report": "assessment.md",
+      "citation": "Pet.tsx:13-15",
+      "path": "src/client/Pet.tsx",
+      "start": 13,
+      "end": 15,
+      "valid": true
+    },
+    {
+      "report": "assessment.md",
+      "citation": "Pet.tsx:19",
+      "path": "src/client/Pet.tsx",
+      "start": 19,
+      "end": 19,
+      "valid": true
+    },
+    {
+      "report": "assessment.md",
+      "citation": "Pet.tsx:21",
+      "path": "src/client/Pet.tsx",
+      "start": 21,
+      "end": 21,
+      "valid": true
+    },
+    {
+      "report": "assessment.md",
+      "citation": "Pet.tsx:23",
+      "path": "src/client/Pet.tsx",
+      "start": 23,
+      "end": 23,
+      "valid": true
+    },
+    {
+      "report": "assessment.md",
+      "citation": "Pet.tsx:20",
+      "path": "src/client/Pet.tsx",
+      "start": 20,
+      "end": 20,
+      "valid": true
+    }
+  ],
+  "reports": {
+    "assessment.md": "e7032a45f77ed0158a6017ae10ed707fab261c10fe18c733c44f55397c16e5fd"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "73ad6fe030e89985f3e5427861f1d27bd8db3f0ea5dcdfd7bc4378b7246dde5a",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

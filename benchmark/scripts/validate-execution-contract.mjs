@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
+import { RUBRICS } from '../report-judge/rubrics.mjs'
 
 const benchmarkRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const repoRoot = resolve(benchmarkRoot, '..')
@@ -46,6 +47,11 @@ const expectedModes = new Map([
   ['S15-slot-error-boundary-crash', 'readonly'],
   ['S16-self-host-upgrade-trap', 'readonly'],
   ['S17-external-ui-plugin-onboarding-trap', 'readonly'],
+  ['S20-msvc-flock-trap', 'readonly'],
+  ['S19-phantom-update-stale-host', 'readonly'],
+  ['S18-terminal-sprite-render-trap', 'readonly'],
+  ['S22-duplicate-insert-boot-crash-trap', 'readonly'],
+  ['S21-resource-service-unavailable-trap', 'readonly'],
   ['H12-remote-result-boundary-trap', 'readonly'],
   ['M2-optional-dep-trap', 'mutable'],
   ['M3-session-projection', 'mutable'],
@@ -68,6 +74,9 @@ const expectedModes = new Map([
   ['H19-workspace-ya', 'mutable'],
   ['H20-session-events-ledger', 'mutable'],
   ['H21-question-answerer-waterfall', 'mutable'],
+  ['H26-notlisted-trap', 'mutable'],
+  ['H27-undeclared-import-trap', 'mutable'],
+
 ])
 
 const compact = (text) => text.replaceAll('\r\n', '\n').replace(/\s+/g, ' ')
@@ -149,8 +158,9 @@ for (const [taskId, mode] of expectedModes) {
   if (count(taskToml, 'execution_contract = "BENCHMARK-AUTH-v1"') !== 1) {
     fail(taskFile, 'must declare execution_contract = "BENCHMARK-AUTH-v1" exactly once')
   }
-  if (!/^version = "1\.1\.0"$/m.test(taskToml)) {
-    fail(taskFile, 'task version must be 1.1.0 for BENCHMARK-AUTH-v1')
+  const expectedVersion = Object.hasOwn(RUBRICS, taskId) ? (RUBRICS[taskId].taskVersion ?? '4.0.0') : '1.1.0'
+  if (taskToml.match(/^version = "([^"]+)"$/m)?.[1] !== expectedVersion) {
+    fail(taskFile, `task version must be ${expectedVersion} for its current verifier; execution authorization remains BENCHMARK-AUTH-v1`)
   }
 
   // A prompt-level closed-book clause is not an execution boundary: every task

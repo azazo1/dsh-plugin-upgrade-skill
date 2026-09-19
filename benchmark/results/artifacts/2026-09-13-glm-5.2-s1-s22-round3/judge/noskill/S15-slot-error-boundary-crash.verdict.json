@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "busy-scope-and-trigger",
+      "verdict": "pass",
+      "reason": "Report grounds the diagnosis in the fixture: busy is AttachButton's useState local, unbound in sibling AttachmentChips; empty occurrences return null before the map; in plain phase the left guard is false so || evaluates busy, throwing ReferenceError. Cites the shipped expression and short-circuit latency."
+    },
+    {
+      "id": "slot-boundary",
+      "verdict": "pass",
+      "reason": "Explains the render exception is caught by the InputZone slot error boundary which unmounts the whole dock entry (not just the remove button); the attach button lives in a separate slot (input.left) and survives; the diagnostic appears only in the browser console, no user-facing banner."
+    },
+    {
+      "id": "attribution-and-isolation",
+      "verdict": "pass",
+      "reason": "Uses the shipped v0.2.10 lib to establish || busy already existed in the baseline and notes feature.diff is inconsistent with that baseline (stale base, imageItem hoisted above callback-scoped record/status). Proposes both a rollback/re-add bisect and a minimal data-present render mount against the v0.2.10 artifact as isolation, and argues the evidence cannot prove when historical users first hit the latent path."
+    },
+    {
+      "id": "fix-and-hardening",
+      "verdict": "pass",
+      "reason": "Fix deletes the dangling busy operand or threads it as a prop while preserving the phase guard, moves imageItem inside the map callback where record/status are scoped, adds record?.items ?? [] and event.target.closest?.() hardening — the rubric's equivalent-safe fixes."
+    },
+    {
+      "id": "data-present-regression",
+      "verdict": "pass",
+      "reason": "Proposes a render smoke mounting AttachmentChips with an occurrence present in plain phase, asserting the chip/remove control renders and the error boundary captured nothing; explains empty-state-only tests miss the expression (early return null) and node --check/parsing cannot resolve free identifiers or execute the component; folds the data-present mount into pre-ship CI checks."
+    }
+  ],
+  "caps": []
+}

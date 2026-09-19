@@ -20,15 +20,12 @@ test('Codex judge rejects failed, repeated and tool-using turns', () => {
   }
 })
 
-test('Codex transport preserves evidence scoring, records usage, isolates and removes copied auth', async () => {
+test('Codex transport preserves decision scoring, records usage, isolates and removes copied auth', async () => {
   const root = mkdtempSync(join(tmpdir(), 'codex-judge-test-'))
   try {
     const packet = makePacket('S2-negative-scan')
     const reports = { 'report.md': 'A located and explained observation.' }
-    const path = Object.keys(packet.fixture)[0]
-    const answer = { decisions: packet.rubric.criteria.map(c => ({ id: c.id, verdict: 'pass', reason: 'Protocol test.',
-      evidence: [{ report: 'report.md', quote: reports['report.md'] }],
-      sources: [{ path, quote: packet.fixture[path].text.slice(0, 20) }], references: [] })), caps: [] }
+    const answer = { decisions: packet.rubric.criteria.map(c => ({ id: c.id, verdict: 'pass', reason: 'Protocol test.' })), caps: [] }
     const authPath = join(root, 'auth.json'); writeFileSync(authPath, '{}')
     let temporaryHome
     const result = await codexJudge(packet, reports, { bin: process.execPath, model: 'test-model', authPath, logs: join(root, 'logs'),
@@ -39,6 +36,8 @@ test('Codex transport preserves evidence scoring, records usage, isolates and re
         assert.deepEqual(JSON.parse(input).candidate_reports, reports)
         assert.ok(args.includes('--ignore-user-config'))
         assert.deepEqual(outputSchema(packet).properties.decisions.items.properties.id.enum, packet.rubric.criteria.map(c => c.id))
+        assert.deepEqual(outputSchema(packet).properties.decisions.items.required, ['id', 'verdict', 'reason'])
+        assert.deepEqual(outputSchema(packet).properties.caps.items.required, ['id', 'triggered', 'reason'])
         writeFileSync(args[args.indexOf('--output-last-message') + 1], JSON.stringify(answer))
         mkdirSync(join(temporaryHome, 'sessions'))
         writeFileSync(join(temporaryHome, 'sessions/test.jsonl'), JSON.stringify({ type: 'turn_context', payload: { model: 'test-model' } }) + '\n')

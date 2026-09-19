@@ -1,0 +1,517 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-10",
+  "run_directory": "/private/tmp/dsh-s1-s10-s12-s15-luna-20260910",
+  "source": {
+    "created_at": "2026-09-10T09:41:46.317807+00:00",
+    "source": "/Users/yejiming/Desktop/OpenSource/dsh-plugin-upgrade-skill",
+    "head": "b49ccee20498cf8fe240d723b491d4de10b451f8",
+    "branch": "codex/fix-h24-h25-grading",
+    "status": " M benchmark/report-judge/judge.test.mjs\n M benchmark/tasks/S1-static-scan/README.md\n M benchmark/tasks/S1-static-scan/tests/judge.mjs\n M benchmark/tasks/S10-paste-rename-and-version-chip/README.md\n M benchmark/tasks/S10-paste-rename-and-version-chip/tests/judge.mjs\n M benchmark/tasks/S12-global-upgrade-ebusy-trap/README.md\n M benchmark/tasks/S12-global-upgrade-ebusy-trap/tests/judge.mjs\n M benchmark/tasks/S15-slot-error-boundary-crash/README.md\n M benchmark/tasks/S15-slot-error-boundary-crash/tests/judge.mjs\n M package.json\n?? benchmark/scripts/report-evidence.test.mjs\n?? benchmark/tasks/S1-static-scan/tests/prompt.txt\n?? benchmark/tasks/S1-static-scan/tests/report-grading-utils.mjs\n?? benchmark/tasks/S1-static-scan/tests/report-grading.mjs\n?? benchmark/tasks/S10-paste-rename-and-version-chip/tests/prompt.txt\n?? benchmark/tasks/S10-paste-rename-and-version-chip/tests/report-grading-utils.mjs\n?? benchmark/tasks/S10-paste-rename-and-version-chip/tests/report-grading.mjs\n?? benchmark/tasks/S12-global-upgrade-ebusy-trap/tests/prompt.txt\n?? benchmark/tasks/S12-global-upgrade-ebusy-trap/tests/report-grading-utils.mjs\n?? benchmark/tasks/S12-global-upgrade-ebusy-trap/tests/report-grading.mjs\n?? benchmark/tasks/S15-slot-error-boundary-crash/tests/prompt.txt\n?? benchmark/tasks/S15-slot-error-boundary-crash/tests/report-grading-utils.mjs\n?? benchmark/tasks/S15-slot-error-boundary-crash/tests/report-grading.mjs\n",
+    "manifest_sha256": "49e1d4ec46a499d6b3b9acf6539dbeba1b550826cca234ac16c0241c54e67a16",
+    "note": "Frozen working-tree snapshot includes the uncommitted S1/S10/S12/S15 grading fixes."
+  },
+  "task_sha256_manifest": {
+    "S1-static-scan/README.md": "e93a30f5562f7d44e3959f9cc7d363852a876e1dfcc4d21026e76edf754e9608",
+    "S1-static-scan/environment/Dockerfile": "eb91b21baf3f9162dc6f9831a8c20931184c010d7027c703e2314b7cb3515cd1",
+    "S1-static-scan/environment/fixture/README.md": "84b8fd89d9e05abcc4543381a5c50d81fd0f57344879d8bf560dcf3495e79800",
+    "S1-static-scan/environment/fixture/cordis.patch.yml": "a9feaa3ec0f63cedf8e84416f532b53086a7c4ef508dbc280957e79f16dd9668",
+    "S1-static-scan/environment/fixture/package.json": "af1e498ca6f80b65329c7a1dd017d97761391d7032cf7d02f3f44832f920446e",
+    "S1-static-scan/environment/fixture/patch.yml": "de622598fc298f54f2f86ee48734c0c615f02bc9bab6fe9ba234339e6c595b3b",
+    "S1-static-scan/environment/fixture/scripts/apply-patch.mjs": "4d6744baf58fe05524bdcf23a5e289a6292e059bb2272342a5a0448e091221f0",
+    "S1-static-scan/environment/fixture/src/index.ts": "429979274fe9776e22809e0a2725c88c70b7b3127926a8efcc0e4335d7c086d0",
+    "S1-static-scan/instruction.md": "a0a86d166c09d2b52b10232157b9fc872e7f5f9e7f7c7cd2f66a3d81c939b0a2",
+    "S1-static-scan/solution/SOLUTION.md": "0f0409cf904c06c06fd03ba81a2f4442bd5b9a97b89e78aed031a5e8f884c33a",
+    "S1-static-scan/solution/report.md": "927f9717ff6dd76d0014f6e1b819994a12a2ee98be07c5e11c931eac27f68e12",
+    "S1-static-scan/solution/solve.sh": "ef25129d17cee82d7ed30e0996056f282b104c3352e69d691c675462a9513a8c",
+    "S1-static-scan/task.toml": "f3811b358f73615acce67948e04cf4e88365ee58b2539adc1a1844278e0d386d",
+    "S1-static-scan/tests/judge-utils.mjs": "871fa435023eb34528d0b0a3078d07ba06a6849cbea573cef4f088e7d0ae8513",
+    "S1-static-scan/tests/judge.mjs": "280bbcf6694808973005b891bf8036b1fe5cffefe517d36113506a9661bf2e73",
+    "S1-static-scan/tests/prompt.txt": "a0a86d166c09d2b52b10232157b9fc872e7f5f9e7f7c7cd2f66a3d81c939b0a2",
+    "S1-static-scan/tests/report-grading-utils.mjs": "27d2c3b18343b3c74cad1d661d7cc15c34367dc5586edba3300cffeaea9a3bae",
+    "S1-static-scan/tests/report-grading.mjs": "eb96c6717b54662ea31bafdd4523157835521e2015ef4a5ee0f439d30b9590e3",
+    "S1-static-scan/tests/test.sh": "f78732dd7cc0348a3e258c2131b1190793789cfc8d72c2a3ccea6d807de63209",
+    "S10-paste-rename-and-version-chip/README.md": "6dbfc654b5f67687033ec740dd28e4b287dc5bc462d7ecdeecd21a4a0b7248da",
+    "S10-paste-rename-and-version-chip/environment/Dockerfile": "987c89a79b2969b8362251a47ee8b74a91ad51f89881925a1ab13c30ad88dc5b",
+    "S10-paste-rename-and-version-chip/environment/fixture/README.md": "cc50e09bf81daa08a66c5b718a9d4fcda550a64dabc0e5acac84fb7caaa08a66",
+    "S10-paste-rename-and-version-chip/environment/fixture/plugin-attachment-flow.js": "5ca0f59df19a031217105b9fc6bac12549bb6d0e8e71d3a3667ca4b8d39616aa",
+    "S10-paste-rename-and-version-chip/environment/fixture/plugin-version-chip.js": "b560ae3ab5e268f3b3cea1614979dcc723bddce067fcb731fcb09639a7e9a1f9",
+    "S10-paste-rename-and-version-chip/environment/fixture/tags-api-response.txt": "2afe48ffdb7fcbcc194ec11dea579c29efbc312b12d27fba01c16ee0d12fbd7a",
+    "S10-paste-rename-and-version-chip/environment/fixture/user-threads.md": "f27063af372ca524f4d4658d780baf9bdfc7adbfe47b641ad6fca66146ddfaf7",
+    "S10-paste-rename-and-version-chip/instruction.md": "2482b5d523ee9e470fac9d4ad83db1e14df7f414eeda859ce73a92159dbfc5b1",
+    "S10-paste-rename-and-version-chip/solution/SOLUTION.md": "2a962909ecfcca14ea0014a35b683f9c8b449f1780b896645f0df417e5389f0c",
+    "S10-paste-rename-and-version-chip/solution/report.md": "2077ac7703845bebdaadcaa0c505eb227d50fec1e3e876e34fc851c4541d06f0",
+    "S10-paste-rename-and-version-chip/solution/solve.sh": "77a19c6a767ccf138df58e22b955eb3ef7cbd4bedb0a44bac4027dcf1059ea63",
+    "S10-paste-rename-and-version-chip/task.toml": "ad6194e6c1876e0133a0584061e885a1a4b6b79eb94edac79e3e906f8d638727",
+    "S10-paste-rename-and-version-chip/tests/judge-utils.mjs": "871fa435023eb34528d0b0a3078d07ba06a6849cbea573cef4f088e7d0ae8513",
+    "S10-paste-rename-and-version-chip/tests/judge.mjs": "f429a15f2636a1bd5a6628d359fa7c7e99c2f23d05b8bf3e4cd0d5c2cac85180",
+    "S10-paste-rename-and-version-chip/tests/prompt.txt": "2482b5d523ee9e470fac9d4ad83db1e14df7f414eeda859ce73a92159dbfc5b1",
+    "S10-paste-rename-and-version-chip/tests/report-grading-utils.mjs": "27d2c3b18343b3c74cad1d661d7cc15c34367dc5586edba3300cffeaea9a3bae",
+    "S10-paste-rename-and-version-chip/tests/report-grading.mjs": "9899f3108359eeec723d2f22bd9bb206541f084b37b1ded04c3e68428328a16c",
+    "S10-paste-rename-and-version-chip/tests/test.sh": "16dff98787b04a6aa4f0a5b12e29d18446c93366ac804468c29d0801aa6d1688",
+    "S12-global-upgrade-ebusy-trap/README.md": "5d289fa9db1000375d01e04c3b2361997eb50dd33cb92e8755de6f2e37bb5fe0",
+    "S12-global-upgrade-ebusy-trap/environment/Dockerfile": "8ab06f78068875ccf56f198d1b8381b347f92b4c9fdd6e394c6c62757f26b394",
+    "S12-global-upgrade-ebusy-trap/environment/fixture/README.md": "23a5f512c665a64bfd734d8a87f2bef9dd75fb29d0fa9599b3158074d1a12be5",
+    "S12-global-upgrade-ebusy-trap/environment/fixture/attempt1-ebusy.log": "a5b412bc432e91402826d822c02641b2bfe11ced91efbe4c6fc979c7d2fa59b4",
+    "S12-global-upgrade-ebusy-trap/environment/fixture/attempt2-downgrade.log": "5efb5e94a96a34ee4dec2955883cb91b66e86e612390c2c63ab5d363ca5fcb8e",
+    "S12-global-upgrade-ebusy-trap/environment/fixture/npm-dist-tags.txt": "3bdf3bcef12e441b4984f0069cc9fae379e11541e775834ce3777c44ca8821fc",
+    "S12-global-upgrade-ebusy-trap/environment/fixture/running-processes.txt": "488bdccdfdddd4b1deac07afcbdb18f7bf0e76dab1d57644dbbd9d4f3ba3d46b",
+    "S12-global-upgrade-ebusy-trap/instruction.md": "dee9fc9b809e00edeae26113b807af19ace050dd6d06c4b6f2a0e852e7e7bfa0",
+    "S12-global-upgrade-ebusy-trap/solution/SOLUTION.md": "44110047698427e70bb81930bb56bc8ec61eccd54b0ef3e3fda66b8f2918e11e",
+    "S12-global-upgrade-ebusy-trap/solution/report.md": "fd4c33087918e955ebfbf55b76e51cf3b49ae61bc23495bdb0788405051627d0",
+    "S12-global-upgrade-ebusy-trap/solution/solve.sh": "2fa71217040bc666c5832569188b1b0ebf9267ba377403c39401d30b805f4a1c",
+    "S12-global-upgrade-ebusy-trap/task.toml": "1ec505ff3058fc4791bd49fbacacefe338eb81ac5da36a9dc564bbca01a9ae05",
+    "S12-global-upgrade-ebusy-trap/tests/judge-utils.mjs": "871fa435023eb34528d0b0a3078d07ba06a6849cbea573cef4f088e7d0ae8513",
+    "S12-global-upgrade-ebusy-trap/tests/judge.mjs": "618217d24bc4b751645b88269ed537e5c02c16d3a0f0c36deaa109ed7298cb85",
+    "S12-global-upgrade-ebusy-trap/tests/prompt.txt": "dee9fc9b809e00edeae26113b807af19ace050dd6d06c4b6f2a0e852e7e7bfa0",
+    "S12-global-upgrade-ebusy-trap/tests/report-grading-utils.mjs": "27d2c3b18343b3c74cad1d661d7cc15c34367dc5586edba3300cffeaea9a3bae",
+    "S12-global-upgrade-ebusy-trap/tests/report-grading.mjs": "08277dd231836bf98cbbe4a7b7651acae76b8d32477d3f442e8622f154a910d5",
+    "S12-global-upgrade-ebusy-trap/tests/test.sh": "16dff98787b04a6aa4f0a5b12e29d18446c93366ac804468c29d0801aa6d1688",
+    "S15-slot-error-boundary-crash/README.md": "fdbe4b081da11ee932cc855e9b2c417da68b1209664e9babd17d4927d08cb2a5",
+    "S15-slot-error-boundary-crash/environment/Dockerfile": "987c89a79b2969b8362251a47ee8b74a91ad51f89881925a1ab13c30ad88dc5b",
+    "S15-slot-error-boundary-crash/environment/fixture/README.md": "95bd395a400bae5d39e892ae716cc2ac8a21dfe67204f752993d3ff050379f23",
+    "S15-slot-error-boundary-crash/environment/fixture/feature.diff": "95c131250ecfa734425df34821ef7e4cfa61e1272925f1d82a3ae234aa0e1270",
+    "S15-slot-error-boundary-crash/environment/fixture/plugin-dock-chips.js": "5a1e75c62265eafb824ed68ef3716ef3379bcacba7c37c7378c4886f9a44bb99",
+    "S15-slot-error-boundary-crash/environment/fixture/user-thread.md": "ce124526a60a65668fb4282c75eee48cf3342d9243afde3ac9ec197472745872",
+    "S15-slot-error-boundary-crash/instruction.md": "1ce2c3886e8fa140c41b7533076f03faea50838ab574bf8bbe79684af7256d0b",
+    "S15-slot-error-boundary-crash/solution/SOLUTION.md": "860711c0f5a034f85efe6159ffd1f55bceeebe561424d70cc4474a0d98ce8395",
+    "S15-slot-error-boundary-crash/solution/report.md": "325b61f6e3977dfcb3e5b864560b76a28a560efe0fc6a1667c9b3b1b262f7556",
+    "S15-slot-error-boundary-crash/solution/solve.sh": "08f2ba5032b9c7c555e343532016b85512f5d5f4bf017e8ccb6c2f1dc3f5bcaf",
+    "S15-slot-error-boundary-crash/task.toml": "2a024bb76bd5345b540773a42452114333a0acd9041346d107eb0da49c8d8fb7",
+    "S15-slot-error-boundary-crash/tests/judge-utils.mjs": "871fa435023eb34528d0b0a3078d07ba06a6849cbea573cef4f088e7d0ae8513",
+    "S15-slot-error-boundary-crash/tests/judge.mjs": "32723de3f91aea7a1813f47ebfc2aa9bf194689155499974f6c2f5e279a64db6",
+    "S15-slot-error-boundary-crash/tests/prompt.txt": "1ce2c3886e8fa140c41b7533076f03faea50838ab574bf8bbe79684af7256d0b",
+    "S15-slot-error-boundary-crash/tests/report-grading-utils.mjs": "27d2c3b18343b3c74cad1d661d7cc15c34367dc5586edba3300cffeaea9a3bae",
+    "S15-slot-error-boundary-crash/tests/report-grading.mjs": "cfaf8bd2de67dc20698ae010771d14bb117db9da0c2b0ce84cb6c8ecfd5dd1b8",
+    "S15-slot-error-boundary-crash/tests/test.sh": "16dff98787b04a6aa4f0a5b12e29d18446c93366ac804468c29d0801aa6d1688"
+  },
+  "configuration": {
+    "job_name": "codex-luna-s1-s10-s12-s15-literal-zero-skill",
+    "jobs_dir": "/private/tmp/dsh-s1-s10-s12-s15-luna-20260910/jobs",
+    "agent_setup_timeout_multiplier": 4.0,
+    "n_concurrent_trials": 4,
+    "n_attempts": 1,
+    "environment": {
+      "type": "docker",
+      "force_build": true
+    },
+    "agents": [
+      {
+        "name": "harbor_codex_node24:CodexNode24",
+        "model_name": "openai/gpt-5.6-luna",
+        "n_concurrent": 4,
+        "skills": [],
+        "extra_allowed_hosts": [
+          "chatgpt.com"
+        ],
+        "kwargs": {
+          "version": "0.153.4",
+          "reasoning_effort": "xhigh",
+          "web_search": "disabled",
+          "config": {
+            "skills": {
+              "include_instructions": false,
+              "bundled": {
+                "enabled": false
+              }
+            }
+          }
+        },
+        "env": {
+          "CODEX_AUTH_JSON_PATH": "/Users/yejiming/.codex/auth.json"
+        }
+      }
+    ],
+    "skills": [],
+    "datasets": [
+      {
+        "path": "/private/tmp/dsh-s1-s10-s12-s15-luna-20260910/tasks"
+      }
+    ],
+    "extra_instructions": [
+      "This is a literal zero-skill evaluation. Do not search for, open, read, quote, or follow any SKILL.md file or any skill directory. Do not use Codex-native or bundled skills. Use only the task prompt, /app/fixture, and non-skill local documentation and tools. Skip any skill file if encountered."
+    ],
+    "artifacts": [
+      "/app/agent-output",
+      "/app/fixture"
+    ]
+  },
+  "job_result": {
+    "id": "bb16c151-491b-4535-b3fd-a0102d8f9614",
+    "started_at": "2026-09-10T17:42:04.560528",
+    "updated_at": "2026-09-10T17:49:25.894836",
+    "finished_at": "2026-09-10T17:49:25.894836",
+    "n_total_trials": 4,
+    "stats": {
+      "n_completed_trials": 4,
+      "n_errored_trials": 0,
+      "n_running_trials": 0,
+      "n_pending_trials": 0,
+      "n_cancelled_trials": 0,
+      "n_retries": 0,
+      "evals": {
+        "codex__gpt-5.6-luna__tasks": {
+          "n_trials": 4,
+          "n_errors": 0,
+          "metrics": [
+            {
+              "mean": 0.15000000000000002
+            }
+          ],
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "0.0": [
+                "S10-paste-rename-and-version-chi__eRAAv4C",
+                "S1-static-scan__LaUKvio"
+              ],
+              "0.4": [
+                "S15-slot-error-boundary-crash__MtbJopQ"
+              ],
+              "0.2": [
+                "S12-global-upgrade-ebusy-trap__LCetjSv"
+              ]
+            }
+          },
+          "exception_stats": {}
+        }
+      },
+      "n_input_tokens": 657102,
+      "n_cache_tokens": 550656,
+      "n_output_tokens": 33944,
+      "cost_usd": 0.07303511999999998
+    }
+  },
+  "job_seconds": 441.334308,
+  "mean_score": 15.0,
+  "trials": [
+    {
+      "task": "S1-static-scan",
+      "trial_name": "S1-static-scan__LaUKvio",
+      "task_checksum": "abb1d0f4ae9064fbb79570b9923f7d9d10a5fe68ef711128384d337f8f17af99",
+      "grade": {
+        "score": 0,
+        "max": 100,
+        "reasons": [
+          "fixture unchanged (read-only discipline passed)",
+          "read agent report: S1-static-scan/touchpoint-report.md",
+          "missing aspect: #1 source patch → A1-03 (+0): evidence and conclusion are not linked",
+          "missing aspect: #2 event marker → A1-02 and A2-01 (+0): target card",
+          "missing aspect: #3 apiProxy → A1-01 (+0): removed service and replacement",
+          "missing aspect: #4 host directory → A1-04 (+0): runtime replacement",
+          "missing aspect: #5 UI/command coupling → A1-03 (+0): check target public boundary",
+          "missing aspect: #6 loopback authentication → A1-08 (+0): card",
+          "missing aspect: #7 subprocess/output → A1-04 (+0): old wrapper assumption, not a new change",
+          "missing aspect: scan scope and all seven hit (+0): scope",
+          "missing aspect: corridor net state preserves the informational marker (+0): remove then restore",
+          "missing aspect: static limits and runtime verification (+0): static scan does not prove compatibility; real verification"
+        ]
+      },
+      "reward": 0.0,
+      "exception": null,
+      "agent": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "actual_models": [
+        "gpt-5.6-luna"
+      ],
+      "actual_reasoning_efforts": [
+        "xhigh"
+      ],
+      "agent_execution_seconds": 214.498907,
+      "trial_seconds": 441.247725,
+      "usage": {
+        "n_input_tokens": 292300,
+        "n_cache_tokens": 256256,
+        "n_output_tokens": 8553,
+        "cost_usd": 0.02259752,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "oracle_reward": 1,
+      "fixture_byte_identical": true,
+      "answer_file": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S1.md",
+      "answer_sha256": "65f1b3ccef805598163c19978d66b31e3cad47da65bd13f260e7405090141feb",
+      "raw_trial_path": "/private/tmp/dsh-s1-s10-s12-s15-luna-20260910/jobs/codex-luna-s1-s10-s12-s15-literal-zero-skill/S1-static-scan__LaUKvio",
+      "skill_audit": {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S1-static-scan__LaUKvio",
+          "task": "S1-static-scan",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": true,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      "native_skill_instruction_blocks": 0,
+      "completed_command_count": 13,
+      "commands_with_skill_mentions": 6
+    },
+    {
+      "task": "S10-paste-rename-and-version-chip",
+      "trial_name": "S10-paste-rename-and-version-chi__eRAAv4C",
+      "task_checksum": "4ac1ff1a0138808286b92ad88e8dc69c1df00782c5d5c8bfb46196ce67eefdc7",
+      "grade": {
+        "score": 0,
+        "max": 100,
+        "reasons": [
+          "fixture unchanged (read-only discipline passed)",
+          "read agent report: S10-paste-rename-and-version-chip/S10-report.md",
+          "missing aspect: naming, extension and displayed/uploaded names (+0): search for a free numbered name",
+          "missing aspect: live occurrence conflict set and cache retirement (+0): derive occupied names from live state",
+          "missing aspect: paste acquisition scope preserves drop/picker names (+0): rename before shared add",
+          "missing aspect: stale CDN tag and newer-of-running/fetched rule (+0): update only for a strictly newer remote",
+          "missing aspect: regressions and lib-only release hygiene (+0): same-name paste coexistence assertion; version constant synchronized with manifest"
+        ]
+      },
+      "reward": 0.0,
+      "exception": null,
+      "agent": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "actual_models": [
+        "gpt-5.6-luna"
+      ],
+      "actual_reasoning_efforts": [
+        "xhigh"
+      ],
+      "agent_execution_seconds": 244.867182,
+      "trial_seconds": 402.228862,
+      "usage": {
+        "n_input_tokens": 144282,
+        "n_cache_tokens": 116736,
+        "n_output_tokens": 10528,
+        "cost_usd": 0.02047752,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "oracle_reward": 1,
+      "fixture_byte_identical": true,
+      "answer_file": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S10.md",
+      "answer_sha256": "2fcca19f97407ee46ccedb663f256cdaabf482163412c8e1aaa6611f3850ca39",
+      "raw_trial_path": "/private/tmp/dsh-s1-s10-s12-s15-luna-20260910/jobs/codex-luna-s1-s10-s12-s15-literal-zero-skill/S10-paste-rename-and-version-chi__eRAAv4C",
+      "skill_audit": {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S10-paste-rename-and-version-chi__eRAAv4C",
+          "task": "S10-paste-rename-and-version-chi",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      "native_skill_instruction_blocks": 0,
+      "completed_command_count": 10,
+      "commands_with_skill_mentions": 1
+    },
+    {
+      "task": "S12-global-upgrade-ebusy-trap",
+      "trial_name": "S12-global-upgrade-ebusy-trap__LCetjSv",
+      "task_checksum": "8edee61005f9fde622c785271c864d4606281c6136c7ef9cc556064de91b7429",
+      "grade": {
+        "score": 20,
+        "max": 100,
+        "reasons": [
+          "fixture unchanged (read-only discipline passed)",
+          "read agent report: S12-global-upgrade-ebusy-trap/report.md",
+          "missing aspect: native binary lock held by the running host (+0): lock prevents replacement until process exit; connect the lock to install failure",
+          "missing aspect: browser refresh is insufficient; stop the host before installing (+0): ordered stop then install",
+          "missing aspect: unpinned install follows latest=rc.2 and downgrades alpha.4 (+0): contradictory advice",
+          "hit aspect: exact alpha.5 and TUI commands, verification and restart (+20)",
+          "missing aspect: README authors must pin host versions (+0): action for README install instructions"
+        ]
+      },
+      "reward": 0.2,
+      "exception": null,
+      "agent": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "actual_models": [
+        "gpt-5.6-luna"
+      ],
+      "actual_reasoning_efforts": [
+        "xhigh"
+      ],
+      "agent_execution_seconds": 137.224542,
+      "trial_seconds": 344.688898,
+      "usage": {
+        "n_input_tokens": 79237,
+        "n_cache_tokens": 62976,
+        "n_output_tokens": 5122,
+        "cost_usd": 0.01065812,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "oracle_reward": 1,
+      "fixture_byte_identical": true,
+      "answer_file": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S12.md",
+      "answer_sha256": "cd04f50865e30a8d4244b6978bdb7fda8572818df8e71db9d22dee40e093eef5",
+      "raw_trial_path": "/private/tmp/dsh-s1-s10-s12-s15-luna-20260910/jobs/codex-luna-s1-s10-s12-s15-literal-zero-skill/S12-global-upgrade-ebusy-trap__LCetjSv",
+      "skill_audit": {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S12-global-upgrade-ebusy-trap__LCetjSv",
+          "task": "S12-global-upgrade-ebusy-trap",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": [
+          "exec-call-pairing-mismatch:event-21"
+        ]
+      },
+      "native_skill_instruction_blocks": 0,
+      "completed_command_count": 9,
+      "commands_with_skill_mentions": 0
+    },
+    {
+      "task": "S15-slot-error-boundary-crash",
+      "trial_name": "S15-slot-error-boundary-crash__MtbJopQ",
+      "task_checksum": "e86ea3244135f4eac2b21878b05f47af68694d61c01572d354ba522d6ef1b3e8",
+      "grade": {
+        "score": 40,
+        "max": 100,
+        "reasons": [
+          "fixture unchanged (read-only discipline passed)",
+          "read agent report: S15-slot-error-boundary-crash/report.md",
+          "missing aspect: busy scope error and data/phase-dependent evaluation (+0): busy belongs to AttachButton, not AttachmentChips",
+          "hit aspect: slot boundary removes the entry and exposes the error in console (+20)",
+          "missing aspect: old busy line, not new feature, established by bisect/render probe (+0): old release contains the same defect; causal check",
+          "hit aspect: remove/scope busy and harden optional reads (+20)",
+          "missing aspect: data-present regression plus syntax-check limitation (+0): mount with data and assert visible chip; empty path misses failure; syntax check cannot establish identifier binding"
+        ]
+      },
+      "reward": 0.4,
+      "exception": null,
+      "agent": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+          "name": "gpt-5.6-luna",
+          "provider": "openai"
+        }
+      },
+      "actual_models": [
+        "gpt-5.6-luna"
+      ],
+      "actual_reasoning_efforts": [
+        "xhigh"
+      ],
+      "agent_execution_seconds": 223.723979,
+      "trial_seconds": 429.734307,
+      "usage": {
+        "n_input_tokens": 141283,
+        "n_cache_tokens": 114688,
+        "n_output_tokens": 9741,
+        "cost_usd": 0.019301959999999996,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "oracle_reward": 1,
+      "fixture_byte_identical": true,
+      "answer_file": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S15.md",
+      "answer_sha256": "a332712c1dc254caa2137a49f8d7bdfdd105dc514d4fcbc4b56cf5417a419d4f",
+      "raw_trial_path": "/private/tmp/dsh-s1-s10-s12-s15-luna-20260910/jobs/codex-luna-s1-s10-s12-s15-literal-zero-skill/S15-slot-error-boundary-crash__MtbJopQ",
+      "skill_audit": {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S15-slot-error-boundary-crash__MtbJopQ",
+          "task": "S15-slot-error-boundary-crash",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      "native_skill_instruction_blocks": 0,
+      "completed_command_count": 11,
+      "commands_with_skill_mentions": 0
+    }
+  ],
+  "interpretation": "Raw deterministic scores are retained without regrading. Manual review identified substantial false negatives in the patched graders; these are not reliable standalone model capability scores. See the paired Markdown report."
+}

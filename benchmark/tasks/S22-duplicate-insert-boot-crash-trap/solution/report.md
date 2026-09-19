@@ -1,0 +1,47 @@
+# S22 report — The duplicate insert that crashed the boot
+
+## 1. Root cause: Cordis treats duplicate insert as fatal, not merge
+
+The web-app bundle's `cordis.patch.yml` already inserts the workspace-files host service
+(`- id: workspace-files / name: '@deepseek-ai/dsh-api-workspace-files'`, L110–111). The
+profile's `cordis.patch.yml` then inserts the same id again. At boot,
+`EntryGroup.update` in `@deepseek-ai/cordis-plugin-loader` detects the duplicate id and
+throws `duplicate loader entry id: workspace-files` — a fatal error that prevents the
+entire plugin tree from loading.
+
+This is BY DESIGN in Cordis: a duplicate insert indicates a composition authoring
+mistake (the same plugin declared twice), and silently merging could hide real
+configuration conflicts. The correct behavior is to fail loud at boot rather than guess
+which declaration the user intended.
+
+## 2. Cordis layering rules
+
+| Action | Effect |
+|---|---|
+| Profile patch: config override by id | SAFE — merges/overrides the bundle-provided plugin's config |
+| Profile patch: `insert` of a NEW plugin id | SAFE — adds to the composition |
+| Profile patch: `insert` of an ALREADY-PROVIDED id | **FATAL** — duplicate loader entry id |
+
+The maintainer's action falls into category 3: the web-app bundle already inserts
+workspace-files, so the profile patch's duplicate insert is a composition authoring
+error.
+
+## 3. Fix
+
+Remove the duplicate insert block from the profile's `cordis.patch.yml`. The web-app
+bundle already provides workspace-files — no manual insert is needed. This is NOT a
+plugin defect and NOT fixable by modifying the plugin's code.
+
+## 4. Prevention
+
+Before manually inserting a plugin id into the profile patch:
+
+1. **Grep the web-app bundle's cordis.patch.yml** for the id — if it's already there,
+   the composition already includes it.
+2. **Distinguish config override from insert**: if you need to change a bundle-provided
+   plugin's config, use a config override by id (no insert). Only use `insert` for
+   plugins NOT already provided by any bundle.
+3. **If the plugin is genuinely unavailable at runtime** but the bundle provides it, the
+   root cause is a compose/artifact gap (see discussion
+   [#5999](https://github.com/deepseek-ai/deepseek-harness/discussions/5999)), not a
+   missing insert — report upstream rather than trying to fix it in the profile patch.

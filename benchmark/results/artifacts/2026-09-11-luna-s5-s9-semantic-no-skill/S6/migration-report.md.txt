@@ -1,0 +1,67 @@
+# S6 · Corridor net-state migration report
+
+## Judgment
+
+Delete the defense code: remove the `delete (event as any).ignorable` statement
+and its alpha.1-only rationale. It must not be kept for alpha.2.
+
+The verifiable semantic corridor in this fixture is:
+
+```text
+alpha.1: SessionEvent.ignorable was temporarily removed
+       -> alpha.2: retention semantics were restored
+```
+
+This transition is stated in `README.md:3` as
+`DSH-0.1.2-A1-02 -> DSH-0.1.2-A2-01 (remove-then-restore)`. The source
+implements the obsolete workaround at `src/events.ts:3-6`: it claims that a
+reader would reject the marker, then deletes it. That comment is contradicted
+by the target-version corridor statement and is not sufficient evidence for
+the migration decision.
+
+The alpha.1 workaround was appropriate only for the temporary alpha.1 state
+described by the fixture. Once alpha.2 restored retention, deleting the marker
+would discard metadata that alpha.2 is intended to retain. The net-state rule
+at the target is therefore preservation, not deletion.
+
+## Correct producer semantics
+
+For alpha.2, a producer must preserve an existing `ignorable` marker on a
+persistent event. It must not strip the marker as a compatibility workaround.
+This is a preservation rule; the fixture does not establish whether this
+particular third-party informational event should be newly marked `ignorable`,
+so that separate decision is **unconfirmed**.
+
+The exact function currently constructs an object containing only `type` and
+`payload`, so on this literal object the `delete` is also a no-op unless some
+outside behavior adds the property. Regardless, the migration-safe producer
+behavior is to leave the property untouched if it is present.
+
+## Ordinary `Session.append(...)` plugin behavior
+
+An ordinary plugin should construct its event and call the public append API:
+
+```ts
+const event = { type: 'third-party/informational', payload }
+session.append(event)
+```
+
+It should remove the manual `delete`, avoid direct persistence surgery, and
+avoid inventing an `ignorable` argument to `Session.append(...)`. The fixture
+shows only the one-argument call (`src/events.ts:7`) and supplies no host API
+declaration; whether the real alpha.2 public signature exposes such a
+parameter is **unconfirmed**. If it does not expose one, marker handling must
+remain with the host/append pipeline, while the plugin must not destroy a
+marker already present on the event.
+
+## Evidence limits
+
+- The repository contains only the `baseline` commit, with no other local
+  branches, tags, reflog states, or unreachable objects. No alpha.1/alpha.2
+  host source, API declaration, reader implementation, or tests are present.
+- Consequently, the version-history claims above are the complete history
+  verifiable from this fixture’s README, not an independently reconstructed
+  host implementation. Exact serialization and reader behavior are
+  **unconfirmed** beyond the stated remove-then-restore semantics.
+- The fixture was inspected read-only; no file under `/app/fixture/` was
+  modified.

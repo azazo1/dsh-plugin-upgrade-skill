@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "description": "Documentation contract for the task-annotation-v1 pipeline artifacts. Machine enforcement lives in paper/scripts/validate-task-annotations.mjs; this file is the human-readable shape reference.",
+  "inventory": {
+    "file": "inventory.json",
+    "fields": {
+      "schemaVersion": "number, must be 1",
+      "id": "string, task-annotation-v1-inventory",
+      "inventoryStatus": "string, pre-freeze-main56 — this is NOT a formal frozen benchmark snapshot; the 56-task snapshot is created by the research plan's QC process later",
+      "inventoryCommit": "string, full git SHA of main at inventory time; every source of the packet resolves from git objects at THIS commit",
+      "annotationStatus": "string, not-started | in-progress | single-pass-incomplete | complete — computed by the validator from the templates; 'adjudicating' is a workflow phase (guidelines §8), not a storable status: while adjudication is open the status stays in-progress",
+      "tasks": "array of {id, interactionMode: Static|Hands-on, treeSha} — exactly the benchmark/tasks/ directories at inventoryCommit, lexical order; interactionMode machine-derived from the pinned README Type column"
+    },
+    "rules": [
+      "tasks must exactly equal git ls-tree <inventoryCommit>:benchmark/tasks/ — no missing, extra, or duplicate entries",
+      "interactionMode must equal the benchmark/README.md Type column at inventoryCommit (never the ID prefix)",
+      "a task that is hard to classify is never dropped; it is annotated unresolved with rationale and confidence=low"
+    ]
+  },
+  "packet": {
+    "file": "packet/tasks.json",
+    "fields": {
+      "schemaVersion": "number, must be 1",
+      "packetId": "string, task-annotation-v1-packet",
+      "inventoryCommit": "string, must equal inventory.inventoryCommit",
+      "inventoryStatus": "string, must equal inventory.inventoryStatus",
+      "generatedBy": "string, script path",
+      "annotationStatus": "string, copied from inventory.annotationStatus at generation time",
+      "taskCount": "number, must equal inventory task count",
+      "tasks": "array of per-task evidence objects: {taskId, interactionMode, taskTreeSha, taskToml: {name, version, description, keywords}, instruction: full pinned instruction.md text, readme: {summary, environment, verifier} paragraphs pinned and outcome-scrubbed, fixtureFiles: relative paths pinned, referencedCards: [{cardId, source, text}] pinned, unresolvedCardRefs: [cardId] referenced by the instruction but not found in the pinned references corpus}"
+    },
+    "leakageRules": [
+      "no benchmark/results/ source path may appear anywhere",
+      "no field may be named reward/score/delta/activation*",
+      "no outcome phrase may appear: mean reward, median reward, expected reward, reward.txt, with-skill, no-skill, no-injected-skill, activation rate, skill delta",
+      "no model id (deepseek-v4-flash, gpt-5.6-luna, gpt-5.6-terra, claude, codex, terminus) may appear",
+      "no exposure-ledger or holdout verdict vocabulary: clean-holdout, mixed (as verdict), ineligible, knowledge_holdout_v1, provisional_role, development-vs-holdout",
+      "the word \"meaning\" is not an outcome word and must not false-positive"
+    ],
+    "determinism": [
+      "regeneration from the same inventoryCommit is byte-identical: no timestamps, host paths, usernames, or nondeterministic ordering",
+      "task ordering is lexical by task id"
+    ]
+  },
+  "annotatorTemplate": {
+    "files": "templates/annotator-a.csv, templates/annotator-b.csv",
+    "headerComments": "# annotator_id, # started_at, # finished_at, # independence_declaration",
+    "columns": "task_id,incident_family_id,family_short_name,observable_trap_type,family_evidence,rationale,confidence,difficulty",
+    "rules": [
+      "task_id rows are pre-filled with the full inventory so no task can be silently omitted",
+      "confidence: high | medium | low",
+      "difficulty: blank in v1 (deferred to P1)",
+      "same incident_family_id requires identical family_short_name across all rows of one annotator",
+      "a CSV with all label fields blank is status not-started (valid); any partially filled CSV is incomplete (invalid)",
+      "annotator_id and the independence declaration are required as soon as any row is filled"
+    ]
+  },
+  "adjudicationTemplate": {
+    "file": "templates/adjudication.csv",
+    "columns": "task_id,dimension,choice,chosen_family_id,chosen_trap_type,adjudication_reason",
+    "rules": [
+      "only tasks listed as disagreements may be adjudicated",
+      "choice: A | B | new; new requires chosen_family_id and/or chosen_trap_type plus a reason",
+      "the adjudicator is a third party: its id must differ from both annotator ids; the role is adjudicator, never \"annotator C\""
+    ]
+  },
+  "agreementOutput": {
+    "script": "paper/scripts/measure-task-annotation-agreement.mjs",
+    "fields": {
+      "status": "string, complete | incomplete — incomplete when any required submission is missing; no pseudo-metrics are computed in that case",
+      "inventoryCount": "number",
+      "annotators": "object with per-annotator submission state",
+      "incidentFamily": "{pairwiseAgreement, adjustedRandIndex}",
+      "trapType": "{rawAgreement, cohensKappa}",
+      "disagreements": "array of {taskId, dimension, annotatorA, annotatorB}"
+    }
+  },
+  "consensus": {
+    "file": "consensus.csv — MUST NOT EXIST until adjudication completes; this pipeline never fabricates consensus",
+    "joinKey": "task_id — the only join key to task-exposure-ledger.csv and temporal-holdout-v1; exposure status and holdout eligibility are NOT annotation inputs"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "group": "gpt-5.6-terra",
+  "source": [
+    "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22.md",
+    "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22-literal-no-skill.md"
+  ],
+  "extractedAt": "2026-09-15",
+  "protocol": "Codex 0.152.0 harness, Harbor 0.22.0, reasoning xhigh, same-day paired arms, n=1 per arm; no-skill arm is literal zero-skill (skills.include_instructions=false, skills.bundled.enabled=false); legacy graders",
+  "tasks": [
+    {
+      "task": "H1-plane-trap",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "H2-baseline-trap",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "H3-client-plane",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "H4-tsbuildinfo-trap",
+      "noskill": 0.3,
+      "skill": 1.0
+    },
+    {
+      "task": "H5-runtime-export-drift",
+      "noskill": 1.0,
+      "skill": 0.2
+    },
+    {
+      "task": "H6-remote-error-trap",
+      "noskill": 0.0,
+      "skill": 0.0
+    },
+    {
+      "task": "H7-locale-trap",
+      "noskill": 0.9,
+      "skill": 0.9
+    },
+    {
+      "task": "H8-fire-drill",
+      "noskill": null,
+      "skill": null,
+      "excluded": "VerifierTimeoutError on both arms (1200s and 2400s); no verifier reward, never counted as zero"
+    },
+    {
+      "task": "H9-dsh-web-alpha2",
+      "noskill": 0.5,
+      "skill": 0.8
+    },
+    {
+      "task": "M1-host-migration",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "M2-optional-dep-trap",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "M3-session-projection",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "M4-peer-prerelease-range",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "M5-token-auth-smoke",
+      "noskill": 0.6,
+      "skill": 0.6
+    },
+    {
+      "task": "S1-static-scan",
+      "noskill": 0.83,
+      "skill": 1.0
+    },
+    {
+      "task": "S2-negative-scan",
+      "noskill": 0.6,
+      "skill": 1.0
+    },
+    {
+      "task": "S3-snapshot-migration",
+      "noskill": 0.2,
+      "skill": 1.0
+    },
+    {
+      "task": "S4-legacy-client-imports",
+      "noskill": 1.0,
+      "skill": 1.0
+    },
+    {
+      "task": "S5-negative-naming",
+      "noskill": 0.5,
+      "skill": 0.75
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "noskill": 0.25,
+      "skill": 0.25
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "noskill": 0.25,
+      "skill": 0.25
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "noskill": 1.0,
+      "skill": 1.0
+    }
+  ]
+}

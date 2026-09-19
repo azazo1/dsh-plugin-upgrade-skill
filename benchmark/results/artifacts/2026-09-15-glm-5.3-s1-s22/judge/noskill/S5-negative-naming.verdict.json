@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "official-short-name",
+      "verdict": "pass",
+      "reason": "Locates greet in dsh-plugin.naming.json, distinguishes short name from coordinate acme/greet, and correctly judges it policy-valid — a collision recommendation at most, not a compatibility error; grounded in the fixture files, not mere keyword echo."
+    },
+    {
+      "id": "service-collision-advice",
+      "verdict": "pass",
+      "reason": "Locates the unprefixed service `search`, explains the collision risk against core/community names, classifies it as warning/recommendation explicitly NOT an error, marks actual collision as unknown/needs registry context, and does not treat any strict-mode exit as proof of incompatibility."
+    },
+    {
+      "id": "shared-event-context",
+      "verdict": "pass",
+      "reason": "Locates web-search/ready, reads it as a shared/informational channel, states the channel-owner/registry context (not name matching) determines whether a conflict exists, and marks sanction/collision as unqueried; no unsupported global-uniqueness claim."
+    },
+    {
+      "id": "coverage-and-registry-limits",
+      "verdict": "pass",
+      "reason": "Covers all remaining surfaces (loader, tool, command, skill, skillProvider, settings namespace, route) individually, distinguishes local naming validity from unqueried registry occupancy (explicitly unknown/not checked), proposes later verification (channel owner, pre-publish checklist) without claiming it ran, and correctly treats private:true as a test-material/pre-publish checklist item, not a naming error."
+    }
+  ],
+  "caps": [
+    {
+      "id": "unsupported-all-clear",
+      "triggered": false,
+      "reason": "The report explicitly rejects any all-clear: it labels every registry-dependent claim unknown/not checked and affirmatively states no name is claimed reserved, available, free, or globally unique."
+    }
+  ]
+}

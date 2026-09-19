@@ -1,0 +1,30 @@
+{
+ "decisions": [
+  {
+   "id": "phantom-self-update-root-cause",
+   "verdict": "pass",
+   "reason": "Report grounds the diagnosis in client-bundle-excerpt.js (PLUGIN_VERSION \"0.3.6\" baked at build time, not read at runtime) and release-log.md (16:22 build before 16:23 bump), explains the self-badge comparison against mirror tags, why SHA-verified mirrors are irrelevant, gives the corrected bump-first-then-build order, and the grep-the-shipped-bundle pre-push gate."
+  },
+  {
+   "id": "client-host-plane-asymmetry",
+   "verdict": "pass",
+   "reason": "Report splits the planes: client half re-fetched by browser (toggle visible), host half registers asset routes at boot-time activation. Uses asset-route-probe.txt plus lib-index-excerpt.js (PNG 200, SVG 404, disk lib whitelists svg) to pin staleness to the running host process, requires a host restart, and explicitly explains why the plugins-hot-update rule fails for the host plane."
+  },
+  {
+   "id": "broken-image-attribution",
+   "verdict": "pass",
+   "reason": "Report triangulates session-log-excerpt.txt: disk file well-formed, stored payload spliced (line 232 truncated at shared prefix \"stro\" + tail of line 247, lines 233-247 missing), clean re-read; attributes corruption to upstream result-text assembly, requires treating the session payload as untrusted rendering input, and explains why editing/repairing the well-formed traced file would have been wrong."
+  },
+  {
+   "id": "defensive-render-chain",
+   "verdict": "pass",
+   "reason": "Report designs the exact order with per-level justification: disk-bytes asset route first, session payload only after a DOMParser/parsererror XML well-formedness gate, sandboxed iframe fallback with scripts blocked while noting SMIL animations still run, and an explicit error state instead of a silent broken image."
+  },
+  {
+   "id": "forensics-and-prevention",
+   "verdict": "pass",
+   "reason": "Report explains frame-by-frame decoding of the concatenated-Zstandard session log (frame splitting, per-frame decompression, verbatim stored-text recovery, splice pinning) and folds in all checklist items: bump before build, grep shipped bundle for the baked constant, keep per-mirror tag SHA verification, and file the upstream text-corruption bug instead of papering over it in the plugin."
+  }
+ ],
+ "caps": []
+}

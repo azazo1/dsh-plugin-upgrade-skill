@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "missing-mirror-tag",
+      "verdict": "pass",
+      "reason": "Grounds attempt-1 failure in ls-remote-tags.txt (v0.9.5 absent, v0.9.2–v0.9.6 gap) and sync-script.sh pushing only HEAD:main with no tag refs; explicitly rejects consumer-side network/command error."
+    },
+    {
+      "id": "runtime-compatibility-direction",
+      "verdict": "pass",
+      "reason": "Uses dsh-version.txt (0.1.1-rc.2) and compat-table.md (v0.9.7 → alpha.1 useConversation seat) to explain the direction: newer-client-API artifact on older runtime lacking the API; states restarting cannot fix the mismatch."
+    },
+    {
+      "id": "frozen-runtime-remedy",
+      "verdict": "fail",
+      "reason": "Correctly selects v0.9.3 (rc.1 verified, rc.2 additive) and honors the freeze, but asserts 'Its tag is present on the mirror' and gives it as immediately installable — v0.9.3 is absent from ls-remote-tags.txt (jumps v0.9.1 → v0.9.7); the rubric explicitly forbids presenting the absent tag as immediately installable, and no post-tag-publication condition or verified-commit alternative is offered."
+    },
+    {
+      "id": "tag-distribution-repair",
+      "verdict": "pass",
+      "reason": "Grounded in the branch-only sync script; proposes non-forced 'git push $remote --tags' (or refs/tags/*) to every mirror plus per-mirror ls-remote verification that fails the release on a missing tag — branch sync alone deemed insufficient."
+    },
+    {
+      "id": "version-routing-docs",
+      "verdict": "pass",
+      "reason": "Proposes README routing by consumer DSH version with a per-row install-command compat matrix (rc.x → v0.9.3, alpha.1 → v0.9.7), rejecting newest-tag default; optional manifest peer-range is additive, not a generalization to untested alphas."
+    }
+  ],
+  "caps": []
+}

@@ -1,0 +1,209 @@
+{
+  "status": "scored",
+  "score": 100,
+  "max": 100,
+  "passed": true,
+  "decisions": [
+    {
+      "id": "paste-names-and-scope",
+      "verdict": "pass",
+      "reason": "Defines first-free paste_image/paste_file naming, reserves batch names against live names, and normalizes only clipboard acquisitions before validation and record creation.",
+      "evidence": [
+        {
+          "report": "REPORT.md",
+          "quote": "For a paste, normalize a cloned item descriptor before `validateItems()` runs."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "* an image: `paste_image.<ext>`;\n* any other pasted file: `paste_file.<ext>`."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "The first free candidate has no numeric suffix.  Subsequent candidates use\n`paste_image(2).<ext>`, `paste_image(3).<ext>`, or the corresponding `paste_file`\nname.  For each base/extension, choose the smallest available suffix (try the\nunsuffixed name first, then 2, then 3, and so on), rather than using the batch index\nor merely adding one to the largest observed number.  Add every chosen name to a\ntemporary `reserved` set as it is allocated, so duplicate raw names within one paste\nbatch are also handled."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "After normalization, run `validateItems()` on the normalized descriptors and use\nthose descriptors for both the record and `insertReference()`."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "For drop and picker acquisitions, pass the descriptors through unchanged."
+        }
+      ],
+      "sources": [
+        {
+          "path": "plugin-attachment-flow.js",
+          "quote": "// The paste path, the drop path, and the file/folder picker all funnel into add()."
+        },
+        {
+          "path": "plugin-attachment-flow.js",
+          "quote": "    if (paths.has(item.path)) throw new Error(`Duplicate attachment path: ${item.path}`);"
+        },
+        {
+          "path": "plugin-attachment-flow.js",
+          "quote": "const add = async (sessionId, items) => {\n  validateItems(items);"
+        },
+        {
+          "path": "plugin-attachment-flow.js",
+          "quote": "    const label = item.path;                       // ← pasted \"image.png\" stays \"image.png\""
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "live-conflict-state",
+      "verdict": "pass",
+      "reason": "Correctly identifies live snapshot occurrences as authoritative, explains transient cache deletion, and includes pending batch reservations and snapshot refreshes.",
+      "evidence": [
+        {
+          "report": "REPORT.md",
+          "quote": "The initial `taken` set must come from a fresh\n`input.state.getSnapshot().occurrences`—filtered to the plugin's attachment source\n(`SOURCE`) and projected to the occurrence's canonical attachment path/name (the\nsame name represented by its label/path).  This is the authoritative live composer\nstate.  Include the temporary reservations for the current batch, and refresh the\nsnapshot before later insertions if the state can be changed between insertions."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "The `records` map is bookkeeping, not the conflict database.  Its alive subscription\ndeletes a record when a snapshot briefly contains no occurrence, so it can lose a\nstill-live name during a transient empty snapshot (and it can also retain a stale\nname after removal)."
+        }
+      ],
+      "sources": [
+        {
+          "path": "plugin-attachment-flow.js",
+          "quote": "        const current = input.state.getSnapshot();\n        const alive = current.occurrences.some(o => o.source === SOURCE && o.ref === ref);\n        if (alive || record.inflight !== undefined) return;\n        unsubscribe();\n        records.delete(ref);                        // ← fires on ANY momentary empty snapshot"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "stale-tag-display",
+      "verdict": "pass",
+      "reason": "Connects the cached older tag to the incorrect rendering branch and specifies semantic remote-versus-running comparison with the correct displayed version.",
+      "evidence": [
+        {
+          "report": "REPORT.md",
+          "quote": "captured response was a CDN/cache hit (`x-cache: HIT`, `age: 178`) governed by a\ncache lifetime and contained only `v0.2.9`; it predated both `v0.2.10` and the newly\npushed `v0.2.11`.  `latestFromTags()` therefore returned `v0.2.9`.  Since\n`semverCmp(tag, PLUGIN_VERSION) <= 0` for fetched `v0.2.9` and local `0.2.10`,\n`startUpdateChip()` took the current-version branch, but `renderCurrentChip(tag)`\nprinted the stale fetched tag."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "Compare these two values semantically:\n\n1. the highest stable tag returned by the remote check (`tag`, including its `v`\n   prefix as handled by `semverCmp`); and\n2. the locally known running bundle version (`PLUGIN_VERSION`)."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "If `tag` is greater, show an update chip containing the remote tag.  If `tag` is\nequal to or lower than the local version, show the green current chip containing\n`PLUGIN_VERSION`, never the fetched tag"
+        }
+      ],
+      "sources": [
+        {
+          "path": "tags-api-response.txt",
+          "quote": "cache-control: private, max-age=60, s-maxage=300\nx-cache: HIT\nage: 178"
+        },
+        {
+          "path": "tags-api-response.txt",
+          "quote": "\"v0.2.9\"\n\"v0.2.8\"\n\"v0.2.7\"\n# (v0.2.10 and v0.2.11 absent — the cached page predates both pushes)"
+        },
+        {
+          "path": "plugin-version-chip.js",
+          "quote": "  if (semverCmp(tag, PLUGIN_VERSION) <= 0) { renderCurrentChip(tag); return; }\n  renderUpdateChip(tag);"
+        },
+        {
+          "path": "plugin-version-chip.js",
+          "quote": "  lbl.textContent = '✓ attach-input already the latest version ' + tag;   // ← shows the FETCHED tag"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "regressions",
+      "verdict": "pass",
+      "reason": "Proposes concrete same-batch and repeated-paste naming tests, live-state/cache divergence and acquisition-scope tests, and older/equal/newer remote-version cases.",
+      "evidence": [
+        {
+          "report": "REPORT.md",
+          "quote": "1. A single paste batch containing three image items all named `image.png` produces\n   `paste_image.png`, `paste_image(2).png`, and `paste_image(3).png`, and passes\n   validation.\n2. Two separate paste operations also continue the sequence by reading the current\n   composer state, rather than restarting at the base name."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "3. A live `SOURCE` occurrence for `paste_image.png` present in\n   `input.state.getSnapshot()` but absent from `records` forces the next paste to\n   use `(2)`."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "4. A drop item and a picker item with real names (including names that are not\n   paste-generated) retain those exact names in the record, dock label, and upload\n   body."
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "* local `0.2.10` plus stale remote `v0.2.9` renders the green chip with\n  `v0.2.10` and does not claim that `v0.2.9` is current;\n* local `0.2.10` plus remote `v0.2.11` renders an update chip for `v0.2.11`;\n* equal local/remote versions render the current chip with the local version;"
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "release-hygiene",
+      "verdict": "pass",
+      "reason": "Covers synchronized package and shipped constants, bundle syntax and behavioral checks, artifact delivery, and reload; correctly distinguishes notification/tagging from installation.",
+      "evidence": [
+        {
+          "report": "REPORT.md",
+          "quote": "* bump `package.json` and every hand-inlined shipped version constant, especially\n  `PLUGIN_VERSION` in `lib/client.js`, to the same version;"
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "* run a syntax check on the shipped JavaScript, e.g. `node --check lib/client.js`\n  (and repeat for any other shipped JS entry files), plus the focused regression\n  tests;"
+        },
+        {
+          "report": "REPORT.md",
+          "quote": "The version chip only checks tags and reports status—it is not an updater.  With no\nhost-side update endpoint, users receive the fix by upgrading/reinstalling the\npublished plugin/package (or by the host's normal mechanism for loading a newly\npublished plugin), then reloading the plugin/bundle.  A hard refresh of a page that\nstill has the installed `v0.2.10` lib cannot install `v0.2.11`; a Git tag alone is\nnot delivery."
+        }
+      ],
+      "sources": [
+        {
+          "path": "plugin-version-chip.js",
+          "quote": "// lib/client.js (excerpt) — the self-update version chip, @org/dsh-attach-input v0.2.10\n// The bundle is lib-only (no build step); the running version is hand-inlined here and\n// must be kept in sync with package.json at every release.\n\nconst PLUGIN_VERSION = '0.2.10';"
+        },
+        {
+          "path": "plugin-version-chip.js",
+          "quote": "async function startUpdateChip() {\n  const tag = await latestFromTags();\n  if (!tag) { renderOfflineChip(); return; }\n  if (semverCmp(tag, PLUGIN_VERSION) <= 0) { renderCurrentChip(tag); return; }\n  renderUpdateChip(tag);\n}"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    }
+  ],
+  "caps": [],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 10097,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2529,
+      "reasoning_output_tokens": 158
+    },
+    "request_id": "01a08ae9-8fa5-7c81-9368-04d7d9357774",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "42d445181b0755473e3c65d1bdf62fcc0552023155d3b216928a1f202cae4dc7",
+    "response_sha256": "14062b07b4ccc961ec7023af09bc859e0e77affd4c77eba4291c376e140d8f6b"
+  },
+  "citation_audit": [],
+  "reports": {
+    "REPORT.md": "77d8b050e893d62780205fd92ae5675ffa764589e05f00132cca87acfacc92d5"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "955f596c7ce3e91c5fff550f5d5024509cd0f6d6cc628a594d0df5fa8531131e",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

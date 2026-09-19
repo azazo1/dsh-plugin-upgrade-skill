@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "combo-root-cause",
+      "verdict": "pass",
+      "reason": "Correctly roots the total failure in the whole-combo classic-script compile break from the top-level ESM import (position 1:1 in the offending bundle), explains zero registrations, and explicitly debunks the misattribution to the innocent stock typert-registry entry; grounded in browser-error.txt and host-boot-log.txt quotes."
+    },
+    {
+      "id": "diagnosis-and-packaging",
+      "verdict": "pass",
+      "reason": "Covers bisecting the three insert rows, a per-bundle classic-script syntax check (new Function parse / first-token static scan — an equivalent of vm.Script rather than node --check), the __ModuleLoader__.load({id, factory:(require)=>{...}}) wrapper, React/jsx-runtime via require inside the factory, and exporting apply + inject from module.exports; grounded in working-plugin-excerpt.txt and cordis.patch.yml."
+    },
+    {
+      "id": "cross-entry-slot-contract",
+      "verdict": "pass",
+      "reason": "Explains the slot is declared by the owning entry's children table (kind/scope live in the declaration), that bare registration into an undeclared slot throws at apply time (plugin-apply-error.txt), prescribes deferred registration wrapped in ctx.slots.inject, and restricts the registrant whitelist to name/id/order (+label)."
+    },
+    {
+      "id": "restart-and-process-tree",
+      "verdict": "pass",
+      "reason": "States the combo is assembled once per boot with no rebuild/HMR so every edit needs a full host restart, and explains the Windows orphaned-process EADDRINUSE with the explicit taskkill /PID <pid> /T /F tree kill; grounded in host-boot-log.txt and restart-notes.txt."
+    },
+    {
+      "id": "host-author-prevention",
+      "verdict": "pass",
+      "reason": "Prevention covers both sides: host-side startup per-bundle scan/validation naming the offending package plus browser error rewrite and EADDRINUSE diagnostic, and a full authoring template/onboarding checklist (wrapper shape, require-based React, slot declaration discipline)."
+    }
+  ],
+  "caps": []
+}

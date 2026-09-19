@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "split-chunk-sibling-imports",
+      "verdict": "pass",
+      "reason": "Grounded in console-split-chunks.txt: entry 200, sibling imports resolved relative to the chunk URL, content-hashed siblings (src-BfvxrPJe.js, pie-WAS4IAKB-CQHCQWWM.js) never shipped, one 404 fails the whole import chain, fallback to code block; fix is one self-contained chunk with code-splitting off (esbuild/Rollup options given). No network/server misdirection."
+    },
+    {
+      "id": "windows-realpath-case-403",
+      "verdict": "pass",
+      "reason": "Grounded in chunk-route.ts and the ci-note.md debug print: realpathSync canonicalizes the drive letter to lowercase while LIB_DIR keeps uppercase E:\\, and the case-sensitive startsWith(LIB_DIR + sep) guard misjudges a contained path as escaping → 403; explains why Linux CI and the laptop pass. Explicitly rejects the 'Windows paths are unreliable' folklore as the diagnosis."
+    },
+    {
+      "id": "relative-containment-and-mime",
+      "verdict": "pass",
+      "reason": "Anchored to the two failing startsWith comparisons in chunk-route.ts; proposes path.relative(LIB_DIR, candidate) requiring non-empty, not starting with '..', not absolute; keeps a realpath pass as defense-in-depth (even strengthens it to symmetric canonicalization). Also states the JS MIME requirement for module imports, noting the route already sends application/javascript."
+    },
+    {
+      "id": "modal-wheel-ownership",
+      "verdict": "partial",
+      "reason": "The ownership rule is correct: modal handler must preventDefault+stopPropagation ({passive:false}) and the pane handler must explicitly stand down for events originating inside an open modal (composedPath/flag check). But the 'why both fire' diagnosis is wrong per the fixture: it describes wheel bubbling to an ancestor pane listener and missing stopPropagation, not the pane's document-level capture listener running before the modal handlers, which modal-side stopPropagation alone cannot disarm — the listener-ordering mechanism the rubric requires is absent."
+    },
+    {
+      "id": "regression-coverage",
+      "verdict": "pass",
+      "reason": "Covers all three incidents plus a build guard: chunk-graph completeness/static import check and behavioral import test for incident 1 (plus an equivalent pack-artifact assertion), case-mismatched drive-letter guard test asserting 200 while real ../ escape, absolute, and encoded cases still get 403, and a modal-open Ctrl+wheel test asserting modal zoom fires exactly once while the pane font handler does not (plus inverse case). Plans, not executions — allowed."
+    }
+  ],
+  "caps": []
+}

@@ -7,12 +7,12 @@
 //                  the sealed baseline bytes 10 / damaged key absent before
 //                  rebuild 5 / rebuilt key persists across reopen 5)
 //   migration  20 (scoped invalidRecords 'backup-and-skip' on the runtime
-//                  spec 10 + honest schema without z.any 5 + domain/version/
+//                  spec 10 + behaviorally honest schema 5 + domain/version/
 //                  layout contract preserved 5)
-//   hygiene    10 (no alpha.4 dependency pin)
+//   hygiene    10 (exact required runtime dependencies)
 //   hard caps  — spec fails to load → 30; version downgrade → 20; alpha.4
 //                pin → 20; catch-and-empty around the open → 30; schema
-//                loosened so the corrupt record parses → 40 (z.any) / 60
+//                failing preservation/type probes → 40 (explicit z.any) / 60
 //                (field-level); backup-and-skip then deleting the backup
 //                → 60; manual backup without the runtime contract → 50;
 //                policy globalized outside the domain spec → 70.
@@ -20,6 +20,15 @@
 //                authorized rename of the one corrupt document excepted),
 //                or the git baseline rewritten (judge.mjs gates).
 // The declaration is judged from the IMPORTED runtime spec, never grep alone.
+import { isDeepStrictEqual } from 'node:util'
+
+export const REQUIRED_DEPENDENCIES = Object.freeze({
+  '@deepseek-ai/cordis': '4.0.2',
+  '@deepseek-ai/dsh-storage': '0.1.2-alpha.5',
+  '@deepseek-ai/dsh-storage-domain': '0.1.2-alpha.5',
+  '@deepseek-ai/dsh-storage-json': '0.1.2-alpha.5',
+  zod: '4.4.3',
+})
 
 /** Remove // line and / * block * / comments (string-aware). */
 export function stripComments(source) {
@@ -97,11 +106,41 @@ export function scanPackageJson(packageJson) {
       }
     }
   }
-  return { pinsAlpha4 }
+  const dependencyErrors = Object.entries(REQUIRED_DEPENDENCIES)
+    .filter(([name, version]) => parsed?.dependencies?.[name] !== version)
+    .map(([name, version]) => `${name} must remain in dependencies at ${version}`)
+  return { pinsAlpha4, dependencyErrors }
 }
 
-/** Migration-correctness points from the imported runtime spec + source scan (max 20). */
-export function scoreMigration(spec, scan) {
+/** Check every required field by behavior, including aliases and transforms. */
+export function schemaContractHolds(spec) {
+  const schema = spec?.tables?.entries?.valueSchema
+  if (typeof schema?.safeParse !== 'function') return false
+  const valid = [
+    { id: 'A', sourceHash: 'a1', tokens: 12 },
+    { id: 'B', sourceHash: 'b2', tokens: 7 },
+    { id: 'probe', sourceHash: '', tokens: 0 },
+    { id: '', sourceHash: 'hash', tokens: 1.5 },
+  ]
+  const record = { id: 'probe', sourceHash: 'hash', tokens: 3 }
+  const invalid = [null, [], 'record', 1]
+  for (const field of ['id', 'sourceHash', 'tokens']) {
+    const missing = { ...record }
+    delete missing[field]
+    invalid.push(missing)
+    const wrong = field === 'tokens' ? [null, '3', true, [], {}, NaN, Infinity] : [null, 3, true, [], {}]
+    for (const value of wrong) invalid.push({ ...record, [field]: value })
+  }
+  try {
+    return valid.every((value) => {
+      const result = schema.safeParse(structuredClone(value))
+      return result.success === true && isDeepStrictEqual(result.data, value)
+    }) && invalid.every((value) => schema.safeParse(structuredClone(value)).success === false)
+  } catch { return false }
+}
+
+/** Migration-correctness points from the imported runtime spec + schema probes (max 20). */
+export function scoreMigration(spec, schemaHonest) {
   let score = 0
   const detail = []
   if (spec !== null && spec.invalidRecords === 'backup-and-skip') {
@@ -110,13 +149,13 @@ export function scoreMigration(spec, scan) {
   } else {
     detail.push('backup-and-skip:0')
   }
-  if (!scan.hasZAny) {
+  if (schemaHonest) {
     score += 5
     detail.push('schema-honest:5')
   } else {
-    detail.push('z.any:0')
+    detail.push('schema-contract:0')
   }
-  if (spec !== null && spec.version === 5 && spec.layout === 'per-record') {
+  if (spec !== null && spec.name === 'artifact_index' && spec.version === 5 && spec.layout === 'per-record') {
     score += 5
     detail.push('contract:5')
   } else {
@@ -127,7 +166,7 @@ export function scoreMigration(spec, scan) {
 
 /** Migration hygiene (max 10). */
 export function scoreHygiene(packageScan) {
-  return packageScan.pinsAlpha4 ? 7 : 10
+  return packageScan.pinsAlpha4 ? 7 : packageScan.dependencyErrors.length ? 0 : 10
 }
 
 /**
@@ -135,11 +174,13 @@ export function scoreHygiene(packageScan) {
  * @param observations - behavioral facts from judge.mjs:
  *   { openRejected, brokenVisible, brokenFileAbsent, backupExists, catchPresent }
  */
-export function capFor({ spec, scan, packageScan, observations, specLoadFailed, policyOutsideSpec }) {
+export function capFor({ spec, scan, schemaHonest, packageScan, observations, specLoadFailed, policyOutsideSpec }) {
   const caps = []
   if (specLoadFailed) caps.push(30)
   if (spec !== null && typeof spec.version === 'number' && spec.version < 5) caps.push(20)
   if (packageScan.pinsAlpha4) caps.push(20)
+  if (packageScan.dependencyErrors.length) caps.push(20)
+  if (!schemaHonest) caps.push(scan.hasZAny ? 40 : 60)
   if (observations.openRejected && observations.catchPresent) caps.push(30) // catch-and-empty
   const policyActive = spec !== null && spec.invalidRecords === 'backup-and-skip'
   if (observations.brokenVisible && !policyActive) {
@@ -162,19 +203,21 @@ export function capFor({ spec, scan, packageScan, observations, specLoadFailed, 
  * @param observations - behavioral facts for the caps.
  * @param policyOutsideSpec - invalidRecords found in a non-spec source file.
  */
-export function assembleScore({ behavioral, spec, specSource, packageJson, srcTexts, observations, policyOutsideSpec }) {
+export function assembleScore({ behavioral, spec, specSource, packageJson, srcTexts, observations, policyOutsideSpec, schemaHonest = schemaContractHolds(spec) }) {
   const reasons = []
   const scan = scanSpecSource(specSource)
   const packageScan = scanPackageJson(packageJson)
   const catchScan = scanSrcForCatch(srcTexts)
   const specLoadFailed = spec === null
-  const migration = scoreMigration(spec, scan)
+  const migration = scoreMigration(spec, schemaHonest)
   const hygiene = scoreHygiene(packageScan)
   const allObservations = { ...observations, catchPresent: catchScan.catchPresent }
   reasons.push(`behavioral ${behavioral}/70; migration ${migration.score}/20 (${migration.detail}); hygiene ${hygiene}/10`)
   if (specLoadFailed) reasons.push('domain spec fails to load — cap 30')
   if (spec !== null && typeof spec.version === 'number' && spec.version < 5) reasons.push(`domain version downgraded to ${spec.version} — cap 20`)
   if (packageScan.pinsAlpha4) reasons.push('alpha.4 dependency pin — cap 20')
+  if (packageScan.dependencyErrors.length) reasons.push(`required runtime dependencies missing or changed — cap 20: ${packageScan.dependencyErrors.join('; ')}`)
+  if (!schemaHonest) reasons.push(`schema fails record preservation or type validation — cap ${scan.hasZAny ? 40 : 60}`)
   if (allObservations.openRejected && allObservations.catchPresent) reasons.push('catch-and-empty around the open — cap 30')
   if (allObservations.brokenVisible && !(spec !== null && spec.invalidRecords === 'backup-and-skip')) {
     reasons.push(`schema loosened so the corrupt record parses (${scan.hasZAny ? 'z.any' : 'field-level'}) — cap ${scan.hasZAny ? 40 : 60}`)
@@ -190,7 +233,7 @@ export function assembleScore({ behavioral, spec, specSource, packageJson, srcTe
   }
   if (policyOutsideSpec) reasons.push('salvage policy globalized outside the domain spec — cap 70')
   let score = behavioral + migration.score + hygiene
-  const cap = capFor({ spec, scan, packageScan, observations: allObservations, specLoadFailed, policyOutsideSpec })
+  const cap = capFor({ spec, scan, schemaHonest, packageScan, observations: allObservations, specLoadFailed, policyOutsideSpec })
   if (cap !== null && score > cap) {
     reasons.push(`capped at ${cap} (was ${score})`)
     score = cap

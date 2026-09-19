@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "projection-contract",
+      "verdict": "pass",
+      "reason": "Report distinguishes clipboard-text projection (InputState.draft, Occurrence.offset/length, chips expanded) from detect-text projection (chips = one U+FFFC), quotes host-input-contract.ts and host-input-facade.ts lines directly, and notes plain text/spaces count 1:1."
+    },
+    {
+      "id": "repeat-paste-failure",
+      "verdict": "pass",
+      "reason": "Locates snapshot.draft.length in plugin add(), traces paste #1 success (empty composer, coordinates coincide) vs paste #2 failure (29 vs detect length 2), explains overshoot of Σ(length−1)=27 per chip, insertReference returning false producing the changed-composer toast, and explicitly rejects stale-revision/race interpretations."
+    },
+    {
+      "id": "removal-and-bookkeeping",
+      "verdict": "pass",
+      "reason": "Traces remove(): occurrence.offset/length passed unconverted to consumeToken, false return ignored, records.delete runs anyway; explains live composer chip plus record-undefined rendering as 'unavailable' dock chip, and ties both symptoms to the same coordinate mismatch rather than a separate upload failure."
+    },
+    {
+      "id": "conversion-and-success-gate",
+      "verdict": "pass",
+      "reason": "Derives detect(o)=o−Σ(length−1) over preceding chips, applies it at both call sites (insert at draft end subtracting all preceding occurrences; removal maps offset then uses a one-detect-character span end=start+1), keeps the draftRev guard with re-snapshotting, and gates records.delete on consumeToken returning true / verified success."
+    },
+    {
+      "id": "regression-sequences",
+      "verdict": "pass",
+      "reason": "Proposes successive pastes (cases 2-3) asserting both chips present, and remove-one-of-several with re-removal (case 6) asserting targeted chip removed while others survive with shifted offsets; adds declined-consumption (case 7), first/last-chip and empty-again variants. Item 5 treated as unscored guidance, consistent with the rubric."
+    }
+  ],
+  "caps": []
+}

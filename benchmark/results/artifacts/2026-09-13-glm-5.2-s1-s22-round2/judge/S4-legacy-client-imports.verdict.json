@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "runtime-removal",
+      "verdict": "pass",
+      "reason": "Locates src/client/index.ts:1 importing ClientContext from the removed @deepseek-ai/dsh-client-runtime/client, maps DSH-0.1.2-A1-25 with verbatim symptoms, explains type erasure does not make the removed package harmless (direct owning-package type deps to avoid skipLibCheck any), and migrates to Context from @deepseek-ai/cordis plus owning-package type augmentations — exactly the sealed reference's target; also checks the dsh.client.inject cleanup (no phantom row in fixture)."
+    },
+    {
+      "id": "registration-id",
+      "verdict": "pass",
+      "reason": "Locates src/client/index.ts:10 with __ModuleLoader__.load('pet-legacy-bundle') and contrasts package.json name dsh-pet-session-bench, maps A1-26, requires the three ids align with package.json name as baseline, and requires activation verification via --dump-config and window.__DSH_BOOT__.entries / combo route."
+    },
+    {
+      "id": "session-content",
+      "verdict": "pass",
+      "reason": "Locates the useSession import (index.ts:2) and the flat nodes[0] read (index.ts:12-13), maps A1-27 plus API-10, and requires replacing flat access with a supported content-reading surface (useChat with ChatSnapshot.order/nodes.get keyed iteration; SessionBinding durable event window noted for raw reads), explicitly rejecting the flat array; preserves ordering via order iteration; Pet.tsx correctly identified as empty non-hit; does not claim the old API remains supported."
+    },
+    {
+      "id": "connection-face",
+      "verdict": "pass",
+      "reason": "Locates ctx.connection.api.agentPresets.list (index.ts:11), maps A1-30 with the blank-UI symptom, requires removing the deleted face in favor of a public remote/domain API direction (ctx.remote.agentPresets.list with RemoteResult branching, API-01 pattern), and marks the exact namespace name/specifiers as unconfirmed pending actual alpha.2 exports, as the rubric permits for closed-book details."
+    }
+  ],
+  "caps": [
+    {
+      "id": "invented-migration",
+      "triggered": false,
+      "reason": "The report never asserts an unsupported lifecycle replacement (setup/activate) nor that service inject must generally move into a manifest; its inject-list changes are card-guided cleanup/additions (adding remote faces, removing the dead connection face), which the cap explicitly excludes."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "combo-root-cause",
+      "verdict": "pass",
+      "reason": "Grounds the failure in fixture browser-error.txt and plugin/lib/client.js: top-level ESM import is a parse-time syntax error in the concatenated classic-script combo, so the whole combo never parses, zero plugins register (Plugin list empty, stock plugins gone), and dsh-typert-registry is only the first awaited entry — explicitly called the innocent messenger, not the culprit."
+    },
+    {
+      "id": "diagnosis-and-packaging",
+      "verdict": "pass",
+      "reason": "Gives change-one-variable/halving bisect of insert rows, classic-script parse validation (new Function/node --check-style parse of the bundle, plus wrapper-presence and top-level ESM scan), __ModuleLoader__.load({id, factory}) registration, React/jsx-runtime via factory require from the platform module table, and export of both apply and inject, all grounded in the fixture working-plugin excerpt and profile patch file."
+    },
+    {
+      "id": "cross-entry-slot-contract",
+      "verdict": "partial",
+      "reason": "Correctly grounds the failure in plugin-apply-error.txt: the owning entry declares kind/scope via its children table, bare cross-entry register fails, so registration must be deferred via ctx.slots.inject around the declaration. However it lists the registrant whitelist as name/id/order plus key/label/locale/inject/children, contradicting the rubric's name/id/order-only whitelist."
+    },
+    {
+      "id": "restart-and-process-tree",
+      "verdict": "pass",
+      "reason": "Grounded in host-boot-log.txt and restart-notes.txt: combo is assembled once per boot with no HMR driver for external plugins (rebuilt() only via the repo watcher), so every edit needs a full host restart; on Windows the orphaned node process holds the port causing EADDRINUSE and must be killed with taskkill /PID <pid> /T /F."
+    },
+    {
+      "id": "host-author-prevention",
+      "verdict": "pass",
+      "reason": "Both sides covered: host-side boot scan of every bundle (wrapper presence, no top-level ESM, classic-script parse) failing loud with the offending plugin named plus combo-failure attribution fixes; authoring side gets a detailed external UI plugin template/checklist covering classic-script packaging, loader factory shape, and slot declaration discipline."
+    }
+  ],
+  "caps": []
+}

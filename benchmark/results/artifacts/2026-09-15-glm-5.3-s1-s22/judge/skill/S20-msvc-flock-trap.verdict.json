@@ -1,0 +1,56 @@
+{
+  "decisions": [
+    {
+      "id": "native-install-failure",
+      "verdict": "pass",
+      "reason": "Report grounds the diagnosis in install-error.log (node-gyp configure build, gyp ERR! find VS chain) and manifest-excerpt.json (fs-ext@2.1.1 pinned dependency of @deepseek-ai/dsh-session-persistence-jsonl), attributing failure to missing MSVC in the install script, not pnpm/network."
+    },
+    {
+      "id": "static-import-trap",
+      "verdict": "pass",
+      "reason": "Cites lease-excerpt.md's static top-level `import { flock } from 'fs-ext'` and explains that --ignore-scripts skips the build but leaves the entry unloadable at boot, so script suppression alone cannot achieve a working service."
+    },
+    {
+      "id": "platform-lock-contract",
+      "verdict": "pass",
+      "reason": "Uses lease-excerpt.md and win32-excerpt.ts to contrast Windows acquireLockHandleWin32 named-kernel-semaphore (CreateSemaphoreW etc.) with POSIX flock, concluding the fs-ext flock branch is dead code on Windows so an import-safe stub is safe while Linux/macOS keep real flock."
+    },
+    {
+      "id": "reproducible-local-patch",
+      "verdict": "pass",
+      "reason": "Follows the README node-pty patchedDependencies precedent: pnpm patch fs-ext@2.1.1, guard install script to skip node-gyp on win32 only, add pure-JS import-safe flock fallback with warn-once callback-compatible shape, register in pnpm-workspace.yaml (patchedDependencies + allowBuilds), then reinstall and verify module load and service boot."
+    },
+    {
+      "id": "machine-and-upstream-boundaries",
+      "verdict": "pass",
+      "reason": "Explicitly states no Visual Studio/Build Tools are installed or required (owner refuses) and explicitly excludes modifying the upstream fs-ext package; the fix stays in repository-owned patch files."
+    },
+    {
+      "id": "corridor-mapping",
+      "verdict": "pass",
+      "reason": "Cites full card DSH-0.1.3-A1-03 and connects it to the fs-ext install-channel failure, the Windows named-semaphore dead-code reasoning, the pnpm-patch recipe, and verification steps."
+    }
+  ],
+  "caps": [
+    {
+      "id": "requires-visual-studio",
+      "triggered": false,
+      "reason": "Final plan explicitly does not install Visual Studio; the only mention is the fixture's constraint being respected."
+    },
+    {
+      "id": "ignore-scripts-only",
+      "triggered": false,
+      "reason": "The report explicitly rejects --ignore-scripts alone as insufficient; the plan patches the entry so the import loads."
+    },
+    {
+      "id": "upstream-edit-required",
+      "triggered": false,
+      "reason": "Final plan uses a repository-managed pnpm patch and explicitly excludes patching upstream."
+    },
+    {
+      "id": "lock-bypass",
+      "triggered": false,
+      "reason": "The no-op flock fallback applies only to the Windows branch that never executes; Windows locking remains the named kernel semaphore and POSIX keeps real flock."
+    }
+  ]
+}

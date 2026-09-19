@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "official-short-name",
+      "verdict": "pass",
+      "reason": "Locates greet in dsh-plugin.naming.json, distinguishes the declared short name from the dsh-greet package coordinate, verdicts it format-valid with no compatibility error, and treats prefixing as only a collision recommendation."
+    },
+    {
+      "id": "service-collision-advice",
+      "verdict": "pass",
+      "reason": "Grounds the unprefixed service search in the fixture, explains the global-registry collision risk (e.g. web-search capability), recommends prefixing, and classifies it as a warning/collision recommendation rather than a compatibility error; no strict-mode claim is made."
+    },
+    {
+      "id": "shared-event-context",
+      "verdict": "pass",
+      "reason": "Identifies web-search/ready as a shared channel, states the plugin must not assume ownership and that compatibility depends on the owning capability's published event contract (schema + context), i.e. matching names alone do not establish conflict; informational, no global-uniqueness claim."
+    },
+    {
+      "id": "coverage-and-registry-limits",
+      "verdict": "pass",
+      "reason": "Covers loader, tool, command, skill, skill provider, settings namespace, and route with justified local verdicts; explicitly separates local naming judgment from unqueried registry occupancy (unknown/not checked), proposes later verification, and correctly treats private:true as the intentional test-material guard rather than an error."
+    }
+  ],
+  "caps": [
+    {
+      "id": "unsupported-all-clear",
+      "triggered": false,
+      "reason": "The report explicitly refuses all-clear/reserved/globally-available claims, marking all registry-dependent surfaces unknown; every no-error verdict is scoped to local format/collision judgment only."
+    }
+  ]
+}

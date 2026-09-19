@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "phantom-self-update-root-cause",
+      "verdict": "pass",
+      "reason": "Report grounds the mechanism in client-bundle-excerpt.js (baked PLUGIN_VERSION \"0.3.6\", build-time inlined) and release-log.md's 16:22 build before 16:23 bump; correctly states mirrors/SHA verification are irrelevant (tag SHA comparison of strings only), gives corrected bump-first order, and the grep-the-shipped-bundle pre-push gate. No wrong attribution."
+    },
+    {
+      "id": "client-host-plane-asymmetry",
+      "verdict": "pass",
+      "reason": "Splits client plane (browser re-fetch, toggle visible) from host half loaded at boot into the running process; triangulates PNG 200 / SVG 404 'unsupported image type' / disk lib/index.js whitelisting svg to a stale in-memory host module; states host restart is the only effective fix and names it as the case where plugins hot-update fails."
+    },
+    {
+      "id": "broken-image-attribution",
+      "verdict": "pass",
+      "reason": "Cites session-log-excerpt.txt splice (line 232 head fused with line 247 tail at shared prefix 'stro', lines 233–247 absent), well-formed disk file, clean re-read, attributes corruption to upstream result-text assembly/persistence; requires treating session payload as untrusted and explicitly rejects editing/repairing the traced file with reasons."
+    },
+    {
+      "id": "defensive-render-chain",
+      "verdict": "pass",
+      "reason": "Ordered chain with per-level justification: disk bytes via restarted asset route first; session payload only after DOMParser/parsererror well-formedness gate; sandboxed iframe without allow-scripts as last fallback while SMIL/CSS still run; explicit error state with reason and retry instead of silent broken image."
+    },
+    {
+      "id": "forensics-and-prevention",
+      "verdict": "pass",
+      "reason": "Describes decoding the concatenated-Zstandard generation file frame by frame to recover the exact stored text and pin the splice; release checklist includes bump-before-build, grep shipped bundle for the baked constant, keeping per-mirror SHA verification (noting its limits), and filing the upstream text-corruption bug rather than papering over it."
+    }
+  ],
+  "caps": []
+}

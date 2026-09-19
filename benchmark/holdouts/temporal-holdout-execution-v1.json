@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "id": "temporal-holdout-execution-v1",
+  "kind": "preregistered-execution-protocol",
+  "status": "preregistered",
+  "registeredAt": "2026-09-07",
+  "modelCallsMadeDuringPreregistration": 0,
+  "selectionDefinitionCommit": "2338be4fad1e21f578756689cb44c0b143bfc15d",
+  "selectionDefinition": "benchmark/holdouts/temporal-holdout-v1.json (merged as PR #163); the execution protocol pins exactly its primaryTasks",
+  "skillSourceCommit": "5f7234ba4e00aeaa46c699ea32384389ad38a2a6",
+  "skillTree": "817a48e6795b40a51a08befff62dd03d55e124df",
+  "skillEntryBlob": "a3ee71d3567d38e545f12542ff5aafaf76b714d8",
+  "skillPath": "skills/plugin-upgrade",
+  "taskSourceCommit": "d4f7e8c229bfc9e9a4dc78efa290f954d39e42fe",
+  "tasks": [
+    { "id": "H4-tsbuildinfo-trap", "pinnedTree": "a3fc23c1021e67f58ab8625051b60adbdc6bd2ad" },
+    { "id": "H7-locale-trap", "pinnedTree": "243cd03629fcf7aac6d89627bda9f702c0564ab4" },
+    { "id": "H13-ghost-host-trap", "pinnedTree": "a1c1d94c42671e42e146565fb8287ef25d7789f1" },
+    { "id": "M3-session-projection", "pinnedTree": "0078b43cf7576ec86ae1cb85f5c0c27ee36ae77a" },
+    { "id": "M4-peer-prerelease-range", "pinnedTree": "dec596f0b50fdb0b2ceb23c819cc4e8a46bd1d42" },
+    { "id": "S8-release-routing-trap", "pinnedTree": "43fc1fcaa8bb6b9c2d8f5c81561758ef806b7f9d" },
+    { "id": "H20-session-events-ledger", "pinnedTree": "65341cab0fc5aed9ec23d008dcd532031cb0dc83" },
+    { "id": "H21-question-answerer-waterfall", "pinnedTree": "99a52b53c5f584a38a234a39f78b645b9124a326" },
+    { "id": "M13-repository-plugins-removal", "pinnedTree": "c3fc53974d3f9d9d93d2820504b01c8e630c6a83" },
+    { "id": "M14-service-renames-0812", "pinnedTree": "14f2b756b778e9c6cf50d7530ebc08db642bf3b3" }
+  ],
+  "taskDriftAudit": {
+    "auditedAgainst": "ecab245c6c1831c51b0240aca13573b94a6e525e",
+    "result": "all ten pinned task trees are byte-identical between the task source commit and the audit commit; zero drift",
+    "policy": "formal T2 uses the PINNED task trees only; living-main edits to any of the ten tasks never propagate into this execution"
+  },
+  "models": ["deepseek/deepseek-v4-flash", "openai/gpt-5.6-luna"],
+  "modelResolutionPolicy": {
+    "requestedIds": ["deepseek/deepseek-v4-flash", "openai/gpt-5.6-luna"],
+    "dryResolution": "not-locally-resolvable: Harbor 0.22.0 resolves model IDs against the provider at run time and ships no offline model catalog",
+    "repoEvidence": "both IDs are recorded in the repository's merged 2026-09-01 validation reports as previously resolved by Harbor (gpt-5.6-luna via codex; deepseek-v4-flash via terminus-2)",
+    "mismatchPolicy": "the resolved model identity is recorded per slot; any resolved-model mismatch with the preregistered ID is an infra failure — the slot is marked invalid-infra and receives at most one replacement; no silent model substitution is allowed"
+  },
+  "agent": "terminus-2",
+  "reasoning": "high",
+  "concurrency": 1,
+  "attemptsPerCell": 3,
+  "conditions": ["frozen-skill", "no-injected-skill"],
+  "conditionDefinitions": {
+    "frozen-skill": "the frozen skill is materialized from skillSourceCommit:skills/plugin-upgrade ONLY (tree 817a48e6..., SKILL.md blob a3ee71d3...), verified against a file SHA-256 manifest before any slot; no other skill, no extra hints",
+    "no-injected-skill": "no Skill is mounted and no skill-related prompt augmentation is added; nothing else about the task prompt changes"
+  },
+  "materialization": {
+    "skill": "extract 5f7234ba...:skills/plugin-upgrade from local git objects; verify the tree and SKILL.md blob match the pinned values; emit a file SHA-256 manifest used as the mount provenance",
+    "tasks": "extract benchmark/tasks/<id> for each of the ten pinned trees from d4f7e8c...; record per-task tree SHA, instruction blob, task.toml blob, and tests/judge tree before scheduling",
+    "prohibition": "never copy the living checkout's task files and 'fix them back'; the pinned git objects are the only source"
+  },
+  "logicalSlots": 120,
+  "logicalSlotDefinition": "10 tasks × 2 models × 2 conditions × 3 attempts = 120",
+  "scheduleSeed": "temporal-holdout-v1-t2-2026-09",
+  "scheduleAlgorithm": "for each model × task group, digest = sha256(scheduleSeed + '|' + model + '|' + task); the first digest byte's parity selects the sequence ABBAAB (even) or BAABBA (odd), where A = frozen-skill and B = no-injected-skill; each condition contributes exactly 3 slots with attempts 1..3 in the sequence's order for that condition; groups are ordered model-major then task order; slots are numbered 1..120 sequentially",
+  "scheduleFile": "benchmark/holdouts/temporal-holdout-execution-v1.schedule.json",
+  "timeoutPolicy": {
+    "agent": "3 × the task's own pinned [agent] timeout_sec (repository-validated precedent from the 2026-08-31 auth-v1 report); per-task values: H4 900s, H7 2700s, H13 2700s, M3 2700s, M4 2700s, S8 900s, H20 2700s, H21 2700s, M13 2700s, M14 2700s",
+    "verifier": "the task's own pinned [verifier] timeout_sec, unchanged",
+    "mutation": "timeouts are frozen by this protocol; changing any of them after slot 1 aborts execution-v1"
+  },
+  "networkPolicy": {
+    "taskContainerOutbound": "disabled — enforced technically (network namespace / nftables / equivalent isolation), not by prompt instruction",
+    "providerControlPlane": "allowed",
+    "loopbackAndTaskLocalServices": "allowed where the task requires them",
+    "formalHostRequirements": "Linux host, Harbor 0.22-compatible, with a working enforcement mechanism; macOS Docker Desktop is NOT an acceptable no-network authority",
+    "canary": "before formal slot 1, a model-free canary must run inside a task container: external DNS and HTTPS must FAIL, required loopback services must PASS; the canary record includes OS/kernel, Docker server version, Harbor version, the isolation mechanism, and the timestamped result",
+    "canaryFailure": "HARD STOP — zero formal model slots are executed until the enforcement is fixed and re-canaried"
+  },
+  "replacementPolicy": {
+    "replaceableInfra": [
+      "provider 429/5xx before usable execution",
+      "credential or setup failure",
+      "Docker build/daemon failure",
+      "Harbor orchestration crash",
+      "task container setup failure",
+      "network enforcement failure",
+      "resolved model mismatch",
+      "runner-caused artifact write corruption"
+    ],
+    "rules": "original artifacts are retained and marked invalid-infra; at most ONE replacement per slot; the replacement keeps the same model, task, condition, and logical attempt; the physical attempt is suffixed R1",
+    "nonReplaceable": [
+      "wrong solution",
+      "reward 0",
+      "partial reward",
+      "agent loop",
+      "agent using the full timeout",
+      "model stopping early",
+      "verifier validly rejecting the candidate"
+    ],
+    "nonReplaceableRule": "these are valid scientific outcomes and are never re-run toward success"
+  },
+  "artifactPolicy": {
+    "persistentRoot": "<PERSISTENT_ARTIFACT_ROOT>",
+    "noTmpOnly": "artifacts must live under a persistent root; /tmp-only or ephemeral CI-only retention is prohibited",
+    "perTrial": [
+      "resolved config",
+      "manifest",
+      "result.json",
+      "reward.txt",
+      "trajectory/session artifacts",
+      "stdout/stderr",
+      "token usage",
+      "timing",
+      "exception data",
+      "requested/resolved model identity",
+      "network evidence"
+    ],
+    "manifests": "a SHA-256 manifest per trial immediately after completion; an aggregate manifest after the full experiment",
+    "cleanup": "no automatic cleanup; artifacts are retained at least until the paper review cycle concludes"
+  },
+  "activationPolicy": {
+    "status": "not-measured",
+    "rule": "skill-supplied does not imply skill-opened; the existing activation auditor's verified schema support does not extend to terminus-2 trajectories without prior validation, so no activation claim is made by this protocol"
+  },
+  "analysisPolicy": {
+    "unit": "per-model",
+    "perTask": {
+      "skillMedian": "median of the 3 frozen-skill rewards",
+      "noSkillMedian": "median of the 3 no-injected-skill rewards",
+      "taskDelta": "skillMedian − noSkillMedian"
+    },
+    "primaryModelEffect": "mean of taskDelta over the 10 tasks",
+    "secondaryOutputs": [
+      "mean skill median",
+      "mean no-skill median",
+      "median task delta",
+      "positive/zero/negative task counts"
+    ],
+    "forbiddenAlternatives": ["best-of-3", "last-run selection", "raw 30-trial pooled mean"],
+    "noRewardSemantics": "NO REWARD is an anomaly/incomplete outcome, never a zero; the existing summarize-runs.mjs semantics are reused and no conflicting parser is introduced",
+    "bootstrap": {
+      "unit": "task (paired task deltas, not individual trials)",
+      "replicates": 10000,
+      "seed": "20260907",
+      "statistic": "mean paired task delta",
+      "interval": "95% percentile CI (2.5 / 97.5 percentiles)",
+      "perModel": true
+    },
+    "wilcoxon": {
+      "type": "two-sided Wilcoxon signed-rank",
+      "input": "the 10 task-level median deltas",
+      "zeroHandling": "zeros are retained; ties receive the standard midpoint rank; decided before any result is observed",
+      "role": "secondary"
+    },
+    "retainedGain": {
+      "definition": "holdoutDelta / referenceDelta",
+      "referenceEligibility": "a reference is usable only when it matches the formal run on: same model, same agent, same reasoning setting, same network policy, same 3-run per-task median design, same reward semantics, and a comparable intervention",
+      "fallback": "retainedGain = not-estimable-yet until such a reference exists; earlier networked calibrations (e.g. H21) are context, never the denominator"
+    }
+  },
+  "midRunMutationPolicy": {
+    "rule": "after formal slot 1 starts, any change to tasks, judges, skill, protocol, schedule, agent, model, reasoning, Harbor version, network policy, timeouts, or analysis method aborts temporal-holdout-execution-v1; partial evidence is retained and a protocol v2 restarts from slot 1",
+    "prohibition": "never continue 61/120 after changing a grader"
+  },
+  "privacyPolicy": {
+    "rule": "no private plugin names, private repositories, machine paths, tokens, API keys, or credentials appear in any committed protocol artifact"
+  }
+}

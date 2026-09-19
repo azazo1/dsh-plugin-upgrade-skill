@@ -1,0 +1,21 @@
+{
+  "model": "zai/glm-5.3",
+  "judge_model": "zai/glm-5.3-flash",
+  "harness": "dsh web (in-session subagents)",
+  "base_commit": "e0a9ff5",
+  "round": 1,
+  "protocol": "R1 (single round, one attempt per task per condition); all 22 S tasks scored by packet-based LLM report judging (at this base S13/S14/S20 are report-judged too — no keyword judges); concurrency 2 throughout",
+  "execution_notes": [
+    "No API quota interruption and no relaunch during the solving phase (per the solving session's report).",
+    "S15-noskill solver report is truncated at the model output-length limit (159 lines, ends mid code block); judged as-is (90/100) per the single-attempt protocol — not an API/quota truncation.",
+    "Judge verdicts are stored under judge/{noskill,skill}/ (per-arm subdirectories; filenames are arm-agnostic).",
+    "Judge model (glm-5.3-flash) differs from solver (glm-5.3) but is the same family; same-family correlation bias disclosed.",
+    "Maintainer verification recomputed all 44 verdicts with packets from e0a9ff5. S6-noskill corrected from rounded 88 to exact 87.5; exact totals 2117.5/2160, lift 42.5. Raw reports and verdicts unchanged."
+  ],
+  "totals": {
+    "noskill": 2117.5,
+    "skill": 2160,
+    "lift": 42.5,
+    "max": 2200
+  }
+}

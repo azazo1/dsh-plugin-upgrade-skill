@@ -1,0 +1,51 @@
+# S7 — Unpublished Cohort Installation / Type-Baseline Plan
+
+## Scope and evidence
+
+This is a read-only analysis. The fixture contains `package.json` and `README.md` only; it has no lockfile or package-manager pinning. The manifest declares:
+
+```json
+"@deepseek-ai/dsh-llm": "^0.1.2-alpha.1"
+```
+
+Per the task brief and fixture README, the published versions to consider are `0.1.1-rc.1`, `0.1.1-rc.2`, and `0.1.2-alpha.2`; `0.1.2-alpha.1` was never published.
+
+## Consequence of the current declaration
+
+The missing `alpha.1` does **not** by itself make `npm install` fail. `^0.1.2-alpha.1` is a semver range, not an exact-version request. For a pre-1.0 package, this caret range has an effective ceiling below `0.2.0` and a floor of `0.1.2-alpha.1` (internally, npm/node-semver may represent the ceiling as `<0.2.0-0`).
+
+Consequently:
+
+| Published version | In `^0.1.2-alpha.1`? | Reason |
+|---|---:|---|
+| `0.1.1-rc.1` | No | Below the floor |
+| `0.1.1-rc.2` | No | Below the floor |
+| `0.1.2-alpha.2` | Yes | Same `0.1.2` release tuple and later than `alpha.1` |
+
+Under the version availability stated in the brief, an ordinary `npm install` from this fixture should select `0.1.2-alpha.2`. It should not try to download `alpha.1` as an exact artifact. Because there is no fixture lockfile, this is a fresh range-resolution outcome; a lockfile supplied by a different checkout, offline mode, registry configuration, or a cache problem could change the operational result.
+
+The current range can also admit a later compatible `0.1.x` stable release (including `0.1.2`) if one becomes available. It should not be treated as a reproducible pin to `alpha.1` or even permanently to `alpha.2`.
+
+## Workable plans
+
+### Path A — keep the manifest, resolve the published alpha
+
+In an authorized development environment, run the normal dev-dependency install and commit the resulting lockfile if this project uses lockfiles. Then run the plugin's typecheck/build checks. With the availability stated above, the intended baseline is `0.1.2-alpha.2`.
+
+This is the smallest change and the current declaration is semver-compatible with the published alpha. Its drawback is that the range remains floating and may later move to a compatible stable release.
+
+### Path B — make the baseline intent explicit
+
+Change the declaration to `^0.1.2-alpha.2`, then install and lock it. This documents that the first usable cohort member is `alpha.2` while still allowing later compatible releases. If the type baseline must be exactly `alpha.2`, use the exact version `0.1.2-alpha.2` and commit the lockfile instead.
+
+The exact-pin option gives the strongest reproducibility, at the cost of deliberate maintenance when upgrading. A real-environment typecheck must confirm that `alpha.2` exposes the required declarations; package contents and compatibility are **unconfirmed** by this read-only fixture inspection.
+
+### Path C — preserve an actual `alpha.1` baseline
+
+If the plugin specifically depends on types/API from `alpha.1`, the published `alpha.2` is not an automatic substitute. The exit paths are to obtain an authorized `alpha.1` artifact from the original source/private registry or publish that version, then install it by an exact, verifiable reference. Until such an artifact exists, an `alpha.1` type baseline is unavailable. The existence, integrity, and licensing of any such artifact are **unconfirmed**.
+
+Do not fall back to either `0.1.1` RC: both are outside the current range and are older than the requested `0.1.2` cohort. If `alpha.2` is adopted instead, review/typecheck the plugin and record any API/type differences before declaring the baseline complete.
+
+## Verification boundary
+
+No install was run and no file under `/app/fixture/` was modified. The exact registry metadata, npm version/configuration, cache state, package tarball contents, exported type declarations, and the eventual lockfile are **unconfirmed** here. They should be verified only in the maintainer's normal installation environment.

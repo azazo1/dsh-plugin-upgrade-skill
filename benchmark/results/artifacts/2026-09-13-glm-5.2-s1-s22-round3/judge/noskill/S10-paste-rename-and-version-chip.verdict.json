@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "paste-names-and-scope",
+      "verdict": "pass",
+      "reason": "Designs paste_image(2).png / paste_file(2).pdf numbering until unused, reserves within batch and against live composer snapshot, scopes renaming to paste origin only, keeps drop/picker verbatim; grounded in plugin-attachment-flow.js and user-threads.md."
+    },
+    {
+      "id": "live-conflict-state",
+      "verdict": "pass",
+      "reason": "Names input.state.getSnapshot().occurrences as authoritative taken-name source and cites the alive-subscription records.delete on momentary empty snapshot as why records cannot be the conflict source; also reserves in-batch names."
+    },
+    {
+      "id": "stale-tag-display",
+      "verdict": "pass",
+      "reason": "Uses x-cache HIT, age 178, max tag v0.2.9 vs ls-remote v0.2.11 and renderCurrentChip(tag) to explain the stale label; proposes semantic remote-vs-PLUGIN_VERSION comparison, showing the running version when remote <= local, never the older fetched tag."
+    },
+    {
+      "id": "regressions",
+      "verdict": "pass",
+      "reason": "Concrete tests: two pastes get distinct names, multi-item in-batch numbering, live occurrence blocks name with empty records cache, drop/picker unchanged, stale older tag renders running version, genuinely newer tag shows update chip; with expected names/assertions."
+    },
+    {
+      "id": "release-hygiene",
+      "verdict": "pass",
+      "reason": "Requires syncing package.json with hand-inlined PLUGIN_VERSION in lib artifact, node --check plus behavioral regressions, and explains delivery as tag push + manual re-fetch/hard refresh, noting no host-side update endpoint and that a chip/tag alone does not install the artifact."
+    }
+  ],
+  "caps": []
+}

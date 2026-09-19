@@ -1,0 +1,22 @@
+# S4 legacy client runtime migration touchpoints
+
+## Scope and evidence
+
+This is a read-only scan of `/app/fixture`. The fixture identifies itself as a Web Client plugin from the dsh `0.1.1-rc.2` era and says that it contains four touchpoints that break on `0.1.2-alpha.2` (`README.md:3`). Its maintainer-reference line names the four touchpoints and maps each to an upgrade card (`README.md:6`). The package declares the Web Client platform (`package.json:6`) and is private (`package.json:4`); no execution or dependency installation was performed.
+
+The exact replacement APIs for cards A1-25, A1-27, and A1-30 are not documented anywhere in the inspected fixture. Those replacement targets are therefore marked **unconfirmed** below.
+
+## Complete touchpoint list
+
+| File / line | Affected plane | Upgrade card | Legacy touchpoint and migration action |
+|---|---|---|---|
+| [`src/client/index.ts:1`](/app/fixture/src/client/index.ts:1) | Web Client plugin (confirmed by the source location and `package.json:6`) | `DSH-0.1.2-A1-25` | The plugin has a type-only import from `@deepseek-ai/dsh-client-runtime/client`. The fixture’s maintainer reference says this package is removed (`README.md:6`). Remove the obsolete import and update `ClientContext` to the 0.1.2-alpha.2-supported type/package source. **The successor package/path is unconfirmed by the fixture.** |
+| [`src/client/index.ts:10`](/app/fixture/src/client/index.ts:10), [`package.json:2`](/app/fixture/package.json:2) | Web Client/plugin registration boundary; the Host-side loader detail is unconfirmed | `DSH-0.1.2-A1-26` | `__ModuleLoader__.load` registers `pet-legacy-bundle`, while the package name is `dsh-pet-session-bench`; the source comment also identifies the ID as not being the package name (`index.ts:10`, `package.json:2`). Change the registration ID to the package name, `dsh-pet-session-bench`. |
+| [`src/client/index.ts:12`](/app/fixture/src/client/index.ts:12) and [`:13`](/app/fixture/src/client/index.ts:13) | Web Client plugin | `DSH-0.1.2-A1-27` | The plugin destructures a flat `nodes` value from `useSession()` and indexes it as an array (`index.ts:12-13`). The maintainer reference identifies this flat `useSession()` `nodes` snapshot as the breaking touchpoint (`README.md:6`). Migrate the read to the 0.1.2-alpha.2 session shape/accessor and update the first-node lookup. **The new shape/accessor is unconfirmed by the fixture.** |
+| [`src/client/index.ts:11`](/app/fixture/src/client/index.ts:11) | Web Client plugin connection surface | `DSH-0.1.2-A1-30` | The plugin calls `ctx.connection.api.agentPresets.list()`, and the source comment labels `connection.api` the legacy face (`index.ts:11`). The maintainer reference says that face is removed (`README.md:6`). Migrate the call away from `ctx.connection.api` to the 0.1.2-alpha.2 connection/API surface. **The replacement path is unconfirmed by the fixture.** |
+
+## Completeness and confidence
+
+The four rows above are the four items enumerated by the fixture’s maintainer reference (`README.md:3,6`), and each has a corresponding source occurrence. No additional runtime touchpoint is asserted: `src/client/Pet.tsx` contains only `export function Pet() {}` (`Pet.tsx:1`), and the remaining `index.ts` declarations/imports do not match any of the four named breaking contracts (`index.ts:2-9`).
+
+The card IDs are confirmed by `README.md:6`. Only the concrete registration replacement is fully determined from local source (`package.json:2`); the other three successor package/API paths require the actual 0.1.2-alpha.2 upgrade-card text or documentation, which is not present in this closed fixture.

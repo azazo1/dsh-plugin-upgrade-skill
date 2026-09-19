@@ -1,0 +1,182 @@
+{
+  "status": "scored",
+  "score": 100,
+  "max": 100,
+  "passed": true,
+  "decisions": [
+    {
+      "id": "missing-mirror-tag",
+      "verdict": "pass",
+      "reason": "Correctly connects the missing v0.9.5 mirror tag to branch-only synchronization and attempt 1 resolution failure.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "This is a tag-distribution defect in the public mirror, not a consumer command or\nnetwork problem. The mirror evidence lists `v0.9.7` but has no `v0.9.5`:"
+        },
+        {
+          "report": "report.md",
+          "quote": "git push --force-with-lease \"$remote\" HEAD:main"
+        },
+        {
+          "report": "report.md",
+          "quote": "That does not publish release tags. Therefore GitHub cannot resolve the requested\n`#v0.9.5` ref on `public-org/dsh-ui-progress`, so pnpm fails before installation."
+        }
+      ],
+      "sources": [
+        {
+          "path": "ls-remote-tags.txt",
+          "quote": "refs/tags/v0.9.0\nrefs/tags/v0.9.1\nrefs/tags/v0.9.7\n"
+        },
+        {
+          "path": "sync-script.sh",
+          "quote": "  git push --force-with-lease \"$remote\" HEAD:main"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "runtime-compatibility-direction",
+      "verdict": "pass",
+      "reason": "Identifies the alpha.1-targeted artifact running on the consumer's older rc.2 host and explains the missing API and ineffectiveness of restarting.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "`v0.9.7` is the newer plugin artifact, but its compatibility entry targets\n`dsh-v0.1.2-alpha.1` and says it migrated to the alpha.1 client API, including the\n`useConversation` seat."
+        },
+        {
+          "report": "report.md",
+          "quote": "The consumer's actual runtime is `dsh 0.1.1-rc.2`. That is the older RC line. The\nalpha-targeted plugin is consequently being loaded into a host that does not expose\nthe API it expects, producing `TypeError: useConversation is not a function`.\nRestarting cannot change the host/plugin API mismatch."
+        }
+      ],
+      "sources": [
+        {
+          "path": "dsh-version.txt",
+          "quote": "$ dsh --version\n0.1.1-rc.2\n"
+        },
+        {
+          "path": "compat-table.md",
+          "quote": "| v0.9.7 | dsh-v0.1.2-alpha.1 | Migrated to the alpha.1 client API (views/legacy projection + useConversation seat) |"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "frozen-runtime-remedy",
+      "verdict": "pass",
+      "reason": "Selects v0.9.3 using the documented rc.1 compatibility and additive rc.2 note, recognizes its missing tag, and conditions the exact install command on publication.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "The correct artifact is `v0.9.3`: the compatibility table lists it for\n`@deepseek-ai/dsh@0.1.1-rc.1` and explicitly notes that rc.2 is rc.1 plus additive\nimage preprocessing, so it is the compatible choice for the consumer's\n`0.1.1-rc.2` runtime."
+        },
+        {
+          "report": "report.md",
+          "quote": "However, the supplied `public-org` tag listing also lacks `v0.9.3`."
+        },
+        {
+          "report": "report.md",
+          "quote": "Once the maintainer publishes `v0.9.3` to that mirror (or if the second public\nmirror already has that tag), the exact consumer command is:\n\n```sh\ndsh plugin --profile web add '@org/dsh-ui-progress@github:public-org/dsh-ui-progress#v0.9.3'\n```"
+        },
+        {
+          "report": "report.md",
+          "quote": "If using the second mirror, substitute its GitHub owner/repository in the same\ncommand. The maintainer should make that tag available before asking this consumer\nto retry;"
+        }
+      ],
+      "sources": [
+        {
+          "path": "compat-table.md",
+          "quote": "| v0.9.3 | npm @deepseek-ai/dsh@0.1.1-rc.1 | rc.1 real-boot verified; rc.2 is rc.1 + image preprocessing (additive) |"
+        },
+        {
+          "path": "ls-remote-tags.txt",
+          "quote": "refs/tags/v0.9.0\nrefs/tags/v0.9.1\nrefs/tags/v0.9.7\n"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "tag-distribution-repair",
+      "verdict": "pass",
+      "reason": "Provides explicit release-tag pushing as an alternative to branch-only synchronization and requires every public mirror's documented tags to resolve to intended commits.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "Alternatively, push each release tag explicitly (and verify the result) rather\n  than relying on a branch-only push."
+        },
+        {
+          "report": "report.md",
+          "quote": "- Add a release CI gate that compares the intended release tag set with\n  `git ls-remote --tags` on every public mirror and fails if any documented tag is\n  missing. The gate should also verify that the tag resolves to the intended commit."
+        }
+      ],
+      "sources": [
+        {
+          "path": "sync-script.sh",
+          "quote": "# release sync script (excerpt) — runs after every release, for each mirror\nfor remote in origin public mirror2; do\n  # rewrite install-source orgs for the target mirror, then:\n  git push --force-with-lease \"$remote\" HEAD:main\ndone"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "version-routing-docs",
+      "verdict": "pass",
+      "reason": "Routes rc.2 users to v0.9.3 and alpha.1 users to v0.9.7 through explicit compatibility documentation, without asserting support for untested future versions.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "- Keep install instructions version-routed: document the `v0.9.3` pin for DSH\n  `0.1.1-rc.2` and the `v0.9.7` pin only for DSH `0.1.2-alpha.1` (or newer\n  explicitly tested versions)."
+        },
+        {
+          "report": "report.md",
+          "quote": "- Do not define “newest tag” as the default for all DSH runtimes. Show a small\n  plugin-version/DSH-version compatibility table and an install command for each\n  supported runtime."
+        }
+      ],
+      "sources": [
+        {
+          "path": "compat-table.md",
+          "quote": "| v0.9.3 | npm @deepseek-ai/dsh@0.1.1-rc.1 | rc.1 real-boot verified; rc.2 is rc.1 + image preprocessing (additive) |\n| v0.9.7 | dsh-v0.1.2-alpha.1 | Migrated to the alpha.1 client API (views/legacy projection + useConversation seat) |"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    }
+  ],
+  "caps": [],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 7533,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1897,
+      "reasoning_output_tokens": 153
+    },
+    "request_id": "01a08eac-9554-7293-94f9-bb29fe605a25",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "971b00423085471b0d2eade5cf405fae35b1b2f1ac98927f6c0f85749cfa286e",
+    "response_sha256": "5b5154fc270a6eef36177c55518d6e23131ccb38f4832b3aaae891a19ce2fbf4"
+  },
+  "citation_audit": [],
+  "reports": {
+    "report.md": "4dd9dd367015ff2de3d44eb9f4a78b5ec50c9122d378c47accfbaae33bf30468"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "5881a09cc0361d929400d969f1bdef86340925092ce7c25a15957bcdac250b23",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

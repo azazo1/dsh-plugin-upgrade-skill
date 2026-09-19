@@ -1,0 +1,17 @@
+{
+  "name": "@demo/dsh-bench-notlisted",
+  "version": "0.2.0",
+  "description": "DSH plugin upgrade validation demo — installs but never registers (exam fixture, never publish)",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dependencies": {},
+  "private": true
+}

@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "runtime-removal",
+      "verdict": "pass",
+      "reason": "Locates index.ts:1 ClientContext import from @deepseek-ai/dsh-client-runtime/client, maps DSH-0.1.2-A1-25, correctly notes the type-only import still fails, and requires replacing it with the supported owning entry point, marking the exact specifier unconfirmed per closed-book rules."
+    },
+    {
+      "id": "registration-id",
+      "verdict": "partial",
+      "reason": "Correctly locates __ModuleLoader__.load('pet-legacy-bundle'), compares it with package.json name dsh-pet-session-bench, maps A1-26 and requires exact id alignment; however it gives no client activation verification step (boot graph / no 'loaded without registering' check)."
+    },
+    {
+      "id": "session-content",
+      "verdict": "partial",
+      "reason": "Locates useSession()/nodes[0] at index.ts:12-13, maps A1-27, and avoids claiming the flat nodes API survives, directing migration to the owning package's 0.1.2-alpha.2 session-snapshot surface with details unconfirmed; but it does not address preserving ordering of the content read, so the migration direction is incomplete."
+    },
+    {
+      "id": "connection-face",
+      "verdict": "pass",
+      "reason": "Locates ctx.connection.api.agentPresets.list at index.ts:11, maps A1-30, states the face is removed and the call throws, and requires replacing it with a public client→host RPC surface, marking the exact API name unconfirmed — a defensible direction without invented names."
+    }
+  ],
+  "caps": [
+    {
+      "id": "invented-migration",
+      "triggered": false,
+      "reason": "The report never asserts an unsupported setup/activate lifecycle replacement nor that service inject must move into a manifest; it treats the inject list and Pet.tsx as unaffected and invents no positive replacements."
+    }
+  ]
+}

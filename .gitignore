@@ -15,6 +15,8 @@ pnpm-debug.log*
 
 # Logs
 *.log
+# …but task evidence fixtures are tracked on purpose (e.g. S20's install-error.log)
+!benchmark/**/fixture/*.log
 
 # Editor and IDE
 .vscode/

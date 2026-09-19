@@ -1,0 +1,41 @@
+{
+  "decisions": [
+    {
+      "id": "junction-deployment",
+      "verdict": "pass",
+      "reason": "Cites profile-introspection.txt LinkType: Junction / Target E:\\dev\\dsh-attach-input and the cordis.patch.yml link marker; concludes repo edits already deploy through the junction, copying was never needed, and explicitly distinguishes a copied dependency install (independent snapshot) from the link install."
+    },
+    {
+      "id": "host-lock-and-client-cache",
+      "verdict": "pass",
+      "reason": "Grounds EBUSY in copy-session.txt lines plus maintainer-thread.md step 4, attributing the file handles to the running dsh host Node process and noting closing the browser tab released nothing (the browser never held the handles). Separately explains stale client delivery/browser HTTP cache and why host restart plus cache-bypassing refresh are needed; keeps browser cache distinct from the filesystem lock and makes no all-DSH-versions claim."
+    },
+    {
+      "id": "rename-recovery",
+      "verdict": "pass",
+      "reason": "Explains the rename through the junction renamed the sole source files so the later Copy-Item failed with 'source does not exist'. Recovery renames client.js.old2→client.js and index.js.old2→index.js preserving contents, verifies both with node --check, then activates; stopping the host first is a valid precaution and no locked renaming or file recreation is required."
+    },
+    {
+      "id": "ordered-activation",
+      "verdict": "pass",
+      "reason": "Semantic order is correct: fully stop the host, (no copy step for a link install), restart dsh web, hard-refresh to bypass browser cache, then verify boot logs, the served artifact, and hover-preview behavior; syntax check is treated as a pre-activation gate only, not activation."
+    },
+    {
+      "id": "install-mode-preflight",
+      "verdict": "pass",
+      "reason": "Recommends inspecting LinkType/Target (and the cordis.patch.yml link:E:... marker) before any file operation and choosing link vs copied procedures accordingly; explains that generic copy-into-node_modules advice is harmful because destination equals source through the junction and rename-aside variants destroy the only copy."
+    }
+  ],
+  "caps": [
+    {
+      "id": "copy-through-junction",
+      "triggered": false,
+      "reason": "The final plan explicitly states there is no copy step for a link install and warns against copying into node_modules; the .old2 files are renamed back, not deleted, and the two paths are treated as one directory."
+    },
+    {
+      "id": "browser-only-activation",
+      "triggered": false,
+      "reason": "The report affirmatively concludes a browser refresh or tab close addresses neither the host file lock nor stale module state and requires a full host stop/restart; browser refresh alone is never given as sufficient."
+    }
+  ]
+}

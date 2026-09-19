@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oh-my-dsh.github.io/dsh-plugin-upgrade-skill/paper/study-v1/qc/isolation-preflight.schema.json",
+  "title": "study-v1 isolation preflight report",
+  "description": "Deterministic, model-free output of paper/scripts/check-study-v1-isolation.py. A valid report describes an offline material-mount plan and the boundary checks over it. runtimeCanaryStatus = passed is the only value that claims container-verified isolation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "study",
+    "mode",
+    "materialSource",
+    "tasks",
+    "arms",
+    "runtimeCanaryStatus",
+    "runtimeCanary",
+    "boundary",
+    "checks",
+    "summary",
+    "ok",
+    "limitations"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "study-v1-isolation-preflight/1"
+    },
+    "study": {
+      "type": "string",
+      "description": "Study id, e.g. budgeted-small-model-migration-v1."
+    },
+    "mode": {
+      "enum": ["plan-only", "docker-canary"]
+    },
+    "materialSource": {
+      "enum": ["authority", "material-root"]
+    },
+    "materialRevision": {
+      "type": ["string", "null"]
+    },
+    "tasks": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Task ids covered by this report, sorted lexically."
+    },
+    "arms": {
+      "type": "array",
+      "items": { "enum": ["A", "B", "C", "D"] },
+      "minItems": 1
+    },
+    "runtimeCanaryStatus": {
+      "enum": ["not-run", "passed", "failed"],
+      "description": "not-run means no container ran; the offline plan is not container-verified isolation."
+    },
+    "runtimeCanary": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "requested", "reason"],
+      "properties": {
+        "status": { "enum": ["not-run", "passed", "failed"] },
+        "requested": { "type": "boolean" },
+        "reason": { "type": "string" },
+        "dockerAvailable": { "type": "boolean" },
+        "image": { "type": ["string", "null"] },
+        "violations": { "type": "array", "items": { "type": "string" } },
+        "observations": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["materialMount", "artifactOutput", "network", "nativeSkills"],
+      "description": "Declared boundary model the checks are written against."
+    },
+    "inventory": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "properties": {
+        "inventoryId": { "type": "string" },
+        "pinnedTaskCount": { "type": "integer" },
+        "pinnedTasks": { "type": "array", "items": { "type": "string" } },
+        "liveBenchmarkTaskCount": { "type": "integer" },
+        "unpinnedLiveTasks": { "type": "array", "items": { "type": "string" } },
+        "requestedTasks": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "status", "findings"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable check id; lexical ordering of ids is part of the contract."
+          },
+          "title": { "type": "string" },
+          "status": { "enum": ["passed", "failed"] },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["task", "arm", "detail"],
+              "properties": {
+                "task": { "type": "string" },
+                "arm": { "type": "string" },
+                "detail": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "passed", "failed", "violations"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 20 },
+        "passed": { "type": "integer", "minimum": 0 },
+        "failed": { "type": "integer", "minimum": 0 },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["check", "task", "arm", "detail"]
+          }
+        }
+      }
+    },
+    "ok": {
+      "type": "boolean",
+      "description": "True only when no check failed and the canary did not fail."
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  }
+}

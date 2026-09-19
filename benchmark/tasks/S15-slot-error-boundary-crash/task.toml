@@ -1,8 +1,9 @@
 schema_version = "1.4"
+artifacts = [{ source = "/app/fixture" }, { source = "/app/agent-output" }]
 # Harbor task config: dangling-identifier render crash swallowed by the slot error boundary (task S15, static, read-only)
 [task]
 name = "dsh-plugin-upgrade/s15-slot-error-boundary-crash"
-version = "1.1.0"
+version = "4.0.0"
 description = "A dock-slot component references another component's state variable; the first real chip render throws ReferenceError and the error boundary silently unmounts the whole slot — diagnose, bisect, fix, and design the regression"
 keywords = ["dsh", "plugin-runtime", "react", "error-boundary", "harbor"]
 
@@ -16,7 +17,14 @@ execution_contract = "BENCHMARK-AUTH-v1"
 timeout_sec = 300.0
 
 [verifier]
-timeout_sec = 120.0
+timeout_sec = 240.0
+environment_mode = "separate"
+network_mode = "public"
+
+[verifier.env]
+REPORT_JUDGE_BASE_URL = "${REPORT_JUDGE_BASE_URL}"
+REPORT_JUDGE_MODEL = "${REPORT_JUDGE_MODEL}"
+REPORT_JUDGE_API_KEY = "${REPORT_JUDGE_API_KEY}"
 
 [environment]
 network_mode = "public"

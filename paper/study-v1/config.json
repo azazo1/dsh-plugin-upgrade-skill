@@ -1,0 +1,36 @@
+{
+  "id": "budgeted-small-model-migration-v1",
+  "status": "candidate-not-frozen",
+  "sourceCommit": "a43afbea03fe1e4a22eba304c66847c3f99a9890",
+  "candidateInventory": "paper/audit/task-annotation-v1/inventory.json",
+  "selectionRule": "Keep all 56 members of the existing outcome-blind annotation inventory; no selection by reward. Admission is pending documented task QC and exposure/grouping review; independent human annotation is not claimed.",
+  "scope": "retrospective single-ecosystem open-book utility under bounded resources",
+  "primaryContrast": "D-C",
+  "conditions": {
+    "A": "no migration material",
+    "B": "generic migration procedure",
+    "C": "adapted same-source reference cards plus shared factual supplement",
+    "D": "document-only adapted migration procedure plus identical reference cards and factual supplement"
+  },
+  "models": [
+    null,
+    null
+  ],
+  "repetitions": 3,
+  "repetitionStatus": "proposed; confirm affordability on development tasks before registration",
+  "mainRunsFormula": "8*N*R; proposed R=3 gives 24*N, including every condition and model",
+  "materialDelivery": "same ENTRY.md discovery and read-only /app/materials mount; disable native skills and auto-discovery in all arms",
+  "sharedTools": "no skill-provided executable helpers in any arm; same preinstalled local tools per task across conditions",
+  "formalRunAllowed": false,
+  "sharedFactSupplements": {
+    "5f7234ba4e00": "review/supplements/5f7234ba4e00.md",
+    "7d33bf4c492d": "review/supplements/7d33bf4c492d.md",
+    "a43afbea03fe": "review/supplements/a43afbea03fe.md"
+  },
+  "adaptedGuidance": {
+    "5f7234ba4e00": "adapted/guidance-zh.md",
+    "7d33bf4c492d": "adapted/guidance-en.md",
+    "a43afbea03fe": "adapted/guidance-en.md"
+  },
+  "materialRevision": "document-only-r2"
+}

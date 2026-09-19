@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "official-short-name",
+      "verdict": "pass",
+      "reason": "Report locates greet in the naming manifest, distinguishes the declared plugin name from coordinate acme/greet and package dsh-greet, and correctly classifies it as a collision-recommendation case: no compatibility error, prefixing recommended not required."
+    },
+    {
+      "id": "service-collision-advice",
+      "verdict": "pass",
+      "reason": "Report flags unprefixed service search from the manifest, explains collision risk in the shared service namespace, and classifies it as a warning-tier recommendation, explicitly not a structural error; no strict-mode exit is treated as incompatibility proof."
+    },
+    {
+      "id": "shared-event-context",
+      "verdict": "pass",
+      "reason": "Report locates web-search/ready, notes it crosses out of the acme namespace, and frames it as shared-channel/informational: conflict cannot be decided locally and depends on the channel owner's contract/registry context; no unsupported uniqueness claim is made."
+    },
+    {
+      "id": "coverage-and-registry-limits",
+      "verdict": "pass",
+      "reason": "All remaining surfaces (loader id, tool, command, skill, skill provider, settings namespace, route) are covered with a common locally-consistent verdict; the report repeatedly distinguishes local compatibility from unqueried registry occupancy, marks availability unknown/not checked, proposes a pre-publish registry query, treats private:true as an intentional observation rather than an error, and explicitly rejects any reserved/available/all-clear claim."
+    }
+  ],
+  "caps": [
+    {
+      "id": "unsupported-all-clear",
+      "triggered": false,
+      "reason": "The report makes no affirmative all-clear or globally-available/publication-cleared conclusion; it explicitly disclaims every availability/reserved claim and marks registry status unknown because no registry was queried."
+    }
+  ]
+}

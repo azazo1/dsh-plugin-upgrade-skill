@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "projection-contract",
+      "verdict": "pass",
+      "reason": "Report cites host-input-contract.ts and host-input-facade.ts: InputState.draft/Occurrence.offset/length are clipboard-text projection, insertReference/consumeToken span guards index detectText where a chip is one U+FFFC, ordinary text and separating spaces count normally."
+    },
+    {
+      "id": "repeat-paste-failure",
+      "verdict": "pass",
+      "reason": "Locates snapshot.draft.length in add(), uses the captured numbers (draft length 29 vs detectText length 2) to show paste #1 coincidence and paste #2 overshoot, insertReference returns false, plugin throws the exact captured toast; explicitly rejects concurrent-edit and stale-rev/phase explanations."
+    },
+    {
+      "id": "removal-and-bookkeeping",
+      "verdict": "pass",
+      "reason": "Traces remove(): clipboard [0,28) passed unconverted to consumeToken span guard over 2-char detectText, false result ignored, records.delete runs unconditionally, occurrence survives and missing record renders 'unavailable'; ties both symptoms to the same coordinate mismatch, not a separate upload failure."
+    },
+    {
+      "id": "conversion-and-success-gate",
+      "verdict": "pass",
+      "reason": "Derives detectPos(p)=p−Σ(occ.length−1) for occurrences fully preceding p, applies it at insert (detect end-of-document) and removal (map offset, one-detect-char span), keeps draftRev guard, and gates records.delete on consumeToken===true with retry-then-keep-on-failure."
+    },
+    {
+      "id": "regression-sequences",
+      "verdict": "pass",
+      "reason": "R1 does two successive pastes with both chips asserted; R2 removes a chip with a preceding chip asserting composer occurrence, dock chip and record removed together while the other chip survives; R3 covers declined-consumption bookkeeping; assertions in natural language (equivalent allowed)."
+    }
+  ],
+  "caps": []
+}

@@ -1,0 +1,156 @@
+[
+  {
+    "task": "S1-static-scan",
+    "method": "llm-rubric",
+    "noskill": 95,
+    "skill": 100,
+    "notes": "Both arms nearly full credit; noskill host-path criterion partial (fix not grounded in runtime profile resolution)."
+  },
+  {
+    "task": "S10-paste-rename-and-version-chip",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S11-mermaid-lazyload-trap",
+    "method": "llm-rubric",
+    "noskill": 80,
+    "skill": 90,
+    "notes": "LLM report judging. noskill fail on wheel-ownership mechanism (claimed bubbling-ordering-irrelevant; rubric requires document-capture ordering + pane stand-down); skill partial."
+  },
+  {
+    "task": "S12-global-upgrade-ebusy-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S13-peer-range-vs-runtime",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S14-link-install-lock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S15-slot-error-boundary-crash",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 90,
+    "notes": "skill partial on hardening scope (event.target itself not guarded)."
+  },
+  {
+    "task": "S16-self-host-upgrade-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S17-external-ui-plugin-onboarding-trap",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 90,
+    "notes": "Both arms 90: noskill partial on prevention (regex scan instead of parse validation); skill partial on slot-contract field whitelist extension."
+  },
+  {
+    "task": "S18-terminal-sprite-render-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 90,
+    "notes": "skill partial on ghost-frame fix (ESC[K + union erase present, full-width re-pad omitted). noskill 100."
+  },
+  {
+    "task": "S19-phantom-update-stale-host",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both arms 100. In #213 this task was three-round 0/0 with GLM-5.3-flash; GLM-5.2 covers the full stale-host chain unaided."
+  },
+  {
+    "task": "S2-negative-scan",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S20-msvc-flock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S21-resource-service-unavailable-trap",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 100,
+    "notes": "noskill partial on probe-validity (3 KB combo-URL cap / loader partitioning not named); skill all pass."
+  },
+  {
+    "task": "S22-duplicate-insert-boot-crash-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S3-snapshot-migration",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S4-legacy-client-imports",
+    "method": "llm-rubric",
+    "noskill": 63,
+    "skill": 100,
+    "notes": "Biggest skill lift (+37): noskill earned three partials (registration-id activation check, content-reading direction, invented host.call replacement face); skill arm all pass."
+  },
+  {
+    "task": "S5-negative-naming",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S6-corridor-net-state",
+    "method": "llm-rubric",
+    "noskill": 88,
+    "skill": 100,
+    "notes": "noskill partial on informational-producer semantics (retention-not-filtering point missing); skill all pass."
+  },
+  {
+    "task": "S7-unpublished-cohort",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S8-release-routing-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S9-composer-coordinate-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  }
+]

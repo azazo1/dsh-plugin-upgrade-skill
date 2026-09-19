@@ -1,0 +1,156 @@
+[
+  {
+    "task": "S1-static-scan",
+    "method": "llm-rubric",
+    "noskill": 95,
+    "skill": 95,
+    "notes": "Both reports locate all hits, fold A1-02 into A2-01 correctly, and map A1-01/03/04/05/08 accurately; noskill loses a point for a limits section without explicit typecheck/isolated-boot, skill for #4 lacking explicit runtime DSH_HOME/profile source-of-truth wording."
+  },
+  {
+    "task": "S10-paste-rename-and-version-chip",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports fully cover paste-only rename scheme, live-snapshot as authoritative conflict source with records-subscription hazard, stale x-cache HIT tag root cause with running-version display rule, complete regression tests, and lib-only release sync/syntax/manual-update hygiene; skill run adds slightly deeper cache-window analysis but both pass all criteria."
+  },
+  {
+    "task": "S11-mermaid-lazyload-trap",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S12-global-upgrade-ebusy-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly trace EBUSY to PID 42432 web host holding loaded koffi.node, refresh not releasing it, unpinned install following latest=0.1.1-rc.2, give pinned @0.1.2-alpha.5 + dsh-tui commands with verify/restart, and README pinning guidance; skill adds external-terminal advice without errors."
+  },
+  {
+    "task": "S13-peer-range-vs-runtime",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S14-link-install-lock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S15-slot-error-boundary-crash",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly identify the dangling busy reference, short-circuit latency, slot error-boundary whole-entry unmount, correct attribution/bisection, fix plus both hardening patterns, and a data-present plain-phase render smoke with node --check lesson; A additionally flags the diff's imageItem scoping/record?.items defects, B covers them adequately."
+  },
+  {
+    "task": "S16-self-host-upgrade-trap",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S17-external-ui-plugin-onboarding-trap",
+    "method": "official-keyword-judge",
+    "noskill": 20,
+    "skill": 60,
+    "notes": ""
+  },
+  {
+    "task": "S18-terminal-sprite-render-trap",
+    "method": "official-keyword-judge",
+    "noskill": 60,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S19-phantom-update-stale-host",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S2-negative-scan",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports locate the single apiProxy hit (inject + llm.providers + dead dsh-host-apiproxy dep), map it to A1-01 with the listProviders/listConfigurableProviders split, classify cordis.patch.yml and session-notes as negatives with evidence, argue zero hits != compatible, and propose build/typecheck, isolated cold boot, and a real provider call; both pass all four criteria."
+  },
+  {
+    "task": "S20-msvc-flock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 95,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S21-resource-service-unavailable-trap",
+    "method": "official-keyword-judge",
+    "noskill": 40,
+    "skill": 60,
+    "notes": ""
+  },
+  {
+    "task": "S22-duplicate-insert-boot-crash-trap",
+    "method": "official-keyword-judge",
+    "noskill": 40,
+    "skill": 60,
+    "notes": ""
+  },
+  {
+    "task": "S3-snapshot-migration",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both runs locate all flat-snapshot reads, the running lifecycle seat, dsh-client-runtime removals, ctx.slots.inject registration, and full DSH-0.1.2-A1-03/A1-25 card mapping with correct projection-vs-immediate split; skill run adds plausible extra surfaces (R1-02 manifest, A1-26 id alignment) without contradicting the rubric."
+  },
+  {
+    "task": "S4-legacy-client-imports",
+    "method": "llm-rubric",
+    "noskill": 38,
+    "skill": 100,
+    "notes": "Both reports locate all four touchpoints with correct cards; noskill lacks client-activation verification (registration-id partial) and gives no migration direction for session-content and connection-face (fail); skill report gives grounded concrete directions and verification throughout, no invented-migration cap triggered."
+  },
+  {
+    "task": "S5-negative-naming",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports give restrained four-state verdicts grounded in the fixture: greet short name valid (no error), search a warning not error, web-search/ready informational shared channel, all registry claims marked unknown; neither triggers the unsupported-all-clear cap."
+  },
+  {
+    "task": "S6-corridor-net-state",
+    "method": "llm-rubric",
+    "noskill": 63,
+    "skill": 100,
+    "notes": "Both delete the defense and reject the comment; A's history and append-gap reasoning are correct but grounded mainly in the fixture README's annotated answer, omits the stays-in-log-after-reload point and the cast-faking trap; B covers every criterion with card-level evidence."
+  },
+  {
+    "task": "S7-unpublished-cohort",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly resolve ^0.1.2-alpha.1 to published alpha.2, explain tuple-locked prerelease matching, give feasible pinned/built-from-source plans with lockfile/typecheck and exit paths, and honestly mark registry state unconfirmed; cap never triggers since neither prescribes installing alpha.1 from npm."
+  },
+  {
+    "task": "S8-release-routing-trap",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 100,
+    "notes": "Both reports diagnose both root causes correctly from evidence; only gap is no-skill's remedy pins unverified #v0.9.1 instead of compat-verified v0.9.3 (partial), while skill run satisfies all criteria including tag backfill and version-routed docs."
+  },
+  {
+    "task": "S9-composer-coordinate-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly derive the clipboard-vs-detect (U+FFFC) coordinate mismatch from host source, trace both symptoms (repeat-paste splice failure; ignored consumeToken false + premature records.delete causing 'unavailable'), give equivalent occurrence-based conversion at both call sites with success-gated retirement, and include the two-paste + remove-with-preceding-chip regression sequences; A's detection math equals the rubric's sum(length-1) rule."
+  }
+]

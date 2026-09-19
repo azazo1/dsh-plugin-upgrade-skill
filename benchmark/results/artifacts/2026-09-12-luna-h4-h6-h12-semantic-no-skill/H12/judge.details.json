@@ -1,0 +1,203 @@
+{
+  "status": "scored",
+  "score": 82.5,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "root-cause",
+      "verdict": "pass",
+      "reason": "Correctly identifies the unambiguous renameSession helper and explains that ordinary failures resolve as failed RemoteResults, while the current code reads value without checking ok.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "A unary Remote call normally fulfills with a `RemoteResult`; an application-level failure is represented by a fulfilled result with `ok: false`, not by a rejected promise. Therefore the `catch` block is not the ordinary `RemoteError` handling path, and `result.value` is not valid until `result.ok` has been checked."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/index.ts",
+          "quote": "          const result = await ctx.remote.session.rename({ sessionId, title })\n          // wrong: treats the resolved result as success without checking result.ok\n          return result.value"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A2-02",
+        "API-02"
+      ],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "current-problems",
+      "verdict": "pass",
+      "reason": "Identifies and explains multiple actual defects: unchecked value, catch misuse, cross-realm instanceof, retrying genuine rejects, and the invalid recursive method binding.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "The `gateway/cancelled` and `session/not-found` branches in `catch` do not handle ordinary Remote failures, because those failures resolve normally and never enter `catch`."
+        },
+        {
+          "report": "report.md",
+          "quote": "`instanceof RemoteError` is the wrong discriminator across a serialized Remote boundary."
+        },
+        {
+          "report": "report.md",
+          "quote": "The fallback in `catch` retries every actual rejection, including assembly, validation, serialization, transport/dispatch, or programming failures that should remain visible."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/index.ts",
+          "quote": "          if (error instanceof RemoteError) {\n            if (error.code === 'gateway/cancelled') {\n              return retry(() => renameSession(sessionId, title))\n            }\n\n            if (error.code === 'session/not-found') {\n              return null\n            }\n          }\n\n          // wrong: converts genuine assembly/programming rejects into a retry loop\n          return retry(() => renameSession(sessionId, title))"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A2-02",
+        "API-02"
+      ],
+      "points": 10,
+      "awarded": 10
+    },
+    {
+      "id": "corrected-implementation",
+      "verdict": "partial",
+      "reason": "The fenced implementation correctly awaits, checks ok, reads value only on success, and propagates unknown failures, but incorrectly retries gateway/cancelled instead of terminating or propagating cancellation.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "      if (result.ok) {\n        return result.value\n      }\n\n      if (result.error.code === 'gateway/cancelled') {\n        return retry(() => renameSession(sessionId, title))\n      }"
+        },
+        {
+          "report": "report.md",
+          "quote": "Retry policy should be an explicit allowlist for known transient result codes such as `gateway/cancelled`, not a blanket catch-all."
+        }
+      ],
+      "sources": [],
+      "references": [
+        "DSH-0.1.2-A2-02",
+        "API-02"
+      ],
+      "points": 25,
+      "awarded": 12.5
+    },
+    {
+      "id": "resolved-control-flow",
+      "verdict": "pass",
+      "reason": "Clearly explains ok:true/value success and ok:false/error ordinary failure, and places cancellation and not-found handling in the resolved-result branch rather than catch; it also notes the codes are already namespaced.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "`ok: true` means the operation succeeded, and `value` is the returned value. This is the only branch in which `result.value` should be read."
+        },
+        {
+          "report": "report.md",
+          "quote": "`ok: false` means the operation failed at the Remote/application level, and `error` contains the typed, protocol-shaped error."
+        },
+        {
+          "report": "report.md",
+          "quote": "Thus cancellation and not-found handling belong after the `ok` check. They are result branches, not exception branches. The error-code vocabulary in the fixture is already in the required namespaced form and does not need migration here."
+        }
+      ],
+      "sources": [],
+      "references": [
+        "DSH-0.1.2-A2-02",
+        "API-02"
+      ],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "reject-boundary",
+      "verdict": "pass",
+      "reason": "Distinguishes protocol-level failures from genuine invocation rejects, gives assembly/validation/serialization/binding examples, and correctly requires those rejects to propagate rather than enter a retry catch-all.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "`catch` around the `await` can see only a rejected invocation promise: a failure that prevents the client from producing a `RemoteResult`."
+        },
+        {
+          "report": "report.md",
+          "quote": "Depending on the client machinery, that boundary includes local request assembly or validation, argument/codec or serialization failures, an invalid/missing remote binding, and infrastructure or dispatch failures that cannot be represented by the protocol response."
+        },
+        {
+          "report": "report.md",
+          "quote": "The corrected helper has no catch so those genuine rejects naturally propagate to its caller."
+        }
+      ],
+      "sources": [],
+      "references": [
+        "DSH-0.1.2-A2-02",
+        "API-02"
+      ],
+      "points": 15,
+      "awarded": 15
+    },
+    {
+      "id": "error-discrimination",
+      "verdict": "partial",
+      "reason": "Correctly rejects instanceof and uses result.ok plus error.code for ordinary failures, but does not specify a structural isRemoteFailure-equivalent guard for an explicitly thrown Remote failure at an outer catch boundary.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "A `RemoteError` type or serialized error object does not guarantee a matching local prototype, so `instanceof RemoteError` is not a reliable cross-boundary test."
+        },
+        {
+          "report": "report.md",
+          "quote": "The safe order is: test `result.ok`, return `result.value` only for `true`, inspect `result.error.code` only for `false`, and rethrow or explicitly handle actual rejected promises according to their documented cause."
+        }
+      ],
+      "sources": [],
+      "references": [
+        "DSH-0.1.2-A2-02",
+        "API-02"
+      ],
+      "points": 10,
+      "awarded": 5
+    }
+  ],
+  "caps": [
+    {
+      "id": "ordinary-failures-reject",
+      "triggered": false,
+      "reason": "The report explicitly states that ordinary failures resolve with ok:false and do not enter catch.",
+      "evidence": [],
+      "total": 30
+    },
+    {
+      "id": "unsafe-corrected-code",
+      "triggered": false,
+      "reason": "The corrected code discriminates before reading value, does not use instanceof, and does not swallow or retry genuine local promise rejects.",
+      "evidence": [],
+      "total": 60
+    }
+  ],
+  "model": {
+    "requested": "gpt-5.6-luna",
+    "returned": null,
+    "resolved": "gpt-5.6-luna",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 8330,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6502,
+      "reasoning_output_tokens": 5178
+    },
+    "request_id": "01a094d5-1696-73a0-a6ff-8730014285ba",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "86bb252f04cc8d0b916f7d17dd5e15d8039e133c09de584aab79cc25909a2bcd",
+    "response_sha256": "dfc452b2ab70ef0a7386f5495c24e12fa6deb7a61c1f2319360352a389d64647"
+  },
+  "citation_audit": [],
+  "reports": {
+    "report.md": "f339a7304dee0035216fd4323ab2a6ebd477d1f33106ee0a851df6d596b54497"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "2f945b2c5a71ef157857826e809d51ce7d3597ae8401d6c0334faa2344d664e2",
+  "judge_sha256": "589a8acc57153ac4f5a6cae7d15b4aa230b94023e71ee623427c0d83edc52257",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

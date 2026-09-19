@@ -1,0 +1,233 @@
+{
+  "date": "2026-09-12T10:38:23.012264+00:00",
+  "protocol": "report-judge-v2",
+  "task_version": "4.0.0",
+  "model": "gpt-5.6-luna",
+  "effort": "high",
+  "solver_rerun": false,
+  "judge_attempts_per_task": 1,
+  "rows": [
+    {
+      "task": "H12-remote-result-boundary-trap",
+      "score": 82.5,
+      "decisions": [
+        {
+          "id": "root-cause",
+          "verdict": "pass",
+          "reason": "Correctly identifies the rename helper and explains that ordinary failures resolve as ok:false/error, while the current code wrongly reads value and relies on catch; it does not misdate RemoteResult to alpha.2.",
+          "points": 20,
+          "awarded": 20
+        },
+        {
+          "id": "current-problems",
+          "verdict": "pass",
+          "reason": "Identifies multiple concrete defects: unchecked result.value, catch as the ordinary failure path, cross-realm instanceof, retrying genuine rejects, and the recursive method-binding issue.",
+          "points": 10,
+          "awarded": 10
+        },
+        {
+          "id": "corrected-implementation",
+          "verdict": "partial",
+          "reason": "The fenced code correctly awaits and discriminates result.ok before reading value, but it still retries gateway/cancelled instead of terminating or propagating cancellation under the stated contract.",
+          "points": 25,
+          "awarded": 12.5
+        },
+        {
+          "id": "resolved-control-flow",
+          "verdict": "pass",
+          "reason": "Clearly explains ok:true/value versus ok:false/error and that ordinary failure handling belongs outside catch; it also recognizes the already-migrated namespaced codes.",
+          "points": 20,
+          "awarded": 20
+        },
+        {
+          "id": "reject-boundary",
+          "verdict": "pass",
+          "reason": "Gives supported assembly, validation, serialization, missing-binding, and unrepresentable dispatch examples, and correctly says genuine rejects should remain visible rather than be retried or swallowed.",
+          "points": 15,
+          "awarded": 15
+        },
+        {
+          "id": "error-discrimination",
+          "verdict": "partial",
+          "reason": "Correctly rejects instanceof across realms and uses result.ok plus error.code for resolved failures, but does not clearly specify a structural guard such as isRemoteFailure at a boundary that catches an explicitly thrown Remote failure.",
+          "points": 10,
+          "awarded": 5
+        }
+      ],
+      "caps": [
+        {
+          "id": "ordinary-failures-reject",
+          "triggered": false,
+          "reason": "The report affirmatively says ordinary unary failures resolve with ok:false rather than primarily rejecting into catch.",
+          "total": 30
+        },
+        {
+          "id": "unsafe-corrected-code",
+          "triggered": false,
+          "reason": "The proposed code does not use instanceof, reads value only after checking ok, and has no catch that swallows or blindly retries local rejects.",
+          "total": 60
+        }
+      ],
+      "model": {
+        "requested": "gpt-5.6-luna",
+        "returned": null,
+        "resolved": "gpt-5.6-luna",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 8155,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2947,
+          "reasoning_output_tokens": 2545
+        },
+        "request_id": "01a09530-6c1b-7720-ac89-eddf7b9955ee",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "8720f7f5222fc7a883466d2b2e549f4d84b5cb75e806092e6581aa85fb9834b4",
+        "response_sha256": "f3aa388917f075a5e4601c1b3a627d4e538c4d8182469668a8e3c0dda088184e"
+      },
+      "report_sha256": {
+        "report.md": "f339a7304dee0035216fd4323ab2a6ebd477d1f33106ee0a851df6d596b54497"
+      },
+      "same_reports_rubric_fixture_references_as_previous": true
+    },
+    {
+      "task": "H4-tsbuildinfo-trap",
+      "score": 85,
+      "decisions": [
+        {
+          "id": "artifact-attribution",
+          "verdict": "pass",
+          "reason": "Correctly locates the obsolete import and call in lib/index.js, identifies the stale tsbuildinfo dependency graph, and explains why emitted artifacts and incremental state can surface the error despite source typecheck success.",
+          "points": 30,
+          "awarded": 30
+        },
+        {
+          "id": "clean-rebuild-plan",
+          "verdict": "partial",
+          "reason": "Provides the clean, rebuild, and typecheck procedure and explains cache verification, but does not explicitly include rechecking tests or give a complete test-verification step.",
+          "points": 30,
+          "awarded": 15
+        },
+        {
+          "id": "no-source-migration",
+          "verdict": "pass",
+          "reason": "Grounds the recommendation in src/index.ts having no reference to the removed export, contrasts it with stale lib artifacts, and correctly rejects applying the migration recipe to already-migrated source.",
+          "points": 40,
+          "awarded": 40
+        }
+      ],
+      "caps": [
+        {
+          "id": "unnecessary-source-migration",
+          "triggered": false,
+          "reason": "The report explicitly recommends leaving src/ unchanged and rejects the colleague's source rewrite.",
+          "total": 30
+        }
+      ],
+      "model": {
+        "requested": "gpt-5.6-luna",
+        "returned": null,
+        "resolved": "gpt-5.6-luna",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 5708,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1242,
+          "reasoning_output_tokens": 1034
+        },
+        "request_id": "01a09530-69b2-7b20-a491-e5fdcc7ad7cf",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "852c737b17771d72700776a137deb9d0ff7ff982c0b56e1316ac2f525754dc36",
+        "response_sha256": "f3f05a3ceb926bd576f80592530893491453a0aea7ca751b1c62324fb15e83ba"
+      },
+      "report_sha256": {
+        "report.md": "9cc928eed457b63d2e52672034ae84d0916d0ff655d55ac4996061f443115b7b"
+      },
+      "same_reports_rubric_fixture_references_as_previous": true
+    },
+    {
+      "task": "H6-remote-error-trap",
+      "score": 75,
+      "decisions": [
+        {
+          "id": "namespaced-codes",
+          "verdict": "partial",
+          "reason": "It locates the legacy comparisons and trap comment and correctly requires namespaced code matching, but leaves the canonical spellings unconfirmed instead of identifying gateway/cancelled and gateway/internal.",
+          "points": 25,
+          "awarded": 12.5
+        },
+        {
+          "id": "cancel-policy",
+          "verdict": "pass",
+          "reason": "It makes cancellation an intentional terminal outcome, excludes generic failure treatment, and includes cancellation in the verification matrix.",
+          "points": 25,
+          "awarded": 25
+        },
+        {
+          "id": "internal-unknown-policy",
+          "verdict": "partial",
+          "reason": "It locates and exposes internal and unknown failures while preserving diagnostics and testing both, but does not clearly prohibit blind retries or explicitly preserve error details.",
+          "points": 25,
+          "awarded": 12.5
+        },
+        {
+          "id": "exception-boundary",
+          "verdict": "pass",
+          "reason": "It identifies the blanket catch and instanceof misuse, separates result failures from thrown exceptions, removes swallowing, propagates unexpected faults, and proposes success and exception checks using code-based structural discrimination.",
+          "points": 25,
+          "awarded": 25
+        }
+      ],
+      "caps": [
+        {
+          "id": "retain-old-codes",
+          "triggered": false,
+          "reason": "The report explicitly rejects retaining the bare legacy codes.",
+          "total": 25
+        },
+        {
+          "id": "cross-realm-instanceof",
+          "triggered": false,
+          "reason": "The report explicitly rejects instanceof as a cross-realm discriminator.",
+          "total": 50
+        }
+      ],
+      "model": {
+        "requested": "gpt-5.6-luna",
+        "returned": null,
+        "resolved": "gpt-5.6-luna",
+        "endpoint": "codex://chatgpt-login",
+        "transport": "codex-exec-v1",
+        "cli_version": "codex-cli 0.153.4",
+        "reasoning_effort": "high",
+        "usage": {
+          "input_tokens": 8152,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1288,
+          "reasoning_output_tokens": 1034
+        },
+        "request_id": "01a09530-67b8-7a50-8737-e97c378860ea",
+        "tool_calls": 0,
+        "diagnostics": [],
+        "request_sha256": "be5213ed6c15e50571eddebbe464b2f806fd0946164e7cffbfbc61b94ee9a78d",
+        "response_sha256": "6ff4e9337a8ae4596fdec02aa509e2c21a3e43d84689e4e9d3d92be46729c663"
+      },
+      "report_sha256": {
+        "migration-report.md": "8768f33e8f969c413d0d60f1865fa43490b8dc03f7951e65ae938662182bdaae"
+      },
+      "same_reports_rubric_fixture_references_as_previous": true
+    }
+  ],
+  "total": 242.5,
+  "max": 300
+}

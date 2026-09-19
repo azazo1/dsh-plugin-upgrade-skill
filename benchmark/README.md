@@ -1,8 +1,8 @@
 # dsh plugin upgrade tasks (benchmark v2.4 · Harbor format)
 
-The 56 plugin-upgrade tasks measure one thing: **once an AI has our upgrade skill
-installed, will it actually upgrade the plugin**. The first 20 are written exams (read
-the code, produce the answer); the last 36 are hands-on (actually install dsh and run
+The 63 plugin-upgrade tasks measure one thing: **once an AI has our upgrade skill
+installed, will it actually upgrade the plugin**. The first 25 are written exams (read
+the code, produce the answer); the last 38 are hands-on (actually install dsh and run
 the plugin — whether it is alive is obvious at a glance). Every task ships with
 auto-grading, so no human marking is involved.
 
@@ -10,10 +10,12 @@ auto-grading, so no human marking is involved.
 task format** — each question is a standard Harbor task (directory layout below) that
 can be run directly with `harbor run` on any agent / provider Harbor supports.
 
-An opt-in [S1–S4 semantic report-judge pilot](docs/report-judge-pilot.md) adds
-LLM criterion grading with sealed source evidence, deterministic checks and
-old/new calibration comparisons. Generate its separate tasks with
-`node benchmark/report-judge/prepare.mjs --out /tmp/report-judge-pilot`.
+**H4, H6, H12 and all S1–S22 tasks use [LLM-as-judge by default](docs/report-judge-pilot.md).**
+Run their registered `benchmark/tasks/<task>` directories directly. Configure
+`REPORT_JUDGE_BASE_URL`, `REPORT_JUDGE_MODEL` and `REPORT_JUDGE_API_KEY` for the
+separate verifier; a missing/broken judge is an evaluator failure, never a
+keyword-score fallback. The version-4 semantic scores are not interchangeable
+with archived keyword scores.
 
 Every task tests a real trap: some fixtures hide a misleading comment like "try
 changing it this way" (following it is fatal), and some plugins ship with a
@@ -55,6 +57,11 @@ honestly instead of quietly fixing it and pretending nothing happened).
 | S15-slot-error-boundary-crash | Static | After a feature release the pending-attachment dock vanishes entirely: a dangling `busy` identifier (another component's state) throws only when a chip renders and the phase guard short-circuits open — can it find the pre-existing line behind the misleading new diff and design a data-present render regression |
 | S16-self-host-upgrade-trap | Static | An agent runs the global dsh upgrade from inside its own session on the running host: npm replaces the live package tree, the GUI dies mid-call, and the interrupted install leaves the package present but the `dsh` command gone — can it diagnose the self-upgrade failure, repair via an external pinned re-install, and state the hand-off protocol (host stopped BEFORE npm so nothing crashes mid-install) |
 | S17-external-ui-plugin-onboarding-trap | Static | A hand-written external web UI plugin is inserted into a running profile: one raw-ESM client bundle fails the whole combo so ZERO plugins register (the error names an innocent first-awaited entry), the repackaged plugin then hits a cross-entry slot declaration race, and every edit needs a full host restart (Windows tree-kill or EADDRINUSE) - diagnose all three from the evidence pack |
+| S20-msvc-flock-trap | Static | Upgrading to 0.1.3-alpha.1 on a Windows machine without MSVC: `pnpm install` dies on the fs-ext native build even though Windows never calls `flock` (named kernel semaphore) — can it diagnose the static-import trap (`--ignore-scripts` cannot skip it) and plan the pnpm-patch fix instead of demanding Visual Studio |
+| S18-terminal-sprite-render-trap | Static | A terminal pixel sprite shows phantom pixels at its right edges and ghost pixels surviving frame switches (half-block SGR background leak + trailing-trim), one hand-ported frame drifted 23 cells, and flipping the animation default-on hung a CI job (planner timer chain pinned probe hosts) - diagnose renderer defects, timer pinning, and the prevention checklist |
+| S19-phantom-update-stale-host | Static | A client-plugin release trips three interacting pitfalls: the released version's own update badge announces v0.3.7 to itself (the client bundle bakes the pre-bump version constant — build ran before the bump), the new SVG render route 404s while the client UI is updated (host-half routes register once at boot; client refresh does not touch them), and one broken image traces to a corrupted session read payload (source file well-formed, log text spliced) — can it attribute all three from the evidence pack and design the validated render-source chain (asset bytes → DOMParser-checked payload → sandboxed iframe → explicit error) |
+| S22-duplicate-insert-boot-crash-trap | Static | After a dsh upgrade, a maintainer manually inserts workspace-files into the profile's cordis.patch.yml to fix an unavailable sidebar tab — but the web-app bundle already provides it, causing a fatal `duplicate loader entry id` boot crash: can the agent attribute the crash to Cordis's duplicate-insert rule (fatal, not merge), distinguish profile-patch insert from bundle-provided plugins, prescribe the correct fix (remove the duplicate), and give the prevention step (grep the bundle patch first) |
+| S21-resource-service-unavailable-trap | Static | After an in-place dsh upgrade, a right-Sidebar document tab opens for a session file but its content read fails (文件资源服务不可用) while a contrast reader of the same file works and all 62 manifest modules serve 200: can the agent attribute the failure to the workspace-files resource-provider/RPC chain on the upgraded profile, run valid probes (per-module sweep, contrast reader; the naive all-in-one combo join exceeds the 3 KB URL cap and is invalid), choose restart → rollback → upstream report, and keep the unrelated paste-input fold-skip warnings separate |
 | M2-optional-dep-trap | Hands-on | The plugin declares an optional dependency but imports it unconditionally at top level (the comment says optional is harmless): does it fix the dependency contract instead of wrapping the import, and prove it with a cold boot |
 | M3-session-projection | Hands-on | A self-assembled profile mounts dsh-tool-todo without the sessionProjections service: does it fix the composition (never edit shipped packages) so the tree activates while the todo tool survives in the final composition |
 | M4-peer-prerelease-range | Hands-on | A peer lower bound written as ^0.1.0-rc.8 does not match 0.1.2-alpha.2 under npm semver's prerelease rule: does it rewrite the bound to the target cohort instead of widening it into a meaningless range |
@@ -80,6 +87,8 @@ honestly instead of quietly fixing it and pretending nothing happened).
 | H23-storage-domain-version-compat-trap | Hands-on | alpha.4 → alpha.5: after a domain version bump the plugin boots and the storage domain opens green while older version-4 per-record documents silently read as absent — can the agent repair the version-stamp compatibility declaration (v4 records reappear, the v5 record stays, the unlisted v3 stamp stays foreign, writes re-stamp 5) without downgrading or patching the runtime |
 | H24-invalid-record-salvage-trap | Hands-on | alpha.4 → alpha.5: one current-version schema-invalid record in a disposable derived-index domain rejects the entire domain open — can the agent salvage it through the backup-and-skip contract (corrupted bytes preserved on disk, healthy records kept, damaged key rebuildable) instead of deleting evidence, swallowing the error, or loosening the schema |
 | H25-session-seed-boundary-trap | Hands-on | alpha.3 → alpha.4: a fork-aware session state helper migrates from header.seedLength to isSeeded + inheritedEventCount and from plain numbers to branded SessionSeq / SessionLogOffset — does the agent keep the ORIGINAL inherited cut on a RESUMED fork (where the stored log has grown) instead of silently reclassifying own events as inherited |
+| H26-notlisted-trap | Hands-on | A package that installs cleanly but never registers (`dsh plugin add` succeeds, the entry never appears in the list; distilled from a 22k★ real failure): does it separate dependency installation from plugin registration, attribute the gap to the missing manifest self-description (`main`/`exports`/`dsh`) rather than the host, resist the in-source reinstall memo, and prove the fix live (listed + cold boot reaches the application layer) |
+| H27-undeclared-import-trap | Hands-on | A plugin that installs and lists fine but crashes on load (`ERR_MODULE_NOT_FOUND` — an import with no declared dependency; the old host provided packages implicitly): does it pin the failing import, attribute the crash to the undeclared dependency rather than the code, resist the try/catch-and-degrade memo, declare the package, and prove a cold boot that reaches the application layer |
 
 ## Benchmark results
 
@@ -123,6 +132,8 @@ formal no-network scores.
 | `deepseek/deepseek-v4-flash` + terminus-2 | No skill | 23-task full set (3-run median) | 16.09/23 | 0.6996 | 11 | 2h24m | 53.9M / n/a / 2.3M | $4.85 | [terminus-2 + deepseek-v4-flash report](results/validation-report-2026-09-01-terminus2-deepseek-v4-flash.md) |
 | `deepseek/deepseek-v4-flash` + terminus-2 | With fixed pre-answer skill snapshot§ | H21 question-answerer-waterfall; 3 scored trials | 1.00/1 median (2.90/3 raw) | 0.9667 | 2/3 trials | 45m33.274s | 8,042,266 / 7,779,840 / 291,429 | $0.6091 | [H21 paired report](results/validation-report-2026-09-03-terminus2-deepseek-v4-flash-h21.md) |
 | `deepseek/deepseek-v4-flash` + terminus-2 | No Harbor-injected skill§ | H21 question-answerer-waterfall; 3 scored trials | 0.90/1 median (2.70/3 raw) | 0.9333 | 1/3 trials | 45m27.972s | 6,270,437 / 6,040,320 / 292,922 | $0.5725 | [H21 paired report](results/validation-report-2026-09-03-terminus2-deepseek-v4-flash-h21.md) |
+| codex 0.153.4 + `qwen3.8-27b` (medium) | With task-pinned `plugin-upgrade` | 56 tasks at `74af446`; 3 attempts per task (paired) | 69.89/168 | 0.4160 | 55 | 30h40m58.754s (summed native trials) | 409,819,928 / 400,036,000 / 3,988,952 | local single-GPU; no API cost | [paired report](results/validation-report-2026-09-11-codex-qwen3.8-27b-medium-paired.md) |
+| codex 0.153.4 + `qwen3.8-27b` (medium) | Literal no skill | 56 tasks at `74af446`; 3 attempts per task (paired) | 75.05/167 | 0.4494 | 59 | 28h53m48.541s (summed native trials) | 339,853,493 / 332,139,248 / 3,940,227 | local single-GPU; no API cost | [paired report](results/validation-report-2026-09-11-codex-qwen3.8-27b-medium-paired.md) |
 
 Duration is the sum of the Harbor job durations represented in each report;
 concurrent jobs therefore remain additive rather than being collapsed into an
@@ -263,10 +274,6 @@ it is alive.
 
 ## How to run
 
-For PR controls and manual multi-Skill model comparisons, see
-[Skill CI and composition coverage](docs/skill-ci.md). The model comparison is
-separate from the reference-answer controls; neither is inferred from `npm test`.
-
 For formal/reproducible runs, pin an evaluation snapshot under
 [`benchmark/snapshots/`](snapshots/README.md) instead of describing the object
 as "the current benchmark".
@@ -278,7 +285,7 @@ harbor run -p benchmark/tasks/S1-static-scan -a oracle
 # evaluate a single task with an agent
 harbor run -p benchmark/tasks/M1-host-migration -a claude-code -m anthropic/claude-opus-4-1
 
-# all 56 tasks: pointing -p at the tasks/ directory runs them as a dataset batch
+# all 63 tasks: pointing -p at the tasks/ directory runs them as a dataset batch
 harbor run -p benchmark/tasks -a claude-code -m anthropic/claude-opus-4-1
 ```
 
@@ -290,7 +297,7 @@ the judge's per-item reasons are in the verifier log.
 
 ### Unattended authorization
 
-All 56 `instruction.md` files carry the `BENCHMARK-AUTH-v1` marker: the task prompt
+All 63 `instruction.md` files carry the `BENCHMARK-AUTH-v1` marker: the task prompt
 itself is the user's confirmation of the plan and the execution within the stated
 scope. The agent should complete the necessary analysis/planning and then proceed — it
 must not stop just because Harbor will not send a second round of "confirmation". The
@@ -317,7 +324,7 @@ node benchmark/scripts/validate-execution-contract.mjs
    - Build-cache diagnosis task (H4): the agent keeps `src/` unchanged, may only clean
      the `lib/` build artifacts, and writes its report to
      `/app/agent-output/H4-tsbuildinfo-trap/`;
-   - Hands-on tasks (M1/H1/H2/H3/H5/M2/M3/M4/H7/M5/H8/H9/H10/H21/H22): the agent edits files under `/app/fixture/`
+   - Hands-on tasks (M1/H1/H2/H3/H5/M2/M3/M4/H7/M5/H8/H9/H10/H21/H22/H26): the agent edits files under `/app/fixture/`
      directly; H2 additionally requires writing the migration report to
      `/app/agent-output/H2-baseline-trap/`.
 3. **Grading**: after the agent finishes, Harbor automatically runs `tests/test.sh`;
@@ -467,7 +474,7 @@ numbers cannot be compared across models or against later runs.
   adding ordinary fixture tasks** — the point is to stop anyone from accidentally
   publishing fake plugins to npm.
 - When adding a task, scaffold it with `harbor task init`, then fill in
-  judge / solve.sh following the layout of the existing 56 tasks, and verify the
+  judge / solve.sh following the layout of the existing 63 tasks, and verify the
   reference answer scores 1.0 with `harbor run -p <task> -a oracle`.
 - After adding or modifying prompts, run
   `node benchmark/scripts/validate-execution-contract.mjs` to make sure the

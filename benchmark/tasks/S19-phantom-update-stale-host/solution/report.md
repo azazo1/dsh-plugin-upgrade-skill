@@ -1,0 +1,93 @@
+# S19 report — The phantom update, the stale host half, and the corrupted payload
+
+## 1. Phantom self-update: the version constant is baked at BUILD time
+
+The self-update check compares the RUNNING bundle's own version against the newest tag on
+the mirrors. The running version is not read from package.json at runtime — the bundler
+inlines it when `pnpm run build` executes (`export const PLUGIN_VERSION = "0.3.6"` is
+verbatim in the shipped bundle). The release log shows the mistake: the build ran at 16:22,
+the version bump happened at 16:23, and the already-built `lib/client.js` was committed
+at 16:24. So v0.3.7's shipped bundle still says 0.3.6, the check resolves
+newerTag("v0.3.7") > "0.3.6" and the plugin announces an update to itself. Mirror and tag
+integrity (SHA-verified on all three mirrors) are irrelevant — the stale constant never
+left the build machine's own output.
+
+Corrected release order: bump `package.json` FIRST, then typecheck/test/BUILD, then
+commit + tag + push. The cheap gate that would have caught it: after building, grep the
+shipped `lib/client.js` for the new version string before committing.
+
+## 2. Client plane refreshes; the host half registers its routes ONCE at boot
+
+The two halves update asymmetrically:
+
+- the CLIENT half is served per-request (cache-control no-cache) and the browser re-fetches
+  it on refresh — so the new render toggle appeared;
+- the HOST half called `webServer.register` inside apply when the plugin loaded, and the
+  route handler it registered closes over the OLD whitelist. The running process keeps
+  answering with that closure until it restarts.
+
+The probes pin this precisely: the route itself is alive (PNG answers 200
+`image/png`), only the svg extension 404s — and the disk copy of `lib/index.js`
+WHITELISTS svg. Stale disk would make the whole route disappear; an old RUNNING process
+explains "route alive, whitelist old". Attribution: compare shipped bytes vs runtime
+behavior at the route level, then conclude the running host predates the change. A
+host-plane change (anything registered in apply: routes, tools, services) becomes
+effective only when the host restarts — this is the exception to "plugin edits hot-update":
+the hot path is the client bundle; the host closure is boot-time. Note the plugin is
+link-installed (the repo tree IS the installed copy), so nothing needed re-adding — only
+the process needed restarting.
+
+## 3. Broken image: the session payload is corrupted, upstream of the plugin
+
+The evidence splits cleanly:
+
+- the traced source file is well-formed XML (document load: no error);
+- the session log's read-result TEXT for that file is not: line 232 reads
+  `...stroke="#dde6ea" stro0,1 821,730" fill="none" stroke="#ffffff"...` — the tail of
+  source line 247 spliced in at the shared prefix "stro", with source lines 233-247 gone;
+- a fresh re-read of the same region is clean (non-deterministic).
+
+So the corruption happened in the result-TEXT assembly that persists the read into the
+session log — upstream of the plugin, which only reads the log back. The file is innocent:
+editing or "repairing" the traced SVG would have been exactly wrong, and reporting "the
+file is corrupted" would misattribute. Consequence for the plugin: the session payload is
+an UNTRUSTED copy of the file; anything rendered from it must be validated first, and the
+authoritative bytes live on disk.
+
+## 4. Defensive render chain
+
+Render-source order for the SVG preview:
+
+1. **Asset route (disk bytes) first** — the host streams the file's real bytes, immune to
+   any session-payload corruption. Served into an `<img>`: SVG scripts never execute in
+   image context, so the whitelist is safe for this consumer.
+2. **Session payload blob, only after validation** — when the route is unavailable (old
+   host half), parse the payload with `DOMParser` (`image/svg+xml`) and reject on
+   `parsererror`; only a well-formed document is wrapped into an
+   `image/svg+xml` Blob URL. This turns "silent broken image" into a controlled failure.
+3. **Sandboxed iframe last** — if the `<img>` still errors, the same blob renders in an
+   `iframe sandbox=""`: scripts blocked, SMIL animations still run.
+4. **Explicit error state** — when every source fails, show a real message ("no complete
+   content in this session") instead of a broken-image glyph. A validation failure must
+   never masquerade as a loading state.
+
+## 5. Forensics method + prevention
+
+Forensics: the session persistence is a CONCATENATED-Zstandard generation file
+(`session.v2.jsonl.zstd`) — not one stream. Scan the frame structure (magic
+0xFD2FB528, frame header, block headers, checksum), decompress per frame, concatenate the
+plaintext JSONL, then search events for the payload. That recovers the EXACT stored text
+and turns "the image is broken" into a byte-level splice evidence (which line, which
+offsets, which shared prefix) — enough to attribute the bug upstream and file a report
+against the result-text assembly, instead of shipping a plugin-side workaround silently.
+
+Prevention this incident adds to the release checklist:
+
+- version bump BEFORE build; grep the shipped bundle for the new constant before commit;
+- keep the tag push + per-mirror SHA verification (`git ls-remote` each mirror);
+- classify every "my fix didn't take effect" symptom by PLANE first: client bundle
+  (refresh re-fetches) vs host half (boot-time registration → restart), using a cheap
+  route/behavior probe before touching the release again;
+- render only validated input: XML/text validation before any `<img>`/`Blob` use of a
+  session payload, with an explicit error state; a failed validation is reported upstream
+  (the read-result assembly bug) rather than absorbed.

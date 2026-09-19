@@ -1,0 +1,394 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oh-my-dsh.github.io/dsh-plugin-upgrade-skill/paper/study-v1/run-record.schema.json",
+  "title": "study-v1 development pilot run record",
+  "description": "Machine-readable schema for the 16-cell study-v1 development pilot record set (tasks H4-tsbuildinfo-trap, H6-remote-error-trap, H12-remote-result-boundary-trap, H25-session-seed-boundary-trap x conditions A/B/C/D). It documents field shape and the validator-enforced consistency rules; it is not a formal result pipeline and it asserts that no pilot cell has been executed.",
+  "x-documentation": "paper/study-v1/RUN-RECORDS.md",
+  "x-validator": "paper/scripts/validate-study-run-records.py",
+  "x-studyId": "budgeted-small-model-migration-v1",
+  "x-studyStatus": "candidate-not-frozen",
+  "x-formalRunAllowed": false,
+  "x-pilotRunClaimed": false,
+  "x-recordCountInRepository": 0,
+  "x-logicalCellCount": 16,
+  "x-pilotRunKind": "development-pilot",
+  "x-statusValues": [
+    "success",
+    "task-failure",
+    "timeout",
+    "setup-error",
+    "solver-error",
+    "judge-error",
+    "incomplete"
+  ],
+  "x-terminalStatusValues": [
+    "success",
+    "task-failure",
+    "timeout",
+    "setup-error",
+    "solver-error",
+    "judge-error"
+  ],
+  "x-nullVsZeroPolicy": "A missing measurement is null, never 0. 0 is a real measured value. The two states are never interchangeable: a token field, duration, exit code, or cost of 0 means the run measured zero, and null means the run did not measure it. Fields may not be omitted: every field in `required` must be present, with an explicit null when unknown.",
+  "x-tokenAccountingPolicy": "Declared convention is `input-includes-cached` (the default when `tokenUsage.accounting` is absent): `input` is the full prompt total and already contains `cachedInput`, so totalReported = input + output and adding cachedInput again is a double count. The alternative `input-excludes-cached` requires totalReported = input + cachedInput + output. The validator rejects any record whose declared convention and numbers disagree.",
+  "x-provenancePolicy": "Any record with a produced artifact (solverOutputPresent true, patchPresent true, or status success) must carry artifactRootRelative, materialManifestSha256 and taskTreeSha together. A score without provenance is never a valid run record; scores themselves belong in a separate judge packet and are rejected inside a run record.",
+  "x-retryPolicy": "Every attempt is recorded, including failed originals. A retry is an additional record in the same task+condition cell with attemptKind `retry` and retryOf pointing at an existing record (recordId or `taskId/condition`). Best-of-N selection, hidden retries, deleted failed originals, and retryOf cycles are rejected. pilotComplete requires every one of the 16 cells to hold a terminal status with no unresolved retry.",
+  "x-replacementPolicy": "The pilot task set, condition set, and pinned task trees are fixed. A cell whose task or condition is not in the preselected set is a task/condition replacement and is rejected; metadata fields that claim a replacement or a best-run selection are rejected outright.",
+  "x-pilotTaskTrees": {
+    "H4-tsbuildinfo-trap": "a3fc23c1021e67f58ab8625051b60adbdc6bd2ad",
+    "H6-remote-error-trap": "2aff3959b7c1a0c3414add6aa80d73f382743575",
+    "H12-remote-result-boundary-trap": "495a9f2163fb7df791030d1d02664e46347ef95e",
+    "H25-session-seed-boundary-trap": "0d1e30b9a1f20e741bbe83053f9088ba51587b7a"
+  },
+  "anyOf": [
+    { "$ref": "#/$defs/record" },
+    { "$ref": "#/$defs/recordSet" }
+  ],
+  "$defs": {
+    "tokenUsage": {
+      "type": ["object", "null"],
+      "description": "Token accounting for one attempt. null means tokens were not measured; it is not 0.",
+      "additionalProperties": false,
+      "required": ["input", "cachedInput", "output", "totalReported"],
+      "properties": {
+        "input": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Prompt input tokens. Under the default `input-includes-cached` convention this is the full prompt total and already includes cachedInput."
+        },
+        "cachedInput": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Cached subset of the prompt tokens. It must never be added on top of an inclusive `input`."
+        },
+        "output": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Generated output tokens."
+        },
+        "totalReported": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Total reported by the provider. `input-includes-cached` => input + output; `input-excludes-cached` => input + cachedInput + output."
+        },
+        "accounting": {
+          "type": "string",
+          "enum": ["input-includes-cached", "input-excludes-cached"],
+          "default": "input-includes-cached",
+          "description": "Declared accounting convention for this record. Absent means `input-includes-cached`."
+        }
+      }
+    },
+    "cost": {
+      "type": ["object", "null"],
+      "description": "Measured spend for one attempt. null means spend is unknown; it is not 0. An amount requires an explicit uppercase ISO 4217 currency, and the amount must not be negative.",
+      "additionalProperties": false,
+      "required": ["amount", "currency"],
+      "properties": {
+        "amount": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Non-negative measured amount; 0 is a real measured zero, null is unknown."
+        },
+        "currency": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Z]{3}$",
+          "description": "Uppercase ISO 4217 code, e.g. USD. Required whenever amount is present."
+        }
+      }
+    },
+    "record": {
+      "type": "object",
+      "description": "One attempt in one task x condition cell. All 27 required fields must be present; unknown fields, credential-like field names, selection metadata, replacement metadata, and score fields are rejected.",
+      "additionalProperties": false,
+      "required": [
+        "studyId",
+        "taskId",
+        "condition",
+        "modelRequested",
+        "modelResolved",
+        "modelIdentityStatus",
+        "reasoning",
+        "runKind",
+        "attemptKind",
+        "startedAt",
+        "endedAt",
+        "wallDurationMs",
+        "timeoutSeconds",
+        "status",
+        "exitCode",
+        "artifactRootRelative",
+        "materialManifestSha256",
+        "taskTreeSha",
+        "runnerVersion",
+        "solverOutputPresent",
+        "patchPresent",
+        "judgeStatus",
+        "tokenUsage",
+        "cost",
+        "exceptions",
+        "retryOf",
+        "notes"
+      ],
+      "properties": {
+        "recordId": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Za-z0-9._:-]+$",
+          "description": "Optional stable attempt id used as a retryOf target. Required in practice for a cell that holds more than one attempt."
+        },
+        "schemaVersion": {
+          "type": ["integer", "null"],
+          "const": 1,
+          "description": "Optional record schema version; only 1 is supported."
+        },
+        "studyId": {
+          "const": "budgeted-small-model-migration-v1",
+          "description": "Study identity. Any other value is rejected."
+        },
+        "taskId": {
+          "type": "string",
+          "enum": [
+            "H4-tsbuildinfo-trap",
+            "H6-remote-error-trap",
+            "H12-remote-result-boundary-trap",
+            "H25-session-seed-boundary-trap"
+          ],
+          "description": "One of the four preselected development pilot tasks, pinned in paper/audit/task-annotation-v1/inventory.json. Other tasks (including the wider living benchmark) are rejected as task replacement."
+        },
+        "condition": {
+          "type": "string",
+          "enum": ["A", "B", "C", "D"],
+          "description": "Study condition. Any other value is condition replacement."
+        },
+        "modelRequested": {
+          "type": ["string", "null"],
+          "description": "Model/configuration requested before the run; null when unset."
+        },
+        "modelResolved": {
+          "type": ["string", "null"],
+          "description": "Model identity actually resolved from the service. Must be null and paired with modelIdentityStatus `unverified` when identity cannot be established; never fabricated."
+        },
+        "modelIdentityStatus": {
+          "type": "string",
+          "enum": ["unverified", "verified", "mismatch"],
+          "description": "`verified`/`mismatch` require both modelRequested and modelResolved; a null modelResolved is only valid as `unverified`."
+        },
+        "reasoning": {
+          "type": ["string", "null"],
+          "description": "Reasoning setting recorded before the run, e.g. `high`; null when not configured."
+        },
+        "runKind": {
+          "const": "development-pilot",
+          "description": "This record set is development pilot infrastructure only; formal runs use a separate pipeline."
+        },
+        "attemptKind": {
+          "type": "string",
+          "enum": ["original", "retry"],
+          "description": "`original` for the first attempt, `retry` for a later attempt that must declare retryOf."
+        },
+        "startedAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO 8601 start timestamp, or null when not measured."
+        },
+        "endedAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO 8601 end timestamp; must not precede startedAt."
+        },
+        "wallDurationMs": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Measured wall duration in whole milliseconds; 0 is measured, null is unknown. Must agree with startedAt/endedAt within a 1000 ms tolerance."
+        },
+        "timeoutSeconds": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Configured time budget in seconds, or null when unset. A timeout status is a budget outcome, never a reward of 0."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "success",
+            "task-failure",
+            "timeout",
+            "setup-error",
+            "solver-error",
+            "judge-error",
+            "incomplete"
+          ],
+          "description": "Terminal outcome for the attempt. `incomplete` is not terminal and blocks pilotComplete. timeout, setup-error, solver-error and judge-error must never be folded into a solver score of 0."
+        },
+        "exitCode": {
+          "type": ["integer", "null"],
+          "description": "Process exit code, or null when unavailable. 0 is a measured exit code."
+        },
+        "artifactRootRelative": {
+          "type": ["string", "null"],
+          "description": "Repository-relative artifact directory, POSIX separators only. Absolute paths, /tmp or other temp roots, `..`, backslashes and embedded username/home paths are rejected."
+        },
+        "materialManifestSha256": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "SHA-256 of the mounted condition material for this cell; must match the pilot plan hash for the same task+condition."
+        },
+        "taskTreeSha": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "Git tree id of the task fixture, which must equal the pinned inventory treeSha for taskId."
+        },
+        "runnerVersion": {
+          "type": ["string", "null"],
+          "description": "Version/commit of the runner that produced the attempt, or null when unknown."
+        },
+        "solverOutputPresent": {
+          "type": ["boolean", "null"],
+          "description": "Whether a solver output artifact exists. success requires true; a task-failure needs output, a patch, or a scored judge packet as evidence."
+        },
+        "patchPresent": {
+          "type": ["boolean", "null"],
+          "description": "Whether a code patch artifact exists."
+        },
+        "judgeStatus": {
+          "type": ["string", "null"],
+          "enum": ["not-run", "scored", "judge-error", "not-applicable", null],
+          "description": "Judge state. `scored` is rejected for timeout, setup-error, solver-error and judge-error statuses."
+        },
+        "tokenUsage": { "$ref": "#/$defs/tokenUsage" },
+        "cost": { "$ref": "#/$defs/cost" },
+        "exceptions": {
+          "type": ["array", "null"],
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Non-empty strings describing recorded exceptions, or null when none occurred. An empty array means 'checked and none'; null means 'not recorded'."
+        },
+        "retryOf": {
+          "type": ["string", "null"],
+          "description": "Reference to the attempt this record retries. Must resolve to an existing record in the same task+condition cell; required when attemptKind is `retry`. Retry chains must terminate at an original and must not loop."
+        },
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Free-text notes; must not carry credentials or fabricated results."
+        }
+      }
+    },
+    "recordSet": {
+      "type": "object",
+      "description": "A 16-cell development pilot record set. A single record file may also be stored as one record object; a set may be an array of records or an object with a `records` array. pilotComplete is true only when every one of the 16 logical cells is present with a terminal status and no unresolved retry.",
+      "additionalProperties": true,
+      "required": ["records"],
+      "properties": {
+        "studyId": {
+          "const": "budgeted-small-model-migration-v1",
+          "description": "Optional set-level study identity; must match when present."
+        },
+        "records": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/record" }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "_note": "ILLUSTRATIVE PLACEHOLDER ONLY. No pilot cell has been executed; this shows the shape of a prepared, not-yet-measured cell. Every measurement is null, not 0.",
+      "studyId": "budgeted-small-model-migration-v1",
+      "taskId": "H4-tsbuildinfo-trap",
+      "condition": "A",
+      "modelRequested": null,
+      "modelResolved": null,
+      "modelIdentityStatus": "unverified",
+      "reasoning": null,
+      "runKind": "development-pilot",
+      "attemptKind": "original",
+      "startedAt": null,
+      "endedAt": null,
+      "wallDurationMs": null,
+      "timeoutSeconds": null,
+      "status": "incomplete",
+      "exitCode": null,
+      "artifactRootRelative": null,
+      "materialManifestSha256": null,
+      "taskTreeSha": null,
+      "runnerVersion": null,
+      "solverOutputPresent": null,
+      "patchPresent": null,
+      "judgeStatus": null,
+      "tokenUsage": null,
+      "cost": null,
+      "exceptions": null,
+      "retryOf": null,
+      "notes": "placeholder record shape; not a run"
+    },
+    {
+      "_note": "ILLUSTRATIVE PLACEHOLDER ONLY. Shows an original attempt, a recorded retry that references it, subset-cached token accounting, and a measured zero cost. The SHA values are placeholders.",
+      "records": [
+        {
+          "recordId": "H4-A-attempt-1",
+          "studyId": "budgeted-small-model-migration-v1",
+          "taskId": "H4-tsbuildinfo-trap",
+          "condition": "A",
+          "modelRequested": "example-model-high",
+          "modelResolved": null,
+          "modelIdentityStatus": "unverified",
+          "reasoning": "high",
+          "runKind": "development-pilot",
+          "attemptKind": "original",
+          "startedAt": "2026-01-01T00:00:00Z",
+          "endedAt": "2026-01-01T00:00:30Z",
+          "wallDurationMs": 30000,
+          "timeoutSeconds": 600,
+          "status": "timeout",
+          "exitCode": 124,
+          "artifactRootRelative": "output/study-v1-pilot/H4-tsbuildinfo-trap/A",
+          "materialManifestSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "taskTreeSha": "a3fc23c1021e67f58ab8625051b60adbdc6bd2ad",
+          "runnerVersion": "placeholder-runner-0",
+          "solverOutputPresent": false,
+          "patchPresent": false,
+          "judgeStatus": "not-run",
+          "tokenUsage": {
+            "input": 1000,
+            "cachedInput": 400,
+            "output": 100,
+            "totalReported": 1100,
+            "accounting": "input-includes-cached"
+          },
+          "cost": { "amount": 0, "currency": "USD" },
+          "exceptions": ["budget exhausted before delivery"],
+          "retryOf": null,
+          "notes": "placeholder original attempt; not a real run"
+        },
+        {
+          "recordId": "H4-A-attempt-2",
+          "studyId": "budgeted-small-model-migration-v1",
+          "taskId": "H4-tsbuildinfo-trap",
+          "condition": "A",
+          "modelRequested": "example-model-high",
+          "modelResolved": null,
+          "modelIdentityStatus": "unverified",
+          "reasoning": "high",
+          "runKind": "development-pilot",
+          "attemptKind": "retry",
+          "startedAt": "2026-01-01T00:05:00Z",
+          "endedAt": "2026-01-01T00:05:40Z",
+          "wallDurationMs": 40000,
+          "timeoutSeconds": 600,
+          "status": "incomplete",
+          "exitCode": null,
+          "artifactRootRelative": null,
+          "materialManifestSha256": null,
+          "taskTreeSha": null,
+          "runnerVersion": "placeholder-runner-0",
+          "solverOutputPresent": null,
+          "patchPresent": null,
+          "judgeStatus": "not-run",
+          "tokenUsage": null,
+          "cost": null,
+          "exceptions": null,
+          "retryOf": "H4-A-attempt-1",
+          "notes": "placeholder retry that keeps the failed original on record"
+        }
+      ]
+    }
+  ]
+}

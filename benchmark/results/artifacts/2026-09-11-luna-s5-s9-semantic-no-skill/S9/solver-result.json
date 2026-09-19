@@ -1,0 +1,138 @@
+{
+    "id": "d97405be-a2f3-4faa-90f2-1a6036da792e",
+    "task_name": "dsh-plugin-upgrade/s9-composer-coordinate-trap",
+    "trial_name": "S9-composer-coordinate-trap__3dAufee",
+    "trial_uri": "file:///private/tmp/dsh-s5-s9-luna-semantic-20260911/jobs/codex-luna-s5-s9-literal-zero-skill/S9-composer-coordinate-trap__3dAufee",
+    "task_id": {
+        "path": "/private/tmp/dsh-s5-s9-luna-semantic-20260911/tasks/S9-composer-coordinate-trap"
+    },
+    "source": null,
+    "task_checksum": "bb05f0ba88a5181ab5316506eef5a201648f01fea827aa9705bf6734662b7e62",
+    "config": {
+        "task": {
+            "path": "/private/tmp/dsh-s5-s9-luna-semantic-20260911/tasks/S9-composer-coordinate-trap",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "S9-composer-coordinate-trap__3dAufee",
+        "trials_dir": "/private/tmp/dsh-s5-s9-luna-semantic-20260911/jobs/codex-luna-s5-s9-literal-zero-skill",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": 4.0,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "harbor_codex_node24:CodexNode24",
+            "import_path": null,
+            "model_name": "openai/gpt-5.6-luna",
+            "n_concurrent": 4,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [
+                "chatgpt.com"
+            ],
+            "kwargs": {
+                "version": "0.153.4",
+                "reasoning_effort": "xhigh",
+                "web_search": "disabled",
+                "config": {
+                    "skills": {
+                        "include_instructions": false,
+                        "bundled": {
+                            "enabled": false
+                        }
+                    },
+                    "features": {
+                        "skip_host_skill_discovery": true,
+                        "skill_search": false,
+                        "skill_mcp_dependency_install": false,
+                        "memories": false
+                    }
+                }
+            },
+            "env": {
+                "CODEX_AUTH_JSON_PATH": "/Use****son"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": true,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [
+            "/app/agent-output",
+            "/app/fixture"
+        ],
+        "extra_instruction_paths": [],
+        "extra_instructions": [
+            "This is a literal zero-skill evaluation. Do not search for, open, read, quote, or follow any SKILL.md file or any skill directory. Do not use Codex-native or bundled skills. Use only the task prompt, /app/fixture, and non-skill local documentation and tools. Skip any skill file if encountered."
+        ],
+        "job_id": "74f90ba9-4f4a-4785-907d-7a775c3c3949",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "codex",
+        "version": "0.153.4",
+        "model_info": {
+            "name": "gpt-5.6-luna",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 146192,
+        "n_cache_tokens": 110592,
+        "n_output_tokens": 12112,
+        "cost_usd": 0.02386624,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-09-11T04:14:03.348411Z",
+    "finished_at": "2026-09-11T04:19:25.178572Z",
+    "environment_setup": {
+        "started_at": "2026-09-11T04:14:03.349353Z",
+        "finished_at": "2026-09-11T04:14:05.248752Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-09-11T04:14:05.248808Z",
+        "finished_at": "2026-09-11T04:15:12.702898Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-09-11T04:15:12.703155Z",
+        "finished_at": "2026-09-11T04:19:20.480333Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

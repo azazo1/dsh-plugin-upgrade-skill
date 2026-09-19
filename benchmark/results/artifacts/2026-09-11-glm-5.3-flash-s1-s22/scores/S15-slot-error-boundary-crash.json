@@ -1,0 +1,18 @@
+{
+  "task": "S15-slot-error-boundary-crash",
+  "noskill": {
+    "busy-scope-and-trigger": "pass",
+    "slot-boundary": "pass",
+    "attribution-and-isolation": "pass",
+    "fix-and-hardening": "pass",
+    "data-present-regression": "pass"
+  },
+  "skill": {
+    "busy-scope-and-trigger": "pass",
+    "slot-boundary": "pass",
+    "attribution-and-isolation": "pass",
+    "fix-and-hardening": "pass",
+    "data-present-regression": "pass"
+  },
+  "notes": "Both reports correctly identify the dangling busy in AttachmentChips, slot error-boundary whole-entry unmount, pre-v0.2.11 attribution with data/phase latency via short-circuit plus empty-state early return, correct fix with both hardening patterns, data-present render regression, and node --check insufficiency; B additionally nuances the primary mask as the data condition, but both meet every criterion."
+}

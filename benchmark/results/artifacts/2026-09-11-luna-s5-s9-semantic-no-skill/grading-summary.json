@@ -1,0 +1,68 @@
+{
+  "expected": [
+    "S5-negative-naming",
+    "S6-corridor-net-state",
+    "S7-unpublished-cohort",
+    "S8-release-routing-trap",
+    "S9-composer-coordinate-trap"
+  ],
+  "seen": [
+    "S5-negative-naming",
+    "S6-corridor-net-state",
+    "S7-unpublished-cohort",
+    "S8-release-routing-trap",
+    "S9-composer-coordinate-trap"
+  ],
+  "results": [
+    {
+      "task": "S6-corridor-net-state",
+      "trial": "<local-run>/jobs/codex-luna-s5-s9-literal-zero-skill/S6-corridor-net-state__zD8ULao",
+      "grade_directory": "<local-run>/grades/S6-corridor-net-state",
+      "exit_code": 0,
+      "elapsed_sec": 68.016,
+      "status": "scored",
+      "score": 62.5,
+      "reason": null
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "trial": "<local-run>/jobs/codex-luna-s5-s9-literal-zero-skill/S7-unpublished-cohort__Q9Tx8vU",
+      "grade_directory": "<local-run>/grades/S7-unpublished-cohort",
+      "exit_code": 0,
+      "elapsed_sec": 67.993,
+      "status": "scored",
+      "score": 100,
+      "reason": null
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "trial": "<local-run>/jobs/codex-luna-s5-s9-literal-zero-skill/S8-release-routing-trap__PdvQmXK",
+      "grade_directory": "<local-run>/grades/S8-release-routing-trap",
+      "exit_code": 0,
+      "elapsed_sec": 62.516,
+      "status": "scored",
+      "score": 100,
+      "reason": null
+    },
+    {
+      "task": "S5-negative-naming",
+      "trial": "<local-run>/jobs/codex-luna-s5-s9-literal-zero-skill/S5-negative-naming__WZvsHLK",
+      "grade_directory": "<local-run>/grades/S5-negative-naming",
+      "exit_code": 0,
+      "elapsed_sec": 73.573,
+      "status": "scored",
+      "score": 87.5,
+      "reason": null
+    },
+    {
+      "task": "S9-composer-coordinate-trap",
+      "trial": "<local-run>/jobs/codex-luna-s5-s9-literal-zero-skill/S9-composer-coordinate-trap__3dAufee",
+      "grade_directory": "<local-run>/grades/S9-composer-coordinate-trap",
+      "exit_code": 0,
+      "elapsed_sec": 82.893,
+      "status": "scored",
+      "score": 100,
+      "reason": null
+    }
+  ]
+}

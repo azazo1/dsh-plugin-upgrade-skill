@@ -1,0 +1,535 @@
+{
+  "schema_version": 2,
+  "date": "2026-09-11",
+  "publication_note": "Compact publication: candidate reports, judge decisions and sealed packets preserve their original bytes. Raw model traces remain in the local run archive. Local configuration paths are normalized; hashes in provenance describe the original frozen inputs.",
+  "source": {
+    "frozen_at": "2026-09-11T04:07:09.917792+00:00",
+    "repo": "<repository>",
+    "head": "b49ccee20498cf8fe240d723b491d4de10b451f8",
+    "branch": "codex/fix-h24-h25-grading",
+    "files": {
+      "collect.py": "96b8e05279bc093a5daa896fb8322feff9c2617e3e08a9bb313708b5da4cafd2",
+      "config.json": "52d10fad3f9502b44143cb9fa23e83770310223f2b49e02e851344ee6019580e",
+      "harbor_codex_node24.py": "fe84e6b54242dd051e344379875842ed884e55a9015030112204002f49450872",
+      "public-input-provenance.json": "df88dca90d03853c552a62871b621fe4e6fd1d5cab3e65fe16d78380472927b6",
+      "grade-ready.py": "8fdaa254e42f06a4c850c7165974d5bc881343bbbef9ec448d870f529ca8a198",
+      "report-judge/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "report-judge/codex-judge.mjs": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6",
+      "report-judge/rubrics.mjs": "c8c7c486791ac197a3556509d631def541575f29f525001c367e600ca8ad47e7",
+      "tasks/S7-unpublished-cohort/instruction.md": "14c30cd900ccc92949ca2432eb9239cd930a61187cc0f40ad959c55efab0e1f1",
+      "tasks/S7-unpublished-cohort/README.md": "18c02d392c5ff5aa3962566cab9d9323bcd9047c2ce7913f244021332fab7a9a",
+      "tasks/S7-unpublished-cohort/task.toml": "efee502f6c01da153a2542959ccc4255ac7bde60824a8ea5a9d50b69f13ac30b",
+      "tasks/S9-composer-coordinate-trap/instruction.md": "91f7137e07379961e08511b695a4caa273d401420244bdd28a9dd4c323eaf5eb",
+      "tasks/S9-composer-coordinate-trap/README.md": "d36004a4865bc01963df55a5395869ed17bf4de88a3dd44d9f652ad659d6e515",
+      "tasks/S9-composer-coordinate-trap/task.toml": "8df3d54db0a41a406e44542b2e2c5bcc33cbc7bf0895229b912ac95d6b809b6f",
+      "tasks/S8-release-routing-trap/instruction.md": "5d02a9c3c895f73635d246c857c29073102740e40abcc8bf1b08434888c4a776",
+      "tasks/S8-release-routing-trap/README.md": "794014e89a761298eeee770462e349e9fd54586da7352f9018dc11c82f863ba9",
+      "tasks/S8-release-routing-trap/task.toml": "be3dfb2ff7b44df887aa3cbd6a762167b19e2d67279d55be43020f7945b7b92a",
+      "tasks/S5-negative-naming/instruction.md": "02fa05f07f0ce2a2f92ea6a0956ba78614e436f28e3e57650f560ee3bf2a4de2",
+      "tasks/S5-negative-naming/README.md": "505915d3acb6fbaa728765f5c9ddb1fcefdb4316fbe716308b7062674ee4db29",
+      "tasks/S5-negative-naming/task.toml": "ebc9afded4bceeb721f3d3850ea1aeb59f5d22d6aeaa7ca3dfa7c75bea86d3cc",
+      "tasks/S6-corridor-net-state/instruction.md": "6542d1b412f9f0dd090287a0c6d364b7dd7b4309193ad65e08e65b27d13bfc79",
+      "tasks/S6-corridor-net-state/README.md": "7551972672ff772a72893e19d945d954bc013dffa30cdfdac47b24dc1a6a2fb0",
+      "tasks/S6-corridor-net-state/task.toml": "56eeabb86725f3f96502af8f873472ab0234feedbd95e996cd33022578591037",
+      "tasks/S7-unpublished-cohort/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S7-unpublished-cohort/tests/packet.json": "59a1d7e75bbf8026625bf67ec89ed563cd02b98b9dfde679ca6dabe81d9e0e01",
+      "tasks/S7-unpublished-cohort/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S7-unpublished-cohort/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S7-unpublished-cohort/solution/report.md": "254d627b3690088382e0ec87e6bb6be496a766fc1cb570fbccecd8fac815addc",
+      "tasks/S7-unpublished-cohort/solution/solve.sh": "66d9192248d3f4c23a71153230de6417a7e1c9511395ec8fb3d1668dbf1d4e83",
+      "tasks/S7-unpublished-cohort/solution/SOLUTION.md": "41cc2e0388018797461279872292eba2ce99557e3a5be9dc29ec7f9eee6862c1",
+      "tasks/S7-unpublished-cohort/environment/Dockerfile": "a9abe04af2b9ee08d64f909fcc2818aa96bb9c4aa42ca04736ee8a65997e574d",
+      "tasks/S7-unpublished-cohort/environment/fixture/README.md": "b4a1f0ef2a1ce99d3e89b0c77d35fc2d55331b8eb10e41c35f7a4a172fa89ab9",
+      "tasks/S7-unpublished-cohort/environment/fixture/package.json": "73b215c4e9632a8a3d7b7b29bd659aaa42e0e799f3e3d64b666b8cb9f2be1b4e",
+      "tasks/S9-composer-coordinate-trap/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S9-composer-coordinate-trap/tests/packet.json": "fa9fe29de46307b967d8251474042f19a71e7bbca0d779983bf5e578662f1cff",
+      "tasks/S9-composer-coordinate-trap/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S9-composer-coordinate-trap/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S9-composer-coordinate-trap/solution/report.md": "56cfe2269fc93d0e8e0173007e168b25b136df244f403dbb00cdda420f654dad",
+      "tasks/S9-composer-coordinate-trap/solution/solve.sh": "91680ab49d13efcb1a45c3e2ac01e5db2c8970359caf81cca5dbb14944eee0fa",
+      "tasks/S9-composer-coordinate-trap/solution/SOLUTION.md": "9143581b34afe42f7554eb97e9b16c79bf6497dedccc2fdba988c749bc41700f",
+      "tasks/S9-composer-coordinate-trap/environment/Dockerfile": "3371f9177f68e30672a1a9e54494ffc16acc3d7bdfcfcd58ab121610643259d1",
+      "tasks/S9-composer-coordinate-trap/environment/fixture/console-session.txt": "bfce1af92a4320972739bcf44a3529b03bfbcc1fcad414f58db8f1ba0b5bbb6e",
+      "tasks/S9-composer-coordinate-trap/environment/fixture/host-input-facade.ts": "57e9fda0d3e11d9f8b9dc2aa28359d1bd8c4a73f8aa53c43dbbdf96e9f2ff376",
+      "tasks/S9-composer-coordinate-trap/environment/fixture/README.md": "96830d3a6845542d211b8403350ef75f4eea6f51c2220124f9848c7e08d911b4",
+      "tasks/S9-composer-coordinate-trap/environment/fixture/plugin-client.js": "514809bfb8c88e634fdec1cf54cb0c323aede73ba5371b3a4a468f5fbd16f400",
+      "tasks/S9-composer-coordinate-trap/environment/fixture/host-input-contract.ts": "10837fa4efef064b1dc9b0e650247c46bfd89fa693b54851964c4130acdce7bb",
+      "tasks/S8-release-routing-trap/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S8-release-routing-trap/tests/packet.json": "7ff6d86e895cbbee9868819ab3851643037dd2e2eed8e6fe4a8cd842c2bc3cd8",
+      "tasks/S8-release-routing-trap/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S8-release-routing-trap/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S8-release-routing-trap/solution/report.md": "00fd259b7efb90a92779bc98412c5333a9f7a1718f3589232cf5a2111bb579ca",
+      "tasks/S8-release-routing-trap/solution/solve.sh": "09e8ed9c09f26e7a4e234c56df5d524d90f91a5ac9447aad9c7ad3e982e4fc92",
+      "tasks/S8-release-routing-trap/solution/SOLUTION.md": "8e2cbf51cd41b65a4e1f1737c59adfaef4562e04ab56edd44a53cca4bade65bb",
+      "tasks/S8-release-routing-trap/environment/Dockerfile": "3371f9177f68e30672a1a9e54494ffc16acc3d7bdfcfcd58ab121610643259d1",
+      "tasks/S8-release-routing-trap/environment/fixture/dsh-version.txt": "b6ee5db84adf75de2708135790ed55c6b71254d1c8f8344f9d20a34cae126312",
+      "tasks/S8-release-routing-trap/environment/fixture/compat-table.md": "8ba802028715c3f10895feb5d9e1205bd09f36ba3221555765f5f0cf70d9e57c",
+      "tasks/S8-release-routing-trap/environment/fixture/README.md": "c5aaeca9d849fbe977bb2cb464322ac8bd16fe9a3c04f4628370e9c21f64b57a",
+      "tasks/S8-release-routing-trap/environment/fixture/ls-remote-tags.txt": "e2c45cdaa277e4f88da81560bfedfe0592d6e54b20f80c85b1d7790d8d7cae7b",
+      "tasks/S8-release-routing-trap/environment/fixture/sync-script.sh": "be565ccbe9f758d7c46e131e9b1ed3572023d1e632f5d73838d68b8436af708b",
+      "tasks/S5-negative-naming/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S5-negative-naming/tests/packet.json": "3e6b4c6f6476f63e6c182351bb43b8592a07b56b5ee13eb5968bf3f1602205a0",
+      "tasks/S5-negative-naming/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S5-negative-naming/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S5-negative-naming/solution/report.md": "8703651573fa6383e3c1497b2465aa5fad8fc84b60d10fddf1074b533564dbb6",
+      "tasks/S5-negative-naming/solution/solve.sh": "12474b01c57dddb2fd2f71d236181b405ad0d553de92346bde302b0e22afac64",
+      "tasks/S5-negative-naming/solution/SOLUTION.md": "ff19e82494f04cca1c5d886ae8dc68481dd2cef0714ecbd7d2b4972947d9b376",
+      "tasks/S5-negative-naming/environment/Dockerfile": "a9abe04af2b9ee08d64f909fcc2818aa96bb9c4aa42ca04736ee8a65997e574d",
+      "tasks/S5-negative-naming/environment/fixture/dsh-plugin.naming.json": "2863bfaf22ab7c9ff69a03b06af2cc1808cec2054987fcf5c6d4c55df61cb6b0",
+      "tasks/S5-negative-naming/environment/fixture/README.md": "f27373bc472e94e859b37407eaf5332fcda747a7f55110a4ea9d430644862645",
+      "tasks/S5-negative-naming/environment/fixture/package.json": "71cd34926a4686d2098c582b93f86305c772f1e7d0bee5be9f1ca64d26ec99bc",
+      "tasks/S6-corridor-net-state/tests/Dockerfile": "2e678d90c3a1f5c14a37facadc501bf3e71fd5aebc6598a4b197b812d52da614",
+      "tasks/S6-corridor-net-state/tests/packet.json": "54d8aca44fe55bf1721b41babc9627fe368eab7223c9733c085782182b73d1ea",
+      "tasks/S6-corridor-net-state/tests/judge.mjs": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+      "tasks/S6-corridor-net-state/tests/test.sh": "b4df0f17377dc20a5cb70b02c29d9da080074b9d79a395c5cdbd8d7bd7515d35",
+      "tasks/S6-corridor-net-state/solution/report.md": "48562db099f6d49abc6e10599a954fcadf918fba09c70c240074f51a912bc269",
+      "tasks/S6-corridor-net-state/solution/solve.sh": "f8d52aac47e418b04b93a7dbade4cc02ce80e16ceb64fc46e582af67f3ecfd68",
+      "tasks/S6-corridor-net-state/solution/SOLUTION.md": "aa9e885823f01cfacda9f79ccf0468212886e7d2e56fde9a62a190c48207ac85",
+      "tasks/S6-corridor-net-state/environment/Dockerfile": "a9abe04af2b9ee08d64f909fcc2818aa96bb9c4aa42ca04736ee8a65997e574d",
+      "tasks/S6-corridor-net-state/environment/fixture/README.md": "293a9d4bbc8753f36cd4dfeb7de6d5196fa6840bef6b03eedefc866c3b6f6ecc",
+      "tasks/S6-corridor-net-state/environment/fixture/package.json": "0f94b8a587519d508753b89b8c03d14ac266b6646b36f37abd93a9edfedb437e",
+      "tasks/S6-corridor-net-state/environment/fixture/src/events.ts": "e0d7190ae79583ed5db16ed188821ba59ef866d68d29d023905d74e6fe36809c"
+    },
+    "grading": "Frozen default semantic rubric via host-side Codex transport after Harbor artifact export. Internal verifier disabled; declared verifier environment uses inert localhost placeholders."
+  },
+  "configuration": {
+    "job_name": "codex-luna-s5-s9-literal-zero-skill",
+    "jobs_dir": "<local-run>/jobs",
+    "agent_setup_timeout_multiplier": 4.0,
+    "n_concurrent_trials": 4,
+    "n_attempts": 1,
+    "environment": {
+      "type": "docker",
+      "force_build": true
+    },
+    "agents": [
+      {
+        "name": "harbor_codex_node24:CodexNode24",
+        "model_name": "openai/gpt-5.6-luna",
+        "n_concurrent": 4,
+        "skills": [],
+        "extra_allowed_hosts": [
+          "chatgpt.com"
+        ],
+        "kwargs": {
+          "version": "0.153.4",
+          "reasoning_effort": "xhigh",
+          "web_search": "disabled",
+          "config": {
+            "skills": {
+              "include_instructions": false,
+              "bundled": {
+                "enabled": false
+              }
+            },
+            "features": {
+              "skip_host_skill_discovery": true,
+              "skill_search": false,
+              "skill_mcp_dependency_install": false,
+              "memories": false
+            }
+          }
+        },
+        "env": {
+          "CODEX_AUTH_JSON_PATH": "<local-codex-auth.json>"
+        }
+      }
+    ],
+    "skills": [],
+    "extra_instructions": [
+      "This is a literal zero-skill evaluation. Do not search for, open, read, quote, or follow any SKILL.md file or any skill directory. Do not use Codex-native or bundled skills. Use only the task prompt, /app/fixture, and non-skill local documentation and tools. Skip any skill file if encountered."
+    ],
+    "artifacts": [
+      "/app/agent-output",
+      "/app/fixture"
+    ],
+    "verifier": {
+      "disable": true
+    },
+    "retry": {
+      "max_retries": 0
+    },
+    "tasks": [
+      {
+        "path": "<local-run>/tasks/S5-negative-naming"
+      },
+      {
+        "path": "<local-run>/tasks/S6-corridor-net-state"
+      },
+      {
+        "path": "<local-run>/tasks/S7-unpublished-cohort"
+      },
+      {
+        "path": "<local-run>/tasks/S8-release-routing-trap"
+      },
+      {
+        "path": "<local-run>/tasks/S9-composer-coordinate-trap"
+      }
+    ]
+  },
+  "summary": {
+    "scores": {
+      "S5": 87.5,
+      "S6": 62.5,
+      "S7": 100,
+      "S8": 100,
+      "S9": 100
+    },
+    "total": 450.0,
+    "mean": 90.0,
+    "full_credit_tasks": 3,
+    "solver_runs": 5,
+    "judge_calls": 5,
+    "solver_errors": 0,
+    "judge_errors": 0,
+    "solver_wall_seconds": 653.325049,
+    "solver_and_judge_wall_seconds": 734.227691,
+    "solver_usage": {
+      "n_input_tokens": 529720,
+      "n_cache_tokens": 402176,
+      "n_output_tokens": 35191
+    },
+    "judge_usage": {
+      "input_tokens": 40086,
+      "cached_input_tokens": 0,
+      "output_tokens": 10049
+    },
+    "transport": "codex-exec-v1; host-side semantic judge after Harbor artifact export; internal Harbor verifier disabled"
+  },
+  "rows": [
+    {
+      "task": "S5-negative-naming",
+      "score": 87.5,
+      "solver_seconds": 141.503,
+      "trial_seconds": 358.122,
+      "solver_usage": {
+        "n_input_tokens": 106366,
+        "n_cache_tokens": 71936,
+        "n_output_tokens": 6133,
+        "cost_usd": 0.015684319999999998,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "solver_started_at": "2026-09-11T04:12:07.277242Z",
+      "solver_finished_at": "2026-09-11T04:14:28.780674Z",
+      "fixture_unchanged": true,
+      "model_contexts": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "xhigh",
+          "cwd": "/app"
+        }
+      ],
+      "skill_instruction_blocks": 0,
+      "answer": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S5/report.md.txt",
+      "judge_details": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S5/judge.details.json",
+      "raw_native_trace_sha256": [
+        "3be71312e6ee6b7fc6f3e72e931fbd4beec7f2a2ae5dca677404b66f83ad3d93"
+      ],
+      "note": "共享事件通道分析缺少发布者schema兼容性，以及同名本身不足以认定冲突的说明，扣12.5分。"
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "score": 62.5,
+      "solver_seconds": 122.79,
+      "trial_seconds": 339.215,
+      "solver_usage": {
+        "n_input_tokens": 89087,
+        "n_cache_tokens": 76032,
+        "n_output_tokens": 5219,
+        "cost_usd": 0.01039444,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "solver_started_at": "2026-09-11T04:12:07.636780Z",
+      "solver_finished_at": "2026-09-11T04:14:10.427194Z",
+      "fixture_unchanged": true,
+      "model_contexts": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "xhigh",
+          "cwd": "/app"
+        }
+      ],
+      "skill_instruction_blocks": 0,
+      "answer": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S6/migration-report.md.txt",
+      "judge_details": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S6/judge.details.json",
+      "raw_native_trace_sha256": [
+        "26e0415844a6bd846a3c97c1602d501439f41e3c9cf382e8815c8ec0d229d1ad"
+      ],
+      "note": "正确删除旧字段剥离逻辑；对alpha.1语义、informational事件边界和公开append接口缺口说明不完整，各扣12.5分。"
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "score": 100,
+      "solver_seconds": 112.206,
+      "trial_seconds": 327.394,
+      "solver_usage": {
+        "n_input_tokens": 91269,
+        "n_cache_tokens": 67840,
+        "n_output_tokens": 5023,
+        "cost_usd": 0.0120702,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "solver_started_at": "2026-09-11T04:12:04.744352Z",
+      "solver_finished_at": "2026-09-11T04:13:56.950170Z",
+      "fixture_unchanged": true,
+      "model_contexts": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "xhigh",
+          "cwd": "/app"
+        }
+      ],
+      "skill_instruction_blocks": 0,
+      "answer": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S7/installation-type-baseline-plan.md.txt",
+      "judge_details": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S7/judge.details.json",
+      "raw_native_trace_sha256": [
+        "a4027c8c7a22f2656c7c14943b5aed0a4f5462eb7e0c932a242556cb3262a7a1"
+      ],
+      "note": "未发布版本、caret实际解析、可行类型基线、锁定与后续升级方案均获认可。"
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "score": 100,
+      "solver_seconds": 187.342,
+      "trial_seconds": 353.117,
+      "solver_usage": {
+        "n_input_tokens": 96806,
+        "n_cache_tokens": 75776,
+        "n_output_tokens": 6704,
+        "cost_usd": 0.013766319999999999,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "solver_started_at": "2026-09-11T04:11:16.945985Z",
+      "solver_finished_at": "2026-09-11T04:14:24.287533Z",
+      "fixture_unchanged": true,
+      "model_contexts": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "xhigh",
+          "cwd": "/app"
+        }
+      ],
+      "skill_instruction_blocks": 0,
+      "answer": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S8/report.md.txt",
+      "judge_details": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S8/judge.details.json",
+      "raw_native_trace_sha256": [
+        "7bafca3fc03e9fa3f6bdecadfdbbc8f19c5dc428bf849ef77337931700067005"
+      ],
+      "note": "缺失tag、宿主版本不兼容、v0.9.3先发布再安装、同步和文档路由均获认可。"
+    },
+    {
+      "task": "S9-composer-coordinate-trap",
+      "score": 100,
+      "solver_seconds": 247.777,
+      "trial_seconds": 321.83,
+      "solver_usage": {
+        "n_input_tokens": 146192,
+        "n_cache_tokens": 110592,
+        "n_output_tokens": 12112,
+        "cost_usd": 0.02386624,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "solver_started_at": "2026-09-11T04:15:12.703155Z",
+      "solver_finished_at": "2026-09-11T04:19:20.480333Z",
+      "fixture_unchanged": true,
+      "model_contexts": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "xhigh",
+          "cwd": "/app"
+        }
+      ],
+      "skill_instruction_blocks": 0,
+      "answer": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S9/report.md.txt",
+      "judge_details": "artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S9/judge.details.json",
+      "raw_native_trace_sha256": [
+        "37ed8667f5eb45c62d6e46d092e47743bc8eb676079843ba005b505fa08cae16"
+      ],
+      "note": "坐标投影、重复粘贴失败、删除与记录一致性、转换和成功门控、回归序列均获认可。"
+    }
+  ],
+  "skill_audit": {
+    "schemaVersion": 1,
+    "trials": [
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S5-negative-naming__WZvsHLK",
+          "task": "S5-negative-naming",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S6-corridor-net-state__zD8ULao",
+          "task": "S6-corridor-net-state",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S7-unpublished-cohort__Q9Tx8vU",
+          "task": "S7-unpublished-cohort",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S8-release-routing-trap__PdvQmXK",
+          "task": "S8-release-routing-trap",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": []
+      },
+      {
+        "schemaVersion": 1,
+        "trial": {
+          "id": "S9-composer-coordinate-trap__3dAufee",
+          "task": "S9-composer-coordinate-trap",
+          "condition": "literal-zero-skill"
+        },
+        "targetSkill": {
+          "name": "plugin-upgrade",
+          "supplied": false,
+          "discovered": false,
+          "opened": false,
+          "openCount": 0,
+          "firstOpenEvent": null,
+          "openedFiles": [],
+          "referencesOpened": [],
+          "anyTargetSkillContentAccess": false,
+          "contentAuditable": true
+        },
+        "otherSkills": {
+          "opened": false,
+          "skills": [],
+          "files": []
+        },
+        "baselineHasOtherSkillAccess": false,
+        "evidence": [],
+        "warnings": [
+          "exec-call-pairing-mismatch:event-19"
+        ]
+      }
+    ],
+    "aggregate": {
+      "trials": 5,
+      "targetSupplied": "0/5",
+      "targetSkillOpened": "0/5",
+      "activationRateEligible": null,
+      "eligibilityDefinition": "trials where the trajectory declares the target skill (supplied)",
+      "anyTargetSkillContentAccess": "0/5",
+      "byCondition": {
+        "literal-zero-skill": {
+          "trials": 5,
+          "supplied": "0/5",
+          "opened": "0/5",
+          "otherSkillAccess": "0/5"
+        }
+      },
+      "baselineHasOtherSkillAccess": "0/5",
+      "baselineCondition": "no-target-skill"
+    }
+  },
+  "manual_audit_resolutions": [
+    {
+      "task": "S9",
+      "warning": "exec-call-pairing-mismatch:event-19",
+      "resolution": "Native event 19 is a Promise.all loop issuing five fixed sed reads. The corresponding completed commands read exactly the five fixture files below, without any skill content access.",
+      "paths": [
+        "README.md",
+        "plugin-client.js",
+        "console-session.txt",
+        "host-input-facade.ts",
+        "host-input-contract.ts"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "phantom-self-update-root-cause",
+      "verdict": "pass",
+      "reason": "Report grounds the badge in client-bundle-excerpt.js (baked PLUGIN_VERSION \"0.3.6\", tsdown inline at build time) and release-log.md timestamps (16:22 build before 16:23 bump), explains the live-tag-vs-stale-constant compare, explicitly rules out mirror/SHA issues via git-tags.txt ('integrity ≠ freshness'), gives the corrected bump-first order, and proposes the grep-the-bundle pre-push gate. No mirror-blaming or re-push fix."
+    },
+    {
+      "id": "client-host-plane-asymmetry",
+      "verdict": "pass",
+      "reason": "Report uses asset-route-probe.txt (PNG 200, SVG 404 'unsupported image type', host not restarted) plus lib-index-excerpt.js line 12 to split planes: client re-fetched per page load shows the toggle, host route registered once at activation with the old CONTENT_TYPES closure; concludes disk code ≠ in-memory code and that only a host restart/reactivation applies the whitelist change, and explicitly notes the plugins-hot-update rule fails here."
+    },
+    {
+      "id": "broken-image-attribution",
+      "verdict": "pass",
+      "reason": "Report cites session-log-excerpt.txt: source well-formed per System.Xml, stored payload not well-formed (line 233 col 54 'stro0'), splice shape (line 247 tail grafted at shared prefix 'stro', lines 233–247 missing), clean re-read; attributes corruption to result-text assembly upstream of the plugin, prescribes treating session payload as untrusted rendering input, and explicitly rejects repairing the well-formed disk file."
+    },
+    {
+      "id": "defensive-render-chain",
+      "verdict": "pass",
+      "reason": "Render-source order with per-level justification: disk bytes via host asset route first; session payload only after DOMParser(application/xml)/parsererror well-formedness gate; sandboxed iframe fallback with scripts blocked while SMIL still runs; explicit error state with reason/source/recovery instead of a silent broken image."
+    },
+    {
+      "id": "forensics-and-prevention",
+      "verdict": "pass",
+      "reason": "Forensics described concretely: concatenated-zstd generation file split on magic bytes, frame-by-frame decode, verbatim byte-exact extraction and diff against disk to pin the splice. Checklist adds bump-before-build, grep the shipped bundle for the baked constant, retain per-mirror SHA verification (noting it doesn't cover freshness), host restart after host-half changes, and filing the upstream text-corruption bug with the plugin not papering over it."
+    }
+  ],
+  "caps": []
+}

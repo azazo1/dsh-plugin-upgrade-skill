@@ -1,0 +1,25 @@
+{
+  "decisions": [
+    {
+      "id": "host-break",
+      "verdict": "pass",
+      "reason": "Report cites index.js:2 inject [\"apiProxy\"] and index.js:9 ctx.apiProxy.llm.providers() plus the dead @deepseek-ai/dsh-host-apiproxy dependency in package.json, maps to DSH-0.1.2-A1-01, and explains the Host-plane fix (inject [\"llm\"] + ctx.llm.listProviders()) while noting the Client-only remote split as contrast."
+    },
+    {
+      "id": "negative-coverage",
+      "verdict": "pass",
+      "reason": "All six other categories have explicit no-hit rows grounded in concrete scanned patterns (no ctx.on/subscribe, no fs/DSH_HOME, no registerCommand/ctx.tools, no sockets/DOM, no child_process), session-notes.js inspected line-by-line as pure string/array utilities, and cordis.patch.yml correctly classified as ordinary profile composition (insert), not a host-source patch."
+    },
+    {
+      "id": "inference-boundary",
+      "verdict": "pass",
+      "reason": "Q3 section explicitly argues zero hits are heuristic non-detections, not compatibility proof: scan cannot see dependency/config facts (the broken apiproxy dep lives in package.json, invisible to source patterns), runtime/composition availability, and curated cards are not a complete diff; it separates the decisive #3 apiProxy break from the six zero-hit categories and concludes NOT compatible as-is."
+    },
+    {
+      "id": "verification-plan",
+      "verdict": "pass",
+      "reason": "Proposes build/typecheck against the target cohort, dependency/lockfile resolution check, isolated cold boot of a real 0.1.2-alpha.2 host confirming no pending (waiting for service) states, and an actual migrated ctx.llm.listProviders() provider call with success/failure branch checks — all explicitly framed as proposed, not executed, since the fixture is static."
+    }
+  ],
+  "caps": []
+}

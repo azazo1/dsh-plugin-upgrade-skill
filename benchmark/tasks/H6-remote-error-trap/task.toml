@@ -1,8 +1,9 @@
 schema_version = "1.4"
+artifacts = [{ source = "/app/fixture" }, { source = "/app/agent-output" }]
 # Harbor task 配置：dsh 插件迁移考题 H6-remote-error-trap（静态只读报告题）
 [task]
 name = "dsh-plugin-upgrade/h6-remote-error-trap"
-version = "1.1.0"
+version = "4.0.0"
 description = "Migration report for an alpha.2 plugin still using 0.1.1 Remote error handling: migrate the error flow past a misleading comment trap that says keep the old code strings"
 keywords = ["dsh", "plugin-migration", "static-analysis", "read-only", "harbor"]
 
@@ -18,7 +19,14 @@ timeout_sec = 600.0
 network_mode = "no-network"
 
 [verifier]
-timeout_sec = 120.0
+timeout_sec = 240.0
+environment_mode = "separate"
+network_mode = "public"
+
+[verifier.env]
+REPORT_JUDGE_BASE_URL = "${REPORT_JUDGE_BASE_URL}"
+REPORT_JUDGE_MODEL = "${REPORT_JUDGE_MODEL}"
+REPORT_JUDGE_API_KEY = "${REPORT_JUDGE_API_KEY}"
 
 [environment]
 network_mode = "public"

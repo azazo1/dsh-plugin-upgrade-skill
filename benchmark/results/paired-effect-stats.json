@@ -1,0 +1,1238 @@
+{
+  "schemaVersion": 1,
+  "id": "paired-effect-stats-v1",
+  "prng": "mulberry32",
+  "seed": 20260907,
+  "bootstrapReplicates": 10000,
+  "method": "task-level paired deltas; glm groups use the per-task median of 3 rounds per condition, qwen3.8-27b uses the per-task mean of scored rewards per condition rescaled by 100; bootstrap resamples task deltas (95% percentile CI); Wilcoxon signed-rank is two-sided with midpoint ranks, tie-corrected normal approximation, and continuity correction",
+  "zeroHandling": "zero deltas are EXCLUDED from the Wilcoxon test and reported as nZero; the preregistered policy (benchmark/holdouts/temporal-holdout-execution-v1.json) retains zeros, so this implementation deviates on zero handling and reports the count explicitly",
+  "groups": [
+    {
+      "label": "qwen3.8-27b",
+      "design": "56 tasks × 3 attempts per arm, per-task mean of scored rewards × 100",
+      "protocol": "3 scored, mean",
+      "scale": "percent (reward mean × 100)",
+      "sensitivity": false,
+      "contamination": null,
+      "tasks": 56,
+      "unscoredTrials": 1,
+      "excludedTasks": [],
+      "inputs": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-11-codex-qwen3.8-27b-medium-paired.json",
+          "sha256": "d50def90658bba061edd167565cf78ba7e1d9fbbb9aa3e0bcf5c10ebed0a99cd"
+        }
+      ],
+      "perTask": [
+        {
+          "task": "H1-plane-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H10-browser-activation-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H11-dual-cohort-rpc",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H12-remote-result-boundary-trap",
+          "noskill": 20,
+          "skill": 46.6667,
+          "delta": 26.6667
+        },
+        {
+          "task": "H13-ghost-host-trap",
+          "noskill": 38.3333,
+          "skill": 33.3333,
+          "delta": -5
+        },
+        {
+          "task": "H14-mineru-api",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H15-locale-pack",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H16-history-dock",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H17-merge-calls",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H18-blame-bubbles",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H19-workspace-ya",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H2-baseline-trap",
+          "noskill": 100,
+          "skill": 80,
+          "delta": -20
+        },
+        {
+          "task": "H20-session-events-ledger",
+          "noskill": 100,
+          "skill": 99.6667,
+          "delta": -0.3333
+        },
+        {
+          "task": "H21-question-answerer-waterfall",
+          "noskill": 63.3333,
+          "skill": 33.3333,
+          "delta": -30
+        },
+        {
+          "task": "H22-dsh-data-agent-alpha2",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H23-storage-domain-version-compat-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H24-invalid-record-salvage-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H25-session-seed-boundary-trap",
+          "noskill": 76.6667,
+          "skill": 80,
+          "delta": 3.3333
+        },
+        {
+          "task": "H3-client-plane",
+          "noskill": 100,
+          "skill": 66.6667,
+          "delta": -33.3333
+        },
+        {
+          "task": "H4-tsbuildinfo-trap",
+          "noskill": 76.6667,
+          "skill": 66.6667,
+          "delta": -10
+        },
+        {
+          "task": "H5-runtime-export-drift",
+          "noskill": 80,
+          "skill": 66.6667,
+          "delta": -13.3333
+        },
+        {
+          "task": "H6-remote-error-trap",
+          "noskill": 0,
+          "skill": 66.6667,
+          "delta": 66.6667
+        },
+        {
+          "task": "H7-locale-trap",
+          "noskill": 43.3333,
+          "skill": 30,
+          "delta": -13.3333
+        },
+        {
+          "task": "H8-fire-drill",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H9-dsh-web-alpha2",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "M1-host-migration",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M10-tools-tree",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "M11-sidebar-spur",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "M12-interpreters-card",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "M13-repository-plugins-removal",
+          "noskill": 93.3333,
+          "skill": 90,
+          "delta": -3.3333
+        },
+        {
+          "task": "M14-service-renames-0812",
+          "noskill": 60,
+          "skill": 93.3333,
+          "delta": 33.3333
+        },
+        {
+          "task": "M2-optional-dep-trap",
+          "noskill": 100,
+          "skill": 66.6667,
+          "delta": -33.3333
+        },
+        {
+          "task": "M3-session-projection",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M4-peer-prerelease-range",
+          "noskill": 66.6667,
+          "skill": 100,
+          "delta": 33.3333
+        },
+        {
+          "task": "M5-token-auth-smoke",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "M6-sleep-tool",
+          "noskill": 13.3333,
+          "skill": 46.6667,
+          "delta": 33.3333
+        },
+        {
+          "task": "M7-d399-overlay",
+          "noskill": 26.6667,
+          "skill": 0,
+          "delta": -26.6667
+        },
+        {
+          "task": "M8-brand-text",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "M9-mcpanel",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "S1-static-scan",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "S10-paste-rename-and-version-chip",
+          "noskill": 33.3333,
+          "skill": 0,
+          "delta": -33.3333
+        },
+        {
+          "task": "S11-mermaid-lazyload-trap",
+          "noskill": 26.6667,
+          "skill": 0,
+          "delta": -26.6667
+        },
+        {
+          "task": "S12-global-upgrade-ebusy-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S13-peer-range-vs-runtime",
+          "noskill": 93.3333,
+          "skill": 93.3333,
+          "delta": 0
+        },
+        {
+          "task": "S14-link-install-lock-trap",
+          "noskill": 86.6667,
+          "skill": 26.6667,
+          "delta": -60
+        },
+        {
+          "task": "S15-slot-error-boundary-crash",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "S16-self-host-upgrade-trap",
+          "noskill": 26.6667,
+          "skill": 0,
+          "delta": -26.6667
+        },
+        {
+          "task": "S17-external-ui-plugin-onboarding-trap",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "S2-negative-scan",
+          "noskill": 20,
+          "skill": 0,
+          "delta": -20
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S5-negative-naming",
+          "noskill": 33.3333,
+          "skill": 58.3333,
+          "delta": 25
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "noskill": 23.3333,
+          "skill": 23.3333,
+          "delta": 0
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "noskill": 33.3333,
+          "skill": 28.3333,
+          "delta": -5
+        },
+        {
+          "task": "S8-release-routing-trap",
+          "noskill": 100,
+          "skill": 66.6667,
+          "delta": -33.3333
+        },
+        {
+          "task": "S9-composer-coordinate-trap",
+          "noskill": 66.6667,
+          "skill": 66.6667,
+          "delta": 0
+        }
+      ],
+      "meanNoskill": 44.6726,
+      "meanSkill": 41.6012,
+      "meanDelta": -3.0714,
+      "medianDelta": 0,
+      "positiveDeltas": 7,
+      "negativeDeltas": 18,
+      "nZero": 31,
+      "bootstrap": {
+        "replicates": 10000,
+        "ci95": [
+          -8.125,
+          1.994
+        ]
+      },
+      "wilcoxon": {
+        "n": 25,
+        "wPlus": 112,
+        "z": -1.3496,
+        "pTwoSided": 0.1771
+      }
+    },
+    {
+      "label": "deepseek-v4-flash",
+      "design": "23 tasks × 3 runs per arm, per-task median (terminus-2 harness, legacy keyword verifiers)",
+      "protocol": "3-run median",
+      "scale": "percent (reward × 100)",
+      "sensitivity": false,
+      "contamination": null,
+      "tasks": 23,
+      "unscoredTrials": 1,
+      "excludedTasks": [],
+      "inputs": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-01-terminus2-deepseek-v4-flash/paired-scores.json",
+          "sha256": "8d0535053250bc7809ebeb92e69f868592a5ea6115fac0e224fdf81bce7b13ec"
+        }
+      ],
+      "perTask": [
+        {
+          "task": "S1-static-scan",
+          "noskill": 33,
+          "skill": 100,
+          "delta": 67
+        },
+        {
+          "task": "S2-negative-scan",
+          "noskill": 40,
+          "skill": 100,
+          "delta": 60
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "noskill": 60,
+          "skill": 80,
+          "delta": 20
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S5-negative-naming",
+          "noskill": 75,
+          "skill": 50,
+          "delta": -25
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "noskill": 25,
+          "skill": 50,
+          "delta": 25
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "noskill": 50,
+          "skill": 25,
+          "delta": -25
+        },
+        {
+          "task": "S8-release-routing-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H1-plane-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H2-baseline-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H3-client-plane",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H4-tsbuildinfo-trap",
+          "noskill": 30,
+          "skill": 100,
+          "delta": 70
+        },
+        {
+          "task": "H5-runtime-export-drift",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H6-remote-error-trap",
+          "noskill": 0,
+          "skill": 25,
+          "delta": 25
+        },
+        {
+          "task": "H7-locale-trap",
+          "noskill": 90,
+          "skill": 90,
+          "delta": 0
+        },
+        {
+          "task": "H8-fire-drill",
+          "noskill": 20,
+          "skill": 69.5,
+          "delta": 49.5
+        },
+        {
+          "task": "H9-dsh-web-alpha2",
+          "noskill": 26,
+          "skill": 5,
+          "delta": -21
+        },
+        {
+          "task": "H10-browser-activation-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M1-host-migration",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M2-optional-dep-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M3-session-projection",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M4-peer-prerelease-range",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M5-token-auth-smoke",
+          "noskill": 60,
+          "skill": 60,
+          "delta": 0
+        }
+      ],
+      "meanNoskill": 69.9565,
+      "meanSkill": 80.6304,
+      "meanDelta": 10.6739,
+      "medianDelta": 0,
+      "positiveDeltas": 7,
+      "negativeDeltas": 3,
+      "nZero": 13,
+      "bootstrap": {
+        "replicates": 10000,
+        "ci95": [
+          0.4783,
+          22.1087
+        ]
+      },
+      "wilcoxon": {
+        "n": 10,
+        "wPlus": 44,
+        "z": 1.6416,
+        "pTwoSided": 0.1007
+      }
+    },
+    {
+      "label": "gpt-5.6-terra",
+      "design": "21 of 22 tasks, single attempt per arm (H8 excluded: verifier timeout on both arms)",
+      "protocol": "single-shot",
+      "scale": "percent (reward × 100)",
+      "sensitivity": false,
+      "contamination": null,
+      "tasks": 21,
+      "unscoredTrials": 0,
+      "excludedTasks": [
+        {
+          "task": "H8-fire-drill",
+          "reason": "VerifierTimeoutError on both arms (1200s and 2400s); no verifier reward, never counted as zero"
+        }
+      ],
+      "inputs": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-01-codex-gpt-5.6-terra/paired-scores.json",
+          "sha256": "35b43fb6c5a98f1e56dda37bc231eb2c0611d137262f3487110004ac12244cbe"
+        }
+      ],
+      "perTask": [
+        {
+          "task": "H1-plane-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H2-baseline-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H3-client-plane",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H4-tsbuildinfo-trap",
+          "noskill": 30,
+          "skill": 100,
+          "delta": 70
+        },
+        {
+          "task": "H5-runtime-export-drift",
+          "noskill": 100,
+          "skill": 20,
+          "delta": -80
+        },
+        {
+          "task": "H6-remote-error-trap",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H7-locale-trap",
+          "noskill": 90,
+          "skill": 90,
+          "delta": 0
+        },
+        {
+          "task": "H9-dsh-web-alpha2",
+          "noskill": 50,
+          "skill": 80,
+          "delta": 30
+        },
+        {
+          "task": "M1-host-migration",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M2-optional-dep-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M3-session-projection",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M4-peer-prerelease-range",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M5-token-auth-smoke",
+          "noskill": 60,
+          "skill": 60,
+          "delta": 0
+        },
+        {
+          "task": "S1-static-scan",
+          "noskill": 83,
+          "skill": 100,
+          "delta": 17
+        },
+        {
+          "task": "S2-negative-scan",
+          "noskill": 60,
+          "skill": 100,
+          "delta": 40
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "noskill": 20,
+          "skill": 100,
+          "delta": 80
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S5-negative-naming",
+          "noskill": 50,
+          "skill": 75,
+          "delta": 25
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "noskill": 25,
+          "skill": 25,
+          "delta": 0
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "noskill": 25,
+          "skill": 25,
+          "delta": 0
+        },
+        {
+          "task": "S8-release-routing-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        }
+      ],
+      "meanNoskill": 71.0952,
+      "meanSkill": 79.7619,
+      "meanDelta": 8.6667,
+      "medianDelta": 0,
+      "positiveDeltas": 6,
+      "negativeDeltas": 1,
+      "nZero": 14,
+      "bootstrap": {
+        "replicates": 10000,
+        "ci95": [
+          -4.2857,
+          21.619
+        ]
+      },
+      "wilcoxon": {
+        "n": 7,
+        "wPlus": 21.5,
+        "z": 1.1853,
+        "pTwoSided": 0.2359
+      }
+    },
+    {
+      "label": "glm-5.3-flash",
+      "design": "S1-S22 × 3 rounds per arm, per-task median",
+      "protocol": "3-round median",
+      "scale": "rubric points (0-100)",
+      "sensitivity": false,
+      "contamination": null,
+      "tasks": 22,
+      "unscoredTrials": 0,
+      "excludedTasks": [],
+      "inputs": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/aggregate.json",
+          "sha256": "21bb2120796611c93d6fc09c198a7d646c3f100a382ef8941a7969c03b82dc9c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/aggregate.json",
+          "sha256": "d801bdccaa65cf1b765231fecb0efef4aed5e528f1ace94250140c7c03e18a92"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/aggregate.json",
+          "sha256": "b326111fb9f213513c654b1450c4734174f437877578dc263b9a1ec928e37e4a"
+        }
+      ],
+      "perTask": [
+        {
+          "task": "S1-static-scan",
+          "noskill": 95,
+          "skill": 95,
+          "delta": 0
+        },
+        {
+          "task": "S2-negative-scan",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "noskill": 90,
+          "skill": 100,
+          "delta": 10
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "noskill": 38,
+          "skill": 100,
+          "delta": 62
+        },
+        {
+          "task": "S5-negative-naming",
+          "noskill": 88,
+          "skill": 100,
+          "delta": 12
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "noskill": 75,
+          "skill": 100,
+          "delta": 25
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S8-release-routing-trap",
+          "noskill": 90,
+          "skill": 100,
+          "delta": 10
+        },
+        {
+          "task": "S9-composer-coordinate-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S10-paste-rename-and-version-chip",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S11-mermaid-lazyload-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S12-global-upgrade-ebusy-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S13-peer-range-vs-runtime",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S14-link-install-lock-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S15-slot-error-boundary-crash",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S16-self-host-upgrade-trap",
+          "noskill": 80,
+          "skill": 80,
+          "delta": 0
+        },
+        {
+          "task": "S17-external-ui-plugin-onboarding-trap",
+          "noskill": 20,
+          "skill": 40,
+          "delta": 20
+        },
+        {
+          "task": "S18-terminal-sprite-render-trap",
+          "noskill": 60,
+          "skill": 80,
+          "delta": 20
+        },
+        {
+          "task": "S19-phantom-update-stale-host",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "S20-msvc-flock-trap",
+          "noskill": 95,
+          "skill": 100,
+          "delta": 5
+        },
+        {
+          "task": "S21-resource-service-unavailable-trap",
+          "noskill": 40,
+          "skill": 60,
+          "delta": 20
+        },
+        {
+          "task": "S22-duplicate-insert-boot-crash-trap",
+          "noskill": 40,
+          "skill": 60,
+          "delta": 20
+        }
+      ],
+      "meanNoskill": 77.7727,
+      "meanSkill": 87.0455,
+      "meanDelta": 9.2727,
+      "medianDelta": 0,
+      "positiveDeltas": 10,
+      "negativeDeltas": 0,
+      "nZero": 12,
+      "bootstrap": {
+        "replicates": 10000,
+        "ci95": [
+          3.9545,
+          16.0909
+        ]
+      },
+      "wilcoxon": {
+        "n": 10,
+        "wPlus": 55,
+        "z": 2.772,
+        "pTwoSided": 0.0056
+      }
+    },
+    {
+      "label": "glm-5.2",
+      "design": "S1-S22 × 3 rounds per arm, per-task median",
+      "protocol": "3-round median",
+      "scale": "rubric points (0-100)",
+      "sensitivity": false,
+      "contamination": null,
+      "tasks": 22,
+      "unscoredTrials": 0,
+      "excludedTasks": [],
+      "inputs": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-13-glm-5.2-s1-s22/aggregate.json",
+          "sha256": "00d473a5d30a0623471e733ca1b43464bd3366bad6e2ab37642f9f889863baca"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-13-glm-5.2-s1-s22-round2/aggregate.json",
+          "sha256": "462457d76274a04d025dd6e7339a4410e11190e523020617450f65443f18c635"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-13-glm-5.2-s1-s22-round3/aggregate.json",
+          "sha256": "8b7a3f6b4db162967f99a2d74cc949a6875b8e95cf8e80363dee83225fb2ef02"
+        }
+      ],
+      "perTask": [
+        {
+          "task": "S1-static-scan",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S2-negative-scan",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "noskill": 63,
+          "skill": 100,
+          "delta": 37
+        },
+        {
+          "task": "S5-negative-naming",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "noskill": 88,
+          "skill": 100,
+          "delta": 12
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S8-release-routing-trap",
+          "noskill": 90,
+          "skill": 90,
+          "delta": 0
+        },
+        {
+          "task": "S9-composer-coordinate-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S10-paste-rename-and-version-chip",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S11-mermaid-lazyload-trap",
+          "noskill": 80,
+          "skill": 90,
+          "delta": 10
+        },
+        {
+          "task": "S12-global-upgrade-ebusy-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S13-peer-range-vs-runtime",
+          "noskill": 80,
+          "skill": 80,
+          "delta": 0
+        },
+        {
+          "task": "S14-link-install-lock-trap",
+          "noskill": 80,
+          "skill": 80,
+          "delta": 0
+        },
+        {
+          "task": "S15-slot-error-boundary-crash",
+          "noskill": 100,
+          "skill": 90,
+          "delta": -10
+        },
+        {
+          "task": "S16-self-host-upgrade-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S17-external-ui-plugin-onboarding-trap",
+          "noskill": 90,
+          "skill": 90,
+          "delta": 0
+        },
+        {
+          "task": "S18-terminal-sprite-render-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S19-phantom-update-stale-host",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S20-msvc-flock-trap",
+          "noskill": 92,
+          "skill": 100,
+          "delta": 8
+        },
+        {
+          "task": "S21-resource-service-unavailable-trap",
+          "noskill": 90,
+          "skill": 100,
+          "delta": 10
+        },
+        {
+          "task": "S22-duplicate-insert-boot-crash-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        }
+      ],
+      "meanNoskill": 93.3182,
+      "meanSkill": 96.3636,
+      "meanDelta": 3.0455,
+      "medianDelta": 0,
+      "positiveDeltas": 5,
+      "negativeDeltas": 1,
+      "nZero": 16,
+      "bootstrap": {
+        "replicates": 10000,
+        "ci95": [
+          0,
+          7.1818
+        ]
+      },
+      "wilcoxon": {
+        "n": 6,
+        "wPlus": 18,
+        "z": 1.484,
+        "pTwoSided": 0.1378
+      }
+    },
+    {
+      "label": "gpt-5.6-luna",
+      "design": "18 tasks, single attempt per arm (H8 not in the 2026-09-01 snapshot)",
+      "protocol": "single-shot",
+      "scale": "percent (reward × 100)",
+      "sensitivity": true,
+      "contamination": "no-skill arm is not a literal zero-skill run: the H2/H3 trajectories read the Codex-native plugin-creator skill; the decontaminated 16-task no-skill subset (10.42/16 = 0.6513) is diagnostic only",
+      "tasks": 18,
+      "unscoredTrials": 0,
+      "excludedTasks": [],
+      "inputs": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-01-codex-gpt-5.6-luna/paired-scores.json",
+          "sha256": "2be38cb2e0a35ea09f71c1902316a1a67a6c127767daf5c28bd424dcbc49939f"
+        }
+      ],
+      "perTask": [
+        {
+          "task": "H1-plane-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H2-baseline-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H3-client-plane",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H4-tsbuildinfo-trap",
+          "noskill": 30,
+          "skill": 100,
+          "delta": 70
+        },
+        {
+          "task": "H5-runtime-export-drift",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "H6-remote-error-trap",
+          "noskill": 0,
+          "skill": 0,
+          "delta": 0
+        },
+        {
+          "task": "H7-locale-trap",
+          "noskill": 100,
+          "skill": 90,
+          "delta": -10
+        },
+        {
+          "task": "M1-host-migration",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M2-optional-dep-trap",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M3-session-projection",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "M4-peer-prerelease-range",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S1-static-scan",
+          "noskill": 67,
+          "skill": 100,
+          "delta": 33
+        },
+        {
+          "task": "S2-negative-scan",
+          "noskill": 60,
+          "skill": 100,
+          "delta": 40
+        },
+        {
+          "task": "S3-snapshot-migration",
+          "noskill": 0,
+          "skill": 100,
+          "delta": 100
+        },
+        {
+          "task": "S4-legacy-client-imports",
+          "noskill": 100,
+          "skill": 100,
+          "delta": 0
+        },
+        {
+          "task": "S5-negative-naming",
+          "noskill": 50,
+          "skill": 75,
+          "delta": 25
+        },
+        {
+          "task": "S6-corridor-net-state",
+          "noskill": 25,
+          "skill": 25,
+          "delta": 0
+        },
+        {
+          "task": "S7-unpublished-cohort",
+          "noskill": 10,
+          "skill": 25,
+          "delta": 15
+        }
+      ],
+      "meanNoskill": 69,
+      "meanSkill": 84.1667,
+      "meanDelta": 15.1667,
+      "medianDelta": 0,
+      "positiveDeltas": 6,
+      "negativeDeltas": 1,
+      "nZero": 11,
+      "bootstrap": {
+        "replicates": 10000,
+        "ci95": [
+          3.7778,
+          29.6111
+        ]
+      },
+      "wilcoxon": {
+        "n": 7,
+        "wPlus": 27,
+        "z": 2.1129,
+        "pTwoSided": 0.0346
+      }
+    }
+  ]
+}

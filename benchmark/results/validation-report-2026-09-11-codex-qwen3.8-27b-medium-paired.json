@@ -1,0 +1,2149 @@
+{
+  "report": "validation-report-2026-09-11-codex-qwen3.8-27b-medium-paired",
+  "generated_at_utc": "2026-09-11T01:12:53Z",
+  "motivation_issue": "https://github.com/oh-my-dsh/dsh-plugin-upgrade-skill/issues/102",
+  "motivation": "Issue #102 proposes paired evaluation with weaker/cheaper models to restore benchmark discrimination and to add time/cost dimensions. This run uses an open-weight 27B model served locally on a single GPU over the full 56 tasks with 3 attempts per condition, so provider cost is zero and the skill's overhead is measured purely in time and tokens.",
+  "protocol": {
+    "agent": "codex CLI 0.153.4",
+    "model": "qwen3.8-27b (local, BF16)",
+    "serving": "vLLM 0.28.0, max_model_len=262144, 1x NVIDIA H20 96GB",
+    "harbor": "0.22.0",
+    "reasoning_effort": "medium",
+    "attempts_per_condition": 3,
+    "concurrency": 1,
+    "task_source_snapshot": "74af446 (anti-cheat stripped, CRLF normalized, digest FROM rewritten)",
+    "environment_build_timeout_multiplier": 4,
+    "codex_config": {
+      "model_max_output_tokens": 16384,
+      "model_context_window": 200000,
+      "model_auto_compact_token_limit": 999999
+    }
+  },
+  "totals": {
+    "with-skill": {
+      "condition": "with-skill",
+      "trials": 168,
+      "reward_sum": 69.89,
+      "mean": 0.416012,
+      "perfect_trials": 55,
+      "zero_trials": 88,
+      "timeout_trials": 108,
+      "exceptions": {
+        "AgentTimeoutError": 108,
+        "NonZeroAgentExitCodeError": 1,
+        "NetworkConnectionError": 5,
+        "ValidationError": 1
+      },
+      "summed_native_trial_seconds": 110458.754,
+      "wall_interval_seconds": 115899,
+      "wall_interval_utc": [
+        "2026-09-08T10:11:53Z",
+        "2026-09-09T18:23:32Z"
+      ],
+      "input_tokens": 409819928,
+      "cached_input_tokens": 400036000,
+      "output_tokens": 3988952,
+      "cache_hit_rate": 0.976126
+    },
+    "no-skill": {
+      "condition": "no-skill",
+      "trials": 167,
+      "reward_sum": 75.05,
+      "mean": 0.449401,
+      "perfect_trials": 59,
+      "zero_trials": 77,
+      "timeout_trials": 86,
+      "exceptions": {
+        "AgentTimeoutError": 86,
+        "NetworkConnectionError": 4,
+        "NonZeroAgentExitCodeError": 2,
+        "ApiRateLimitError": 1,
+        "ValidationError": 2
+      },
+      "summed_native_trial_seconds": 104028.541,
+      "wall_interval_seconds": 104096,
+      "wall_interval_utc": [
+        "2026-09-09T18:23:32Z",
+        "2026-09-10T23:18:28Z"
+      ],
+      "input_tokens": 339853493,
+      "cached_input_tokens": 332139248,
+      "output_tokens": 3940227,
+      "cache_hit_rate": 0.977301
+    }
+  },
+  "per_task": [
+    {
+      "task": "H1-plane-trap",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          915.544,
+          923.084,
+          915.571
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          755.927,
+          915.447,
+          609.865
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          null
+        ]
+      }
+    },
+    {
+      "task": "H10-browser-activation-trap",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          1048.2,
+          630.735,
+          531.47
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          482.351,
+          536.069,
+          376.567
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "H11-dual-cohort-rpc",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          343.728,
+          255.698,
+          432.639
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          280.235,
+          202.43,
+          174.835
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "H12-remote-result-boundary-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.6,
+          0.8
+        ],
+        "seconds": [
+          313.83,
+          318.184,
+          247.667
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.3,
+          0.0,
+          0.3
+        ],
+        "seconds": [
+          276.612,
+          314.352,
+          187.515
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          null
+        ]
+      }
+    },
+    {
+      "task": "H13-ghost-host-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "seconds": [
+          922.781,
+          641.462,
+          922.743
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          null,
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          0.0,
+          0.15
+        ],
+        "seconds": [
+          846.392,
+          922.851,
+          915.355
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          null
+        ]
+      }
+    },
+    {
+      "task": "H14-mineru-api",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.882,
+          921.408,
+          913.889
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          914.474,
+          914.084,
+          916.695
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H15-locale-pack",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          918.416,
+          913.881,
+          913.902
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          914.031,
+          913.989,
+          916.698
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H16-history-dock",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          917.483,
+          913.92,
+          913.824
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          914.045,
+          914.025,
+          916.488
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H17-merge-calls",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          919.501,
+          913.943,
+          913.91
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          920.992,
+          913.975,
+          913.953
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H18-blame-bubbles",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.874,
+          913.86,
+          922.368
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          914.054,
+          921.079,
+          913.97
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H19-workspace-ya",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.874,
+          921.363,
+          913.878
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          916.634,
+          913.958,
+          914.023
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H2-baseline-trap",
+      "with-skill": {
+        "rewards": [
+          0.4,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          918.703,
+          915.815,
+          653.327
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          736.101,
+          823.793,
+          499.847
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "H20-session-events-ledger",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          0.99,
+          1.0
+        ],
+        "seconds": [
+          361.195,
+          350.239,
+          292.507
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          168.292,
+          138.035,
+          294.88
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "H21-question-answerer-waterfall",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          919.113,
+          918.722,
+          935.358
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          0.9,
+          0.0
+        ],
+        "seconds": [
+          921.672,
+          918.843,
+          918.637
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H22-dsh-data-agent-alpha2",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          1497.413,
+          1833.818,
+          1822.669
+        ],
+        "exceptions": [
+          "NonZeroAgentExitCodeError",
+          "NetworkConnectionError",
+          "NetworkConnectionError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          1674.011,
+          2453.895,
+          1751.739
+        ],
+        "exceptions": [
+          "NetworkConnectionError",
+          "NetworkConnectionError",
+          "NonZeroAgentExitCodeError"
+        ]
+      }
+    },
+    {
+      "task": "H23-storage-domain-version-compat-trap",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          169.628,
+          118.064,
+          142.767
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          117.418,
+          170.817,
+          145.066
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "H24-invalid-record-salvage-trap",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          280.933,
+          202.19,
+          298.463
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          290.951,
+          220.279,
+          196.523
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "H25-session-seed-boundary-trap",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          0.4,
+          1.0
+        ],
+        "seconds": [
+          568.849,
+          435.745,
+          475.333
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.9,
+          0.4,
+          1.0
+        ],
+        "seconds": [
+          429.626,
+          454.446,
+          480.098
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "H3-client-plane",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          916.727,
+          917.742,
+          916.932
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          916.537,
+          919.721,
+          916.402
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H4-tsbuildinfo-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          314.132,
+          236.532,
+          321.221
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          null,
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.3,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          229.974,
+          316.58,
+          305.624
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          null
+        ]
+      }
+    },
+    {
+      "task": "H5-runtime-export-drift",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          0.0,
+          1.0
+        ],
+        "seconds": [
+          924.125,
+          922.691,
+          932.067
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          0.4
+        ],
+        "seconds": [
+          923.81,
+          923.878,
+          927.075
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H6-remote-error-trap",
+      "with-skill": {
+        "rewards": [
+          0.5,
+          0.75,
+          0.75
+        ],
+        "seconds": [
+          617.991,
+          283.873,
+          280.882
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          206.74,
+          279.691,
+          291.901
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "H7-locale-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.9
+        ],
+        "seconds": [
+          921.526,
+          914.278,
+          916.983
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.9,
+          0.0,
+          0.4
+        ],
+        "seconds": [
+          916.558,
+          913.737,
+          934.549
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H8-fire-drill",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          914.274,
+          922.05,
+          913.948
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          null
+        ],
+        "seconds": [
+          913.982,
+          921.643,
+          1513.661
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "H9-dsh-web-alpha2",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          1760.857,
+          1850.813,
+          1789.75
+        ],
+        "exceptions": [
+          "NetworkConnectionError",
+          "NetworkConnectionError",
+          "NetworkConnectionError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          2183.144,
+          1769.094,
+          2151.56
+        ],
+        "exceptions": [
+          "NetworkConnectionError",
+          "ApiRateLimitError",
+          "NetworkConnectionError"
+        ]
+      }
+    },
+    {
+      "task": "M1-host-migration",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          335.899,
+          923.021,
+          515.871
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          252.541,
+          361.087,
+          460.843
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "M10-tools-tree",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.842,
+          913.89,
+          916.896
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.718,
+          913.787,
+          918.914
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "M11-sidebar-spur",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.921,
+          914.017,
+          917.653
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.715,
+          916.573,
+          913.764
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "M12-interpreters-card",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          921.25,
+          913.9,
+          913.971
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.776,
+          913.778,
+          916.55
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "M13-repository-plugins-removal",
+      "with-skill": {
+        "rewards": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "seconds": [
+          916.696,
+          916.644,
+          787.026
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.9,
+          1.0,
+          0.9
+        ],
+        "seconds": [
+          819.825,
+          816.804,
+          931.349
+        ],
+        "exceptions": [
+          null,
+          null,
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "M14-service-renames-0812",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          0.8,
+          1.0
+        ],
+        "seconds": [
+          498.157,
+          335.833,
+          534.114
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.8,
+          1.0,
+          0.0
+        ],
+        "seconds": [
+          254.055,
+          238.67,
+          140.581
+        ],
+        "exceptions": [
+          null,
+          null,
+          "NonZeroAgentExitCodeError"
+        ]
+      }
+    },
+    {
+      "task": "M2-optional-dep-trap",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "seconds": [
+          915.802,
+          918.475,
+          913.991
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          null,
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          915.442,
+          658.556,
+          747.636
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "M3-session-projection",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          635.536,
+          743.615,
+          919.178
+        ],
+        "exceptions": [
+          null,
+          null,
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          538.25,
+          684.115,
+          602.489
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "M4-peer-prerelease-range",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          915.538,
+          915.695,
+          820.392
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          0.0,
+          1.0
+        ],
+        "seconds": [
+          736.006,
+          913.676,
+          915.372
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "M5-token-auth-smoke",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.945,
+          922.12,
+          715.097
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "ValidationError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          572.245,
+          914.375,
+          731.37
+        ],
+        "exceptions": [
+          "ValidationError",
+          "AgentTimeoutError",
+          "ValidationError"
+        ]
+      }
+    },
+    {
+      "task": "M6-sleep-tool",
+      "with-skill": {
+        "rewards": [
+          0.4,
+          0.0,
+          1.0
+        ],
+        "seconds": [
+          916.126,
+          919.516,
+          916.441
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.4
+        ],
+        "seconds": [
+          913.816,
+          916.658,
+          815.755
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          null
+        ]
+      }
+    },
+    {
+      "task": "M7-d399-overlay",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.956,
+          913.928,
+          921.338
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.4,
+          0.0,
+          0.4
+        ],
+        "seconds": [
+          917.107,
+          913.843,
+          926.227
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "M8-brand-text",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.925,
+          913.889,
+          918.163
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          914.011,
+          921.192,
+          913.759
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "M9-mcpanel",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.97,
+          921.291,
+          913.936
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          913.713,
+          913.982,
+          920.897
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "S1-static-scan",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          313.867,
+          321.407,
+          313.829
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          314.014,
+          316.685,
+          313.957
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "S10-paste-rename-and-version-chip",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          313.9,
+          319.032,
+          313.916
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "seconds": [
+          313.765,
+          321.111,
+          308.466
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          null
+        ]
+      }
+    },
+    {
+      "task": "S11-mermaid-lazyload-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          313.838,
+          318.028,
+          313.907
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.8,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          294.552,
+          316.436,
+          313.913
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "S12-global-upgrade-ebusy-trap",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          222.492,
+          202.741,
+          224.772
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          242.796,
+          214.172,
+          222.958
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "S13-peer-range-vs-runtime",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          0.8
+        ],
+        "seconds": [
+          201.249,
+          227.942,
+          321.584
+        ],
+        "exceptions": [
+          null,
+          null,
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          0.8,
+          1.0
+        ],
+        "seconds": [
+          154.227,
+          214.17,
+          176.377
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "S14-link-install-lock-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.8
+        ],
+        "seconds": [
+          313.951,
+          313.786,
+          321.128
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.8,
+          1.0,
+          0.8
+        ],
+        "seconds": [
+          288.041,
+          313.889,
+          274.24
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          null
+        ]
+      }
+    },
+    {
+      "task": "S15-slot-error-boundary-crash",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          313.956,
+          316.972,
+          313.986
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          320.855,
+          313.669,
+          314.034
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "S16-self-host-upgrade-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          313.957,
+          313.919,
+          317.279
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.8,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          248.471,
+          313.949,
+          316.388
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "S17-external-ui-plugin-onboarding-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          313.99,
+          313.859,
+          321.592
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          316.507,
+          313.9,
+          313.972
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "S2-negative-scan",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          317.571,
+          313.831,
+          313.794
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.6
+        ],
+        "seconds": [
+          316.664,
+          314.024,
+          313.876
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "S3-snapshot-migration",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          318.202,
+          314.005,
+          313.951
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "seconds": [
+          321.118,
+          313.858,
+          314.015
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    },
+    {
+      "task": "S4-legacy-client-imports",
+      "with-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          496.134,
+          584.366,
+          568.632
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          163.063,
+          174.619,
+          165.656
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "S5-negative-naming",
+      "with-skill": {
+        "rewards": [
+          0.5,
+          0.75,
+          0.5
+        ],
+        "seconds": [
+          378.415,
+          220.04,
+          333.235
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.25,
+          0.25,
+          0.5
+        ],
+        "seconds": [
+          186.099,
+          279.091,
+          236.7
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "S6-corridor-net-state",
+      "with-skill": {
+        "rewards": [
+          0.1,
+          0.1,
+          0.5
+        ],
+        "seconds": [
+          311.829,
+          369.56,
+          124.841
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.1,
+          0.5,
+          0.1
+        ],
+        "seconds": [
+          196.068,
+          354.611,
+          206.615
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "S7-unpublished-cohort",
+      "with-skill": {
+        "rewards": [
+          0.25,
+          0.1,
+          0.5
+        ],
+        "seconds": [
+          523.368,
+          611.265,
+          558.782
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          0.25,
+          0.25,
+          0.5
+        ],
+        "seconds": [
+          400.725,
+          281.218,
+          266.053
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "S8-release-routing-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          313.841,
+          314.081,
+          203.318
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          249.288,
+          274.237,
+          276.92
+        ],
+        "exceptions": [
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "task": "S9-composer-coordinate-trap",
+      "with-skill": {
+        "rewards": [
+          0.0,
+          1.0,
+          1.0
+        ],
+        "seconds": [
+          313.93,
+          316.773,
+          294.889
+        ],
+        "exceptions": [
+          "AgentTimeoutError",
+          "AgentTimeoutError",
+          null
+        ]
+      },
+      "no-skill": {
+        "rewards": [
+          1.0,
+          0.0,
+          1.0
+        ],
+        "seconds": [
+          307.996,
+          313.865,
+          321.031
+        ],
+        "exceptions": [
+          null,
+          "AgentTimeoutError",
+          "AgentTimeoutError"
+        ]
+      }
+    }
+  ]
+}

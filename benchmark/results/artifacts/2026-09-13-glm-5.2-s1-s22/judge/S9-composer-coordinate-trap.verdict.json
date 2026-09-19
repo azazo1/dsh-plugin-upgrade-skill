@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "projection-contract",
+      "verdict": "pass",
+      "reason": "Grounds the two projections in host-input-contract.ts quotes (draft/Occurrence = clipboard-text, detectText = chip one U+FFFC) and host-input-facade.ts (slice on detectText, $replaceDetectSpan* splices); notes the facade's separating-space handling for normal-width text."
+    },
+    {
+      "id": "repeat-paste-failure",
+      "verdict": "pass",
+      "reason": "Locates start/end = snapshot.draft.length in add; explains paste #1 succeeds because both projections are empty (0), paste #2 overshoots the 2-char detect span, insertReference returns false and the plugin throws its changed-composer toast; explicitly rejects a real concurrent-edit/revision-race reading."
+    },
+    {
+      "id": "removal-and-bookkeeping",
+      "verdict": "pass",
+      "reason": "Traces remove: occurrence.offset/length passed unconverted to consumeToken, false return never inspected, records.delete runs anyway; composer chip stays, missing record renders 'unavailable' in the dock; ties both symptoms to the same coordinate mismatch rather than a separate upload failure."
+    },
+    {
+      "id": "conversion-and-success-gate",
+      "verdict": "pass",
+      "reason": "Derives detect(o) = o − Σ(len_j − 1) over preceding occurrences; applies it at insertion end-of-draft (all preceding occurrences) and maps removal to a one-detect-char span; keeps the draftRev CAS; deletes records only after consumeToken === true (with retry/surface-on-false guidance)."
+    },
+    {
+      "id": "regression-sequences",
+      "verdict": "pass",
+      "reason": "Proposes successive pastes asserting chips/occurrences accumulate without toast (seq 1) and removal of a middle chip with other chips present asserting record, dock chip and composer chip removed together while neighbors survive (seq 3), plus declined-consumption, first/last-chip and empty-again variants."
+    }
+  ],
+  "caps": []
+}

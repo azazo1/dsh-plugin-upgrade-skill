@@ -1,0 +1,36 @@
+{
+  "decisions": [
+    {
+      "id": "baked-version-release-order",
+      "verdict": "pass",
+      "reason": "Report compares release-log.md (bump at 16:23 after 16:22 build) with the bundle's baked PLUGIN_VERSION=\"0.3.6\", explains the constant is build-time inlined and not reread at runtime, prescribes bump-before-build plus a post-build grep of the shipped constant, retains per-mirror SHA verification, and correctly treats v0.3.8 as the corrected order rather than a competing manifest."
+    },
+    {
+      "id": "client-host-update-asymmetry",
+      "verdict": "pass",
+      "reason": "Uses asset-route-probe.txt (PNG 200, SVG 404 unsupported-type) and lib-index-excerpt.js (disk whitelist has svg) to conclude the running, un-restarted host process holds the old boot-time-registered whitelist; concludes host restart is required and scopes the claim to this host lifecycle, explicitly noting client refresh only covers the browser-fetched half."
+    },
+    {
+      "id": "payload-corruption-attribution",
+      "verdict": "pass",
+      "reason": "Grounds in session-log-excerpt.txt: clean source XML and clean re-read versus spliced persisted model-visible result text; attributes corruption to upstream result-text assembly, treats the payload as untrusted input, and explicitly rejects 'repairing' the well-formed traced SVG."
+    },
+    {
+      "id": "validated-render-fallbacks",
+      "verdict": "pass",
+      "reason": "Gives the ordered chain: disk bytes via the asset route first; session payload only after DOMParser well-formedness check with parsererror rejection (malformed payload cannot pass to the iframe); sandboxed iframe with scripts blocked while permitting SMIL; and an explicit error state naming each failed source. This is a plan with equivalent implementation detail, as permitted."
+    },
+    {
+      "id": "forensics-and-prevention",
+      "verdict": "pass",
+      "reason": "Describes decoding concatenated zstd frames sequentially (frame loop with offsets), reconstructing the JSONL record containing the exact stored splice text for comparison against the source, and reporting the upstream bug; a manual frame loop is explicitly equivalent per the rubric. Checklist covers bump-before-build, verifying the shipped constant and per-mirror tag SHAs, and plane-specific PNG/SVG probes."
+    }
+  ],
+  "caps": [
+    {
+      "id": "contradictory-release-render-advice",
+      "triggered": false,
+      "reason": "Final advice is consistently correct: bump before build, host restart for host-half changes, do not edit the clean SVG, XML validation before payload rendering, and scripts blocked in the iframe. No affirmative bad advice appears; bad examples are only referenced as rejected or hypothetical."
+    }
+  ]
+}

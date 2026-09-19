@@ -1,0 +1,209 @@
+{
+  "status": "scored",
+  "score": 100,
+  "max": 100,
+  "passed": true,
+  "decisions": [
+    {
+      "id": "busy-scope-and-trigger",
+      "verdict": "pass",
+      "reason": "Locates the free identifier, identifies its sibling-component scope, and correctly explains both the empty-state bypass and plain-phase short-circuit trigger.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "disabled: (props.input?.phase ?? 'plain') !== 'plain' || busy"
+        },
+        {
+          "report": "report.md",
+          "quote": "`busy` is a state variable local to `AttachButton`; it is not a binding in\n`AttachmentChips`, nor is it passed in as a prop."
+        },
+        {
+          "report": "report.md",
+          "quote": "With no matching occurrences,\nline 23 returns `null` before the `map` callback runs, so the button props and\nthe bad expression are never constructed."
+        },
+        {
+          "report": "report.md",
+          "quote": "It is only when the phase is `plain` (or\nmissing and therefore defaulted to `plain`) that the left side is false and\nthe free identifier is looked up."
+        }
+      ],
+      "sources": [
+        {
+          "path": "plugin-dock-chips.js",
+          "quote": "const [busy, setBusy] = React.useState(false);          // <-- busy lives HERE"
+        },
+        {
+          "path": "plugin-dock-chips.js",
+          "quote": "if (occurrences.length === 0) return null;"
+        },
+        {
+          "path": "plugin-dock-chips.js",
+          "quote": "disabled: (props.input?.phase ?? 'plain') !== 'plain' || busy,   // <-- ???"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "slot-boundary",
+      "verdict": "pass",
+      "reason": "Correctly explains whole-entry unmount, survival of the separate attach-button slot, and console-only diagnostics.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "The framework's slot error boundary catches the\nrender exception and unmounts that entry, so the entire dock disappears; it\ndoes not merely disable or break the remove button. The attach button is a\ndifferent slot/component and remains mounted. The boundary exposes no UI\nerror, so the only visible diagnostic is the `ReferenceError` in the browser\nconsole."
+        }
+      ],
+      "sources": [
+        {
+          "path": "user-thread.md",
+          "quote": "The plugin registers the dock through the\nInputZone slot; a slot entry that throws during render is caught by the framework's error\nboundary and unmounted (the error is only visible in the browser console, which users\nnever open)."
+        },
+        {
+          "path": "plugin-dock-chips.js",
+          "quote": "// The plugin renders into two composer slots: the attach button (input.left) and the\n// pending-attachment dock above the input (InputZone occurrences)."
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "attribution-and-isolation",
+      "verdict": "pass",
+      "reason": "Establishes the baseline defect and proposes meaningful data-present isolation. Also identifies the independent hover scope defect rather than declaring the diff harmless, without inventing historical execution facts.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "This explains why earlier execution could\nleave the defect latent even though the bad source line was already in\nv0.2.10."
+        },
+        {
+          "report": "report.md",
+          "quote": "1. Render the v0.2.10 component in a small harness with a matching\n   occurrence, a `plain` (or omitted) phase, a record, and an error boundary.\n   It reproduces the boundary capture at the pre-existing `busy` expression."
+        },
+        {
+          "report": "report.md",
+          "quote": "2. Remove the hover hunk, then re-add it in one logical piece or by smaller\n   pieces. Record both the boundary capture and the console stack/source\n   location at each step."
+        },
+        {
+          "report": "report.md",
+          "quote": "appears before the `map` callback, while `status` and `record` are declared\ninside that callback. If that hunk was shipped exactly as shown, it produces\nan earlier, independent `ReferenceError` (`status is not defined`) whenever\nan occurrence exists."
+        }
+      ],
+      "sources": [
+        {
+          "path": "plugin-dock-chips.js",
+          "quote": "// Excerpt of @org/dsh-attach-input v0.2.10 lib/client.js (as shipped)."
+        },
+        {
+          "path": "plugin-dock-chips.js",
+          "quote": "disabled: (props.input?.phase ?? 'plain') !== 'plain' || busy,   // <-- ???"
+        },
+        {
+          "path": "feature.diff",
+          "quote": "+  const imageItem = status !== 'missing'\n+    ? record?.items.find(item => isImagePath(item.path))\n+    : undefined;\n   return h('div', { className }, ...occurrences.map(occurrence => {\n     const record = records.get(occurrence.ref);\n     const status = record?.status ?? 'missing';"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "fix-and-hardening",
+      "verdict": "pass",
+      "reason": "Preserves the phase guard while removing the dangling reference, correctly scopes hover lookups, and supplies both requested defensive-read patterns.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "Remove the dangling `|| busy` from `AttachmentChips`, or deliberately scope\nthe state by passing a `busy` value into the component (or owning equivalent\nstate there). For the preview implementation, compute `record`, `status`,\nand `imageItem` inside the per-occurrence callback."
+        },
+        {
+          "report": "report.md",
+          "quote": "const imageItem = status !== 'missing'\n  ? (record?.items ?? []).find(item => isImagePath(item.path))\n  : undefined;"
+        },
+        {
+          "report": "report.md",
+          "quote": "Use an optional-chained closest lookup, such as\n`event.target?.closest?.('.remove')`, before treating it as a matched remove\nbutton. These defensive reads are especially inexpensive in slot components,\nwhere one malformed optional datum otherwise removes the whole slot entry."
+        }
+      ],
+      "sources": [
+        {
+          "path": "plugin-dock-chips.js",
+          "quote": "disabled: (props.input?.phase ?? 'plain') !== 'plain' || busy,   // <-- ???"
+        },
+        {
+          "path": "feature.diff",
+          "quote": "+  const imageItem = status !== 'missing'\n+    ? record?.items.find(item => isImagePath(item.path))\n+    : undefined;\n   return h('div', { className }, ...occurrences.map(occurrence => {\n     const record = records.get(occurrence.ref);\n     const status = record?.status ?? 'missing';"
+        },
+        {
+          "path": "feature.diff",
+          "quote": "+        if (event.target.closest('.remove') !== null) return;"
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    },
+    {
+      "id": "data-present-regression",
+      "verdict": "pass",
+      "reason": "Proposes a matching-occurrence plain-phase mount with chip-presence and zero-capture assertions, explains empty-state and parser limitations, and includes data-present slot smoke tests in pre-ship checks.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "phase: 'plain',\n          occurrences: [{\n            occurrenceId: 'o1', source: SOURCE, ref: 'r1', label: 'shot.png'\n          }]"
+        },
+        {
+          "report": "report.md",
+          "quote": "expect(document.querySelector('.dock .chip')).not.toBeNull();\n  expect(onBoundaryError).not.toHaveBeenCalled();"
+        },
+        {
+          "report": "report.md",
+          "quote": "An empty-state assertion alone\nwould pass while testing only the early return."
+        },
+        {
+          "report": "report.md",
+          "quote": "`node --check` is a parser check. It can confirm balanced JavaScript and\nvalid syntax, but unresolved lexical names and unsafe property access are\nruntime failures; it neither mounts the component nor evaluates its props."
+        },
+        {
+          "report": "report.md",
+          "quote": "The minimum viable pre-ship check is a runtime import/render smoke of every\nslot-rendering entry, using representative data-present states (including at\nleast one pending occurrence and, for this feature, an image record), wrapped\nin an error boundary and asserting that no capture occurs and the expected\nchip is present."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    }
+  ],
+  "caps": [],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 9256,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2254,
+      "reasoning_output_tokens": 241
+    },
+    "request_id": "01a08ae9-1f7d-71c2-a2d6-7f3e4e462939",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "6f0173119e78461f3ba8a4e39e55cbeb1f5f321139be9f053e72ccc8e2686aa0",
+    "response_sha256": "ec178870c009fab762c1c1f4dc9dba52ce9585e91cf1ce4c711bc4dcacb839a7"
+  },
+  "citation_audit": [],
+  "reports": {
+    "report.md": "17810295b02e50698e831db9bb60091d5886d5b1867051d17c351c897e789ec5"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "efec0d05e641d195dc07ebcbf681912164334ec5f11c2d4079d43b699ee2c6dc",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

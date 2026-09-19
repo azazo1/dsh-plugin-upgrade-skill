@@ -1,0 +1,52 @@
+{
+  "protocol": "report-judge-v1",
+  "task": "S7-unpublished-cohort",
+  "source_commit": null,
+  "instruction": "# S7 · Unpublished Cohort Install Plan (Read-Only Report)\n\n## Unattended Evaluation Authorization (BENCHMARK-AUTH-v1)\n\nThis is an unattended evaluation running in a disposable, isolated container; there will be no follow-up user messages. This task brief is itself the user's explicit authorization and confirmation for the approach and execution needed to complete the task: complete the necessary analysis and planning on your own, and keep executing as soon as the plan is formed — do not pause to wait for \"confirmation\", and do not ask the user follow-up questions. That confirmation continues to apply to the concrete plans you produce under the applicable skill, but only within the following scope:\n\n- You may inspect `/app/fixture/` and local in-container tools read-only; `/app/fixture/` must remain completely unchanged; you may write your report into the designated `/app/agent-output/` directory as the brief specifies;\n- This is a **closed-book** brief: there are no reference materials outside the fixture — do not search `/tmp`, system directories, or the network for them; mark anything you cannot verify as \"unconfirmed\" instead of guessing;\n- You may create temporary files needed for the report and run read-only local commands, but you must not build or create any reproduction environment, install dependencies, or migrate anything;\n- You must not modify the skill, the evaluator, or the reference answers, and you must not publish, push, access external services, or alter resources outside the container;\n- If you cannot complete the task, state the blocker honestly, but do not stop merely because another round of confirmation is missing.\n\nI am a DSH plugin maintainer. The plugin in `/app/fixture/` declares `devDependencies: { \"@deepseek-ai/dsh-llm\": \"^0.1.2-alpha.1\" }`, and its README says \"npm install gives you the type baseline\". npm reality: `@deepseek-ai/*` has only 0.1.1-rc.1 / 0.1.1-rc.2 / 0.1.2-alpha.2 — **alpha.1 was never published**.\n\nPlease **analyze it read-only** (do not modify any file under `/app/fixture/`, and **do not actually run any install**) and write an installation/type-baseline plan report, written under `/app/agent-output/S7-unpublished-cohort/` (any filename). Requirements:\n\n1. First analyze the real consequence of this declaration (mind the semver semantics of the caret range — will install actually fail, and which version will actually be installed?);\n2. Give a workable installation/type-baseline plan (multiple paths are welcome, with tradeoffs and exit paths);\n3. Mark anything you cannot verify as \"unconfirmed\".\n",
+  "rubric": {
+    "criteria": [
+      {
+        "id": "published-version-evidence",
+        "points": 25,
+        "requirement": "Use package.json and the supplied README/brief to distinguish the @deepseek-ai/dsh-llm declaration from the published version list: alpha.1 was never published there, while alpha.2 was. Do not infer each internal package exists from the root package or a dist-tag. The brief already supplies the registry fact: credit using it with proposed package-specific verification; never require an actual online npm view in this closed-book task.",
+        "sourceRequired": true
+      },
+      {
+        "id": "caret-resolution",
+        "points": 25,
+        "requirement": "Explain why ^0.1.2-alpha.1 can select the supplied published 0.1.2-alpha.2: the missing lower-bound release does not make the range unresolvable. Identify the silent declaration/type-baseline mismatch and prerelease compatibility uncertainty. Do not claim all alpha versions are missing or that the caret guarantees alpha.1. No mandatory semver formula or keyword spelling.",
+        "sourceRequired": true
+      },
+      {
+        "id": "workable-baseline-plan",
+        "points": 25,
+        "requirement": "Give at least ONE complete feasible plan with its tradeoff: either deliberately target the published alpha.2 using an exact pin and acknowledge that this does not validate alpha.1; or obtain a verified exact upstream alpha.1 source ref, build/package the necessary cohort and resolve local tarballs explicitly. One coherent plan is sufficient for full credit. Bare npm ci, tarball or overrides words are not a plan; do not require guessing an unavailable tag or command.",
+        "sourceRequired": false
+      },
+      {
+        "id": "reproducibility-and-exit",
+        "points": 25,
+        "requirement": "Make the chosen plan reproducible with one consistent project package manager, a committed lockfile/frozen install or equivalent, and a proposed typecheck against the intended target. For temporary local overrides, explain when/how to replace them with verified equivalent published packages and remove the overrides; an exact published-pin plan can describe deliberate future upgrades instead. Mark unverified source/build/runtime details honestly. Do not require both npm and pnpm, switching package managers, or executing installs.",
+        "sourceRequired": false
+      }
+    ],
+    "caps": [
+      {
+        "id": "install-unpublished-registry-version",
+        "total": 10,
+        "requirement": "Trigger only for an affirmative prescription to install the exact unpublished @deepseek-ai cohort alpha.1 version from npm as if available. The declared caret range, local tarballs built from alpha.1 source, rejected BAD examples and explicitly forbidden exact-install commands do not trigger this cap."
+      }
+    ]
+  },
+  "references": [],
+  "fixture": {
+    "README.md": {
+      "sha256": "b4a1f0ef2a1ce99d3e89b0c77d35fc2d55331b8eb10e41c35f7a4a172fa89ab9",
+      "text": "# S7 fixture · Unpublished cohort (S7-specific copy)\n\nA plugin whose type baseline declares `@deepseek-ai/dsh-llm: ^0.1.2-alpha.1` while the README claims \"npm install gives you the type baseline\". npm reality: `@deepseek-ai/*` has only 0.1.1-rc.1 / 0.1.1-rc.2 / 0.1.2-alpha.2 — **alpha.1 was never published**. **Test material only — do not execute or publish** (`\"private\": true`). This task's grading requires the fixture to be unchanged relative to git HEAD.\n"
+    },
+    "package.json": {
+      "sha256": "73b215c4e9632a8a3d7b7b29bd659aaa42e0e799f3e3d64b666b8cb9f2be1b4e",
+      "text": "{\n  \"name\": \"dsh-cohort-bench\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"devDependencies\": { \"@deepseek-ai/dsh-llm\": \"^0.1.2-alpha.1\" }\n}\n"
+    }
+  }
+}

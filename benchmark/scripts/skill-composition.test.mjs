@@ -30,7 +30,7 @@ for (const [name, workflow, options, owners] of cases) {
 
 // Skills installed in this repo but not owned by any workflow-planner phase
 // (benchmark-authoring side, not plugin workflow composition).
-const NON_COMPOSITION_SKILLS = ['dsh-benchmark-case']
+const NON_COMPOSITION_SKILLS = ['dsh-benchmark-case', 'generic-migration']
 
 test('every installed Skill has an exercised phase owner; new Skills require coverage', () => {
   const root = fileURLToPath(new URL('../../skills/', import.meta.url))

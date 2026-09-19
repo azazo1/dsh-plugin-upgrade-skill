@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "phantom-self-update-root-cause",
+      "verdict": "pass",
+      "reason": "Report grounds the badge in client-bundle-excerpt.js (baked PLUGIN_VERSION \"0.3.6\") and release-log.md (16:22 build before 16:23 bump), explains the baked-constant-vs-mirror-tag comparison producing 新版本 v0.3.7 可用, explains why SHA-verified mirrors are irrelevant (transport-integrity check can't see stale artifact content), gives the corrected bump-first order and the pre-tag grep of the shipped bundle for the new constant. No mirror/network blame."
+    },
+    {
+      "id": "client-host-plane-asymmetry",
+      "verdict": "pass",
+      "reason": "Uses asset-route-probe.txt (PNG 200, SVG 404 'unsupported image type') with lib-index-excerpt.js (disk copy whitelists svg) to triangulate staleness to the running host process; explains client half refreshes per page load while host routes register once at apply()/boot and are immutable in-process, that host restart is required, and that the hot-update rule holds only for the client plane."
+    },
+    {
+      "id": "broken-image-attribution",
+      "verdict": "pass",
+      "reason": "Grounds in session-log-excerpt.txt: source file well-formed XML, stored payload splices line 247's tail onto line 232 at shared prefix 'stro' with lines 233-247 missing, clean re-read showing non-determinism, corruption located in upstream result-text assembly; treats payload as untrusted input, keeps disk bytes authoritative, and explicitly rejects editing/repairing the traced file with reasons."
+    },
+    {
+      "id": "defensive-render-chain",
+      "verdict": "pass",
+      "reason": "Per-level justified chain: disk bytes via host asset route first; session payload only after DOMParser SVG well-formedness check rejecting parsererror; sandboxed iframe (no allow-scripts, SMIL still runs) as last fallback; explicit distinguishable error states instead of silent broken image. No level is skipped or declared unnecessary."
+    },
+    {
+      "id": "forensics-and-prevention",
+      "verdict": "pass",
+      "reason": "Explains frame-by-frame decoding of the concatenated-Zstandard generation log to recover the exact stored read-result text and pin the splice (line 232, prefix 'stro', lines 233-247 absent); folds into checklist: bump before build, grep shipped bundle for baked constant, keep per-mirror tag SHA verification, plane-aware restart+probe, and filing the upstream result-text-corruption bug rather than patching in the plugin."
+    }
+  ],
+  "caps": []
+}

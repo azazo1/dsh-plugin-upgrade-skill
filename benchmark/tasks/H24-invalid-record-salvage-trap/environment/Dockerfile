@@ -16,4 +16,5 @@ RUN cd /app/fixture && npm ci --no-audit --no-fund
 # outside fixture/src/ and fixture/package.json (plus the runtime's own
 # authorized rename of the one corrupt document) and any history rewrite.
 RUN git init -q && git add -A && git -c user.email=bench@local -c user.name=bench commit -q -m "baseline" \
-    && git rev-parse HEAD > /app/baseline.sha
+    && mkdir -p /opt/h24-verifier \
+    && git rev-parse HEAD > /opt/h24-verifier/baseline.sha

@@ -1,0 +1,156 @@
+[
+  {
+    "task": "S1-static-scan",
+    "method": "llm-rubric",
+    "noskill": 95,
+    "skill": 100,
+    "notes": "Both reports locate all seven touchpoints with correct files/lines, fold A1-02 into A2-01, and map to A1-01/03/04/05/08 accurately; B edges out A only on limits by explicitly proposing target-version build/typecheck, isolated boot, and a functional path, which A only implies."
+  },
+  {
+    "task": "S10-paste-rename-and-version-chip",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports fully cover naming scheme scoped to the paste path, live-snapshot conflict authority with the subscription-eviction rationale, stale-CDN-tag root cause with running-version display rule, regression suites for both follow-ups, and lib-only release hygiene; all criteria pass on both runs."
+  },
+  {
+    "task": "S11-mermaid-lazyload-trap",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S12-global-upgrade-ebusy-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports fully and correctly diagnose PID 42432/koffi.node EBUSY, latest-tag downgrade to rc.2, give pinned stop-install-verify-restart commands and README pinning guidance; all criteria pass on both."
+  },
+  {
+    "task": "S13-peer-range-vs-runtime",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S14-link-install-lock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 100,
+    "notes": ""
+  },
+  {
+    "task": "S15-slot-error-boundary-crash",
+    "method": "llm-rubric",
+    "noskill": 70,
+    "skill": 100,
+    "notes": "B matches the rubric's intended conclusion exactly (busy in plain phase); A misattributes the crash to the diff's imageItem hoist and claims busy stays masked, contradicting the core conclusion in its root-cause section."
+  },
+  {
+    "task": "S16-self-host-upgrade-trap",
+    "method": "official-keyword-judge",
+    "noskill": 100,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S17-external-ui-plugin-onboarding-trap",
+    "method": "official-keyword-judge",
+    "noskill": 20,
+    "skill": 0,
+    "notes": ""
+  },
+  {
+    "task": "S18-terminal-sprite-render-trap",
+    "method": "official-keyword-judge",
+    "noskill": 60,
+    "skill": 80,
+    "notes": ""
+  },
+  {
+    "task": "S19-phantom-update-stale-host",
+    "method": "official-keyword-judge",
+    "noskill": 0,
+    "skill": 0,
+    "notes": ""
+  },
+  {
+    "task": "S2-negative-scan",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports pass all criteria: correct A1-01 mapping with package dependency, full six-category negative evidence incl. patch.yml/session-notes decoys, sound zero-hits!=compatibility reasoning, and concrete build/cold-boot/provider-call verification plan."
+  },
+  {
+    "task": "S20-msvc-flock-trap",
+    "method": "official-keyword-judge",
+    "noskill": 80,
+    "skill": 95,
+    "notes": ""
+  },
+  {
+    "task": "S21-resource-service-unavailable-trap",
+    "method": "official-keyword-judge",
+    "noskill": 40,
+    "skill": 60,
+    "notes": ""
+  },
+  {
+    "task": "S22-duplicate-insert-boot-crash-trap",
+    "method": "official-keyword-judge",
+    "noskill": 40,
+    "skill": 60,
+    "notes": ""
+  },
+  {
+    "task": "S3-snapshot-migration",
+    "method": "llm-rubric",
+    "noskill": 90,
+    "skill": 100,
+    "notes": "Both reports accurate on projection/lifecycle/type/mapping; noskill only files slot registration as no-break without the required slots.inject/Context-augmentation/ownership explanation, skill covers it fully."
+  },
+  {
+    "task": "S4-legacy-client-imports",
+    "method": "llm-rubric",
+    "noskill": 13,
+    "skill": 100,
+    "notes": "No-skill run locates all touchpoints but gives no migration direction for A1-27/A1-30 and wrongly calls the removed type-only import a compile-time-only break (fail on 3, partial on A1-26 for missing activation verification); skill run passes all four with card-backed mappings and defensible directions."
+  },
+  {
+    "task": "S5-negative-naming",
+    "method": "llm-rubric",
+    "noskill": 88,
+    "skill": 100,
+    "notes": "Both reports give restrained four-state verdicts grounded in the fixture with no registry overclaims; no-skill drops to partial only for not proposing later verification steps, while the skill report covers all surfaces and proposes explicit follow-up verification."
+  },
+  {
+    "task": "S6-corridor-net-state",
+    "method": "llm-rubric",
+    "noskill": 75,
+    "skill": 100,
+    "notes": "Both recommend deleting the defense with correct remove-then-restore corridor reasoning; noskill errs by claiming ignorable is envelope-only and a producer must never set it (missing informational-only/retention semantics), while skill covers all producer, gap, and verification points."
+  },
+  {
+    "task": "S7-unpublished-cohort",
+    "method": "llm-rubric",
+    "noskill": 88,
+    "skill": 100,
+    "notes": "Both correctly resolve ^0.1.2-alpha.1 to published 0.1.2-alpha.2 with sound semver reasoning and feasible plans; A lacks a proposed typecheck/validation step (partial reproducibility), B adds it but leans on out-of-fixture skill rollup claims (flagged unconfirmed)."
+  },
+  {
+    "task": "S8-release-routing-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both runs correctly separate tag-distribution (v0.9.5/v0.9.3 absent, sync pushes HEAD:main only) from version-routing (v0.9.7 targets alpha.1 on rc.2 runtime), give frozen-runtime-safe #v0.9.3 remedy conditional on tag publication, and propose per-mirror tag push + version-keyed README routing; skill report's SHA alternative is conditional, not invented."
+  },
+  {
+    "task": "S9-composer-coordinate-trap",
+    "method": "llm-rubric",
+    "noskill": 100,
+    "skill": 100,
+    "notes": "Both reports correctly identify the clipboard-vs-detect coordinate mismatch, the {29,29}/{0,28} spans vs 2-char detect text, the unguarded records.delete rendering 'unavailable', the occurrence.length-1 conversion at both call sites with the revision guard kept, and regression sequences covering repeat paste and removal with another chip surviving."
+  }
+]

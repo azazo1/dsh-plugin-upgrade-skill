@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "paste-names-and-scope",
+      "verdict": "pass",
+      "reason": "Designs paste_image.png/paste_file.<ext> with (2),(3) inserted before the extension until unused; applies the rename only in the paste handler before add()/validateItems/record creation (explicitly warns renaming inside add() would leak to drop/picker); drop/picker keep real names. Grounded in fixture add(), validateItems, and item.path (label = item.path stays 'image.png')."
+    },
+    {
+      "id": "live-conflict-state",
+      "verdict": "pass",
+      "reason": "Names input.state.getSnapshot().occurrences plus current in-flight batch paths as the authoritative taken-name source, and explains records.delete(ref) fires spuriously because the alive-subscription retires on any momentary empty snapshot (composer reparsing/batched updates), so records under-counts; records demoted to a rendering cache."
+    },
+    {
+      "id": "stale-tag-display",
+      "verdict": "pass",
+      "reason": "Uses the captured response (x-cache: HIT, age: 178, s-maxage=300, only v0.2.9/v0.2.8/v0.2.7 listed while ls-remote shows v0.2.10/v0.2.11) and renderCurrentChip(tag) echoing the fetched tag; rule: fetched > local → update chip, fetched ≤ local → show running PLUGIN_VERSION, never the older fetched tag."
+    },
+    {
+      "id": "regressions",
+      "verdict": "pass",
+      "reason": "Tests cover three same-name pastes yielding distinct paste_image(1..3).png, a spurious record retirement followed by a paste that must still yield paste_image(2).png via live occurrences (empty records cache), drop/picker names unchanged, and stubbed older/equal/newer tag cases asserting the running version vs v0.2.11."
+    },
+    {
+      "id": "release-hygiene",
+      "verdict": "pass",
+      "reason": "Grounded in lib/client.js: bump package.json and hand-inlined PLUGIN_VERSION together (with a divergence gate), run node --check on lib files plus behavioral regressions, and explains users receive the update via package-manager install then reload since the chip is informational only with no host-side update endpoint."
+    }
+  ],
+  "caps": []
+}

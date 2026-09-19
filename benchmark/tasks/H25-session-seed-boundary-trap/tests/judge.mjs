@@ -14,27 +14,23 @@
 //        valid seq/offset construction works (5);
 //        invalid constructors still throw (5);
 //   25 — migration: no stale seedLength (5), makeForkMeta carries isSeeded
-//        without seedLength (5), fresh header isSeeded (5), eventPosition
+//        without seedLength (5), declared inherited count (5), eventPosition
 //        uses SessionSeq (5), logOffset uses SessionLogOffset (5);
-//   10 — hygiene: no alpha.3 dependency pin;
+//   10 — hygiene: exact required runtime dependencies;
 //   caps — module load failure 30; as-cast bypass 30; constructors no longer
 //        throw 40; SessionSeq-for-offsets 60; SessionLogOffset-for-positions
-//        60; resume uses current log length 65; resume uses firstLiveSeq 65;
+//        60; resumed boundary fails real-session probes 65;
 //        isSeeded without count 40; count without isSeeded 40; stale
 //        seedLength 70; alpha.3 pin 20;
 //    0 — fixture untouched, node_modules/host modified, or baseline
 //        rewritten (git-gated).
 // The judge always exits 0; the last stdout line is the {score, max, reasons} JSON.
-import { execSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { isDeepStrictEqual } from 'node:util'
 import { assembleScore } from './judge-utils.mjs'
-
-const APP = '/app'
-const SRC_FILE = join(APP, 'fixture', 'src', 'fork-state.mjs')
-const PACKAGE_FILE = join(APP, 'fixture', 'package.json')
-const SESSION_LIB = join(APP, 'fixture', 'node_modules', '@deepseek-ai', 'dsh-session', 'lib', 'index.js')
+import { createIntegrityGuard } from './fixture-integrity.mjs'
 
 function emit(score, reasons) {
   console.log(JSON.stringify({ score, max: 100, reasons }))
@@ -45,39 +41,34 @@ const TYPES = ['turn/start', 'session/title', 'todo/added', 'turn/end', 'session
 const FRESH_SEED = TYPES.slice(0, 3).map((t, i) => mkEvent(t, i))
 const RESUMED_SEED = TYPES.map((t, i) => mkEvent(t, i))
 
-main().catch((error) => emit(0, [`judge error: ${error.message}`]))
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+  grade().catch((error) => emit(0, [`judge error: ${error.message}`]))
+}
 
-async function main() {
+export async function grade(APP = '/app', baselineFile = '/opt/h25-verifier/baseline.sha') {
+  const SRC_FILE = join(APP, 'fixture', 'src', 'fork-state.mjs')
+  const SESSION_LIB = join(APP, 'fixture', 'node_modules', '@deepseek-ai', 'dsh-session', 'lib', 'index.js')
   const reasons = []
   if (!existsSync(SRC_FILE)) { emit(0, ['fixture fork-state module missing']); return }
 
-  // Git integrity: only fixture/src/** and fixture/package.json may change.
-  let status = ''
-  try {
-    status = execSync('git -C /app status --porcelain', { encoding: 'utf8' })
-  } catch (error) { emit(0, [`git baseline check failed to run: ${error.message}`]); return }
-  const lines = status.split('\n').filter((l) => l.trim() !== '')
-  const modified = lines.filter((l) => !l.startsWith('??')).map((l) => l.slice(3))
-  const allowed = (p) => p.startsWith('fixture/src/') || p === 'fixture/package.json'
-  const tampered = modified.filter((p) => !allowed(p))
-  let head = ''
-  try { head = execSync('git -C /app rev-parse HEAD', { encoding: 'utf8' }).trim() } catch { head = '' }
-  let baseline = ''
-  try { baseline = readFileSync(join(APP, 'baseline.sha'), 'utf8').trim() } catch { baseline = '' }
-  if (tampered.length > 0 || (baseline !== '' && head !== baseline)) {
-    const flat = []
-    if (tampered.length > 0) flat.push(`sealed files modified: ${tampered.join(' | ').slice(0, 200)}`)
-    if (baseline !== '' && head !== baseline) flat.push('git history rewritten (baseline commit moved)')
-    emit(0, flat)
-    return
+  let integrity
+  try { integrity = createIntegrityGuard(APP, baselineFile) }
+  catch (error) { emit(0, [error.message]); return }
+  function integrityHolds() {
+    try { integrity.check(); return true }
+    catch (error) { emit(0, [`integrity check failed: ${error.message}`]); return false }
   }
-  if (modified.length === 0) { emit(0, ['fixture untouched — no migration performed']); return }
+  if (!integrityHolds()) return
+  if (!integrity.changed) { emit(0, ['fixture untouched — no migration performed']); return }
+
+  const { Session } = await import(pathToFileURL(SESSION_LIB).href)
+  const sessionPrototype = Object.getOwnPropertyDescriptors(Session.prototype)
 
   let source = ''
   let packageJson = ''
   try {
     source = readFileSync(SRC_FILE, 'utf8')
-    packageJson = readFileSync(PACKAGE_FILE, 'utf8')
+    packageJson = integrity.packageJson
   } catch (error) { emit(0, [`fixture files unreadable: ${error.message}`]); return }
 
   // Import the agent's helper module.
@@ -89,9 +80,10 @@ async function main() {
     loadFailed = true
     reasons.push(`fixture module fails to load: ${String(error.message).slice(0, 160)}`)
   }
+  if (!integrityHolds()) return
 
   let behavioral = 0
-  const observations = { invalidRejected: false }
+  const observations = { invalidRejected: false, resumedBoundaryPreserved: false }
   const runtime = { metaShape: { isSeeded: undefined, hasSeedLengthKey: false, inheritedEventCount: undefined }, freshHeaderIsSeeded: false }
   if (helpers !== null) {
     try {
@@ -118,7 +110,7 @@ async function main() {
       }
       if (fresh !== null) {
         runtime.freshHeaderIsSeeded = fresh.header?.isSeeded === true
-        if (fresh.inheritedEventCount === 3 && fresh.ownEvents().length === 1) {
+        if (fresh instanceof Session && fresh.header?.isSeeded === true && fresh.inheritedEventCount === 3 && fresh.ownEvents().length === 1) {
           behavioral += 15
           reasons.push('+15 fresh fork reports inherited cut 3')
         } else {
@@ -134,9 +126,18 @@ async function main() {
         reasons.push(`resumeForkSession throws: ${String(error.message).slice(0, 120)}`)
       }
       if (resumed !== null) {
-        if (resumed.inheritedEventCount === 3 && resumed.ownEvents().length === 6) {
+        const probes = [resumed, ...[1, 5].map((cut) => helpers.resumeForkSession(`resumed-${cut}`, structuredClone(RESUMED_SEED), cut))]
+        observations.resumedBoundaryPreserved = probes.every((session, index) => {
+          const cut = [3, 1, 5][index]
+          return session instanceof Session && session.header?.isSeeded === true
+            && session.inheritedEventCount === cut
+            && isDeepStrictEqual(session.snapshotEvents().slice(0, RESUMED_SEED.length), RESUMED_SEED)
+            && session.ownEvents().length === RESUMED_SEED.length + 1 - cut
+            && isDeepStrictEqual(session.ownEvents(), session.snapshotEvents().slice(cut))
+        })
+        if (observations.resumedBoundaryPreserved) {
           behavioral += 20
-          reasons.push('+20 resumed fork retains the ORIGINAL cut 3 (log grew to 8)')
+          reasons.push('+20 resumed forks retain the ORIGINAL cuts 3/1/5 (log grew to 8)')
         } else {
           reasons.push(`+0 resumed fork cut wrong (inherited=${resumed.inheritedEventCount}, own=${resumed.ownEvents().length})`)
         }
@@ -150,7 +151,7 @@ async function main() {
         reasons.push(`buildSession throws: ${String(error.message).slice(0, 120)}`)
       }
       if (plain !== null) {
-        if (plain.inheritedEventCount === 0 && plain.ownEvents().length === 6) {
+        if (plain instanceof Session && plain.inheritedEventCount === 0 && plain.ownEvents().length === 6) {
           behavioral += 10
           reasons.push('+10 unforked session has inherited 0')
         } else {
@@ -216,6 +217,11 @@ async function main() {
       reasons.push(`behavioral checks failed: ${String(error.message).slice(0, 160)}`)
     }
   }
+  if (!integrityHolds()) return
+  if (!isDeepStrictEqual(Object.getOwnPropertyDescriptors(Session.prototype), sessionPrototype)) {
+    emit(0, ['runtime Session prototype changed during verification'])
+    return
+  }
 
   const { score, reasons: sourceReasons } = assembleScore({
     behavioral,
@@ -225,6 +231,7 @@ async function main() {
     observations,
     loadFailed,
   })
+  if (!integrityHolds()) return
   reasons.push(...sourceReasons)
   emit(score, reasons)
 }

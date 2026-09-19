@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "published-version-evidence",
+      "verdict": "pass",
+      "reason": "Report grounds the diagnosis in the fixture package.json declaration (^0.1.2-alpha.1) and the README 'type baseline' claim, correctly states alpha.1 was never published while alpha.2 was (using the brief-supplied registry fact), and proposes package-specific verification (npm ls @deepseek-ai/dsh-llm, lockfile/installed package.json inspection) without demanding an online npm query."
+    },
+    {
+      "id": "caret-resolution",
+      "verdict": "pass",
+      "reason": "Explains ^0.1.2-alpha.1 desugars to a range that the published 0.1.2-alpha.2 satisfies (same 0.1.2 tuple, alpha.2 > alpha.1), that the missing lower-bound release does not make the range unresolvable, and identifies the silent version drift/type-baseline mismatch and unconfirmed prerelease surface differences; grounded in the fixture files and correctly does not claim all alphas are missing."
+    },
+    {
+      "id": "workable-baseline-plan",
+      "verdict": "pass",
+      "reason": "Gives complete feasible plans with tradeoffs: Path A (accept and lock the published alpha.2, noting it cannot validate the nonexistent alpha.1) and Path B (exact pin to 0.1.2-alpha.2 as maintainer follow-up), plus downgrade and vendored-tarball alternatives; correctly notes Path C requires changing the range since 0.1.1-rc.x cannot satisfy the caret."
+    },
+    {
+      "id": "reproducibility-and-exit",
+      "verdict": "pass",
+      "reason": "Plans use one package manager (npm) with a committed lockfile as the pin, propose a typecheck against the installed target (tsc --noEmit over lib/types), define exit conditions to Path B/C, and honestly mark unverified items (registry state, alpha.2 type surface, plugin source compatibility, package manager) in a dedicated Unconfirmed section."
+    }
+  ],
+  "caps": [
+    {
+      "id": "install-unpublished-registry-version",
+      "triggered": false,
+      "reason": "The report never prescribes installing the unpublished alpha.1 from npm; its recommendations resolve to the published 0.1.2-alpha.2 (accept or exact pin), a documented range change to rc.x, or local vendored tarballs, with alpha.1 explicitly noted as never published."
+    }
+  ]
+}

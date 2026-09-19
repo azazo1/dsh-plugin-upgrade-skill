@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "combo-root-cause",
+      "verdict": "pass",
+      "reason": "Report grounds the diagnosis in fixture/browser-error.txt: top-level ESM import/export is a SyntaxError in a classic script, the whole 53-entry combo is one script so compilation of everything aborts before any registration (zero plugins, stock plugins vanish), and the named typert-registry entry is explained as a first-awaited-entry reporting artifact, not the culprit."
+    },
+    {
+      "id": "diagnosis-and-packaging",
+      "verdict": "partial",
+      "reason": "Bisection of insert rows, __ModuleLoader__.load({id, factory}) registration, require('react'/'react/jsx-runtime') inside the factory, and exporting inject+apply are all present and grounded. However the report never addresses validating the file by parsing it as a classic script (vm.Script) versus node --check — it substitutes a regex scan for top-level ESM tokens, which is a heuristic, not a parse-based classic-script validation."
+    },
+    {
+      "id": "cross-entry-slot-contract",
+      "verdict": "pass",
+      "reason": "Grounded in plugin-apply-error.txt and working-plugin-excerpt.txt: slot kind/scope live in the owning entry's declaration, registration into an undeclared slot fails, registration is deferred by wrapping ctx.slots.register inside ctx.slots.inject('settings.section', ...), and the registrant whitelist is name/id/order (label only where the contract takes one)."
+    },
+    {
+      "id": "restart-and-process-tree",
+      "verdict": "pass",
+      "reason": "Grounded in host-boot-log.txt and restart-notes.txt: combo assembled once per boot with no HMR/watch for external plugins, so every edit needs a full host restart; on Windows the orphaned node process keeps the port causing EADDRINUSE and must be killed with taskkill /PID <pid> /T /F."
+    },
+    {
+      "id": "host-author-prevention",
+      "verdict": "pass",
+      "reason": "Both sides covered: host-side startup scan of each contributed bundle naming the offending plugin plus improved error attribution, and an authoring-side external-plugin template/onboarding checklist (classic-script-safe packaging, loader factory shape, slot declaration discipline, no self-mounting, restart loop)."
+    }
+  ],
+  "caps": []
+}

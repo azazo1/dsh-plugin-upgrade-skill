@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict'
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { basename, join } from 'node:path'
 import test from 'node:test'
-import { check, checkRecords, evaluationConfig, TASKS } from './skill-evaluation.mjs'
+import { check, checkRecords, CONTROL_TASKS, evaluationConfig, prepare, SEMANTIC_TASKS, TASKS } from './skill-evaluation.mjs'
 import { compareEvidence, GROUPS } from './compare-skill-evaluation.mjs'
 
 test('comparison conditions change only supplied Skills, keeping tasks, model and attempts fixed', () => {
@@ -30,10 +30,33 @@ test('controls never invoke a model or inject Skills; invalid inputs fail before
     assert.equal(config.agents[0].name, condition)
     assert.equal(config.agents[0].model_name, undefined)
     assert.deepEqual(config.agents[0].skills, [])
+    assert.deepEqual(config.tasks.map(task => basename(task.path)), CONTROL_TASKS)
   }
   for (const options of [{ condition: 'unknown' }, { condition: 'all-skills' }, { condition: 'oracle', attempts: 3 }, { condition: 'oracle', attempts: 0 }]) {
     assert.throws(() => evaluationConfig({ output: '.artifacts/eval-test', ...options }))
   }
+})
+
+test('control manifests disclose semantic coverage and preserve the complete model suite', () => {
+  assert.deepEqual(SEMANTIC_TASKS, ['S1-static-scan', 'S5-negative-naming', 'S9-composer-coordinate-trap', 'S11-mermaid-lazyload-trap'])
+  assert.equal(CONTROL_TASKS.length, 3)
+  assert.deepEqual([...CONTROL_TASKS, ...SEMANTIC_TASKS].sort(), [...TASKS].sort())
+  const model = evaluationConfig({ condition: 'no-injected-skill', model: 'openai/test-model', output: '.artifacts/eval-test' })
+  assert.deepEqual(model.tasks.map(task => basename(task.path)), TASKS)
+  const directory = mkdtempSync(join(tmpdir(), 'skill-control-coverage-'))
+  try {
+    for (const condition of ['oracle', 'nop']) {
+      const { manifest, config } = prepare({ condition, output: join(directory, condition) })
+      assert.deepEqual(manifest.tasks, CONTROL_TASKS)
+      assert.deepEqual(manifest.sourceSuiteTasks, TASKS)
+      assert.deepEqual(manifest.semanticProtocolTasks, SEMANTIC_TASKS)
+      assert.deepEqual(config.tasks.map(task => basename(task.path)), manifest.tasks)
+      assert.equal(config.agents[0].model_name, undefined)
+    }
+  } finally { rmSync(directory, { recursive: true, force: true }) }
+  const workflow = readFileSync(new URL('../../.github/workflows/skill-evaluation.yml', import.meta.url), 'utf8')
+  assert.match(workflow, /Check all semantic report protocols without model requests[\s\S]*?run: npm run test:report-judge/)
+  assert.doesNotMatch(workflow, /REPORT_JUDGE_API_KEY/)
 })
 
 test('controls reject a broken reference answer and a judge accepting untouched fixtures', () => {

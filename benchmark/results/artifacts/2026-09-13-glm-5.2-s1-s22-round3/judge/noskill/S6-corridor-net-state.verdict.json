@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "corridor-net-state",
+      "verdict": "pass",
+      "reason": "Explains alpha.1 removal then alpha.2 restoration of ignorable retention (A1-02 -> A2-01), grounded in fixture README, and applies the restored alpha.2 semantics to produceExternalEvent with corrected code."
+    },
+    {
+      "id": "remove-marker-stripping",
+      "verdict": "pass",
+      "reason": "Quotes the exact delete (event as any).ignorable line in src/events.ts, rejects the comment's continued-stripping claim as backwards, recommends deleting the defense while treating the marker as type-level (distinguishing stripping from the marker itself), and notes the delete is a no-op on the shown literal."
+    },
+    {
+      "id": "informational-producer",
+      "verdict": "partial",
+      "reason": "Discusses producer semantics and names the event 'third-party/informational', but never states that only informational events old readers may omit can carry ignorable:true, that required events must not be made ignorable, or that marked events remain in the loaded log (retention is not a reader-side filter)."
+    },
+    {
+      "id": "public-append-gap",
+      "verdict": "partial",
+      "reason": "Identifies that public Session.append exposes no ignorable parameter and correctly prohibits faking via cast/mutation, but does not explicitly defer the producer/persistence integration pending target API verification; the append-gap claim is asserted rather than deferred."
+    }
+  ],
+  "caps": [
+    {
+      "id": "keep-stripping-marker",
+      "triggered": false,
+      "reason": "Final recommendation is to delete the defense entirely; the stripping rationale appears only as quoted, rejected material."
+    }
+  ]
+}

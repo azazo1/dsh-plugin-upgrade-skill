@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "combo-root-cause",
+      "verdict": "pass",
+      "reason": "Correctly grounds the diagnosis in fixture sources: combo is one classic script (host-boot-log), the user bundle's top-level `import` fails at parse time (position 1:1) so zero __ModuleLoader__.load calls run, and the named typert-registry entry is innocent misattribution with the real culprit in the detail path. No wrong attribution."
+    },
+    {
+      "id": "diagnosis-and-packaging",
+      "verdict": "partial",
+      "reason": "Bisect of the 3 insert rows, __ModuleLoader__.load({id, factory}) wrapper, require('react'/'react/jsx-runtime') inside the factory, and exporting inject+apply are all present and grounded. But validation is recommended via `node --check`/new Function-equivalent, while the rubric requires parsing as a classic script via vm.Script specifically rather than node --check; the parse-as-classic-script intent is there but the named tool contradicts the required approach."
+    },
+    {
+      "id": "cross-entry-slot-contract",
+      "verdict": "partial",
+      "reason": "Correctly explains owner-side declaration (declaredBy ledger), that registration into an undeclared slot fails due to undefined apply ordering, and gives the exact ctx.slots.inject(name, () => ctx.slots.register(...)) deferral wrapper. However it states the registrant whitelist is name/id/order/label, contradicting the rubric's name/id/order-only whitelist."
+    },
+    {
+      "id": "restart-and-process-tree",
+      "verdict": "pass",
+      "reason": "Grounded in host-boot-log and restart-notes: combo assembled once per boot with no HMR, so edits need a full host restart; Windows orphaned node process holds the port causing EADDRINUSE, fixed by taskkill /PID <pid> /T /F killing the whole tree."
+    },
+    {
+      "id": "host-author-prevention",
+      "verdict": "pass",
+      "reason": "Both sides covered: host startup scans/parses each contributed bundle, attributes the error to the offending plugin/file instead of the first awaited entry, plus optional packaging-verdict diagnostics; and a six-point authoring checklist covering classic-script-safe packaging, loader factory shape, and slot declaration discipline."
+    }
+  ],
+  "caps": []
+}

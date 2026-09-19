@@ -1,0 +1,50 @@
+{
+  "decisions": [
+    {
+      "id": "source-patch",
+      "verdict": "pass",
+      "reason": "Locates cordis.patch.yml:5-6, patch.yml:3-6 (SessionView.ts target), and apply-patch.mjs; explicitly distinguishes profile composition from the source-patch row and explains the private session-view renderSessionView coupling mapped to A1-03."
+    },
+    {
+      "id": "events",
+      "verdict": "pass",
+      "reason": "Locates producer (src/index.ts:15-19) with ignorable:true and observer (:20-22); applies corridor folding to net state A2-01 (retain marker, not A1-02 alone), explains the marker is producer retention semantics not a consumer filter, and notes public Session.append has no ignorable parameter."
+    },
+    {
+      "id": "host-services",
+      "verdict": "partial",
+      "reason": "Correctly locates both ctx.get('apiProxy') call sites and their removal, but maps them to client-plane ctx.remote.* recipes without distinguishing Host domain-service injection (inject llm / ctx.llm.listProviders) from Web Client Remote, effectively prescribing a Host-plane 'remote' service that does not exist per the A1-01 field note."
+    },
+    {
+      "id": "host-path",
+      "verdict": "pass",
+      "reason": "Locates join(homedir(),'.dsh','profiles','default') at src/index.ts:36-37 and prescribes runtime DSH_HOME/profile-derived resolution per A1-04; makes no false claim that --profile was new in alpha.1."
+    },
+    {
+      "id": "ui",
+      "verdict": "pass",
+      "reason": "Locates both the private @deepseek-ai/dsh-session-view/internal import (line 10) and registerCommand returning SessionView (41-43); explains verifying public owner/seam after the split (exact-tag compare, owning module, pending-confirmation, packed-artifact check)."
+    },
+    {
+      "id": "channel",
+      "verdict": "pass",
+      "reason": "Locates the loopback server on 127.0.0.1:43121 (47-53); explicitly states loopback is not an auth exemption, bypassing auth is a security hole, and prescribes requestRejection/Connection-gate or Connection-owned carrier, distinguishing host-managed gated channels from raw custom routes."
+    },
+    {
+      "id": "subprocess",
+      "verdict": "pass",
+      "reason": "Locates both dsh headless calls and stdout JSON.parse (apply-patch.mjs:12-18, index.ts:57-67); explains stdout was already final text in rc.2 and was never JSONL (pre-existing breakage, no invented alpha.2 stdout change), stderr carries reasoning/errors, success judged by exit code."
+    },
+    {
+      "id": "mapping",
+      "verdict": "pass",
+      "reason": "All mappings grounded in file/line couplings: apiProxy→A1-01, ignorable→A2-01 net state with A1-02 folded, patch/SessionView→A1-03, profile path→A1-04, loopback→A1-08, plus valid additional A1-05 for stdout parsing; not a bare card list."
+    },
+    {
+      "id": "limits",
+      "verdict": "pass",
+      "reason": "Reports all seven categories as hits, states the heuristic-scan limits ('zero hits only means not detected'), and lists must-verify steps: typecheck/build on alpha.2, real profile mount (isolated boot), and one functional path per seam; never requires executing the static fixture."
+    }
+  ],
+  "caps": []
+}

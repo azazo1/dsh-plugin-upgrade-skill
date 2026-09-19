@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "corridor-net-state",
+      "verdict": "pass",
+      "reason": "Report gives correct corridor history: alpha.1 temporarily removed ignorable (flagged as fixture-attested), alpha.2 restored retention semantics, and applies the final alpha.2 state to produceExternalEvent in fixture/src/events.ts with grounded evidence (fixture files plus specific alpha.2 build lines like types.d.ts:478 and persistence index.js:184). Card IDs are not the sole basis."
+    },
+    {
+      "id": "remove-marker-stripping",
+      "verdict": "pass",
+      "reason": "Locates `delete (event as any).ignorable`, explicitly rejects the comment's keep-it advice as wrong for alpha.2, recommends removing the defense and its obsolete comment, distinguishes removing the stripping code from removing the marker, and correctly notes the literal never defines ignorable so the delete is a no-op while still rejecting the stripping policy."
+    },
+    {
+      "id": "informational-producer",
+      "verdict": "partial",
+      "reason": "Correctly states ignorable:true is only for purely informational records whose loss cannot affect reconstruction, that required/unknown events fail closed and must not be made ignorable, and applies this to the third-party informational producer. However it never explicitly states that the marker is not a reader-side filtering instruction and that marked events remain in the loaded log after reload (only an opaque surface fold is mentioned)."
+    },
+    {
+      "id": "public-append-gap",
+      "verdict": "pass",
+      "reason": "Identifies from the installed build that public Session.append has no ignorable/whole-event parameter, says ordinary plugins must not fake an entry via cast (the marker is harness-owned), explicitly marks the exact producer/persistence integration channel as unconfirmed and deferred, and notes proposed checks are analyses without execution."
+    }
+  ],
+  "caps": [
+    {
+      "id": "keep-stripping-marker",
+      "triggered": false,
+      "reason": "Final recommendation is to DELETE the delete-defense and its comment; keeping or continuing marker stripping appears only as the quoted/rejected old comment, never as affirmative advice."
+    }
+  ]
+}

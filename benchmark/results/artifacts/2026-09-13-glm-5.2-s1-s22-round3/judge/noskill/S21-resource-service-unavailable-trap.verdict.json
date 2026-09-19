@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "resource-chain-attribution",
+      "verdict": "pass",
+      "reason": "Grounds attribution in symptom-log/contrast-probe: tab title correct so claim layer works, meta.status stuck at 'none' meaning metadata never arrives, failure localized to the api-workspace-files Remote / client-resources wiring (resource provider/metadata delivery chain, host row present), explicitly ruling out tab JS/render crash. Role-level naming matches the chain."
+    },
+    {
+      "id": "contrast-probe-localization",
+      "verdict": "pass",
+      "reason": "Uses contrast-probe.txt directly: file-trace reads the same file via its own host RPC/HTTP while the sidebar tab's workspace-files read never arrives, ruling out file, disk, permission, bundle 404, and scope/claim, and localizing to the workspace-files Remote delivery on the upgraded profile."
+    },
+    {
+      "id": "probe-validity",
+      "verdict": "partial",
+      "reason": "Correctly credits the 62/62 per-module sweep as the valid measurement and explicitly rejects the all-in-one join 404 as fabricated/not a request the loader makes, but never identifies the host 3 KB combo-URL cap (MAX_COMBO_URL_BYTES) or the real loader's within-cap partitioning — it offers a generic 'server/browser URL-length limits' explanation instead."
+    },
+    {
+      "id": "distractor-separation",
+      "verdict": "pass",
+      "reason": "Explicitly separates the dsh-paste-input fold-skip warnings as an unrelated paste-input marker-parsing bug, and splits the roster rename: textpreview→documentpreview canOpen session-only explains the absolute-scope claim dialog but not the empty session-scoped tab, which opens and titles correctly."
+    },
+    {
+      "id": "mitigation-and-upstream",
+      "verdict": "pass",
+      "reason": "Orders actions per discussion-excerpt: restart host first (alpha.1 self-heal precedent), then verified rollback to @deepseek-ai/dsh@0.1.3-alpha.2 as escape hatch, upstream forensics to #5999 round 2, explicitly refusing all plugin-side workarounds (no rewrite/retry/fallback). Upstream package names the 62/62 sweep with the invalid-join caveat, contrast reader, roster excerpt, and proposes boot-time roster/combo consistency plus injected-service-activation fail-loud checks."
+    }
+  ],
+  "caps": []
+}

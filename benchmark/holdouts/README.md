@@ -94,3 +94,17 @@ different freeze than this split's. It stays mixed and is not primary.
 
 Future §7.1 runs must reference this definition's commit instead of
 re-selecting tasks.
+
+## Execution preregistration
+
+- `temporal-holdout-execution-v1.json` — the preregistered execution
+  protocol for this split (frozen pins, 120-slot design, network/timeout/
+  replacement/artifact/analysis policies). Definition only: zero model calls
+  during preregistration; no results are contained in it.
+- `temporal-holdout-execution-v1.schedule.json` — the deterministic
+  120-slot schedule, regenerable byte-identically from the protocol and its
+  fixed seed.
+- `temporal-holdout-execution-v1.md` — human-readable audit of the protocol.
+- Validators/generators: `benchmark/scripts/validate-temporal-holdout-execution.mjs`,
+  `benchmark/scripts/generate-temporal-holdout-schedule.mjs`, and their
+  focused test suites.

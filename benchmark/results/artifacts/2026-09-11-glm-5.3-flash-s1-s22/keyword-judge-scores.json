@@ -1,0 +1,162 @@
+{
+  "S11-mermaid-lazyload-trap": {
+    "noskill": {
+      "score": 80,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "read agent report: S11-mermaid-lazyload-trap\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 100,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "read agent report: S11-mermaid-lazyload-trap\\report.md"
+      ]
+    }
+  },
+  "S13-peer-range-vs-runtime": {
+    "noskill": {
+      "score": 80,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "read agent report: S13-peer-range-vs-runtime\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 100,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "read agent report: S13-peer-range-vs-runtime\\report.md"
+      ]
+    }
+  },
+  "S14-link-install-lock-trap": {
+    "noskill": {
+      "score": 100,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "read agent report: S14-link-install-lock-trap\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 100,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "read agent report: S14-link-install-lock-trap\\report.md"
+      ]
+    }
+  },
+  "S16-self-host-upgrade-trap": {
+    "noskill": {
+      "score": 80,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "read agent report: S16-self-host-upgrade-trap\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 100,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "read agent report: S16-self-host-upgrade-trap\\report.md"
+      ]
+    }
+  },
+  "S17-external-ui-plugin-onboarding-trap": {
+    "noskill": {
+      "score": 20,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S17-external-ui-plugin-onboarding-trap\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 40,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S17-external-ui-plugin-onboarding-trap\\report.md"
+      ]
+    }
+  },
+  "S18-terminal-sprite-render-trap": {
+    "noskill": {
+      "score": 60,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S18-terminal-sprite-render-trap\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 20,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S18-terminal-sprite-render-trap\\report.md"
+      ]
+    }
+  },
+  "S19-phantom-update-stale-host": {
+    "noskill": {
+      "score": 0,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S19-phantom-update-stale-host\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 0,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S19-phantom-update-stale-host\\report.md"
+      ]
+    }
+  },
+  "S20-msvc-flock-trap": {
+    "noskill": {
+      "score": 95,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "root cause: fs-ext native build + missing MSVC toolchain (+20)"
+      ]
+    },
+    "skill": {
+      "score": 100,
+      "reasons": [
+        "warning: git status failed: fatal: not a git repository (or any of the parent directories): .git",
+        "root cause: fs-ext native build + missing MSVC toolchain (+20)"
+      ]
+    }
+  },
+  "S21-resource-service-unavailable-trap": {
+    "noskill": {
+      "score": 60,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S21-resource-service-unavailable-trap\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 60,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S21-resource-service-unavailable-trap\\report.md"
+      ]
+    }
+  },
+  "S22-duplicate-insert-boot-crash-trap": {
+    "noskill": {
+      "score": 60,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S22-duplicate-insert-boot-crash-trap\\report.md"
+      ]
+    },
+    "skill": {
+      "score": 60,
+      "reasons": [
+        "fixture unchanged (read-only discipline passed)",
+        "read agent report: S22-duplicate-insert-boot-crash-trap\\report.md"
+      ]
+    }
+  }
+}

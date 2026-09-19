@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "id": "task-annotation-v1-inventory",
+  "inventoryStatus": "pre-freeze-main56",
+  "inventoryStatusNote": "Not a formal frozen benchmark snapshot: the 56-task snapshot is produced by the research plan QC process later (benchmark/snapshots/). This inventory pins the 56-task target of the 2026-09-08 plan to the exact main commit below so the annotation packet resolves all evidence from immutable git objects.",
+  "inventoryCommit": "ecab245c6c1831c51b0240aca13573b94a6e525e",
+  "inventoryPlanReference": "docs/superpowers/plans/2026-09-08-paper-56-task-rerun.md (56-task target) + paper/GAP-ANALYSIS.zh.md T5",
+  "annotationStatus": "not-started",
+  "taskCount": 56,
+  "interactionModeDerivation": "machine-derived from the benchmark/README.md Type column at inventoryCommit (Static|Hands-on), never from ID prefixes",
+  "tasks": [
+    {
+      "id": "H1-plane-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "b0a040889bb8f2d21c08b53411c87c337bf67d42"
+    },
+    {
+      "id": "H10-browser-activation-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "9a0fd77a83d66cfb8fae6713e0e99c5d27a88f79"
+    },
+    {
+      "id": "H11-dual-cohort-rpc",
+      "interactionMode": "Hands-on",
+      "treeSha": "52f4aad2c8b121b3a1b3aa410b5ebc93e4e316fd"
+    },
+    {
+      "id": "H12-remote-result-boundary-trap",
+      "interactionMode": "Static",
+      "treeSha": "495a9f2163fb7df791030d1d02664e46347ef95e"
+    },
+    {
+      "id": "H13-ghost-host-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "a1c1d94c42671e42e146565fb8287ef25d7789f1"
+    },
+    {
+      "id": "H14-mineru-api",
+      "interactionMode": "Hands-on",
+      "treeSha": "76811d796125dce2c4c011bef6d3880d207693da"
+    },
+    {
+      "id": "H15-locale-pack",
+      "interactionMode": "Hands-on",
+      "treeSha": "0d673e648e1c87f9f2e2db6d0f3fcc25dfcf60b1"
+    },
+    {
+      "id": "H16-history-dock",
+      "interactionMode": "Hands-on",
+      "treeSha": "8b0c793190416ad985fd05efb2d7dc38e0e9dc9e"
+    },
+    {
+      "id": "H17-merge-calls",
+      "interactionMode": "Hands-on",
+      "treeSha": "87ebc8d796db7fdbb27dd8469ac70f58633f48da"
+    },
+    {
+      "id": "H18-blame-bubbles",
+      "interactionMode": "Hands-on",
+      "treeSha": "3e0b34a0b020d7df410b724d062854a0a33e99c4"
+    },
+    {
+      "id": "H19-workspace-ya",
+      "interactionMode": "Hands-on",
+      "treeSha": "de9b3902e2d0d6ac6f5fdeed5e425a980f6242c6"
+    },
+    {
+      "id": "H2-baseline-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "b22d21282a29984a3b4360afb58dcb98f638d191"
+    },
+    {
+      "id": "H20-session-events-ledger",
+      "interactionMode": "Hands-on",
+      "treeSha": "65341cab0fc5aed9ec23d008dcd532031cb0dc83"
+    },
+    {
+      "id": "H21-question-answerer-waterfall",
+      "interactionMode": "Hands-on",
+      "treeSha": "99a52b53c5f584a38a234a39f78b645b9124a326"
+    },
+    {
+      "id": "H22-dsh-data-agent-alpha2",
+      "interactionMode": "Hands-on",
+      "treeSha": "8991263370fa9c44b37893da572360a2bcd153b4"
+    },
+    {
+      "id": "H23-storage-domain-version-compat-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "86cfde69dfbe4a23b1034c6662e47b9751d7cee9"
+    },
+    {
+      "id": "H24-invalid-record-salvage-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "0171891dd3f0dee958ab41dc01ee937326ab4530"
+    },
+    {
+      "id": "H25-session-seed-boundary-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "0d1e30b9a1f20e741bbe83053f9088ba51587b7a"
+    },
+    {
+      "id": "H3-client-plane",
+      "interactionMode": "Hands-on",
+      "treeSha": "1f4b5604771feb123eff6dc4e8fd6d07eb1dabf9"
+    },
+    {
+      "id": "H4-tsbuildinfo-trap",
+      "interactionMode": "Static",
+      "treeSha": "a3fc23c1021e67f58ab8625051b60adbdc6bd2ad"
+    },
+    {
+      "id": "H5-runtime-export-drift",
+      "interactionMode": "Hands-on",
+      "treeSha": "2f5ca686732aefb9566e0204705421eaf35f02d6"
+    },
+    {
+      "id": "H6-remote-error-trap",
+      "interactionMode": "Static",
+      "treeSha": "2aff3959b7c1a0c3414add6aa80d73f382743575"
+    },
+    {
+      "id": "H7-locale-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "243cd03629fcf7aac6d89627bda9f702c0564ab4"
+    },
+    {
+      "id": "H8-fire-drill",
+      "interactionMode": "Hands-on",
+      "treeSha": "503f1c1629ddc740ce5980f851beeb1df59a85ca"
+    },
+    {
+      "id": "H9-dsh-web-alpha2",
+      "interactionMode": "Hands-on",
+      "treeSha": "7ceda4a514058bd525ebad93b7a89ee1e812564c"
+    },
+    {
+      "id": "M1-host-migration",
+      "interactionMode": "Hands-on",
+      "treeSha": "66ab9a3b2005d749fd77ea244cf33de162107d55"
+    },
+    {
+      "id": "M10-tools-tree",
+      "interactionMode": "Hands-on",
+      "treeSha": "6212c21d0d399758d9935fa7d6f80de36d6e66b2"
+    },
+    {
+      "id": "M11-sidebar-spur",
+      "interactionMode": "Hands-on",
+      "treeSha": "cba7633ba2cd98088bb7d47fbb15b0adc66276f2"
+    },
+    {
+      "id": "M12-interpreters-card",
+      "interactionMode": "Hands-on",
+      "treeSha": "433ef0b5e17daab340f3be9869b971771b7ed50d"
+    },
+    {
+      "id": "M13-repository-plugins-removal",
+      "interactionMode": "Hands-on",
+      "treeSha": "c3fc53974d3f9d9d93d2820504b01c8e630c6a83"
+    },
+    {
+      "id": "M14-service-renames-0812",
+      "interactionMode": "Hands-on",
+      "treeSha": "14f2b756b778e9c6cf50d7530ebc08db642bf3b3"
+    },
+    {
+      "id": "M2-optional-dep-trap",
+      "interactionMode": "Hands-on",
+      "treeSha": "053442d67a494d1ee0f9e95855c845993d183084"
+    },
+    {
+      "id": "M3-session-projection",
+      "interactionMode": "Hands-on",
+      "treeSha": "0078b43cf7576ec86ae1cb85f5c0c27ee36ae77a"
+    },
+    {
+      "id": "M4-peer-prerelease-range",
+      "interactionMode": "Hands-on",
+      "treeSha": "dec596f0b50fdb0b2ceb23c819cc4e8a46bd1d42"
+    },
+    {
+      "id": "M5-token-auth-smoke",
+      "interactionMode": "Hands-on",
+      "treeSha": "0761d73ed6467023a4bfff1393be9f4928da3464"
+    },
+    {
+      "id": "M6-sleep-tool",
+      "interactionMode": "Hands-on",
+      "treeSha": "3b4994689c06a9c1b03c51fb7e9ef108d3a5bccb"
+    },
+    {
+      "id": "M7-d399-overlay",
+      "interactionMode": "Hands-on",
+      "treeSha": "96df382dd0e68e2ec242a2daf1184d4a590e5855"
+    },
+    {
+      "id": "M8-brand-text",
+      "interactionMode": "Hands-on",
+      "treeSha": "c9d9399754dc0b6e1965cec9e1a56c17236f43b9"
+    },
+    {
+      "id": "M9-mcpanel",
+      "interactionMode": "Hands-on",
+      "treeSha": "3ed98e0502de3a9e8361c4292b2a33cad66365f5"
+    },
+    {
+      "id": "S1-static-scan",
+      "interactionMode": "Static",
+      "treeSha": "1aa14e6da116f0e1e3cd652138bc81ca692101f2"
+    },
+    {
+      "id": "S10-paste-rename-and-version-chip",
+      "interactionMode": "Static",
+      "treeSha": "e6f50d60bbf1e333d1c5e8484278dc8b339c0c26"
+    },
+    {
+      "id": "S11-mermaid-lazyload-trap",
+      "interactionMode": "Static",
+      "treeSha": "be7d5beabe2a65b23f95527d7d19ac9550fbb9ec"
+    },
+    {
+      "id": "S12-global-upgrade-ebusy-trap",
+      "interactionMode": "Static",
+      "treeSha": "f6779593b11fd3c8a64e239b4a8fbfa96d06e1f3"
+    },
+    {
+      "id": "S13-peer-range-vs-runtime",
+      "interactionMode": "Static",
+      "treeSha": "4c6ee3c813614b0d46910c86355f264f1164b2e1"
+    },
+    {
+      "id": "S14-link-install-lock-trap",
+      "interactionMode": "Static",
+      "treeSha": "a5cb1880fbb8ca44f6aaa14cc266172cc496668a"
+    },
+    {
+      "id": "S15-slot-error-boundary-crash",
+      "interactionMode": "Static",
+      "treeSha": "392bed479497f9d0977db42c0a2b9970540db9c9"
+    },
+    {
+      "id": "S16-self-host-upgrade-trap",
+      "interactionMode": "Static",
+      "treeSha": "d9202f10cdb8e9e8d5b7603640b5becd3aacf530"
+    },
+    {
+      "id": "S17-external-ui-plugin-onboarding-trap",
+      "interactionMode": "Static",
+      "treeSha": "b2b5f9f5b5b13e8e3b80f9718dee922f6677e6c6"
+    },
+    {
+      "id": "S2-negative-scan",
+      "interactionMode": "Static",
+      "treeSha": "bd1fd297b24fe9d698bdc8162cf45cc118899043"
+    },
+    {
+      "id": "S3-snapshot-migration",
+      "interactionMode": "Static",
+      "treeSha": "1303bc9587b685a8bae22ce5303680a655dc7f20"
+    },
+    {
+      "id": "S4-legacy-client-imports",
+      "interactionMode": "Static",
+      "treeSha": "a2903a1590a056f5eb68bcf3c6c0a44208b939ee"
+    },
+    {
+      "id": "S5-negative-naming",
+      "interactionMode": "Static",
+      "treeSha": "8358a940ac84a47758b0fa8da967ccb0bb670626"
+    },
+    {
+      "id": "S6-corridor-net-state",
+      "interactionMode": "Static",
+      "treeSha": "878952f64c816d5f550bd4dc95bb319524b945b5"
+    },
+    {
+      "id": "S7-unpublished-cohort",
+      "interactionMode": "Static",
+      "treeSha": "587968b478b26e84bb4215ef41647e51f0509961"
+    },
+    {
+      "id": "S8-release-routing-trap",
+      "interactionMode": "Static",
+      "treeSha": "43fc1fcaa8bb6b9c2d8f5c81561758ef806b7f9d"
+    },
+    {
+      "id": "S9-composer-coordinate-trap",
+      "interactionMode": "Static",
+      "treeSha": "2cadc743baf6da9ed58cd1f3bceb8abb7c6d8796"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "S13": {
+    "noskill": 100,
+    "skill": 80,
+    "method": "official-keyword-judge"
+  },
+  "S14": {
+    "noskill": 100,
+    "skill": 80,
+    "method": "official-keyword-judge"
+  },
+  "S20": {
+    "noskill": 80,
+    "skill": 100,
+    "method": "official-keyword-judge"
+  }
+}

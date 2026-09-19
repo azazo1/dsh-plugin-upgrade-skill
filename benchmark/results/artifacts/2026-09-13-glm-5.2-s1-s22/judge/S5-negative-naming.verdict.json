@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "official-short-name",
+      "verdict": "pass",
+      "reason": "Grounds in dsh-plugin.naming.json, distinguishes declared short name 'greet' from coordinate 'acme/greet' and packageName 'dsh-greet', concludes greet is naming-valid with no compatibility error, and states a prefix is only a collision recommendation, not a required repair."
+    },
+    {
+      "id": "service-collision-advice",
+      "verdict": "pass",
+      "reason": "Locates the unprefixed service 'search' in the fixture, explains generic-name collision risk against other plugins/host services, classifies it as a warning/collision recommendation rather than an error, and runs no strict-mode command (nor cites a nonzero exit as evidence)."
+    },
+    {
+      "id": "shared-event-context",
+      "verdict": "pass",
+      "reason": "Locates event 'web-search/ready', describes it as a shared/cross-plugin channel whose appropriateness depends on ownership/registry context, and marks it informational rather than a conflict from name matching alone; no unsupported global-uniqueness claim."
+    },
+    {
+      "id": "coverage-and-registry-limits",
+      "verdict": "pass",
+      "reason": "Covers every remaining declared surface (loaderId, tool, command, skill, skillProvider, settings namespace, route) with reasoned verdicts, explicitly distinguishes local compatibility from unqueried registry occupancy (all marked unknown/not checked), proposes a live registry query before publishing without claiming it ran, does not treat private:true as a compatibility error, and explicitly rejects reserved/globally-available claims."
+    }
+  ],
+  "caps": [
+    {
+      "id": "unsupported-all-clear",
+      "triggered": false,
+      "reason": "The report's affirmative conclusions are limited to local naming compatibility and are paired with explicit 'unknown / not checked' registry status and an explicit refusal to claim reserved or globally available names; no blanket all-clear or publication clearance is asserted."
+    }
+  ]
+}

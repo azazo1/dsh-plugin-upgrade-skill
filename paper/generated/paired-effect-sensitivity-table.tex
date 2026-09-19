@@ -1,0 +1,18 @@
+% AUTO-GENERATED. DO NOT EDIT.
+% Source: benchmark/results/paired-effect-stats.json
+% Regenerate with: npm run generate:paper-paired
+
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.09\textwidth}>{\raggedright\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.11\textwidth}}
+\toprule
+Model ($n$ tasks) & Tasks & no-skill $\rightarrow$ with-skill & Mean paired $\Delta$ & 95\% CI & Signed-rank $p$ & Protocol \\
+\midrule
+  gpt-5.6-luna ($n = 18$) & 18-task subset & 69.00 $\rightarrow$ 84.17 & +15.17 & [+3.78, +29.61] & 0.0346 & single-shot \\
+\bottomrule
+\end{tabular}
+\caption{Sensitivity analysis, excluded from the main table. gpt-5.6-luna: no-skill arm is not a literal zero-skill run: the H2/H3 trajectories read the Codex-native plugin-creator skill; the decontaminated 16-task no-skill subset (10.42/16 = 0.6513) is diagnostic only.}
+\label{tab:paired-effect-sensitivity}
+\end{table*}

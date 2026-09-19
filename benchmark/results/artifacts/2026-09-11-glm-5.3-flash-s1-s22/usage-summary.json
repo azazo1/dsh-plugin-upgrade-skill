@@ -1,0 +1,436 @@
+{
+  "judge:S4-legacy-client-imports": {
+    "in": 34322,
+    "out": 1402,
+    "cache": 68544,
+    "total": 104268,
+    "ms": 32907
+  },
+  "skill:S1-static-scan": {
+    "in": 57972,
+    "out": 13787,
+    "cache": 467968,
+    "total": 539727,
+    "ms": 221998
+  },
+  "skill:S21-resource-service-unavailable-trap": {
+    "in": 26233,
+    "out": 5140,
+    "cache": 184704,
+    "total": 216077,
+    "ms": 104991
+  },
+  "noskill:S21-resource-service-unavailable-trap": {
+    "in": 12797,
+    "out": 3994,
+    "cache": 95296,
+    "total": 112087,
+    "ms": 87921
+  },
+  "judge:S8-release-routing-trap": {
+    "in": 12762,
+    "out": 1621,
+    "cache": 54336,
+    "total": 68719,
+    "ms": 33378
+  },
+  "skill:S15-slot-error-boundary-crash": {
+    "in": 27592,
+    "out": 6354,
+    "cache": 220672,
+    "total": 254618,
+    "ms": 122137
+  },
+  "skill:S8-release-routing-trap": {
+    "in": 22902,
+    "out": 4836,
+    "cache": 180928,
+    "total": 208666,
+    "ms": 89094
+  },
+  "noskill:S17-external-ui-plugin-onboarding-trap": {
+    "in": 44113,
+    "out": 5623,
+    "cache": 296832,
+    "total": 346568,
+    "ms": 148958
+  },
+  "noskill:S8-release-routing-trap": {
+    "in": 9422,
+    "out": 2576,
+    "cache": 108928,
+    "total": 120926,
+    "ms": 54313
+  },
+  "noskill:S20-msvc-flock-trap": {
+    "in": 11022,
+    "out": 2825,
+    "cache": 133056,
+    "total": 146903,
+    "ms": 58355
+  },
+  "judge:S3-snapshot-migration": {
+    "in": 18974,
+    "out": 1598,
+    "cache": 109952,
+    "total": 130524,
+    "ms": 68315
+  },
+  "skill:S5-negative-naming": {
+    "in": 24326,
+    "out": 4959,
+    "cache": 129600,
+    "total": 158885,
+    "ms": 86673
+  },
+  "noskill:S9-composer-coordinate-trap": {
+    "in": 22585,
+    "out": 11037,
+    "cache": 177792,
+    "total": 211414,
+    "ms": 188243
+  },
+  "skill:S20-msvc-flock-trap": {
+    "in": 24130,
+    "out": 2552,
+    "cache": 203008,
+    "total": 229690,
+    "ms": 51279
+  },
+  "noskill:S10-paste-rename-and-version-chip": {
+    "in": 17055,
+    "out": 5344,
+    "cache": 150016,
+    "total": 172415,
+    "ms": 90038
+  },
+  "noskill:S14-link-install-lock-trap": {
+    "in": 11186,
+    "out": 3275,
+    "cache": 132288,
+    "total": 146749,
+    "ms": 74543
+  },
+  "noskill:S1-static-scan": {
+    "in": 73582,
+    "out": 5672,
+    "cache": 419328,
+    "total": 498582,
+    "ms": 132141
+  },
+  "judge:S16-self-host-upgrade-trap": {
+    "in": 26225,
+    "out": 606,
+    "cache": 19968,
+    "total": 46799,
+    "ms": 39106
+  },
+  "judge:S11-mermaid-lazyload-trap": {
+    "in": 45612,
+    "out": 18602,
+    "cache": 516928,
+    "total": 581142,
+    "ms": 371808
+  },
+  "noskill:S19-phantom-update-stale-host": {
+    "in": 16881,
+    "out": 6482,
+    "cache": 170176,
+    "total": 193539,
+    "ms": 103987
+  },
+  "skill:S22-duplicate-insert-boot-crash-trap": {
+    "in": 27601,
+    "out": 9148,
+    "cache": 319744,
+    "total": 356493,
+    "ms": 166186
+  },
+  "skill:S17-external-ui-plugin-onboarding-trap": {
+    "in": 25087,
+    "out": 4075,
+    "cache": 129920,
+    "total": 159082,
+    "ms": 90346
+  },
+  "noskill:S5-negative-naming": {
+    "in": 10231,
+    "out": 2571,
+    "cache": 110976,
+    "total": 123778,
+    "ms": 55198
+  },
+  "skill:S4-legacy-client-imports": {
+    "in": 50609,
+    "out": 7486,
+    "cache": 423616,
+    "total": 481711,
+    "ms": 126405
+  },
+  "noskill:S4-legacy-client-imports": {
+    "in": 9233,
+    "out": 2166,
+    "cache": 109248,
+    "total": 120647,
+    "ms": 46173
+  },
+  "skill:S12-global-upgrade-ebusy-trap": {
+    "in": 22421,
+    "out": 2351,
+    "cache": 97856,
+    "total": 122628,
+    "ms": 44200
+  },
+  "judge:S9-composer-coordinate-trap": {
+    "in": 17065,
+    "out": 1130,
+    "cache": 59264,
+    "total": 77459,
+    "ms": 24558
+  },
+  "skill:S2-negative-scan": {
+    "in": 37946,
+    "out": 4148,
+    "cache": 331520,
+    "total": 373614,
+    "ms": 89850
+  },
+  "noskill:S11-mermaid-lazyload-trap": {
+    "in": 11922,
+    "out": 4077,
+    "cache": 112768,
+    "total": 128767,
+    "ms": 109557
+  },
+  "judge:S15-slot-error-boundary-crash": {
+    "in": 14695,
+    "out": 951,
+    "cache": 57024,
+    "total": 72670,
+    "ms": 21025
+  },
+  "judge:S19-phantom-update-stale-host": {
+    "in": 69916,
+    "out": 26730,
+    "cache": 555392,
+    "total": 652038,
+    "ms": 503512
+  },
+  "skill:S19-phantom-update-stale-host": {
+    "in": 24935,
+    "out": 4508,
+    "cache": 158976,
+    "total": 188419,
+    "ms": 92637
+  },
+  "skill:S3-snapshot-migration": {
+    "in": 57389,
+    "out": 13133,
+    "cache": 683200,
+    "total": 753722,
+    "ms": 226888
+  },
+  "skill:S6-corridor-net-state": {
+    "in": 35314,
+    "out": 4524,
+    "cache": 213696,
+    "total": 253534,
+    "ms": 78863
+  },
+  "judge:S6-corridor-net-state": {
+    "in": 12886,
+    "out": 1163,
+    "cache": 54848,
+    "total": 68897,
+    "ms": 28166
+  },
+  "skill:S13-peer-range-vs-runtime": {
+    "in": 27934,
+    "out": 3878,
+    "cache": 222464,
+    "total": 254276,
+    "ms": 82296
+  },
+  "noskill:S3-snapshot-migration": {
+    "in": 187132,
+    "out": 25840,
+    "cache": 2386304,
+    "total": 2599276,
+    "ms": 358796
+  },
+  "judge:S22-duplicate-insert-boot-crash-trap": {
+    "in": 28251,
+    "out": 809,
+    "cache": 37696,
+    "total": 66756,
+    "ms": 38282
+  },
+  "skill:S18-terminal-sprite-render-trap": {
+    "in": 25099,
+    "out": 6505,
+    "cache": 160384,
+    "total": 191988,
+    "ms": 128131
+  },
+  "skill:S9-composer-coordinate-trap": {
+    "in": 25584,
+    "out": 5659,
+    "cache": 164992,
+    "total": 196235,
+    "ms": 130372
+  },
+  "judge:S17-external-ui-plugin-onboarding-trap": {
+    "in": 0,
+    "out": 0,
+    "cache": 0,
+    "total": 0,
+    "ms": 18360
+  },
+  "noskill:S6-corridor-net-state": {
+    "in": 9661,
+    "out": 2255,
+    "cache": 110144,
+    "total": 122060,
+    "ms": 52592
+  },
+  "noskill:S12-global-upgrade-ebusy-trap": {
+    "in": 9402,
+    "out": 2145,
+    "cache": 69184,
+    "total": 80731,
+    "ms": 47978
+  },
+  "noskill:S22-duplicate-insert-boot-crash-trap": {
+    "in": 10725,
+    "out": 3251,
+    "cache": 113856,
+    "total": 127832,
+    "ms": 60246
+  },
+  "judge:S7-unpublished-cohort": {
+    "in": 13973,
+    "out": 1284,
+    "cache": 81920,
+    "total": 97177,
+    "ms": 28100
+  },
+  "noskill:S18-terminal-sprite-render-trap": {
+    "in": 10706,
+    "out": 2785,
+    "cache": 111552,
+    "total": 125043,
+    "ms": 64814
+  },
+  "noskill:S15-slot-error-boundary-crash": {
+    "in": 16530,
+    "out": 8402,
+    "cache": 168640,
+    "total": 193572,
+    "ms": 164021
+  },
+  "judge:S2-negative-scan": {
+    "in": 26274,
+    "out": 900,
+    "cache": 69184,
+    "total": 96358,
+    "ms": 22957
+  },
+  "noskill:S7-unpublished-cohort": {
+    "in": 12837,
+    "out": 6381,
+    "cache": 133568,
+    "total": 152786,
+    "ms": 116289
+  },
+  "skill:S16-self-host-upgrade-trap": {
+    "in": 21789,
+    "out": 3289,
+    "cache": 99712,
+    "total": 124790,
+    "ms": 70137
+  },
+  "judge:S21-resource-service-unavailable-trap": {
+    "in": 61017,
+    "out": 24504,
+    "cache": 403392,
+    "total": 488913,
+    "ms": 509937
+  },
+  "judge:S12-global-upgrade-ebusy-trap": {
+    "in": 12319,
+    "out": 913,
+    "cache": 54656,
+    "total": 67888,
+    "ms": 24049
+  },
+  "judge:S5-negative-naming": {
+    "in": 12170,
+    "out": 1353,
+    "cache": 54016,
+    "total": 67539,
+    "ms": 31928
+  },
+  "skill:S7-unpublished-cohort": {
+    "in": 34681,
+    "out": 4802,
+    "cache": 178240,
+    "total": 217723,
+    "ms": 97043
+  },
+  "noskill:S16-self-host-upgrade-trap": {
+    "in": 10482,
+    "out": 2753,
+    "cache": 111168,
+    "total": 124403,
+    "ms": 62513
+  },
+  "skill:S10-paste-rename-and-version-chip": {
+    "in": 24278,
+    "out": 5286,
+    "cache": 156096,
+    "total": 185660,
+    "ms": 122973
+  },
+  "skill:S14-link-install-lock-trap": {
+    "in": 27115,
+    "out": 8531,
+    "cache": 162944,
+    "total": 198590,
+    "ms": 152432
+  },
+  "noskill:S2-negative-scan": {
+    "in": 71919,
+    "out": 4617,
+    "cache": 556608,
+    "total": 633144,
+    "ms": 107603
+  },
+  "judge:S10-paste-rename-and-version-chip": {
+    "in": 24051,
+    "out": 1405,
+    "cache": 131008,
+    "total": 156464,
+    "ms": 31473
+  },
+  "judge:S1-static-scan": {
+    "in": 70746,
+    "out": 2017,
+    "cache": 69184,
+    "total": 141947,
+    "ms": 42484
+  },
+  "noskill:S13-peer-range-vs-runtime": {
+    "in": 10459,
+    "out": 2435,
+    "cache": 112448,
+    "total": 125342,
+    "ms": 61930
+  },
+  "skill:S11-mermaid-lazyload-trap": {
+    "in": 27164,
+    "out": 7775,
+    "cache": 127744,
+    "total": 162683,
+    "ms": 150998
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "published-version-evidence",
+      "verdict": "pass",
+      "reason": "Report grounds the diagnosis in fixture package.json (^0.1.2-alpha.1) and README claim, states alpha.1 was never published while alpha.2 is in the published list (sourced from the brief, honestly marked unconfirmed offline), and proposes package-specific verification (lockfile resolution showing only dsh-llm@0.1.2-alpha.2); no online npm check required and no inference of cohort members from the root package."
+    },
+    {
+      "id": "caret-resolution",
+      "verdict": "pass",
+      "reason": "Explains ^0.1.2-alpha.1 desugars to >=0.1.2-alpha.1 <0.1.3, applies prerelease tuple-matching and identifier ordering to show alpha.2 satisfies the range and rc.x does not, so install does not fail; identifies the silent declaration/baseline mismatch, README misleadingness, prerelease compatibility uncertainty and future-shift risk; never claims all alphas are missing or that the caret guarantees alpha.1, and grounds everything in the fixture declaration."
+    },
+    {
+      "id": "workable-baseline-plan",
+      "verdict": "pass",
+      "reason": "Multiple coherent plans with tradeoffs: Path A accepts drift, records/locks resolution at alpha.2 with an exact-pin recommendation and explicitly acknowledges it does not validate alpha.1; Path B corrects the declaration; Path C obtains the alpha.1 surface from a verified upstream source ref (tag/SHA) as a non-registry track. Path A alone is a complete feasible plan satisfying the requirement."
+    },
+    {
+      "id": "reproducibility-and-exit",
+      "verdict": "pass",
+      "reason": "Plan is reproducible with one manager (npm), a committed lockfile (--package-lock-only, preventing future 0.1.2 final from shifting the baseline), a proposed typecheck against the resolved target, exit/rollback paths for overrides (remove override line, revert one-line edit), and honest unverified markers for registry contents, lockfile contents, alpha.1 tag existence, and card applicability; does not require both npm and pnpm or executing installs."
+    }
+  ],
+  "caps": [
+    {
+      "id": "install-unpublished-registry-version",
+      "triggered": false,
+      "reason": "The report never affirmatively prescribes installing the unpublished alpha.1 from npm; it states the alpha.1 surface is unreachable from npm, resolves to published alpha.2, and reaches alpha.1 only via a git/source ref explicitly marked unconfirmed — no affirmative npm-install-alpha.1 advice."
+    }
+  ]
+}

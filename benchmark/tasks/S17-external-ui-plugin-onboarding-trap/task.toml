@@ -1,9 +1,10 @@
 schema_version = "1.4"
+artifacts = [{ source = "/app/fixture" }, { source = "/app/agent-output" }]
 # Harbor task config: onboarding a hand-written external web UI plugin onto a
 # running web profile (task S17, static, read-only)
 [task]
 name = "dsh-plugin-upgrade/s17-external-ui-plugin-onboarding-trap"
-version = "1.1.0"
+version = "4.1.0"
 description = "A hand-written external web UI plugin is inserted into a running web profile: the first boot kills EVERY plugin's registration with a misleading error naming an innocent first-awaited entry, the repackaged plugin then fails on a cross-entry slot declaration, and every edit requires a full host restart — diagnose all three layers from the evidence pack and write the onboarding protocol"
 keywords = ["dsh", "web-plugin", "client-bundle", "slots", "onboarding", "harbor"]
 
@@ -17,7 +18,14 @@ execution_contract = "BENCHMARK-AUTH-v1"
 timeout_sec = 300.0
 
 [verifier]
-timeout_sec = 120.0
+timeout_sec = 240.0
+environment_mode = "separate"
+network_mode = "public"
+
+[verifier.env]
+REPORT_JUDGE_BASE_URL = "${REPORT_JUDGE_BASE_URL}"
+REPORT_JUDGE_MODEL = "${REPORT_JUDGE_MODEL}"
+REPORT_JUDGE_API_KEY = "${REPORT_JUDGE_API_KEY}"
 
 [environment]
 network_mode = "public"

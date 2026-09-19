@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "projection-contract",
+      "verdict": "pass",
+      "reason": "Report explicitly distinguishes clipboardText projection (chip expands to clipboardText, Occurrence offsets) from detectText (chip = one U+FFFC) used by insertReference/consumeToken splices, citing both fixture files with a table and noting plain text/spaces contribute normal width."
+    },
+    {
+      "id": "repeat-paste-failure",
+      "verdict": "pass",
+      "reason": "Locates start/end = snapshot.draft.length in plugin-client.js add, explains paste #1 coincidence on empty composer (0==0) and paste #2 overflow of the 2-char detect text causing insertReference false and the changed-composer toast; explicitly rules out stale draftRev and treats the toast as misleading, not a concurrent edit; no invented inconsistent counts."
+    },
+    {
+      "id": "removal-and-bookkeeping",
+      "verdict": "pass",
+      "reason": "Traces remove passing unconverted occurrence.offset/length to consumeToken, ignoring the false return, deleting records anyway; ties both 'unavailable' dock rendering and surviving composer chip to the same coordinate mismatch rather than an upload failure, quoting the capture line."
+    },
+    {
+      "id": "conversion-and-success-gate",
+      "verdict": "pass",
+      "reason": "Derives detect(O) = O - Σ(length-1) for preceding occurrences, applies it at both call sites with concrete code; insertion uses all occurrences for end-of-draft, removal maps offset then uses a 1-char span; keeps draftRev guard from same snapshot; gates records.delete on successful consumeToken return."
+    },
+    {
+      "id": "regression-sequences",
+      "verdict": "pass",
+      "reason": "Proposes two successive pastes with both chips present, then removing a chip that has a preceding chip, asserting occurrence/dock chip/record removed together while the other chip survives; adds empty-again, CAS, phase-guard, and mid-document variants."
+    }
+  ],
+  "caps": []
+}

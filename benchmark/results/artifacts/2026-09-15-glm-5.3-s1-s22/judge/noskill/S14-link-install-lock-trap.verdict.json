@@ -1,0 +1,41 @@
+{
+  "decisions": [
+    {
+      "id": "junction-deployment",
+      "verdict": "pass",
+      "reason": "Cites profile-introspection.txt LinkType Junction/Target and the cordis.patch.yml link marker; states repo tree IS the installed copy, copying was never the right move, and contrasts with copied installs."
+    },
+    {
+      "id": "host-lock-and-client-cache",
+      "verdict": "pass",
+      "reason": "Grounds both locks in copy-session.txt and the running dsh host; browser tab closure releases nothing; separately explains stale client.js via browser HTTP cache needing hard refresh; no over-generalization beyond this host's serving behavior."
+    },
+    {
+      "id": "rename-recovery",
+      "verdict": "pass",
+      "reason": "Explains junction made both paths the same physical files so the rename destroyed the source and the copy failed; recovery renames .old2 back to original names preserving contents, node --check both, then activate; stopping host as precaution only."
+    },
+    {
+      "id": "ordered-activation",
+      "verdict": "pass",
+      "reason": "Gives correct dependency order: fully stop host, node --check, restart host, cache-bypassing hard refresh, then verify via Network/feature/route; states browser restart alone is insufficient and syntax check is not activation."
+    },
+    {
+      "id": "install-mode-preflight",
+      "verdict": "pass",
+      "reason": "Pre-flight Get-Item LinkType/Target plus cordis.patch.yml link marker, branches linked vs copied procedures, and explains why generic copy-into-node_modules advice aliases the repo and is harmful."
+    }
+  ],
+  "caps": [
+    {
+      "id": "copy-through-junction",
+      "triggered": false,
+      "reason": "Final plan contains no copying onto the junction, no deletion of .old2 survivors (they are renamed back in place), and treats both paths as one directory; copying is only described as the rejected bad approach."
+    },
+    {
+      "id": "browser-only-activation",
+      "triggered": false,
+      "reason": "Final activation plan requires full host stop and restart; browser refresh is explicitly insufficient and browser closure is described as releasing nothing."
+    }
+  ]
+}

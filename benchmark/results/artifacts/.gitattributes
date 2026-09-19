@@ -1,0 +1,5 @@
+# These submitted reports are verbatim evidence. Preserve their whitespace so
+# their bytes still match the hashes recorded by the evaluator.
+2026-09-10-luna-s1-s10-s12-s15/*.md -whitespace
+2026-09-10-luna-seven-semantic-no-skill/S*/*.md -whitespace
+2026-09-11-luna-s5-s9-semantic-no-skill/S*/*.md.txt -whitespace

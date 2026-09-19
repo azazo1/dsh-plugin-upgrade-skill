@@ -1,186 +1,261 @@
-# S1–S4 semantic report-judge pilot
+# Semantic report judging: default for H4, H6, H12 and S1–S22
 
-This opt-in pilot grades the same S1, S2, S3 and S4 prompts and fixtures using a
-text-only LLM judge with deterministic evidence checks. It generates separate
-Harbor tasks; the registered tasks and historical keyword scores stay intact.
-The first live Oracle/Luna validation is recorded in the
-[2026-09-06 comparison report](../results/validation-report-2026-09-06-s1-s4-oracle-luna-llm-judge.md).
-The subsequent [Oracle-only R2 calibration](../results/validation-report-2026-09-06-s1-s4-oracle-regrade-r2.md)
-corrects S1/S3 reference reports and clarifies S2/S4 rubrics; Luna was neither rerun
-nor regraded. The repository keeps result reports; raw evidence for both rounds
-is retained locally and is not included or packaged in this PR.
-Generated tasks have version `2.0.0` and protocol `report-judge-v1`. Do not combine
-their scores with historical scores. Regrade both skill conditions with the same
-packet, rubric, judge implementation and model configuration.
+The registered `benchmark/tasks/` entries for these twenty-five tasks now use
+**LLM-as-judge by default**, using protocol `report-judge-v2`. The ten incident tasks described in
+[diagnosis-rubrics.md](diagnosis-rubrics.md) are at task version `4.1.0`; the other
+fifteen remain at `4.0.0`.
+No generated pilot directory or extra enable flag is needed. This document keeps
+its original filename so existing links remain valid.
 
-## Scoring
+The original [S1–S4 pilot comparison](../results/validation-report-2026-09-06-s1-s4-oracle-luna-llm-judge.md),
+[R2 calibration](../results/validation-report-2026-09-06-s1-s4-oracle-regrade-r2.md)
+and [2026-09-10 regex-scored Luna run](../results/validation-report-2026-09-10-codex-gpt-5.6-luna-s1-s10-s12-s15-no-skill.md)
+are historical results under their own frozen graders. Do not combine those scores
+with version-3 results, or compare skill conditions using different packets or
+judge models.
 
-The judge receives the original instruction, exact fixture text, task-specific
-criteria, frozen repository reference excerpts and candidate reports. No comparison
-answer, out-of-band tested model identity or skill-condition label is sent. Labels
-inside the original candidate text are preserved, so this alone does not guarantee
-fully blinded grading. Each criterion is
-`pass`, `partial`, `fail` or `missing`; code awards 100%, 50%, 0% or 0% of its weight.
-Full credit requires a correct diagnosis with evidence, not a mentioned keyword.
-The existing S4 invented-migration cap is evaluated in context, so explicitly
-rejecting a bad recommendation does not trigger it.
+The [seven-task Luna zero-skill run](../results/validation-report-2026-09-10-codex-gpt-5.6-luna-seven-semantic-no-skill.md)
+uses the version-3 rubric through the Codex judge transport. The
+[default-entry protocol checks](../results/validation-report-2026-09-10-default-semantic-verifiers.md)
+separately cover Docker artifact transfer and API response handling with a local mock.
 
-| Task | Semantic criteria / points |
-|---|---|
-| S1 | Seven located touchpoints 10 each; justified card mapping 20; scope/verification limits 10 |
-| S2 | Located Host break 40; six negative categories 20; inference boundary 20; future verification plan 20 |
-| S3 | Chat projection 20; Session lifecycle 20; type/inject migration 20; slots 20; justified mapping/two-step plan 20 |
-| S4 | Removed runtime types, registration identity, session content and deleted connection face: 25 each; unsupported migration assertions cap at 70 |
+The [S5–S9 Luna zero-skill run](../results/validation-report-2026-09-11-codex-gpt-5.6-luna-s5-s9-semantic-no-skill.md)
+uses the same Codex judge transport, scoring 450/500 in one trial per task.
 
-The verifier checks fixture file inventory and SHA-256 against its own sealed
-packet, including new/hidden files. It does not trust candidate Git history.
-Reports remain free-form; no new agent-visible output schema is required. Candidate
-`path:line` citations are checked for path existence and line bounds, and findings
-are included in the model input. For any credited criterion, reported quotations
-must occur verbatim in a submitted report; source-dependent items also require
-verbatim fixture evidence. This proves quotation existence, **not semantic
-entailment**: relevance, correctness and approximate code locations remain model
-judgments. Nearby historical line-number drift is distinguished from fabricated
-files or fabricated code. No arbitrary report code or URL is executed.
+## Run the default task
 
-Missing reports and fixture modifications are genuine zero-score submissions.
-Configuration/network/API errors, refusals, truncation and invalid judge output
-produce `details.json`, exit nonzero and leave **no reward file**. They must be
-counted as evaluator failures, not candidate zeros. Successful grading writes the
-numeric `reward.txt`; rich data belongs in `details.json`, never `reward.json`.
-Reports are limited to 32 files / 256 KiB total, with symlinks and special files
-rejected. Oversized submissions are rejected explicitly, never silently truncated.
+Configure these variables through your local secret manager/environment before
+running Harbor; never commit real credentials:
 
-## Offline validation
+- `REPORT_JUDGE_BASE_URL`: the chosen OpenAI-compatible API prefix, e.g. ending
+  at `/v1`; the adapter appends `/chat/completions`.
+- `REPORT_JUDGE_MODEL`: the explicitly selected judge model or pinned snapshot.
+- `REPORT_JUDGE_API_KEY`: the credential for that endpoint.
 
 ```sh
-npm run test:report-judge
-node benchmark/report-judge/calibrate.mjs --out /tmp/report-judge-offline
-node benchmark/report-judge/prepare.mjs --out /tmp/report-judge-pilot
+harbor run -p benchmark/tasks/S1-static-scan -a oracle
+harbor run -p benchmark/tasks/S10-paste-rename-and-version-chip -a codex -m openai/gpt-5.6-luna
 ```
 
-All three commands are local and require no model credentials. Output directories
-must be new. The calibration command without `--live` only runs the historical
-keyword judges and prepares evidence; it does **not** simulate semantic scoring.
-The unit tests inject protocol-only responses and cannot establish judge quality.
+Choose a provider/model permitted to receive the fixture, reference excerpts and
+candidate reports. Solver model and judge model are separate settings. No judge
+provider/model is selected implicitly. The API must support non-streamed Chat
+Completions with `response_format: {type: "json_object"}`; the verifier validates
+the returned structure itself. HTTPS is required except for local development
+endpoints. Redirects are rejected and server error bodies are never logged.
+See the [Chat Completions reference](https://developers.openai.com/api/reference/resources/chat).
 
-## Live calibration
+The task TOML declares `environment_mode="separate"` and supplies credentials
+only under `[verifier.env]`. Agent prompts, fixtures and time limits are unchanged.
+Harbor collects `/app/fixture` and `/app/agent-output` into the separate verifier;
+the frozen packet and judge source are deployed with `tests/` only. The LLM gets
+original task text, rubric, exact fixture text, frozen reference excerpts and
+candidate reports. It gets no reference answer or out-of-band solver identity or
+skill-condition label. Candidate text can identify its author, so this alone does
+not guarantee complete blinding.
 
-Set these environment variables through your local secret-management mechanism;
-do not put keys in committed files or command arguments:
+The model-free `skill-evaluation` CI controls run the three deterministic tasks in
+that suite. S1, S5, S9 and S11 remain in the seven-task model suite; the control manifest
+lists them separately under `semanticProtocolTasks`. The same CI job runs
+`test:report-judge` for all twenty-five semantic verifiers, with mocked responses and no
+model credentials. This validates their protocol, not reference-answer quality.
+The manual Actions model job has not been wired to a report-judge credential;
+without explicit verifier configuration Harbor rejects it before any trial.
+Use a separately authorized local API or Codex run for actual report grading.
 
-- `REPORT_JUDGE_BASE_URL`: an explicitly chosen OpenAI-compatible API base, ending
-  at the API prefix (the adapter appends `/chat/completions`).
-- `REPORT_JUDGE_MODEL`: the exact chosen judge model or pinned model snapshot.
-- `REPORT_JUDGE_API_KEY`: a credential for that endpoint, scoped to the verifier.
+## Criteria and scoring
 
-The adapter uses a single non-streamed Chat Completions request with
-`response_format: {type: "json_object"}`. JSON mode does not enforce the result
-schema, so the verifier validates it itself. The selected provider must support
-this request format. No provider/model is silently selected, and no sampling
-parameters are imposed across incompatible model APIs. API behavior reference:
-[Chat Completions](https://developers.openai.com/api/reference/resources/chat).
-HTTPS is required except for explicitly local development endpoints; redirects
-are rejected and provider error bodies are never logged.
+| Task | Criteria / points |
+|---|---|
+| H4 | Located cache attribution 30; clean/rebuild plan 30; evidence-backed no-source-migration conclusion 40 |
+| H6 | Namespaced codes, cancellation, internal/unknown failures, genuine exception boundary: 25 each |
+| H12 | Root cause 20; current defects 10; fenced fix 25; resolved flow 20; reject boundary 15; structural discrimination 10 |
+| S1 | Seven located touchpoints 10 each; justified card mapping 20; scope/verification limits 10 |
+| S2 | Located Host break 40; six negative categories 20; inference limits 20; proposed verification 20 |
+| S3 | Chat projection, Session lifecycle, type/inject ownership, slot registration, justified mapping/plan: 20 each |
+| S4 | Runtime removal, registration identity, session content, deleted connection face: 25 each |
+| S5 | Official short name, service collision advice, shared-event context, surface coverage/registry limits: 25 each |
+| S6 | Corridor net state, remove marker stripping, informational producer, public append gap: 25 each |
+| S7 | Published-version evidence, caret resolution, workable baseline plan, reproducibility/exit: 25 each |
+| S8 | Missing mirror tag, compatibility direction, frozen-runtime remedy, tag distribution, version-routing docs: 20 each |
+| S9 | Projection contract, repeat-paste failure, removal bookkeeping, conversion/success gate, regressions: 20 each |
+| S10 | Paste naming/scope, live conflict state, stale-tag display, regressions, release hygiene: 20 each |
+| S12 | Native-module owner, browser/host sequence, dist-tag resolution, exact alpha.5/TUI commands, README prevention: 20 each |
+| S15 | Busy scope/trigger, slot boundary, attribution/isolation, fix/hardening, data-present regression: 20 each |
+| S11 | Split-chunk attribution, Windows containment attribution, safe route fix, modal event ownership, and incident regressions: 20 each; unsafe containment caps at 40 |
+| S13 | Removed API/crash, peer-check boundary, two distinct breakage categories, author prevention, and pre-install checks: 20 each; claiming peers prove runtime compatibility caps at 20 |
+| S14 | Junction deployment, host locks/client cache, rename recovery, ordered activation, and install-mode preflight: 20 each; copying onto the junction or browser-only host activation caps at 40 |
+| S16 | Self-host failure, interrupted-install signature, external pinned repair, handoff protocol, and guard/post-upgrade checks: 20 each; self-host execution caps at 20 and manual shim repair at 40 |
+| S17 | Whole-combo attribution, diagnosis/packaging, cross-entry slot registration, boot/restart discipline, and host/author prevention: 20 each; affirmative contradictory core operational advice caps at 0 |
+| S18 | Half-cell background, frame clearing, frame-data integrity, timer liveness, and renderer/rollout prevention: 20 each; affirmative contradictory renderer/timer advice caps at 0 |
+| S19 | Baked version/release order, client-host asymmetry, payload corruption, validated render fallbacks, and forensics/prevention: 20 each; affirmative unsafe release/render advice caps at 0 |
+| S20 | Native install failure 20; static-import trap 20; platform lock contract 20; reproducible local patch 25; machine/upstream boundaries 10; justified corridor mapping 5. Caps: VS requirement 50, ignore-scripts-only or upstream editing 40, real lock bypass 20 |
+| S21 | Metadata-chain attribution, valid probes/partitioning, distractors/tab scope, ordered mitigation, and upstream forensics/fail-loud diagnostics: 20 each; invalid probe attribution or plugin workaround/duplicate insertion caps at 40 |
+| S22 | Duplicate-loader attribution, three layering cases, minimal profile fix, plugin/failure boundary, and author/host prevention: 20 each; retaining/adding the duplicate or fixing this crash in plugin code caps at 20 |
 
-Before live execution, authorize the chosen provider/model to receive the four
-fixtures, report texts and frozen reference excerpts. Then run:
+See the [incident-rubric guide](diagnosis-rubrics.md) for the ten incident
+S tasks, their cap semantics and evidence boundaries.
+
+The LLM returns `pass`, `partial`, `fail` or `missing` for every criterion.
+Deterministic code awards 100%, 50%, 0% or 0% of its weight and applies declared
+caps; it ignores any total invented by the model. S4's 70-point cap requires a
+positive unsupported lifecycle/inject assertion. Rejecting a bad example is not
+an endorsement.
+
+S5 retains a 30-point cap for unsupported blanket all-clear claims; S6 and S7
+retain 10-point caps for affirmatively keeping marker stripping or prescribing
+an exact unpublished npm alpha.1 install. Rejected examples do not trigger caps.
+S7 accepts one complete install plan. S8 requires the missing v0.9.3 tag to be
+distributed before its consumer install and includes version-routing docs. S9
+keeps task item 5 unscored. S5–S9 also have Chinese paraphrase, correct-negation
+and contradictory-final-advice calibration samples.
+
+Judgment considers meaning across paragraphs, lists, tables and code. Synonyms,
+negation, pseudocode and `expect` assertions may establish the same conclusion.
+Bare keywords/card numbers and copied questions are not a diagnosis. S10's
+extension/MIME and chip/upload-display guidance stays unscored, as its prompt
+states. S15's rubric acknowledges contradictions in the supplied diff and accepts
+grounded discussion of additional scope errors; it does not force a claim that
+every hover addition is harmless.
+
+The model reads the complete reports, sealed fixture and references directly. It
+returns only criterion ID, verdict and short reason, plus cap ID, boolean and
+short reason. It does not transcribe quotations or return evidence/source/reference
+arrays. Code validates IDs, completeness, verdicts and bounded reasons, then
+computes points and caps. Whether the report actually supports each criterion is
+a semantic judgment, not an exact-string quotation check. Source-required criteria
+still require the candidate to locate the relevant source. Full inputs, model
+responses and hashes remain available for human review.
+
+## Submissions and evaluator failures
+
+- Missing/empty reports, exact token-equivalent copies of the prompt, and fixture
+  changes score zero without a model call. Shared prompt phrases are not removed
+  from independent answers. More elaborate copying/injection is evaluated as
+  untrusted text by the LLM.
+- Complete fixture inventory and SHA-256, including hidden/new files, are checked
+  against the verifier-owned packet. Candidate Git history is not trusted.
+- Configuration/API/network errors, refusals, truncation and malformed decisions
+  produce `details.json`, exit nonzero and leave **no reward file**. They are
+  evaluator failures, not candidate zeros. Previous rewards are cleared before
+  evaluation, including before a possible outer timeout.
+- Successful grading writes scalar `reward.txt` and rich `details.json`. Reports
+  are limited to 32 files / 256 KiB. Symlinks, special files and oversized
+  submissions are rejected, never silently truncated.
+
+## Maintain and freeze the verifiers
+
+Edit `benchmark/report-judge/rubrics.mjs` (the ten incident rubrics live in
+`diagnosis-rubrics.mjs`) and shared `judge.mjs`, then run:
 
 ```sh
+npm run sync:report-judge
+npm run test:report-judge
+```
+
+Synchronization materializes twenty-five standalone judges, sealed packets, shell
+entries, verifier Dockerfiles and task configurations. It removes superseded
+keyword helpers. CI runs `--check` and rejects drift in the implementation,
+fixture, instruction or referenced source bytes. Checked-in packets omit HEAD,
+so unrelated commits need no regeneration; hashes seal the actual content.
+
+Optionally freeze a separate run/regrade snapshot:
+
+```sh
+node benchmark/report-judge/prepare.mjs --out /tmp/report-judge-run
+```
+
+It creates the same default tasks plus a manifest. Output must be a fresh directory
+outside `benchmark/tasks`; normal runs do not need this preparation step.
+
+## Calibration
+
+```sh
+node benchmark/report-judge/calibrate.mjs --out /tmp/report-judge-offline
 node benchmark/report-judge/calibrate.mjs --live --repeats 1 --out /tmp/report-judge-live
 ```
 
-This makes at most 28 judge calls (four tasks × seven samples). It stops on the
-first infrastructure/protocol error and saves completed evidence incrementally.
-`--repeats 3` makes at most 84 calls for repeatability checks. Results include old
-and new scores, expected ranges, per-item evidence, request/response hashes,
-fixture/reference packets, requested/returned model and provider token usage.
-The API key is not saved. A completed live run exits nonzero when an expected
-range fails. Retain outputs outside the tracked task corpus.
+The first command only prepares samples and inputs; it does not call a model or
+simulate semantic scores. The live command uses explicit API configuration and
+prepares/evaluates every registered task and its base/focused samples. The ten
+incident tasks each add bilingual, correct-negation, contradictory-final-advice
+and partial-answer cases. The generated `summary.json` records the exact task/sample
+count; `--repeats` controls repeated live calls. It stops at the first
+infrastructure/protocol failure, saving
+completed evidence incrementally.
 
-Samples cover a corrected complete answer, reordered equivalent text, keyword
-stuffing, confidently wrong claims, a grader-directed prompt injection, fabricated
-citations, and the checked-in reference report (the sample ID remains
-`historical-oracle`). Expected ranges are **initial maintainer hypotheses**, not
-independently human-validated labels. Oracle reports have no assumed score. The
-first archived S3 Oracle incorrectly attributed ConversationSnapshot to cordis;
-the checked-in S1/S3 Oracles were subsequently corrected, and S2/S4 criteria were
-clarified for category context and closed-book uncertainty. Each preparation uses
-the current reports and rubrics; earlier results retain their original packets.
-Do not mix scores across these revisions or force an imperfect answer to 100.
+Samples cover complete/reordered answers, bare keywords, wrong claims, injection,
+fabricated citations, copied prompts and the checked-in Oracle. Expected ranges
+are calibration hypotheses, not independent human labels; Oracles have no assumed
+score. Unit-test replies are protocol fixtures and do not establish semantic
+quality. Inspect real false positives/negatives and disagreement before making
+benchmark claims; do not tune only to visible examples. Preserve model identities,
+packet/judge hashes and usage alongside scores.
 
-Review all complete/alternative false negatives, bad-answer false positives and
-repeated-run disagreement with a human before using scores in benchmark claims.
-Do not tune the grader only to these visible calibration examples; retain some
-independently written reports for a held-out agreement check.
+The [S5–S9 default-verifier validation](../results/validation-report-2026-09-11-s5-s9-default-semantic-verifiers.md) records a 20-sample, one-repeat Codex-transport check with complete answers, Chinese paraphrases, keyword-only reports and contradictory final advice. It is a scoped calibration result, not a paired skill-condition comparison or a live Docker/API run.
 
-## Reuse a Codex login
+## Regrade using a Codex login
 
-`codex-judge.mjs` is an opt-in transport for the same `report-judge-v1` packet,
-system instructions, rubric and deterministic evidence/scoring checks. It requires
-an explicit model, and can reuse the user's selected local Codex login without an
-API key. It has been exercised with Codex CLI 0.153.3. For example:
+The alternative host-side `codex-judge.mjs` transport uses the same packets,
+rubrics and decision validation, for an existing Codex login without an API key:
 
 ```sh
 node benchmark/report-judge/codex-judge.mjs \
-  --packet /tmp/report-judge-pilot/S1-static-scan/tests/packet.json \
+  --packet benchmark/tasks/S1-static-scan/tests/packet.json \
   --app /tmp/candidate-app --logs /tmp/candidate-grade \
-  --model gpt-6-astra --bin /path/to/codex --effort high
+  --model YOUR_AUTHORIZED_JUDGE_MODEL --bin /path/to/codex --effort high
 ```
 
-The default credential location is `~/.codex/auth.json`; `--auth` selects another
-file. Only that file is copied into a fresh temporary `CODEX_HOME`, and the copy is
-deleted after the attempt. User configuration, history and installed plugins are
-not copied. The judge runs in an empty directory with a read-only sandbox, disabled
-shell, browser, apps, skills, memory and subagents, and a structured output schema.
-The adapter stops on non-text actions and audits the native trace for tool calls.
-Codex's startup warnings use `item.completed/error`; those are retained as
-diagnostics, while fatal errors or a missing successful turn prevent scoring.
+`candidate-app` contains retained `fixture/` and `agent-output/` directories. For
+a two-stage run, collect solver artifacts in Harbor with verification disabled,
+then grade here using the same packet for every comparison group. This route does
+not test the Docker API transport. `--model` is mandatory; authentication defaults
+to `~/.codex/auth.json`, or the file selected by `--auth`.
 
-Each attempt retains the exact input, schema, CLI version/configuration, JSONL
-events, native trace, final response, usage, hashes and computed `details.json`.
-The `resolved` model is the CLI turn context; `returned` remains null because
-Codex's event stream does not expose an independent server-returned model ID.
-Record the transport and reasoning effort when comparing scores. API and Codex
-transport results are not assumed interchangeable without a paired check.
+Only that credential is copied into a temporary Codex home and deleted after the
+attempt. User configuration, history and plugins are not copied. The judge has an
+empty working directory, read-only sandbox, disabled tools/skills/memory and a
+structured output schema. Non-text actions or an unsuccessful turn prevent
+scoring. Input, schema, configuration, events, trace, final response, hashes and
+usage are retained. The resolved model comes from CLI turn context, not an
+independent server-returned ID. API and Codex transports are not presumed
+interchangeable without a paired check.
 
-For a two-stage validation, run Harbor with verification disabled to collect
-Oracle/agent reports and fixtures, then use this command on the retained
-`artifacts/app` with the same frozen packet for both groups. The scoring phase is
-host-side, separate from the solver; it does not test the generated Docker API
-verifier. Authenticate Harbor Codex runs using `CODEX_AUTH_JSON_PATH`, rather than
-`CODEX_FORCE_AUTH_JSON=true`: Harbor 0.22.0 treats that boolean string as a secret
-and replaces every literal `true` in exported JSON, fixture files and reports.
-Such damaged exports are evaluator infrastructure failures, not candidate zeros.
+For solver authentication use `CODEX_AUTH_JSON_PATH`, not
+`CODEX_FORCE_AUTH_JSON=true`: Harbor 0.22.0 can redact literal `true` values in
+exported artifacts. Damaged exports are infrastructure failures, not valid zeros.
 
-## Harbor execution
+## H4 / H6 / H12 migration
 
-After preparation, run individual generated task directories, for example:
+These remain static diagnosis tasks. Their version-3 semantic scores must not be
+pooled with historical regex scores. H4 allows deletion of the original sealed
+`lib/` artifacts only; source, manifests and all other files stay unchanged.
+Original artifacts remain in the verifier packet for evidence and citation checks
+after cleanup. H6/H12 require the entire fixture to remain unchanged.
 
-```sh
-harbor run -p /tmp/report-judge-pilot/S1-static-scan -a oracle
+H6 remains closed-book: a located namespace-migration diagnosis with unavailable
+exact spelling marked unconfirmed earns partial credit (12.5 of 25), rather than
+the old integer 12. H12 retains the requested report sections and fenced proposed
+fix; the model judges its control flow rather than spelling or variable names.
+The code is not executed. Missing substantive evidence earns no credit; rejected
+bad examples must not trigger recommendation caps.
+
+The three rubrics and their caps are defined in `report-judge/rubrics.mjs`.
+Calibration includes the previously full-scoring wrong H4 answer, wrong H6/H12
+policies, keyword dumps, prompt copies, injection, and correct/contradictory
+negations. Prepared expected bands are hypotheses, not measured model results.
+
+## Decision-only output (protocol v2)
+
+Task version 4.0.0 removes required evaluator quotation/source/reference arrays
+and exact quotation matching. It retains the same rubric weights, fixture gates
+and point/cap aggregation. It supersedes protocol-v1 version-3 output; archived
+results remain unchanged. Regrade retained answers under a single version when
+comparing results, and record the new judge/prompt/packet hashes.
+
+```json
+{"decisions":[{"id":"criterion-id","verdict":"partial","reason":"The diagnosis is correct but the verification plan is incomplete."}],"caps":[{"id":"cap-id","triggered":false,"reason":"The report rejects the incorrect recommendation."}]}
 ```
 
-The checked-in Oracle is retained as a comparison input; this command
-does not guarantee a perfect new score. Both with-skill and without-skill trials
-must use the same generated task snapshot. The agent instruction and network
-policy are copied exactly (including S4's no-network policy); the new verifier is
-separate, receives only `/app/fixture` and `/app/agent-output`, and owns the model
-credentials/public network phase. `tests/packet.json` freezes the evidence and
-the manifest records hashes. No `.git` or agent-installed executable is transferred.
-Only the verifier's image contains the reference packet. Container/provider-side
-network restrictions for the evaluated agent remain the runner's responsibility.
-
-For an already retained report, materialize the exact original fixture and its
-`agent-output/<task-id>/` report under a disposable app directory, then run:
-
-```sh
-node /tmp/report-judge-pilot/S1-static-scan/tests/judge.mjs \
-  --app /tmp/candidate-app --logs /tmp/candidate-grade
-```
-
-The prepared packet is reused without rereading changing skill files. Hashes pin
-the actual packet/implementation even if the checkout had uncommitted changes.
-Frozen references are repository-maintained contracts, not an independent proof
-that every upstream API assertion is correct; adjudicate disagreements against
-the exact upstream target before changing the rubric.
+This example illustrates the response shape; a real response must include every
+criterion and every cap declared by its packet exactly once.

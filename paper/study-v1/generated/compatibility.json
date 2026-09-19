@@ -1,0 +1,2432 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-09-13",
+  "targetConfigSha256": "a764e0d83dfcc6b3659c1d0b212c8b4148e524aaefade8dc2894a2359664270d",
+  "targetSourceCommit": "a43afbea03fe1e4a22eba304c66847c3f99a9890",
+  "targetState": "candidate-not-frozen",
+  "formalMainReuseApproved": 0,
+  "legacyLedgerSha256": "da706e05014d4e2221d97a7b78bb3f316d77cc1ee4baee5d547e9c7b8fca7844",
+  "records": [
+    {
+      "report": "benchmark/results/validation-report-2026-08-30.md",
+      "category": "mechanism-calibration",
+      "scope": "single simulated migration",
+      "model": "not a paired model study",
+      "agent": "Docker/manual chain",
+      "conditions": "old/new/repaired",
+      "repeats": "not applicable",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "unknown",
+      "grading": "boot/service checks",
+      "access_boundary": "Docker; dependencies downloaded",
+      "raw_evidence": "report with source snippets",
+      "main_table_decision": "exclude; mechanism evidence only",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "5b1286cb58a329bca52cf3a0e8752ffc4ce4d98feb518c406a27de6102b5e9ee",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-08-31-auth-v1.md",
+      "category": "single-arm-calibration",
+      "scope": "6 tasks",
+      "model": "gpt-5.6-sol xhigh",
+      "agent": "Codex 0.151.0",
+      "conditions": "with-skill only",
+      "repeats": "effective trials after setup retries",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "original package; exact commit unknown",
+      "grading": "historical mixed graders",
+      "access_boundary": "BENCHMARK-AUTH-v1; actual isolation needs audit",
+      "raw_evidence": "job references in report; availability not checked",
+      "main_table_decision": "exclude; no contemporaneous control",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "ad32a469c4a8a09bc7d5c31abeb2f56ae54236a2ada89e531d64eccf17735d90",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-08-31.md",
+      "category": "oracle-validation",
+      "scope": "6 tasks",
+      "model": "oracle",
+      "agent": "Harbor 0.22.0",
+      "conditions": "oracle",
+      "repeats": "one per task reported",
+      "benchmark_commit_reported": "db53236",
+      "skill_commit_reported": "not applicable",
+      "grading": "historical verifiers",
+      "access_boundary": "Docker",
+      "raw_evidence": "report; raw not verified here",
+      "main_table_decision": "exclude from model effects",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "2faf8860565d5a675fdcc447b1250ae9ad93f0a7a953f044dc96228a223eb055",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-luna-other-18-no-injected-skill.md",
+      "category": "baseline-deviation",
+      "scope": "18 tasks",
+      "model": "gpt-5.6-luna",
+      "agent": "Codex 0.152.0",
+      "conditions": "no-Harbor-injected-skill",
+      "repeats": "1 selected per task",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "none injected; native plugin-creator read in H2/H3",
+      "grading": "historical mixed graders",
+      "access_boundary": "native skills accessible",
+      "raw_evidence": "report and command audit; raw not verified here",
+      "main_table_decision": "exclude from literal zero-skill comparison; retain labeled historical contrast",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "e42287e5136f787a6b2e4e5e7811b64c673451853b95969477b7166764889ee8",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-luna-other-18.md",
+      "category": "historical-paired-candidate",
+      "scope": "18 tasks; 19 with separate real-project run",
+      "model": "gpt-5.6-luna",
+      "agent": "Codex / Harbor 0.22.0",
+      "conditions": "with-skill",
+      "repeats": "1 selected per task",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "unknown",
+      "grading": "historical mixed graders",
+      "access_boundary": "native catalog state requires audit",
+      "raw_evidence": "report; raw not verified here",
+      "main_table_decision": "regrade/manifest recovery needed; not new independent test",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "f57818fa19ac704c87e4e5956fa80261e3ba45f841fc4d65702ba79fd44b5a4d",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22-literal-no-skill.md",
+      "category": "historical-paired-candidate",
+      "scope": "22 attempted; 21 scored; H8 verifier failure",
+      "model": "gpt-5.6-terra xhigh",
+      "agent": "Codex / Harbor 0.22.0",
+      "conditions": "literal zero-skill as audited in report",
+      "repeats": "1 selected per task; retries recorded",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "none injected/native disabled",
+      "grading": "historical mixed graders",
+      "access_boundary": "native disabling and 22-trajectory audit reported",
+      "raw_evidence": "report and audit; raw not verified here",
+      "main_table_decision": "candidate paired intersection; disclose missing H8 and version checks",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "a3e030e6e907886a1b2399abcb0e432f4d85cb0e3942a6191028e10159479d1b",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22.md",
+      "category": "historical-paired-candidate",
+      "scope": "22 attempted; 21 scored; H8 verifier failure",
+      "model": "gpt-5.6-terra xhigh",
+      "agent": "Codex / Harbor 0.22.0",
+      "conditions": "with-skill",
+      "repeats": "1 selected per task; retries recorded",
+      "benchmark_commit_reported": "unknown; H7 metadata repair recorded",
+      "skill_commit_reported": "unknown",
+      "grading": "historical mixed graders",
+      "access_boundary": "all selected trials read supplied skill",
+      "raw_evidence": "report and audit; raw not verified here",
+      "main_table_decision": "candidate retrospective 21-task paired analysis only after hashes/regrading",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "5bd7e4e8094975f0bc2b265887af6d83328819fd390c0dfac031001f95cea9ec",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01-h13.md",
+      "category": "mechanism-calibration",
+      "scope": "H13 ghost-host",
+      "model": "oracle/manual",
+      "agent": "Docker",
+      "conditions": "oracle/negative controls",
+      "repeats": "see report",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "not applicable",
+      "grading": "real host mechanism and judge",
+      "access_boundary": "public npm network",
+      "raw_evidence": "report",
+      "main_table_decision": "exclude from skill effects; task QC evidence",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "937cae3755cf391eaf406cb22bd5713c95fd75d2d759c85a5a7df44219f2816a",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01-h8-dsh-web-alpha2-no-skill.md",
+      "category": "historical-paired-candidate",
+      "scope": "legacy H8-dsh-web-alpha2 -> current H9",
+      "model": "gpt-5.6-luna xhigh",
+      "agent": "Codex / Harbor 0.22.0",
+      "conditions": "no-Harbor-injected-skill",
+      "repeats": "1 scored; agent timeout",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "none injected; native catalog not excluded",
+      "grading": "historical verifier",
+      "access_boundary": "native catalog available",
+      "raw_evidence": "report; artifacts need recovery",
+      "main_table_decision": "not literal zero-skill; compare only compatible historical pair",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "eb941637a2df241b102d3d353ac0ada021ee41ca1bb8b474132fdf8e5cf9fa6d",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01-portfolio-h9m12-dry-run.md",
+      "category": "grader-development",
+      "scope": "current H16/H17/H18/H19; legacy IDs remapped",
+      "model": "not verified",
+      "agent": "local subagents/stub runtime",
+      "conditions": "no-skill only",
+      "repeats": "one reported per task",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "none reported",
+      "grading": "judge v2 after observed false positives; deployment stubbed",
+      "access_boundary": "no Docker/dsh runtime; local host source used",
+      "raw_evidence": "report; local harness paths",
+      "main_table_decision": "exclude formal runtime results; development exposure",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "4df22feb1c6c404c7ba85e351a657f2552eeb75586d92c1b8b7afe482d983bee",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01-terminus2-deepseek-v4-flash.md",
+      "category": "historical-paired-candidate",
+      "scope": "23 tasks; H8 with-skill has 2 scored trials",
+      "model": "deepseek-v4-flash",
+      "agent": "terminus-2 / Harbor 0.22.0",
+      "conditions": "with-skill/no-skill",
+      "repeats": "3 intended; H8 with=2",
+      "benchmark_commit_reported": "2de49059ec3178e23ea644cd78e7d20575b74745 + H7 fix",
+      "skill_commit_reported": "unknown independently; supplied repo package",
+      "grading": "historical mixed graders",
+      "access_boundary": "no native catalog reported; network manifest needs audit",
+      "raw_evidence": "per-task rewards in report; raw artifacts not verified",
+      "main_table_decision": "best repeated historical candidate; not all 3/3; not pinned retroactively to 472e5ea",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "9e89efe5db8bbbdcf7e06fb400df3be6c6ff17fd2b9345f937a311142b9eaedd",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-01.md",
+      "category": "historical-paired-candidate",
+      "scope": "legacy H5-dsh-web-alpha2 -> current H9",
+      "model": "gpt-5.6-luna xhigh",
+      "agent": "Codex / Harbor 0.22.0",
+      "conditions": "with-skill",
+      "repeats": "1 scored; agent timeout",
+      "benchmark_commit_reported": "unknown",
+      "skill_commit_reported": "unknown",
+      "grading": "historical verifier",
+      "access_boundary": "Docker; access manifest not consolidated",
+      "raw_evidence": "report; artifacts need recovery",
+      "main_table_decision": "historical case only; pair with legacy H8 report after hash audit",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "984f489bcd0397a4b7ac5b9069e83923a11cad7e5ee34fee70be49ebd2cd4fba",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-02-claude-code-opus5-interim.md",
+      "category": "incomplete",
+      "scope": "23 planned; 15 complete pairs",
+      "model": "claude-opus-5",
+      "agent": "Claude Code / Harbor",
+      "conditions": "with/without-skill",
+      "repeats": "3/3 in 15 pairs; incomplete elsewhere",
+      "benchmark_commit_reported": "unknown in this ledger",
+      "skill_commit_reported": "unknown",
+      "grading": "historical mixed graders",
+      "access_boundary": "network-policy blockers; native catalog not assessed",
+      "raw_evidence": "report with attempt records",
+      "main_table_decision": "exclude full main matrix; partial descriptive results only",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "1dd52aa24d74c111c0dc46f9ddd6946b8f844d8498009bca076566fa8b074753",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-02-h22-dsh-data-agent-alpha2-no-skill.md",
+      "category": "historical-paired-candidate",
+      "scope": "H22",
+      "model": "gpt-5.6-luna xhigh",
+      "agent": "Codex / Harbor 0.22.0",
+      "conditions": "literal zero-skill accepted run",
+      "repeats": "1 accepted; preliminary contaminated attempt retained separately",
+      "benchmark_commit_reported": "unknown in this ledger",
+      "skill_commit_reported": "none in accepted run",
+      "grading": "11/100; runtime gate not entered",
+      "access_boundary": "native-disabled accepted run; preliminary deviation disclosed",
+      "raw_evidence": "report; raw not verified here",
+      "main_table_decision": "single-case paired candidate; include all resource costs",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "15292d44ebc776ee01c7d9c85fd804cb0311614d1677888bd0aa09039098402c",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-02-h22-dsh-data-agent-alpha2-plugin-upgrade.md",
+      "category": "historical-paired-candidate",
+      "scope": "H22",
+      "model": "gpt-5.6-luna xhigh",
+      "agent": "Codex / Harbor 0.22.0",
+      "conditions": "with-skill",
+      "repeats": "1 scored",
+      "benchmark_commit_reported": "unknown in this ledger",
+      "skill_commit_reported": "unknown in this ledger",
+      "grading": "8/100; runtime gate not entered",
+      "access_boundary": "see report boundary; needs exact manifest extraction",
+      "raw_evidence": "report; raw not verified here",
+      "main_table_decision": "single-case paired candidate; no functional success claim",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "reportSha256": "b999be2d25d6284dcb8b0cf27d983e67d2cce229e583e0d71cc8001509da996d",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-02-metadata-activation-ab.md",
+      "category": "activation-pilot",
+      "scope": "historical H11 -> current H12",
+      "model": "gpt-5.6-luna xhigh",
+      "agent": "Codex 0.152.1 / Harbor 0.22.0",
+      "conditions": "old/new metadata; both supplied skill",
+      "repeats": "3 per arm; balanced order",
+      "benchmark_commit_reported": "a1a96b84b38a8654dceb489d081a5c2fd3d3bde9",
+      "skill_commit_reported": "a1a96b84 + description from 1f265590; hashes in report",
+      "grading": "opened primary endpoint; reward secondary",
+      "access_boundary": "fresh containers/contexts; no other skill read reported",
+      "raw_evidence": "raw temporary archive deleted per report",
+      "main_table_decision": "reported null activation pilot; cannot independently re-audit raw traces",
+      "historicalDisposition": "historical-descriptive-only",
+      "reportSha256": "4c128a46107f7eb7ea6330ba0b1871783d846e4e0742a0b8890332818a9fb3d3",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "保留历史描述，不直接重评"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-03-static-20-paired.md",
+      "category": "local-development",
+      "scope": "20 rows; 18 eligible pairs; evolving 44->52 inventory",
+      "model": "GLM-5.3 for 17 pairs; flash-vision-exp for S16",
+      "agent": "local subagent scaffold",
+      "conditions": "with/no-skill",
+      "repeats": "1 retained per arm",
+      "benchmark_commit_reported": "no frozen official snapshot",
+      "skill_commit_reported": "unknown; repo access differed by task",
+      "grading": "official historical judges locally",
+      "access_boundary": "S3 cross-task solution read then mismatched-model replacement; H13 invalid host",
+      "raw_evidence": "report and post-run audit; incomplete access coverage",
+      "main_table_decision": "exclude main; 18-pair descriptive subset only; S3/H13 excluded",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "077c5803c6217bf9945c18735b150e77855c9abb16bdf144fa2b42bf83dc7fc0",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/tasks/H13-ghost-host-trap/instruction.md",
+          "sha256": "9a1b0246b10ca7913bff5a3def1a9ef9973c365ea78f25aa21605d12e37b8799"
+        },
+        {
+          "path": "benchmark/tasks/H13-ghost-host-trap/tests/judge.mjs",
+          "sha256": "a9fede0dd872e4b8b8cda50e44ece800f7dc54b4c028b181dd6460128effa702"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-03-terminus2-deepseek-v4-flash-h21.md",
+      "category": "network-calibration",
+      "scope": "H21",
+      "model": "deepseek-v4-flash",
+      "agent": "terminus-2 2.0.0 / Harbor 0.22.0",
+      "conditions": "frozen-skill/no-injected-skill",
+      "repeats": "3 per arm",
+      "benchmark_commit_reported": "6e5916a407c366e3cc9ac00474fcbd535e7e19d6; calibration copy",
+      "skill_commit_reported": "5f7234ba4e00aeaa46c699ea32384389ad38a2a6",
+      "grading": "historical H21; timed-out candidates scored",
+      "access_boundary": "formal no-network rejected; public-network copy used",
+      "raw_evidence": "per-trial ledger; raw not verified here",
+      "main_table_decision": "exclude formal isolated holdout; retain calibration",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "4d7f08c06346f4d8f49a39d18770eb60df7629ef7240e7bf12bb215df6dd26ae",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-06-s1-s4-oracle-luna-llm-judge.md",
+      "category": "live-grader-calibration",
+      "scope": "S1-S4 oracle + Luna",
+      "model": "solver gpt-5.6-luna; judge gpt-6-astra high",
+      "agent": "Harbor collection + Codex host-side judge",
+      "conditions": "oracle/no-injected Luna; not skill/no-skill",
+      "repeats": "1 grade per answer",
+      "benchmark_commit_reported": "packet hashes in local archive",
+      "skill_commit_reported": "no plugin-upgrade; native skill text encountered",
+      "grading": "report-judge-v1 original rubric",
+      "access_boundary": "native cache leakage; network not uniformly closed",
+      "raw_evidence": "local temporary evidence; not packaged in repo",
+      "main_table_decision": "exclude skill effect; calibration only; later rubric differs",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "323ea99eac9d88d68756bb40174a8a25b5b607c2580e9ea1806be198ce043434",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-06-s1-s4-oracle-regrade-r2.md",
+          "sha256": "31d1a45e2d8baaaf2c83e5214e60a418b82ba2b5065531b34208db70bf499bf6"
+        },
+        {
+          "path": "benchmark/docs/report-judge-pilot.md",
+          "sha256": "54a82c442299932785d2a21108a3faebaa060de2e43c4ad910133a8b5cc01e8a"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-06-s1-s4-oracle-regrade-r2.md",
+      "category": "oracle-rubric-calibration",
+      "scope": "S1-S4 oracles only",
+      "model": "judge gpt-6-astra high",
+      "agent": "Codex CLI 0.153.3 host-side",
+      "conditions": "oracle only; Luna unchanged",
+      "repeats": "1 grade per oracle",
+      "benchmark_commit_reported": "current reports/rubrics; hashes described",
+      "skill_commit_reported": "not applicable",
+      "grading": "S1/S3 oracle corrected; S2/S4 rubric revised",
+      "access_boundary": "text-only judge; no new Harbor trials",
+      "raw_evidence": "local temporary archive; not packaged",
+      "main_table_decision": "exclude skill effect and independent judge-agreement claims",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "31d1a45e2d8baaaf2c83e5214e60a418b82ba2b5065531b34208db70bf499bf6",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-06-s1-s4-oracle-luna-llm-judge.md",
+          "sha256": "323ea99eac9d88d68756bb40174a8a25b5b607c2580e9ea1806be198ce043434"
+        },
+        {
+          "path": "benchmark/tasks/S1-static-scan/solution/report.md",
+          "sha256": "927f9717ff6dd76d0014f6e1b819994a12a2ee98be07c5e11c931eac27f68e12"
+        },
+        {
+          "path": "benchmark/tasks/S3-snapshot-migration/solution/report.md",
+          "sha256": "641a32a51d6f0e61943cedae4554cb962877f12bd3c37d97b7ad84562beeeb06"
+        },
+        {
+          "path": "benchmark/report-judge/rubrics.mjs",
+          "sha256": "74e5e7ea1567176de9c2c1b6b0315eee5c95b562bfecf09c2b8c1f7777bf79d0"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-06-s1-s4-report-judge-pilot.md",
+      "category": "offline-grader-calibration",
+      "scope": "S1-S4",
+      "model": "no live judge",
+      "agent": "local pilot",
+      "conditions": "offline variants",
+      "repeats": "not model trials",
+      "benchmark_commit_reported": "current files at report time; packet hashes required",
+      "skill_commit_reported": "frozen excerpts; no solver contrast",
+      "grading": "report-judge-v1 implementation/offline checks",
+      "access_boundary": "no judge API calls",
+      "raw_evidence": "report; pilot fixtures/code in repo",
+      "main_table_decision": "exclude model effects; implementation evidence",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "532b816e258708f8f37227d7031e99c98922350c36e1b610f4a02806b7c52894",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-06-s1-s4-oracle-luna-llm-judge.md",
+          "sha256": "323ea99eac9d88d68756bb40174a8a25b5b607c2580e9ea1806be198ce043434"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-06-s1-s4-oracle-regrade-r2.md",
+          "sha256": "31d1a45e2d8baaaf2c83e5214e60a418b82ba2b5065531b34208db70bf499bf6"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "report": "benchmark/results/validation-report-2026-09-06-three-system-paired-eval.md",
+      "category": "skill-development",
+      "scope": "42-task declared snapshot; differing result denominators",
+      "model": "v4-pro / flash-vision-exp / glm-5.3-flash",
+      "agent": "OpenCode / Claude Code custom adapters",
+      "conditions": "mixed paired/missing/cross-system contrast",
+      "repeats": "mostly 1; M8/M10 3; round-level assignment unknown",
+      "benchmark_commit_reported": "9940b05 reported",
+      "skill_commit_reported": "multiple rounds; final addition 6960502; round hashes unknown",
+      "grading": "historical mixed graders; M5/M11/M12/H8 defects reported",
+      "access_boundary": "model/npm and some GitHub allowlist; container residue noted",
+      "raw_evidence": "runner archive ~200 trials not packaged",
+      "main_table_decision": "exclude independent test; GLM-minus-flash is not paired skill gain",
+      "historicalDisposition": "calibration-only",
+      "reportSha256": "a0bfe2e287adf58bd71ac0238ef08d46d1236930498fec7082d98a21794fc5e6",
+      "auditBasis": "2026-09-08 ledger retained; not a new raw-trace audit",
+      "legacyReportSha256Matches": true,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "model": "Kimi Code; exact model ID unknown",
+      "agent": "Kimi Code CLI",
+      "scope": "S1-S10",
+      "conditions": "generic only",
+      "repeats": "1/task",
+      "benchmark_commit_reported": "unknown; pilot, not official snapshot",
+      "skill_commit_reported": "generic-migration; exact hash not established",
+      "grading": "historical official judges in Docker",
+      "access_boundary": "instruction-fenced; macOS Docker, no physical no-network guarantee",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/generic-arm-s1-s10"
+      ],
+      "notes": "Generic pilot is not a paired contrast with GLM results.",
+      "report": "benchmark/results/validation-report-2026-09-07-generic-skill-s1-s10-kimi.md",
+      "reportSha256": "60e9eddd2e85fb0ade104afcdbfa8121a58ed6463faf6c21c4b11a2602cd993e",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S1-static-scan/report.md",
+          "sha256": "d9bfbe388b8846956fb8f968ae15d395d6e34a559d24a3bde54d07220b3a29e0"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S10-paste-rename-and-version-chip/report.md",
+          "sha256": "585db73d11a4cf6e179c053fe82535ccb5bd51dfd2f1556d70fd577665660420"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S2-negative-scan/report.md",
+          "sha256": "f44573d470514e04b6f22bc32f6d5654269a8deaa4ff8043f20cc616ee367fa4"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S3-snapshot-migration/report.md",
+          "sha256": "1840b7335f495eb8d65e8cc76c946cc216fafb2eba4be992f598c390c61f4976"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S4-legacy-client-imports/report.md",
+          "sha256": "164400fd5f62aad7711b24e90ec6a265559af1329accf83c9d47f914868b25bc"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S5-negative-naming/report.md",
+          "sha256": "4c0eefd20fa1b9a73e291981a10f0ab0aa72356e5726a9e58cadf8f0ba616de7"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S6-corridor-net-state/report.md",
+          "sha256": "7e77978430f21614711a563f185616916fc01e13da6dda55a22e47dcc890788f"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S7-unpublished-cohort/report.md",
+          "sha256": "be2898f58b25e362793c1e531ea73acf129a057b7419464ce6cddfb79d88cbe6"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S8-release-routing-trap/report.md",
+          "sha256": "3db24681770fa074b36114a94e49fd2f4c884c27fdfb79129b9ebb88714e18d7"
+        },
+        {
+          "path": "benchmark/results/generic-arm-s1-s10/S9-composer-coordinate-trap/report.md",
+          "sha256": "1e344b2d90dd31302388787a6bab9aab4d4e37b63c0c9c79059e4bbdaca879ea"
+        }
+      ],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    },
+    {
+      "model": "openai/gpt-6-astra xhigh",
+      "agent": "Codex 0.153.4 / Harbor 0.22.0",
+      "scope": "18 tasks",
+      "conditions": "plugin-upgrade only",
+      "repeats": "1/task",
+      "benchmark_commit_reported": "72267b6f83670d74965752aac525a989a5a0a1c0",
+      "skill_commit_reported": "72267b6; H11=7d33bf4; H21=5f7234b where applicable",
+      "grading": "historical mixed graders",
+      "access_boundary": "native skills/plugins/memory/search disabled as reported; timeout multiplier 2",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "artifactRoots": [],
+      "notes": "Raw archives retained by contributor. Initial18 is included in full56, not another 18 independent trials.",
+      "report": "benchmark/results/validation-report-2026-09-08-codex-gpt-6-astra-xhigh-18.md",
+      "reportSha256": "523b3e4a86ace1835a14baa713bf0d78e50ef71c95e18575fe3b8369b0714747",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-luna-other-18.md",
+          "sha256": "f57818fa19ac704c87e4e5956fa80261e3ba45f841fc4d65702ba79fd44b5a4d"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-08-codex-gpt-6-astra-xhigh-18.csv",
+          "sha256": "3bb3a7f382eb7f07670fb624fc29779fce32b6286fcda71c124384a6376cb448"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-08-codex-gpt-6-astra-xhigh-18.json",
+          "sha256": "497d5055041c16d9bd8a479b128525743fd1ea5abd292daeefe731dce19b1a79"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "model": "openai/gpt-6-astra xhigh",
+      "agent": "Codex 0.153.4 / Harbor 0.22.0",
+      "scope": "56 tasks; initial18 + remaining38",
+      "conditions": "plugin-upgrade only",
+      "repeats": "1/task",
+      "benchmark_commit_reported": "72267b6f83670d74965752aac525a989a5a0a1c0",
+      "skill_commit_reported": "72267b6; H11=7d33bf4; H21=5f7234b where applicable",
+      "grading": "historical mixed graders",
+      "access_boundary": "native skills/plugins/memory/search disabled as reported; timeout multiplier 2",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "artifactRoots": [],
+      "notes": "Raw archives retained by contributor. Initial18 is included in full56, not another 18 independent trials.",
+      "report": "benchmark/results/validation-report-2026-09-09-codex-gpt-6-astra-xhigh-full56.md",
+      "reportSha256": "30793fa3b6794b0ef65ed6380ee9ed5223f67760ee8c9a54163965b5e86bce19",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-08-codex-gpt-6-astra-xhigh-18.md",
+          "sha256": "523b3e4a86ace1835a14baa713bf0d78e50ef71c95e18575fe3b8369b0714747"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-09-codex-gpt-6-astra-xhigh-full56.csv",
+          "sha256": "4aa2563cb76d0429db19e364c426e7e751046bab9147765cf6e6f07e98dd133d"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-09-codex-gpt-6-astra-xhigh-full56.json",
+          "sha256": "a297017ddc374d90545574252a410316f1b2ec713b21cc19accda0c0f417c8a0"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "model": "gpt-5.6-luna xhigh",
+      "agent": "Codex 0.153.4 / Harbor 0.22.0",
+      "scope": "H24/H25",
+      "conditions": "no injected/native skill",
+      "repeats": "1/task",
+      "benchmark_commit_reported": "5724542 + frozen uncommitted task fixes; JSON hashes",
+      "skill_commit_reported": "none",
+      "grading": "deterministic behavior/static caps",
+      "access_boundary": "public network; search disabled",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "artifactRoots": [],
+      "notes": "H25 behavioral checks passed but helper-contract cap applied. Must resolve criterion before new main use.",
+      "report": "benchmark/results/validation-report-2026-09-10-codex-gpt-5.6-luna-h24-h25.md",
+      "reportSha256": "c50ec832cd1a07f3e06fd924b0cd402e08b525e57ce62a42c4be17d2945d441e",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/tasks/H25-session-seed-boundary-trap/tests/judge-utils.mjs",
+          "sha256": "63b74656cae19b74a7fed25a007d27e67087094cc7da47792fd6a5ea0304b401"
+        },
+        {
+          "path": "benchmark/tasks/H25-session-seed-boundary-trap/environment/fixture/README.md",
+          "sha256": "4f323c99739b4d5a4778cde8289094fbc93da6a693d0205daa57b047a848d036"
+        },
+        {
+          "path": "benchmark/tasks/H25-session-seed-boundary-trap/solution/SOLUTION.md",
+          "sha256": "8db1fc7773d36a2372a41394c1c21f05c69fc47486e44dfa137d05583b258c41"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-10-codex-gpt-5.6-luna-h24-h25.json",
+          "sha256": "f7b5028c69daa54a8a63063f960a1eec4bab0b50eedb603b97e178f0ad720e3d"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "model": "gpt-5.6-luna xhigh",
+      "agent": "Codex 0.153.4 / Harbor 0.22.0",
+      "scope": "S1/S10/S12/S15",
+      "conditions": "no skill",
+      "repeats": "1/task",
+      "benchmark_commit_reported": "b49ccee + uncommitted fixes; JSON hashes",
+      "skill_commit_reported": "none",
+      "grading": "regex/keyword grader with documented false negatives",
+      "access_boundary": "public network; search disabled; explicit no-skill prompt",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15"
+      ],
+      "notes": "Regrade to audit old measurement, not to emulate new prompts.",
+      "report": "benchmark/results/validation-report-2026-09-10-codex-gpt-5.6-luna-s1-s10-s12-s15-no-skill.md",
+      "reportSha256": "25932ece2b6e4325be577322221d239674472bc1d3e7ad106c415ece5b6a04e8",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S1.md",
+          "sha256": "65f1b3ccef805598163c19978d66b31e3cad47da65bd13f260e7405090141feb"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S10.md",
+          "sha256": "2fcca19f97407ee46ccedb663f256cdaabf482163412c8e1aaa6611f3850ca39"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S12.md",
+          "sha256": "cd04f50865e30a8d4244b6978bdb7fda8572818df8e71db9d22dee40e093eef5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S15.md",
+          "sha256": "a332712c1dc254caa2137a49f8d7bdfdd105dc514d4fcbc4b56cf5417a419d4f"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-10-codex-gpt-5.6-luna-s1-s10-s12-s15-no-skill.json",
+          "sha256": "6812df629f2fd09ee594eefa4d45a41af93a04934bf0e66b74afa416048883f0"
+        }
+      ],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S1.md",
+          "sha256": "65f1b3ccef805598163c19978d66b31e3cad47da65bd13f260e7405090141feb"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S10.md",
+          "sha256": "2fcca19f97407ee46ccedb663f256cdaabf482163412c8e1aaa6611f3850ca39"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S12.md",
+          "sha256": "cd04f50865e30a8d4244b6978bdb7fda8572818df8e71db9d22dee40e093eef5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-s1-s10-s12-s15/S15.md",
+          "sha256": "a332712c1dc254caa2137a49f8d7bdfdd105dc514d4fcbc4b56cf5417a419d4f"
+        }
+      ],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    },
+    {
+      "model": "gpt-5.6-luna xhigh; judge Astra high",
+      "agent": "Codex 0.153.4 / Harbor 0.22.0; host-side judge",
+      "scope": "S1-S4/S10/S12/S15",
+      "conditions": "no skill",
+      "repeats": "1/task",
+      "benchmark_commit_reported": "b49ccee + frozen workspace hashes",
+      "skill_commit_reported": "none",
+      "grading": "task 3.0.0 / report-judge-v1",
+      "access_boundary": "S4 no-network; other tasks public; no-skill overlay",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill"
+      ],
+      "notes": "New solver answers, not regrades of the earlier four-task batch.",
+      "report": "benchmark/results/validation-report-2026-09-10-codex-gpt-5.6-luna-seven-semantic-no-skill.md",
+      "reportSha256": "8d273d7aa50300f1a8d31fb503d87b7662412ba558f1212f44b024b1a0a9bf19",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/touchpoint-report.md",
+          "sha256": "68206776fac46e54fda15aa992ce4c469c75778cd7823a9a615012774b30f877"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/judge.details.json",
+          "sha256": "e4326df959415266fe801bb9d642be083992735fa2ec3ef6467c97b037ed997e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/report.md",
+          "sha256": "25d2b86a4d9df1836b02c021ce9fab454c0aaa2a39f9878d7d7a9bc0979a7b3c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/judge.details.json",
+          "sha256": "4652b5b8e01320150dbe9400904485ed62c4302f2a02c6e079199bad0b00bb74"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/assessment.md",
+          "sha256": "e7032a45f77ed0158a6017ae10ed707fab261c10fe18c733c44f55397c16e5fd"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/judge.details.json",
+          "sha256": "610393755262fa64948c34b2339ef38f5799c7472eaa9616efc0b4db5974637e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/report.txt",
+          "sha256": "81f99a46e1fe3c41577edb303056f2f98f8224d25bb060f2efa9199b49df57dc"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/judge.details.json",
+          "sha256": "70b25096b76f8c96a396a9ccecbe8c3cd5bb2be0a13aff246be6cff91e011b92"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/REPORT.md",
+          "sha256": "77d8b050e893d62780205fd92ae5675ffa764589e05f00132cca87acfacc92d5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/judge.details.json",
+          "sha256": "8c1ed39a9f98177407a5ac2e10f1e5ad42f5690f0730a36b3e026bfe5dd085ae"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/report.md",
+          "sha256": "4601e85c4a51527de19534f827559f81e3fdb5a7f338317a1943f810ae3598a5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/judge.details.json",
+          "sha256": "be2453e5496590289c24c2c4cbef7678ae811ec7f3d6c684591871c77ed4fa84"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/report.md",
+          "sha256": "17810295b02e50698e831db9bb60091d5886d5b1867051d17c351c897e789ec5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/judge.details.json",
+          "sha256": "862ac6149787e3575e25a28383235c509330347b6ee6596f4518a0e11da0d92d"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-10-codex-gpt-5.6-luna-seven-semantic-no-skill.json",
+          "sha256": "b736a09c8a41f3332c4b023b0c6c4012be7bad45e91e55171dcee658dca1d7a7"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/skill-audit.json",
+          "sha256": "cfe36c7812d91f4aff9b82c0ad87dea5b5adeaab74431e16d68126a7d4cd5b91"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/provenance.json",
+          "sha256": "5fa9e3dc4bdda806b22c35f8cd880c591f8a563fefb7551c95d2d747ccc5c975"
+        }
+      ],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/touchpoint-report.md",
+          "sha256": "68206776fac46e54fda15aa992ce4c469c75778cd7823a9a615012774b30f877"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/REPORT.md",
+          "sha256": "77d8b050e893d62780205fd92ae5675ffa764589e05f00132cca87acfacc92d5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/report.md",
+          "sha256": "4601e85c4a51527de19534f827559f81e3fdb5a7f338317a1943f810ae3598a5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/report.md",
+          "sha256": "17810295b02e50698e831db9bb60091d5886d5b1867051d17c351c897e789ec5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/report.md",
+          "sha256": "25d2b86a4d9df1836b02c021ce9fab454c0aaa2a39f9878d7d7a9bc0979a7b3c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/assessment.md",
+          "sha256": "e7032a45f77ed0158a6017ae10ed707fab261c10fe18c733c44f55397c16e5fd"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/report.txt",
+          "sha256": "81f99a46e1fe3c41577edb303056f2f98f8224d25bb060f2efa9199b49df57dc"
+        }
+      ],
+      "packetComparisons": [
+        {
+          "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S1/packet.json",
+          "packetSha256": "11ee4d4c62f7b4c98a0d065633ffdedf4f17796964354a0a751e40d69b4b8b58",
+          "task": "S1-static-scan",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S10/packet.json",
+          "packetSha256": "bf3d3fefb8ffe33d747d2bc1246c0cd40d17b35842847dce20b1e13cb1fa2478",
+          "task": "S10-paste-rename-and-version-chip",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S12/packet.json",
+          "packetSha256": "9fc74b8164fa4fd6f2559b15f2e92fcc398727500fc328fcdf880ca4a9d32e10",
+          "task": "S12-global-upgrade-ebusy-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S15/packet.json",
+          "packetSha256": "084f7a5fa23075c2a4c7475bccccbfa539e18734bae948c9d6a084ada88d74b1",
+          "task": "S15-slot-error-boundary-crash",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S2/packet.json",
+          "packetSha256": "bd6aa750e61a947db7a1890f3ecc6d44d7e95d9ce5610ecfe8167edb457683ae",
+          "task": "S2-negative-scan",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S3/packet.json",
+          "packetSha256": "114b0b2f99e29aa595be0cc0577172dc5c6f0add4959aa83c7c94a114dd69cd0",
+          "task": "S3-snapshot-migration",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-10-luna-seven-semantic-no-skill/S4/packet.json",
+          "packetSha256": "82e53a41278d4448067c45c3d17035983805f71044b52bcbd02ff1c87e966ccc",
+          "task": "S4-legacy-client-imports",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        }
+      ],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    },
+    {
+      "model": "judge gpt-6-astra high",
+      "agent": "Codex judging transport / offline checks",
+      "scope": "7 semantic tasks, selected calibration cases",
+      "conditions": "calibration; not solver arms",
+      "repeats": "15 judge calls reported",
+      "benchmark_commit_reported": "task/grader hashes in companion JSON",
+      "skill_commit_reported": "not applicable",
+      "grading": "task 3.0.0 / report-judge-v1",
+      "access_boundary": "no main solver experiment",
+      "historicalDisposition": "calibration-only",
+      "artifactRoots": [],
+      "notes": "",
+      "report": "benchmark/results/validation-report-2026-09-10-default-semantic-verifiers.md",
+      "reportSha256": "382959ccaad5323c2c79dd0664d0e35a71e5a997f200f0f45f8bedd3db72a9e8",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-10-codex-gpt-5.6-luna-seven-semantic-no-skill.md",
+          "sha256": "8d273d7aa50300f1a8d31fb503d87b7662412ba558f1212f44b024b1a0a9bf19"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-10-default-semantic-verifiers.json",
+          "sha256": "4ad75ea26a406417e4118b5df9867e7dabc972deba97aed5570abd5d9e192b2a"
+        },
+        {
+          "path": "benchmark/docs/report-judge-pilot.md",
+          "sha256": "54a82c442299932785d2a21108a3faebaa060de2e43c4ad910133a8b5cc01e8a"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-10-codex-gpt-5.6-luna-s1-s10-s12-s15-no-skill.md",
+          "sha256": "25932ece2b6e4325be577322221d239674472bc1d3e7ad106c415ece5b6a04e8"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "model": "gpt-5.6-luna xhigh; judge Astra high",
+      "agent": "Codex 0.153.4 / Harbor 0.22.0; host-side judge",
+      "scope": "S5-S9",
+      "conditions": "no skill",
+      "repeats": "1/task",
+      "benchmark_commit_reported": "b49ccee + frozen workspace hashes",
+      "skill_commit_reported": "none",
+      "grading": "task 3.0.0 / report-judge-v1",
+      "access_boundary": "S5-S7 no-network; S8-S9 public; no-skill overlay",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill"
+      ],
+      "notes": "",
+      "report": "benchmark/results/validation-report-2026-09-11-codex-gpt-5.6-luna-s5-s9-semantic-no-skill.md",
+      "reportSha256": "4d9d250a344a1185fe0610253138d1f8b67c7f59e46c79e98ab98bcd1eb499eb",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S5/report.md.txt",
+          "sha256": "1f313187ba4fb3fedbe57c9a7355d729e996af5502204164f9d4134b5cbcaea0"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S5/judge.details.json",
+          "sha256": "c1ef58436d210dd367b735d3244e4816fa48711b8d2ec8bf0d8f590b85ed4ff6"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S6/migration-report.md.txt",
+          "sha256": "0e22f15e7c4520e1f45f377cbb526b32a97bdb28086617b04ccb209839f8df6b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S6/judge.details.json",
+          "sha256": "961b785bfb3ba42560b5811c949f3d58d72a09187f4da3da2ea8476a94106eba"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S7/installation-type-baseline-plan.md.txt",
+          "sha256": "c693281daf30e848bcf55d9a7e3077d45a2728df8206d084b5d3549da1b86bb9"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S7/judge.details.json",
+          "sha256": "ada031bb672ec11f62a70a0c1dee989b94186a50146c356ea26fc0d06b85ee00"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S8/report.md.txt",
+          "sha256": "4dd9dd367015ff2de3d44eb9f4a78b5ec50c9122d378c47accfbaae33bf30468"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S8/judge.details.json",
+          "sha256": "e15feddea78e6a86cce4c58ff3c8b49a1d781b352193000c27d1a1237b54a0f4"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S9/report.md.txt",
+          "sha256": "368c0d08f65475a31c7dbc717271aa3619961d6383cbbdb18b072565ddfb30b3"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S9/judge.details.json",
+          "sha256": "2f0391038856ff2d118f5d9ca3ec652699557be3b2f29e52b932b09be3c2dbb0"
+        },
+        {
+          "path": "benchmark/results/validation-report-2026-09-11-codex-gpt-5.6-luna-s5-s9-semantic-no-skill.json",
+          "sha256": "916c70208829023e389d111b1a80e4ff566f3cbebf68997f44e7130c57469b6f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/skill-audit.json",
+          "sha256": "c9144b3609e996bfe390ea38a97f9b2b03cc2a9727eac50775905b2ea6b55867"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/harbor/lock.json",
+          "sha256": "85bf43bd5d370aeb4efafcb4d5a08411b9443e1ba06306f90bb00aeb82b172e5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/provenance.json",
+          "sha256": "cd1b7933dc22d2bd783cd966cc7101f3b6caffe32ec8e668f40c993faa27725c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/sha256.json",
+          "sha256": "13941202987eb50476ce886ef2678438b6fde2a7ddb13e9b0e77f908e2b84e5e"
+        }
+      ],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S5/report.md.txt",
+          "sha256": "1f313187ba4fb3fedbe57c9a7355d729e996af5502204164f9d4134b5cbcaea0"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S6/migration-report.md.txt",
+          "sha256": "0e22f15e7c4520e1f45f377cbb526b32a97bdb28086617b04ccb209839f8df6b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S7/installation-type-baseline-plan.md.txt",
+          "sha256": "c693281daf30e848bcf55d9a7e3077d45a2728df8206d084b5d3549da1b86bb9"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S8/report.md.txt",
+          "sha256": "4dd9dd367015ff2de3d44eb9f4a78b5ec50c9122d378c47accfbaae33bf30468"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S9/report.md.txt",
+          "sha256": "368c0d08f65475a31c7dbc717271aa3619961d6383cbbdb18b072565ddfb30b3"
+        }
+      ],
+      "packetComparisons": [
+        {
+          "packet": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S5/packet.json",
+          "packetSha256": "3e6b4c6f6476f63e6c182351bb43b8592a07b56b5ee13eb5968bf3f1602205a0",
+          "task": "S5-negative-naming",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S6/packet.json",
+          "packetSha256": "54d8aca44fe55bf1721b41babc9627fe368eab7223c9733c085782182b73d1ea",
+          "task": "S6-corridor-net-state",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S7/packet.json",
+          "packetSha256": "59a1d7e75bbf8026625bf67ec89ed563cd02b98b9dfde679ca6dabe81d9e0e01",
+          "task": "S7-unpublished-cohort",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S8/packet.json",
+          "packetSha256": "7ff6d86e895cbbee9868819ab3851643037dd2e2eed8e6fe4a8cd842c2bc3cd8",
+          "task": "S8-release-routing-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-11-luna-s5-s9-semantic-no-skill/S9/packet.json",
+          "packetSha256": "fa9fe29de46307b967d8251474042f19a71e7bbca0d779983bf5e578662f1cff",
+          "task": "S9-composer-coordinate-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        }
+      ],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    },
+    {
+      "model": "qwen3.8-27b medium; local BF16 H20",
+      "agent": "Codex 0.153.4 / vLLM 0.28.0 / Harbor 0.22.0",
+      "scope": "56 tasks / 336 attempts / 335 scores",
+      "conditions": "plugin-upgrade / no Harbor-injected skill",
+      "repeats": "3/arm/task; H8 baseline score missing",
+      "benchmark_commit_reported": "74af446 + anti-cheat stripping/CRLF/shadow-image deltas",
+      "skill_commit_reported": "74af446; H11/H21 task-specific pins",
+      "grading": "pre-fix H8/M5/S5/S6/S7 and historical mixed graders",
+      "access_boundary": "local serving; compaction and launcher changes disclosed; original task budgets",
+      "historicalDisposition": "recover-private-artifacts-first",
+      "artifactRoots": [],
+      "notes": "Raw sessions/candidate files not in submitted compact JSON; fixes during run need trial-specific protocol mapping.",
+      "report": "benchmark/results/validation-report-2026-09-11-codex-qwen3.8-27b-medium-paired.md",
+      "reportSha256": "fdbc91b88b8f871c990c9d9f91a721e2a926a0ff41da6f991298df3d3f71db6d",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "须先取回原始产物"
+    },
+    {
+      "model": "GLM-5.3-flash solver and judge",
+      "agent": "DSH CLI subagents; exact executable version not established",
+      "scope": "S1-S22",
+      "conditions": "skill / noskill",
+      "repeats": "1/arm/task in this round",
+      "benchmark_commit_reported": "f32175d (reported for all three rounds)",
+      "skill_commit_reported": "plugin-upgrade entry + references; exact mounted manifest needs recovery",
+      "grading": "10 keyword tasks + 12 semantic tasks; same-family judge",
+      "access_boundary": "3-4 subagents; complete network/native-catalog isolation not independently established",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2"
+      ],
+      "notes": "Round3 includes a three-round aggregate; do not count the aggregate as a fourth trial.",
+      "report": "benchmark/results/validation-report-2026-09-11-glm-5.3-flash-s1-s22-round2.md",
+      "reportSha256": "a104cb88833deb2534564fcae7dd0090153b04ef02b67b1e2da973e7286cb1fe",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-11-glm-5.3-flash-s1-s22.md",
+          "sha256": "a0e2592b5618277e6a7dd97b2a6fa1b7a0bf0cee4e81d50e65f1e95ae08559cc"
+        }
+      ],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S1-static-scan/report.md",
+          "sha256": "a37d1e1b55bc8cadab8e683e8cff0252d6f2c678b507b5d3faa7467ec34e19dc"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S10-paste-rename-and-version-chip/report.md",
+          "sha256": "00dc91580644a5036c69634637da79e52516187747096aff231c632615fb36c4"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S11-mermaid-lazyload-trap/report.md",
+          "sha256": "317fa8de2ec13992090aaa3500f0c9f2b21f3d213e86a7f75b37f2b4bf43a65e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S12-global-upgrade-ebusy-trap/report.md",
+          "sha256": "540cd323c460c458628f57a93a153fbb3c186d2ff97fe9d3debdf29221865baf"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S13-peer-range-vs-runtime/report.md",
+          "sha256": "28750767168ddd8f5280bea69973f112ec12c967df7ac4ab70c01403c5db1e4e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S14-link-install-lock-trap/report.md",
+          "sha256": "925f12a817cacee61f13bd091b818df2662a439c2cb87d1556a99baf3e8682c6"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S15-slot-error-boundary-crash/report.md",
+          "sha256": "6dd943a7d09a282fe04e2c1b853256c8376610a982f1e91c85920585c319d296"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S16-self-host-upgrade-trap/report.md",
+          "sha256": "eb498545285f9b238fb73e061a6fb2f6c7d74a855d0b486a59d04ba77673d6d6"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S17-external-ui-plugin-onboarding-trap/report.md",
+          "sha256": "3376aa9a2247287c8666d5c8cd7461bac68330c14068e941fa26e5d7bad2dd31"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S18-terminal-sprite-render-trap/report.md",
+          "sha256": "9b74fa1e7f1f116f5cd51b2b60ad3259dcf58bfb792e6a75d3f4a479184290c2"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S19-phantom-update-stale-host/report.md",
+          "sha256": "e970b838aa4feee9d8ab413d5f188c6928bc3230b0282a5cd07d5e1489689fea"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S2-negative-scan/report.md",
+          "sha256": "3afbd8e3fb67462d19cab48369c4122b4e565b639e389bdae21b77f3a2cdae1b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S20-msvc-flock-trap/report.md",
+          "sha256": "86c2cab7fed4067c13f34fc6c9d058a025ae6c39e9e8a96411e2f47badb411df"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S21-resource-service-unavailable-trap/report.md",
+          "sha256": "129d9e08abf357e48bf247a2d3cb4f6a2eaa378b5df50e3aec29646908ff059e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S22-duplicate-insert-boot-crash-trap/report.md",
+          "sha256": "2b6eb90197b8400421029dd2d443d513ed1a6639f8a076bf085f3a5c00dc124c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S3-snapshot-migration/report.md",
+          "sha256": "aa6e9e6264869bf83e7353f4b2b93428c9a1f8fcff5f4233982cbc55c380766c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S4-legacy-client-imports/report.md",
+          "sha256": "e8978b7f7672e5f0d3d2ea202ee88f8e493d8e8e2e22b192b4767d6ed1bc9d94"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S5-negative-naming/report.md",
+          "sha256": "1534d607ce04e29f754cc01beb75852f3bc0ee0376b8899f9024911d58785e81"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S6-corridor-net-state/report.md",
+          "sha256": "8ca0fef92fee5425541f1f7cd49d6fbb6c615329e4b678a2a343d2042b266a28"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S7-unpublished-cohort/report.md",
+          "sha256": "35da845c9395844cefee10118647cfaaaaa104dd9f5947f43f192101cb3cace3"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S8-release-routing-trap/report.md",
+          "sha256": "ca6f10acd6b0bb8d7697c3681fd3fbfd3aca55d87e91bcdae207d9da8e87be5f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/noskill/S9-composer-coordinate-trap/report.md",
+          "sha256": "230d4c75b731bcaeb6d2133f73b7651cbf5a34c39fd412e8123670daa26b1511"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S1-static-scan/report.md",
+          "sha256": "dfcc8cb95eda92f5ff0dfde9ae75f3e53f5f43d1633e9bd5d6333cc305c2f38f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S10-paste-rename-and-version-chip/report.md",
+          "sha256": "900de695baf11ef9f91586c80bd6fd92a15d47a5d00fc291fc58f89f2a3b0cb0"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S11-mermaid-lazyload-trap/report.md",
+          "sha256": "42c101534cf2f5d5a6100dc34596057adffbdc8faa6b756f8efdb9f93c1d7c4e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S12-global-upgrade-ebusy-trap/report.md",
+          "sha256": "82f0177723a53b7f6f1565f18d0a159b5fb758297b59fea50167c46c28fb7b1c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S13-peer-range-vs-runtime/report.md",
+          "sha256": "0ba96227ec2b3692208cde501f0a8ba0b790a79e5218fba8b5a4e18c2496fcea"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S14-link-install-lock-trap/report.md",
+          "sha256": "b551b81835c00c100d7d0eaa8020bdbab6e111a9b5c81040c0e048bde7160dd0"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S15-slot-error-boundary-crash/report.md",
+          "sha256": "95ea5e9bd1c011d7a15bb3e7a3a59a063742563de0871d2f6f3a0d6baf633091"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S16-self-host-upgrade-trap/report.md",
+          "sha256": "7b9a2d5e93b6a1ac5032ce62eac853b1fc43093fae8b64534b85631904374523"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S17-external-ui-plugin-onboarding-trap/report.md",
+          "sha256": "7b7d11dd513a1d8b4a5d22d3ed73f6bf09f9be8f5c4ff339cc6ee0900e3f76e4"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S18-terminal-sprite-render-trap/report.md",
+          "sha256": "865b9ed76a437ee385c397dd07839b07b6232e27fa0928efbd0326567f174549"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S19-phantom-update-stale-host/report.md",
+          "sha256": "f347ec8a00bd5a727852171aa7ef6d8dd5c6f64a3668ca48e7481b732819d6a9"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S2-negative-scan/report.md",
+          "sha256": "2cece5efeeef79fa1ebe3047495580ddef506577981f3ef24a67247c80f54086"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S20-msvc-flock-trap/report.md",
+          "sha256": "52548625d0875fd78cc74c25b83091bb3325089b2de5ec79d95367137cbeb73f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S21-resource-service-unavailable-trap/report.md",
+          "sha256": "d85f8efec470401d440b56523f31b92565a844a139ff22e3378e688903189a4a"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S22-duplicate-insert-boot-crash-trap/report.md",
+          "sha256": "342af1fc93f92847115edaa42edf3a069b555058206a3c37e23b1bfac10d8816"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S3-snapshot-migration/report.md",
+          "sha256": "923f3e24c00847770c3a1aa19516d872b999a66122dbcaaa5e148533bb31c93d"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S4-legacy-client-imports/report.md",
+          "sha256": "194dcd1fe0ee0725234084b95e51a453e49309343220714313d05dd6c7ca4fff"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S5-negative-naming/report.md",
+          "sha256": "5abdab23103eaec8a135abd71215dbce825343a562b7e6b15c44438551c85b44"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S6-corridor-net-state/report.md",
+          "sha256": "4284c7479e495daaa4bb2864db1ae108408e7a8cd1e9cc95dfd8d327b396173d"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S7-unpublished-cohort/report.md",
+          "sha256": "772fd2249d2dc0e68b5295413892efec1b331f4e13fed08f23e4f40264c0225d"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S8-release-routing-trap/report.md",
+          "sha256": "cc246f5b00436288b665593e1a892db131467f589582f6248baac8cf5ffa24fb"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round2/skill/S9-composer-coordinate-trap/report.md",
+          "sha256": "3f0965eaa5d53db77322819689c32957773d32d50bbb6c7d9341fd33d6105855"
+        }
+      ],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    },
+    {
+      "model": "GLM-5.3-flash solver and judge",
+      "agent": "DSH CLI subagents; exact executable version not established",
+      "scope": "S1-S22",
+      "conditions": "skill / noskill",
+      "repeats": "1/arm/task in this round",
+      "benchmark_commit_reported": "f32175d (reported for all three rounds)",
+      "skill_commit_reported": "plugin-upgrade entry + references; exact mounted manifest needs recovery",
+      "grading": "10 keyword tasks + 12 semantic tasks; same-family judge",
+      "access_boundary": "3-4 subagents; complete network/native-catalog isolation not independently established",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3"
+      ],
+      "notes": "Round3 includes a three-round aggregate; do not count the aggregate as a fourth trial.",
+      "report": "benchmark/results/validation-report-2026-09-11-glm-5.3-flash-s1-s22-round3.md",
+      "reportSha256": "4a1caca31202b4e4bc14f1b8787fe801531c6fc369b3983b8fac36650b13de7f",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S1-static-scan/report.md",
+          "sha256": "8af3b87e1788f233048df93e4522b6b0aeda2f392cb6547b96aa3550769703c4"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S10-paste-rename-and-version-chip/report.md",
+          "sha256": "c792daa6abf94cf41f9f74edf75df30aafc9a62fce666e6d67fb13210a9bc948"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S11-mermaid-lazyload-trap/report.md",
+          "sha256": "2931484dea82688ac4a37247bfa6c79a27ea4099a272d90b2ded70958ad2dc89"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S12-global-upgrade-ebusy-trap/report.md",
+          "sha256": "f7a7e3c7b6766875f15ab2c94bc8718ab2b63a5f09eb5fb41d0f081cbe46b2d4"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S13-peer-range-vs-runtime/report.md",
+          "sha256": "e209767a735c5804d9050303100a07913428708a35577188de81197d4e1d0537"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S14-link-install-lock-trap/report.md",
+          "sha256": "f556561515982448d324f649c8bc0114ca4d1899833831c307820b5291609f0f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S15-slot-error-boundary-crash/report.md",
+          "sha256": "52b2860a6564a23bea8716277200f6721d80a90207ce04cf6e788970e8ff1831"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S16-self-host-upgrade-trap/report.md",
+          "sha256": "8a18a348e498e7acc8d11a2ac63ac7223e13018c42ee4eca8069f09d62e0e469"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S17-external-ui-plugin-onboarding-trap/report.md",
+          "sha256": "310be68d4bdb0df8c07b06d026f345e08035650e35115ad0e9aedcef6ac4ffa6"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S18-terminal-sprite-render-trap/report.md",
+          "sha256": "ec20a30be830ec54c65163dbf49cf6226e823dae9c2f704cf336f077ee9a55f3"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S19-phantom-update-stale-host/report.md",
+          "sha256": "8a1ced9c466376fcf7915158613772dad1b05d443f615b5f98c25145f0554c59"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S2-negative-scan/report.md",
+          "sha256": "5271b9466c0a5d96fc5e841ad0c8066146b1f2c2dabf989ae19ddfe47c8577ab"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S20-msvc-flock-trap/report.md",
+          "sha256": "81110942a7fc49ede6277f5208031c1733912438d7fa4d87685af09203c283df"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S21-resource-service-unavailable-trap/report.md",
+          "sha256": "6d4cbee47600a2cddbbd35f40e3647ff6ec8ff1a5eababf58181db2281107b25"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S22-duplicate-insert-boot-crash-trap/report.md",
+          "sha256": "aeddcbdd1f5768bcd2bfb380efff6454aa9b884443b08d56a5dcc4f62542ee32"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S3-snapshot-migration/report.md",
+          "sha256": "a7e055f490a8fa04b17691a7f97ca9de830c846a517b405fe214398887884a32"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S4-legacy-client-imports/report.md",
+          "sha256": "54c85cb0a15a947e43a8c7f5fa81e6b3ca923d212ceaa731b6a5215e8e712d41"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S5-negative-naming/report.md",
+          "sha256": "93fc70af463770f3c061c466ea55525c27f42b138edac7cb5bad66dd094e2ea7"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S6-corridor-net-state/report.md",
+          "sha256": "1b85f11f54d9a3ac465362675bb67a1024570db6a99f7417cf25b8504d9d3b94"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S7-unpublished-cohort/report.md",
+          "sha256": "7cddbbdd1efceaab75148e73a4b7314faacdb56f356914b8ff23b38ef28d4bd1"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S8-release-routing-trap/report.md",
+          "sha256": "8bb9acfbdd09f40d7e68a0f3a7c9bdce6e7137bcdbac6ada9449b5c56dd5a78f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/noskill/S9-composer-coordinate-trap/report.md",
+          "sha256": "a28bf6486c848354b7adedafae38b59d73c2a396550ecb45225dd55dee601d58"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S1-static-scan/report.md",
+          "sha256": "2c28b0549f5b3c03f584ce51ff195a7a72cc9b47395208c3822336519cb71f3d"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S10-paste-rename-and-version-chip/report.md",
+          "sha256": "623b49dfca9b7059f8c235b2834c896ba943981cc38980ace0f1c7b57a60c196"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S11-mermaid-lazyload-trap/report.md",
+          "sha256": "7fa87e0dd4688e0b9cdcc943f7ffe5c506c374bcca7fcc95a0d7bded30c82cc7"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S12-global-upgrade-ebusy-trap/report.md",
+          "sha256": "048b74459c842b296807f932b4ffe2c7410c511892248ee39e2a6e27556975c8"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S13-peer-range-vs-runtime/report.md",
+          "sha256": "c09ee3b025a0eeac90e912f6c3024aba5974760b9d9ada5e3629eb80b790926c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S14-link-install-lock-trap/report.md",
+          "sha256": "0023524353006b06e201814a1bba170724019a2c78cc6a8fa051dbf447f60b4d"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S15-slot-error-boundary-crash/report.md",
+          "sha256": "3ae30858b3434c7379e61dd781d8243cd3bcdcbe311d7ccfaac53a2dfc7ae736"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S16-self-host-upgrade-trap/report.md",
+          "sha256": "c920312d290e2a974683ffd066498f018f9d79d14394049fa9aa1797b212e939"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S17-external-ui-plugin-onboarding-trap/report.md",
+          "sha256": "16f6341864b1d0d28c052d04aab1383a2a4fcd4c8428bbbcacc84dfff084497f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S18-terminal-sprite-render-trap/report.md",
+          "sha256": "8369546c5e452153ea8e6f16d67ea26fee98990c42d4fdf87e64565dbba15f32"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S19-phantom-update-stale-host/report.md",
+          "sha256": "276cd806311b1f916e14dd1ed59cce162556fba6eef20be7d9e6617a9e8724a7"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S2-negative-scan/report.md",
+          "sha256": "4884984ae475f717a43d4d6951c7ce3049e4e9e081af31b8d293687550b84ea6"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S20-msvc-flock-trap/report.md",
+          "sha256": "13333de09486e46e3f157a4d6da99e9227d906986a89b724dbad340926895adc"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S21-resource-service-unavailable-trap/report.md",
+          "sha256": "0d7b1e8beeec3182818be9e31a849716f86d38ef62b4535d314504acc9b3680c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S22-duplicate-insert-boot-crash-trap/report.md",
+          "sha256": "2a4df8f82c8cf1ef49efd32609e33d0b466818e72303d9b23920e79ae58d6773"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S3-snapshot-migration/report.md",
+          "sha256": "82e50a2e668127468dacc24a649d14e840a9790aa20f3014a39733583fdeb311"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S4-legacy-client-imports/report.md",
+          "sha256": "9fc0ec276d7f3aabb3ed770423c6dfde4b6ca01afc8a5205bf5e52aa9ec074b5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S5-negative-naming/report.md",
+          "sha256": "2830aa5bc991a01d763b56e689301e2a7a39d0bf18c6a17b984e25f0eee68bfd"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S6-corridor-net-state/report.md",
+          "sha256": "2c33778fa4f38c8cd01176cf3854518b4fe14786760a466627f3d7da32654d87"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S7-unpublished-cohort/report.md",
+          "sha256": "ef0101b9125034489a0e1cd52f135bb67596154d8405ed1862313c4a8635d298"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S8-release-routing-trap/report.md",
+          "sha256": "ac3ac057d635d93914156c4a40e9869d910e7f0d154f55e0e3063babf3c5c88c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22-round3/skill/S9-composer-coordinate-trap/report.md",
+          "sha256": "36028deb4c3fdec15a9a833f10b02ad2b34ef699d04fd140f5e52d4722ed9dd2"
+        }
+      ],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    },
+    {
+      "model": "GLM-5.3-flash solver and judge",
+      "agent": "DSH CLI subagents; exact executable version not established",
+      "scope": "S1-S22",
+      "conditions": "skill / noskill",
+      "repeats": "1/arm/task in this round",
+      "benchmark_commit_reported": "f32175d (reported for all three rounds)",
+      "skill_commit_reported": "plugin-upgrade entry + references; exact mounted manifest needs recovery",
+      "grading": "10 keyword tasks + 12 semantic tasks; same-family judge",
+      "access_boundary": "3-4 subagents; complete network/native-catalog isolation not independently established",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22"
+      ],
+      "notes": "Round3 includes a three-round aggregate; do not count the aggregate as a fourth trial.",
+      "report": "benchmark/results/validation-report-2026-09-11-glm-5.3-flash-s1-s22.md",
+      "reportSha256": "a0e2592b5618277e6a7dd97b2a6fa1b7a0bf0cee4e81d50e65f1e95ae08559cc",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S1-static-scan/report.md",
+          "sha256": "032fcd4d6ae8e36798d6cf01a24fe344a5efd5bbc31a038ede550a414bc409a8"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S10-paste-rename-and-version-chip/report.md",
+          "sha256": "5db16f4ccd1b9abe81498380ef875f47ccb717c397e3a4fcb93afc850891033e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S11-mermaid-lazyload-trap/report.md",
+          "sha256": "f0d262160bee1f5d84f927050b69ec5541def553ab5c6f1561fdab6b7083c6f8"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S12-global-upgrade-ebusy-trap/report.md",
+          "sha256": "8dfa8e958ceddb55b52aef141c68c22948738c7b3a4c4c19d438d5a490c0e725"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S13-peer-range-vs-runtime/report.md",
+          "sha256": "0cf2bdde0409cdc279a7d5e6beef437279733a50b4d7e84c3e1176c50d86a4ac"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S14-link-install-lock-trap/report.md",
+          "sha256": "c0ceb6583af23adc5f00a71995c98f07d6b903799f665630cf3d043984491be2"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S15-slot-error-boundary-crash/report.md",
+          "sha256": "70f4d12fff84045f056d9bafbcc00f6c663f5ecd3ce37226e32395ef7bd01fc8"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S16-self-host-upgrade-trap/report.md",
+          "sha256": "f1196ba2e08206c9442bc71eb444563fe94e5b665d56349e6031f6568a44ff6d"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S17-external-ui-plugin-onboarding-trap/report.md",
+          "sha256": "4cbee59b2315eda630e7642d1c58ba538b30ebbfa6f43d768ffa5e8e984fb22b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S18-terminal-sprite-render-trap/report.md",
+          "sha256": "100216ea444b3a3c10ac3fb8972284aed994d0a74987f1b52953ecedfc1f5b76"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S19-phantom-update-stale-host/report.md",
+          "sha256": "4c0d9ffa3427f60b85b64615ee41b89f7cf9eae0f29ce0e2762a556c9d69224f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S2-negative-scan/report.md",
+          "sha256": "c68a66b81c78ac8d58aa8772f3f0eee84d128f0f8b7ff631d6de6d86879d0e13"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S20-msvc-flock-trap/report.md",
+          "sha256": "e9a8d9396da287258d8f467b95d281ec23e3cdccb2c0113a34ab260dbed4cb82"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S21-resource-service-unavailable-trap/report.md",
+          "sha256": "4e3dcd5e4f550a89479d2ce1a6e8d0085a3d23ca3433b457cd8560935653abe9"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S22-duplicate-insert-boot-crash-trap/report.md",
+          "sha256": "fd44d8ce51eee4cb24445e26fde16f489c29de2907edb4c011360acf9187c9a2"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S3-snapshot-migration/report.md",
+          "sha256": "1a8bb80bd4aaf8cb7f5544018af711a71d4d20936f18a0fb759dbabc017e3396"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S4-legacy-client-imports/report.md",
+          "sha256": "bbee2f6336ee3e8e6239f01f64764601677b12b9c560db2f163156a7a49f3ac7"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S5-negative-naming/report.md",
+          "sha256": "bc7434865350c9bf4f7b475388f4c84c329fe5baf910849b6177f742ac72b5c4"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S6-corridor-net-state/report.md",
+          "sha256": "98a7b2e9e70810e27321ea7f7cb2f172c9d775205f91bce01061845160180a97"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S7-unpublished-cohort/report.md",
+          "sha256": "12275f730e22967fa76cfafb39975ad8d4b5684c8d559a95058d456dfb1bac3c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S8-release-routing-trap/report.md",
+          "sha256": "42f5b256089e5729a8bb633c2f212a66c93b25712e72f850969a46c4a2434fc7"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/noskill/S9-composer-coordinate-trap/report.md",
+          "sha256": "d61f4f218235ff1e53308843d02e4db826cbca274444e8d6a84edda0890e887a"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S1-static-scan/report.md",
+          "sha256": "1eb98c7098292cccb144b9b063e45d972219b62edbe7fdfee9b36c19b240c588"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S10-paste-rename-and-version-chip/report.md",
+          "sha256": "59ec10207f5700c0a61cf42af3e5612ea72f2c2017eca7f9dcd405e331ca40b6"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S11-mermaid-lazyload-trap/report.md",
+          "sha256": "d18b2b655ecb00b163a21991d8f57c600c77042bd2519756737ea7830939130a"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S12-global-upgrade-ebusy-trap/report.md",
+          "sha256": "c0e00810446e514bd55d3ea7d7ed53abb4b75a09f070ad4ab104a9d4af523e76"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S13-peer-range-vs-runtime/report.md",
+          "sha256": "1f913a68e1d9a9e2685be7c52f0e8071d42894bedfa4ad8c893c654e0c58cb9e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S14-link-install-lock-trap/report.md",
+          "sha256": "a4c093075383bbc7c0e2b8cef8609f1bbd29f9143369a9d859b478f86a4efa5f"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S15-slot-error-boundary-crash/report.md",
+          "sha256": "8a749bde1ee95ad63cd54d1ec4311502bf134256060ac75cf00a4a04ce9ffbb5"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S16-self-host-upgrade-trap/report.md",
+          "sha256": "84de08038e0c39c5e9941b08b47eff72ac2309862b3be0e716c049c30fe97bb1"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S17-external-ui-plugin-onboarding-trap/report.md",
+          "sha256": "2b451dc1670f9b2a00e00681e9f7b944b025c51b718944d9eb022870cc09c722"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S18-terminal-sprite-render-trap/report.md",
+          "sha256": "4a90443fb973c5b60335d1b7c12e5a7661dbdd0cb4ca4a8a7e35f9eac4b4b369"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S19-phantom-update-stale-host/report.md",
+          "sha256": "666704ec722c984998e0c9717c3dc51fa8484d4d6e9a4b75f94ffc3f295d36b9"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S2-negative-scan/report.md",
+          "sha256": "410331910f5f257a270e93fa2ae9ef6ec2cd37732085228255230d68adfaf935"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S20-msvc-flock-trap/report.md",
+          "sha256": "1b7d25b5973680f57a86acfba030b8233fad0b97a53723a248a03348eb2b6c1b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S21-resource-service-unavailable-trap/report.md",
+          "sha256": "e318533fd8aa1491217427d907d37429b74498728d60319ebf1efb02d05f9c1d"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S22-duplicate-insert-boot-crash-trap/report.md",
+          "sha256": "0608278cdbfffe7e23005a55de6358c7d98e25785f486c260d772961a78ab27b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S3-snapshot-migration/report.md",
+          "sha256": "8eb98ddd7bc52677feaf47de22543385f22f7d226b09f75dd00ae907093cd190"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S4-legacy-client-imports/report.md",
+          "sha256": "f85440db7c93d99e3ecdab92386e2064b744134235592f09103eedcbb2782c1e"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S5-negative-naming/report.md",
+          "sha256": "d047fcb4e5e2f6b27847b65b8ebf9b29d9ed7762006b5ea8c43f29f6c17f5626"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S6-corridor-net-state/report.md",
+          "sha256": "a9469a60f1a53d75371d03025b1a96af8f3d20d3a52ec6e57df3d4d96012e0f7"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S7-unpublished-cohort/report.md",
+          "sha256": "1bda78bd4588c8a5c963391d130d8cf0e3ab2122eda9cd6839e489de3cc825a2"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S8-release-routing-trap/report.md",
+          "sha256": "7adbabbe16af797f953e38229a7b2cff7b0824c8a963cf16f367fdf694c5e4d8"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/skill/S9-composer-coordinate-trap/report.md",
+          "sha256": "2d2776ff54e8d40c22f59d90c4961f0de4c177f046cd951c98af0c4f5630792f"
+        }
+      ],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    },
+    {
+      "model": "judge gpt-6-astra high",
+      "agent": "Codex judging transport",
+      "scope": "S5-S9 / 20 calibration calls",
+      "conditions": "oracle/paraphrase/keyword/contradiction controls",
+      "repeats": "1/case",
+      "benchmark_commit_reported": "35275ac PR base; frozen grading bytes in JSON",
+      "skill_commit_reported": "not applicable",
+      "grading": "task 3.0.0 / report-judge-v1",
+      "access_boundary": "calibration, not a solver experiment",
+      "historicalDisposition": "calibration-only",
+      "artifactRoots": [],
+      "notes": "",
+      "report": "benchmark/results/validation-report-2026-09-11-s5-s9-default-semantic-verifiers.md",
+      "reportSha256": "e860a89f7528cf362c8e78ecbc2ae78c20f3d3f7e748a8492de3cef950c3f506",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-11-s5-s9-default-semantic-verifiers.json",
+          "sha256": "14fc0bcd8c62709ae394d8d117dd940bb923dbaf2aeaa33211590be5f60ae860"
+        }
+      ],
+      "localCandidateReports": [],
+      "packetComparisons": [],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "仅作评分/开发校准"
+    },
+    {
+      "model": "gpt-5.6-luna xhigh solver / high judge",
+      "agent": "Codex 0.153.4 / Harbor 0.22.0; host-side judge",
+      "scope": "H4/H6/H12",
+      "conditions": "no skill; same original answers across two reports",
+      "repeats": "0 new solver trials; 1 regrade/task",
+      "benchmark_commit_reported": "local frozen files; provenance.json hashes",
+      "skill_commit_reported": "none",
+      "grading": "task 4 / report-judge-v2",
+      "access_boundary": "no native skills; original fixture artifacts retained; judge isolated",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill",
+        "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge"
+      ],
+      "notes": "H4/H6 initial judge errors are missing, not zero; decision-judge is a regrade, not another solver sample.",
+      "report": "benchmark/results/validation-report-2026-09-12-codex-luna-h4-h6-h12-decision-judge.md",
+      "reportSha256": "f97bcfbb1d8a22eab1c3296c1559284e52c1b5c07c3d59b3245ebf10c0252002",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/validation-report-2026-09-12-codex-luna-h4-h6-h12-no-skill.md",
+          "sha256": "29ab119a1a5d00b4e0345d07ae4dd6f1f7c23d1cf0b35ee00bdb4597b2c11009"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/summary.json",
+          "sha256": "443b534d3e876afed76ee287ae34510ed2934accd46e71160a2e5d740094e3b2"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/provenance.json",
+          "sha256": "4111a03d844f9bdc22da8fa030994d709f05b5549ab28953d5a700c4aed7b372"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/sha256.json",
+          "sha256": "a42f2e24079b8de1f5f8834830947bd35ccc524040c20a69726b31fa766c8d75"
+        }
+      ],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H12/reports/report.md",
+          "sha256": "f339a7304dee0035216fd4323ab2a6ebd477d1f33106ee0a851df6d596b54497"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H4/reports/report.md",
+          "sha256": "9cc928eed457b63d2e52672034ae84d0916d0ff655d55ac4996061f443115b7b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H6/reports/migration-report.md",
+          "sha256": "8768f33e8f969c413d0d60f1865fa43490b8dc03f7951e65ae938662182bdaae"
+        }
+      ],
+      "packetComparisons": [
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H12/packet.json",
+          "packetSha256": "44ba1a61113c8f79ba4433d384e3f9c5fd46e26fe28ad8abe916a6f074bd6c95",
+          "task": "H12-remote-result-boundary-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H4/packet.json",
+          "packetSha256": "dc527436d5320a565fd9573a92575d542c014a68d8d7534707d5851345dc775f",
+          "task": "H4-tsbuildinfo-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H6/packet.json",
+          "packetSha256": "47486dc58e0f0ca4822bbb17365b734fbcebada8bcf95f1613af38c31b531f92",
+          "task": "H6-remote-error-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/H12/packet.json",
+          "packetSha256": "2281bc568cd6d6a977a27e1a5f3a0f95ea6a1c54867bce3f098a7072c6415914",
+          "task": "H12-remote-result-boundary-trap",
+          "oldProtocol": "report-judge-v2",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/H4/packet.json",
+          "packetSha256": "30d34533e03ab7e2001253800d99e89b707d688fadca087c7866d6ae51b1b192",
+          "task": "H4-tsbuildinfo-trap",
+          "oldProtocol": "report-judge-v2",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/H6/packet.json",
+          "packetSha256": "d4184389d90efacaa5cdfb323bd42b3b9f670cbe46fb9e26c50c95eed9245d02",
+          "task": "H6-remote-error-trap",
+          "oldProtocol": "report-judge-v2",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        }
+      ],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    },
+    {
+      "model": "gpt-5.6-luna xhigh solver / high judge",
+      "agent": "Codex 0.153.4 / Harbor 0.22.0; host-side judge",
+      "scope": "H4/H6/H12",
+      "conditions": "no skill; same original answers across two reports",
+      "repeats": "1 solver/task; earlier H4/H6 judge retry only",
+      "benchmark_commit_reported": "local frozen files; provenance.json hashes",
+      "skill_commit_reported": "none",
+      "grading": "task 3 / report-judge-v1",
+      "access_boundary": "no native skills; original fixture artifacts retained; judge isolated",
+      "historicalDisposition": "local-answer-regrade-candidate",
+      "artifactRoots": [
+        "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill",
+        "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge"
+      ],
+      "notes": "H4/H6 initial judge errors are missing, not zero; decision-judge is a regrade, not another solver sample.",
+      "report": "benchmark/results/validation-report-2026-09-12-codex-luna-h4-h6-h12-no-skill.md",
+      "reportSha256": "29ab119a1a5d00b4e0345d07ae4dd6f1f7c23d1cf0b35ee00bdb4597b2c11009",
+      "auditBasis": "2026-09-13 report-level audit; assertions are reported unless independently compared below",
+      "legacyReportSha256Matches": null,
+      "localLinkedEvidence": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/summary.json",
+          "sha256": "7ec5851796a9d1ed6c550f17e18911d6cc9251ff5f5e56e40f137b719ea0135c"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/provenance.json",
+          "sha256": "2b161265d3ea64026cb2fde372964e0fd74199941ed7906fd8780866dd1ff1e8"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/sha256.json",
+          "sha256": "9a1099e891b11de10ec9258b739fb89437ceb69c9e8cb013070f7851e30548de"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H4/reports/report.md",
+          "sha256": "9cc928eed457b63d2e52672034ae84d0916d0ff655d55ac4996061f443115b7b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H6/reports/migration-report.md",
+          "sha256": "8768f33e8f969c413d0d60f1865fa43490b8dc03f7951e65ae938662182bdaae"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H12/reports/report.md",
+          "sha256": "f339a7304dee0035216fd4323ab2a6ebd477d1f33106ee0a851df6d596b54497"
+        }
+      ],
+      "localCandidateReports": [
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H12/reports/report.md",
+          "sha256": "f339a7304dee0035216fd4323ab2a6ebd477d1f33106ee0a851df6d596b54497"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H4/reports/report.md",
+          "sha256": "9cc928eed457b63d2e52672034ae84d0916d0ff655d55ac4996061f443115b7b"
+        },
+        {
+          "path": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H6/reports/migration-report.md",
+          "sha256": "8768f33e8f969c413d0d60f1865fa43490b8dc03f7951e65ae938662182bdaae"
+        }
+      ],
+      "packetComparisons": [
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H12/packet.json",
+          "packetSha256": "44ba1a61113c8f79ba4433d384e3f9c5fd46e26fe28ad8abe916a6f074bd6c95",
+          "task": "H12-remote-result-boundary-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H4/packet.json",
+          "packetSha256": "dc527436d5320a565fd9573a92575d542c014a68d8d7534707d5851345dc775f",
+          "task": "H4-tsbuildinfo-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-semantic-no-skill/H6/packet.json",
+          "packetSha256": "47486dc58e0f0ca4822bbb17365b734fbcebada8bcf95f1613af38c31b531f92",
+          "task": "H6-remote-error-trap",
+          "oldProtocol": "report-judge-v1",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/H12/packet.json",
+          "packetSha256": "2281bc568cd6d6a977a27e1a5f3a0f95ea6a1c54867bce3f098a7072c6415914",
+          "task": "H12-remote-result-boundary-trap",
+          "oldProtocol": "report-judge-v2",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/H4/packet.json",
+          "packetSha256": "30d34533e03ab7e2001253800d99e89b707d688fadca087c7866d6ae51b1b192",
+          "task": "H4-tsbuildinfo-trap",
+          "oldProtocol": "report-judge-v2",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        },
+        {
+          "packet": "benchmark/results/artifacts/2026-09-12-luna-h4-h6-h12-decision-judge/H6/packet.json",
+          "packetSha256": "d4184389d90efacaa5cdfb323bd42b3b9f670cbe46fb9e26c50c95eed9245d02",
+          "task": "H6-remote-error-trap",
+          "oldProtocol": "report-judge-v2",
+          "newProtocol": "report-judge-v2",
+          "fixtureIdentical": true,
+          "originalInstructionIdentical": true,
+          "rubricIdentical": true,
+          "referenceContentIdentical": true,
+          "scope": "input packet comparison only; exported candidate integrity gates still require verification"
+        }
+      ],
+      "newStudyDecision": "rerun-required-for-current-candidate-protocol",
+      "newStudyReasons": [
+        "new common material-access prompt is absent from historical run",
+        "A/B/C/D material hashes, delivery and shared tool boundary not established equal",
+        "new model/budget/repetition protocol remains unfrozen"
+      ],
+      "regradeScope": "historical measurement audit only; never simulate a changed solver input",
+      "historicalAction": "有本地答案，可作历史重评候选"
+    }
+  ],
+  "accountingChecks": {
+    "status": "descriptive-recalculation; raw files unchanged",
+    "glm": {
+      "source": "benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/usage-summary.json",
+      "sha256": "d3c56ce059a0f66b48ee5e596fca5cc5db94102798ee1d47826e669ad25e20f3",
+      "solverTotals": {
+        "skill": {
+          "in": 678101,
+          "out": 132726,
+          "cache": 5017984,
+          "total": 5828811,
+          "ms": 2525929
+        },
+        "noskill": {
+          "in": 599882,
+          "out": 116506,
+          "cache": 5890176,
+          "total": 6606564,
+          "ms": 2246209
+        }
+      },
+      "skillToNoskillRatios": {
+        "in": 1.1303906434932203,
+        "out": 1.139220297667073,
+        "cache": 0.8519242888497729,
+        "total": 0.8822757185126792,
+        "ms": 1.1245298189082138
+      },
+      "note": "Separate judge calls excluded; total includes cache; ms sums sessions, not parallel wall time."
+    },
+    "qwen": {
+      "source": "benchmark/results/validation-report-2026-09-11-codex-qwen3.8-27b-medium-paired.json",
+      "sha256": "d50def90658bba061edd167565cf78ba7e1d9fbbb9aa3e0bcf5c10ebed0a99cd",
+      "equalTaskWeightAvailableRepeatDelta": -0.030714285714285715,
+      "perfectWithTimeout": {
+        "with-skill": 18,
+        "no-skill": 12
+      },
+      "note": "H8 baseline repeat missing; this is not a complete paired estimate or confidence interval."
+    }
+  },
+  "rule": "A regrade changes measurement, not solver inputs. Local answer availability is not certification that all integrity gates can be replayed."
+}

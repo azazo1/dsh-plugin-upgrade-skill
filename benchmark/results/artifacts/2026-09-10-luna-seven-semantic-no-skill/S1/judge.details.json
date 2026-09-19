@@ -1,0 +1,454 @@
+{
+  "status": "scored",
+  "score": 45,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "source-patch",
+      "verdict": "pass",
+      "reason": "Identifies the composition declaration, actual source replacement and helper script, distinguishing their roles and explaining the private path and symbol coupling. Card accuracy is assessed separately.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "- `cordis.patch.yml:1-6` declares the plugin patch composition and includes `patch.yml`.\n- `patch.yml:2-6` declares a source surface targeting `src/session/view/SessionView.ts` and performs an exact textual replacement from `renderSessionView` to `renderSessionViewPatched`.\n- `scripts/apply-patch.mjs:5-6` requires `DSH_HARNESS_SOURCE_ROOT`, but does not use its value; `:8-9` reads `patch.yml` from the process working directory and prints it."
+        },
+        {
+          "report": "touchpoint-report.md",
+          "quote": "Concrete coupling: the plugin depends on the old patch declaration format/surface, the old internal target path, and the old exact symbol text."
+        }
+      ],
+      "sources": [
+        {
+          "path": "cordis.patch.yml",
+          "quote": "  patch:\n    - patch.yml"
+        },
+        {
+          "path": "patch.yml",
+          "quote": "surface:\n  - target: src/session/view/SessionView.ts\n    replacements:\n      - find: export function renderSessionView\n        replace: export function renderSessionViewPatched"
+        },
+        {
+          "path": "scripts/apply-patch.mjs",
+          "quote": "const sourceRoot = process.env.DSH_HARNESS_SOURCE_ROOT\nif (!sourceRoot) throw new Error('DSH_HARNESS_SOURCE_ROOT is required')\n\nconst surface = readFileSync('patch.yml', 'utf8')\nconsole.log('[legacy] applying patch surface:\\n', surface)"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-03"
+      ],
+      "points": 10,
+      "awarded": 10
+    },
+    {
+      "id": "events",
+      "verdict": "partial",
+      "reason": "Locates the producer, consumer and marker and recognizes restoration at the target. Does not explain omission-safe semantics, preservation through reload, or rejection of unknown required events rather than consumer whitelisting.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "- `ctx.emit('session/event', ...)` produces an external informational event with type `legacy/informational-note`.\n- The payload includes `ignorable: true` and a `payload` object (`:15-19`).\n- `ctx.on('session/event', ...)` consumes the event and assumes a `SessionEvent`-shaped object with `.type` (`:20-22`)."
+        },
+        {
+          "report": "touchpoint-report.md",
+          "quote": "The event mapping applies the target-version net state: alpha.1's intermediate removal of the ignorable marker is folded away because alpha.2 restores the producer/persistence contract."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/index.ts",
+          "quote": "  ctx.emit('session/event', {\n    type: 'legacy/informational-note',\n    ignorable: true,\n    payload: { text: 'fixture' },\n  })\n  ctx.on('session/event', (event: any /* SessionEvent */) => {\n    console.log('[legacy] session event:', event.type)\n  })"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-02",
+        "DSH-0.1.2-A2-01"
+      ],
+      "points": 10,
+      "awarded": 5
+    },
+    {
+      "id": "host-services",
+      "verdict": "partial",
+      "reason": "Correctly locates both legacy Host apiProxy operations, but does not explain removal or distinguish Host domain-service injection from browser Remote calls.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "- The `rename-session` handler obtains the legacy Host service with `await ctx.get('apiProxy')` (`:25-27`) and calls `apiProxy.invoke('session.rename', { id, title })`.\n- The `list-providers` handler repeats the `ctx.get('apiProxy')` lookup (`:29-31`) and calls `apiProxy.invoke('llm.providers')`."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/index.ts",
+          "quote": "  ctx.register('rename-session', async ({ id, title }: any) => {\n    const apiProxy = await ctx.get('apiProxy')\n    await apiProxy.invoke('session.rename', { id, title })\n  })\n  ctx.register('list-providers', async () => {\n    const apiProxy = await ctx.get('apiProxy')\n    return apiProxy.invoke('llm.providers')\n  })"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-01"
+      ],
+      "points": 10,
+      "awarded": 5
+    },
+    {
+      "id": "host-path",
+      "verdict": "partial",
+      "reason": "Identifies the fixed home/profile path and its assumptions, but omits using runtime DSH_HOME and the selected profile as the source of truth.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "- Constructs the fixed host/profile path `~/.dsh/profiles/default` (`:36`).\n- Writes directly to `legacy-note.txt` with `writeFileSync` (`:37`)."
+        },
+        {
+          "report": "touchpoint-report.md",
+          "quote": "The plugin assumes host ownership and stability of a particular profile directory and bypasses an abstracted host storage boundary. This maps to `A1-04`."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/index.ts",
+          "quote": "    const profileDir = join(homedir(), '.dsh', 'profiles', 'default')\n    writeFileSync(join(profileDir, 'legacy-note.txt'), text)"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-04"
+      ],
+      "points": 10,
+      "awarded": 5
+    },
+    {
+      "id": "ui",
+      "verdict": "partial",
+      "reason": "Locates both the private import and command registration and recognizes UI decomposition, but omits target-owner and public-seam verification.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "- Imports the private UI path `@deepseek-ai/dsh-session-view/internal` (`:10`), explicitly identified as a path removed by UI decomposition (`:9`).\n- Registers `legacy.openView` through `ctx.contributes.registerCommand` and directly constructs `new SessionView({ enhanced: true })` (`:40-43`)."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/index.ts",
+          "quote": "import { SessionView } from '@deepseek-ai/dsh-session-view/internal'"
+        },
+        {
+          "path": "src/index.ts",
+          "quote": "  ctx.contributes.registerCommand('legacy.openView', () => {\n    return new SessionView({ enhanced: true })\n  })"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-03"
+      ],
+      "points": 10,
+      "awarded": 5
+    },
+    {
+      "id": "channel",
+      "verdict": "partial",
+      "reason": "Identifies the raw loopback server and missing Gateway authentication integration. Does not explain that loopback still requires protection or how authenticated Host-owned channels differ from explicitly gated raw routes.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "- Creates a private HTTP server with `createServer` (`:47-49`).\n- Binds a fixed loopback port and address, `43121` on `127.0.0.1` (`:51`)."
+        },
+        {
+          "report": "touchpoint-report.md",
+          "quote": "This is a custom out-of-band channel rather than a Host Gateway channel, with fixed endpoint/network assumptions and no Gateway authentication integration."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/index.ts",
+          "quote": "  function startLegacyBridge() {\n    const server = createServer((_request, response) => {\n      response.end('legacy')\n    })\n    server.listen(43121, '127.0.0.1') // http://localhost:43121/api/legacy\n    return server\n  }"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-08"
+      ],
+      "points": 10,
+      "awarded": 5
+    },
+    {
+      "id": "subprocess",
+      "verdict": "partial",
+      "reason": "Locates both subprocess parsers and correctly rejects JSONL parsing of final-text stdout. Omits stderr reasoning/progress and the fact that stdout was already final text in rc.2.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "- `src/index.ts:56-67` spawns `dsh --profile headless`, reads `child.stdout` data chunks, converts each chunk to text, and immediately calls `JSON.parse` (`:59-63`), looking for a `final` event.\n- `scripts/apply-patch.mjs:11-19` makes the same incompatible assumption for synchronous headless output: it treats final text as newline-delimited JSON, splits on `\\n`, parses every nonblank line, and looks for `event.type === 'final'`."
+        },
+        {
+          "report": "touchpoint-report.md",
+          "quote": "Concrete coupling: both wrappers assume headless stdout is JSONL event output. The fixture identifies the target behavior as final text, so the parse strategy and `final` event contract are stale."
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/index.ts",
+          "quote": "      const child = spawn('dsh', ['--profile', 'headless', prompt])\n      let result = ''\n      child.stdout.on('data', (line: Buffer) => {\n        const event = JSON.parse(line.toString())\n        if (event.type === 'final') result = event.text\n      })"
+        },
+        {
+          "path": "scripts/apply-patch.mjs",
+          "quote": "const output = execFileSync('dsh', ['--profile', 'headless', 'ping'], {\n  encoding: 'utf8',\n})\nfor (const line of output.split('\\n')) {\n  if (!line.trim()) continue\n  const event = JSON.parse(line)\n  if (event.type === 'final') console.log('[legacy] headless ok:', event.text)\n}"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-04",
+        "DSH-0.1.2-A1-05"
+      ],
+      "points": 10,
+      "awarded": 5
+    },
+    {
+      "id": "mapping",
+      "verdict": "fail",
+      "reason": "Systematically substitutes touchpoint numbers for card IDs. Only the host-path mapping is complete and correct; events omit A2-01. Source/UI require A1-03, apiProxy A1-01, channels A1-08, and launcher/output A1-04/A1-05. This is substantively incorrect, not merely incomplete.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "The corridor card IDs below use the seven touchpoint cards in order: `A1-01` through `A1-07`."
+        },
+        {
+          "report": "touchpoint-report.md",
+          "quote": "| #1 Source patch | Yes | `A1-01` | `cordis.patch.yml:1-6`; `patch.yml:1-6`; `scripts/apply-patch.mjs:5-9` |\n| #2 Events | Yes | `A1-02` | `src/index.ts:13-22` |\n| #3 Service/Remote | Yes | `A1-03` | `src/index.ts:24-32` |\n| #4 Host directory | Yes | `A1-04` | `src/index.ts:34-38` |\n| #5 UI/commands/tools | Yes | `A1-05` | `src/index.ts:9-10, 40-43` |\n| #6 Custom channel | Yes | `A1-06` | `src/index.ts:45-54` |\n| #7 Subprocess/output parsing | Yes | `A1-07` | `src/index.ts:56-67`; `scripts/apply-patch.mjs:11-19` |"
+        }
+      ],
+      "sources": [
+        {
+          "path": "patch.yml",
+          "quote": "  - target: src/session/view/SessionView.ts"
+        },
+        {
+          "path": "src/index.ts",
+          "quote": "    const apiProxy = await ctx.get('apiProxy')"
+        },
+        {
+          "path": "src/index.ts",
+          "quote": "    const profileDir = join(homedir(), '.dsh', 'profiles', 'default')"
+        },
+        {
+          "path": "src/index.ts",
+          "quote": "    server.listen(43121, '127.0.0.1') // http://localhost:43121/api/legacy"
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-01",
+        "DSH-0.1.2-A1-02",
+        "DSH-0.1.2-A2-01",
+        "DSH-0.1.2-A1-03",
+        "DSH-0.1.2-A1-04",
+        "DSH-0.1.2-A1-05",
+        "DSH-0.1.2-A1-08"
+      ],
+      "points": 20,
+      "awarded": 0
+    },
+    {
+      "id": "limits",
+      "verdict": "partial",
+      "reason": "Accounts for all seven hits and explains static-scan limitations without requiring fixture execution. Omits proposed target-version build/typecheck, isolated boot and functional-path verification.",
+      "evidence": [
+        {
+          "report": "touchpoint-report.md",
+          "quote": "There are no no-hit categories: all seven requested categories have positive static evidence above."
+        },
+        {
+          "report": "touchpoint-report.md",
+          "quote": "Even for a category with no textual match, a static no-hit result would not prove “no problem”: runtime registration can be indirect, dependencies can carry the coupling, configuration can be interpreted by the host, and behavior can depend on dynamic values or protocol responses. This report is therefore a static touchpoint inventory, not an executable compatibility verdict."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 10,
+      "awarded": 5
+    }
+  ],
+  "caps": [],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 16481,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3718,
+      "reasoning_output_tokens": 402
+    },
+    "request_id": "01a08aed-755f-72c1-bf44-b407731e5db0",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "0d57fe8c2a215f68d0b6a05e8c17d029b98442a1c96ddafafe57d547a71fe799",
+    "response_sha256": "d61ceda10772f64096db0f6f2bf8c081768d7467fc15756b63bbe1c6f18757db"
+  },
+  "citation_audit": [
+    {
+      "report": "touchpoint-report.md",
+      "citation": "cordis.patch.yml:1-6",
+      "path": "cordis.patch.yml",
+      "start": 1,
+      "end": 6,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "patch.yml:1-6",
+      "path": "patch.yml",
+      "start": 1,
+      "end": 6,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "scripts/apply-patch.mjs:5-9",
+      "path": "scripts/apply-patch.mjs",
+      "start": 5,
+      "end": 9,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:13-22",
+      "path": "src/index.ts",
+      "start": 13,
+      "end": 22,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:24-32",
+      "path": "src/index.ts",
+      "start": 24,
+      "end": 32,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:34-38",
+      "path": "src/index.ts",
+      "start": 34,
+      "end": 38,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:9-10",
+      "path": "src/index.ts",
+      "start": 9,
+      "end": 10,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:45-54",
+      "path": "src/index.ts",
+      "start": 45,
+      "end": 54,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:56-67",
+      "path": "src/index.ts",
+      "start": 56,
+      "end": 67,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "scripts/apply-patch.mjs:11-19",
+      "path": "scripts/apply-patch.mjs",
+      "start": 11,
+      "end": 19,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "cordis.patch.yml:1-6",
+      "path": "cordis.patch.yml",
+      "start": 1,
+      "end": 6,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "patch.yml:2-6",
+      "path": "patch.yml",
+      "start": 2,
+      "end": 6,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "scripts/apply-patch.mjs:5-6",
+      "path": "scripts/apply-patch.mjs",
+      "start": 5,
+      "end": 6,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:13-22",
+      "path": "src/index.ts",
+      "start": 13,
+      "end": 22,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:24-32",
+      "path": "src/index.ts",
+      "start": 24,
+      "end": 32,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:34-38",
+      "path": "src/index.ts",
+      "start": 34,
+      "end": 38,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:9-10",
+      "path": "src/index.ts",
+      "start": 9,
+      "end": 10,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:45-54",
+      "path": "src/index.ts",
+      "start": 45,
+      "end": 54,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "src/index.ts:56-67",
+      "path": "src/index.ts",
+      "start": 56,
+      "end": 67,
+      "valid": true
+    },
+    {
+      "report": "touchpoint-report.md",
+      "citation": "scripts/apply-patch.mjs:11-19",
+      "path": "scripts/apply-patch.mjs",
+      "start": 11,
+      "end": 19,
+      "valid": true
+    }
+  ],
+  "reports": {
+    "touchpoint-report.md": "68206776fac46e54fda15aa992ce4c469c75778cd7823a9a615012774b30f877"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "626f3d792901e8dfc414133db6f354916d7b1e3b086b12d82f3ce2db1c84f3db",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}

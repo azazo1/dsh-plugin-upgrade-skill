@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "resource-chain-attribution",
+      "verdict": "pass",
+      "reason": "Report grounds the empty tab in the api-workspace-files Remote/host service chain using symptom-log.txt and contrast-probe.txt: the absolute click fails at the claim layer while the session-scoped tab opens with a correct title, and meta.status stays 'none' meaning the RPC never resolves — explicitly not renderer, file, or disk. Role-level naming equivalent to exact symbols; cites fixture files directly."
+    },
+    {
+      "id": "contrast-probe-localization",
+      "verdict": "pass",
+      "reason": "Uses the two readers of the same file: file-trace via its own host RPC reads fine while the workspace-files read never arrives, explicitly ruling out the file, disk, permissions, workspace-root resolution, and claim layer, and localizing the failure to the workspace-files Remote/service delivery on the upgraded profile."
+    },
+    {
+      "id": "probe-validity",
+      "verdict": "partial",
+      "reason": "Correctly credits the 62/62 per-module sweep as the valid static-serving measurement and rejects the all-in-one join 404 as evidence. But it misses the operative mechanism named in the rubric — the joined URL exceeding the host 3 KB combo-URL cap (MAX_COMBO_URL_BYTES) with the real loader partitioning into in-cap chunks — substituting its own speculative reasons (single pinned rev, per-inject groupings) not grounded in the fixture; the core conclusion is right, the required reasoning is incomplete."
+    },
+    {
+      "id": "distractor-separation",
+      "verdict": "pass",
+      "reason": "Keeps the bugs separate: paste-input fold-skipped warnings are called an unrelated message-bubble rendering bug sharing no path with the resource read, and the textpreview→documentpreview rename is credited only for the absolute-scope claim miss, explicitly not for the empty session-scoped tab."
+    },
+    {
+      "id": "mitigation-and-upstream",
+      "verdict": "pass",
+      "reason": "Orders actions correctly: explicit refusal of plugin-side rewrite/retry/fallback, full host restart first as the cheap step, then verified pinned rollback to 0.1.3-alpha.2 while going upstream to #5999, with a forensics package (sweep labeled valid, contrast reader, boot manifest, join-404 caveat in §2/summary) and concrete boot-time fail-loud proposals (end-to-end service self-probe, manifest-vs-registered mismatch logging) instead of a silent empty tab."
+    }
+  ],
+  "caps": []
+}

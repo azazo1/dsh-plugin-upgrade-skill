@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "busy-scope-and-trigger",
+      "verdict": "pass",
+      "reason": "Report quotes the exact disabled expression, identifies busy as a React.useState local to sibling AttachButton, unbound/not declared in AttachmentChips, and explains the empty-dock early return before the map plus the plain-phase left-guard making || evaluate busy into a ReferenceError."
+    },
+    {
+      "id": "slot-boundary",
+      "verdict": "pass",
+      "reason": "Explains the slot error boundary catches the render throw and unmounts the entire dock entry (not just the remove button), the separate input.left AttachButton slot survives, and the error is console-only with no user-facing banner."
+    },
+    {
+      "id": "attribution-and-isolation",
+      "verdict": "partial",
+      "reason": "Uses the v0.2.10 expression as baseline evidence, records the diff-vs-excerpt inconsistency without forcing a hover-diff-guilt claim, and proposes both the data-present plain-phase baseline mount and a rollback/re-add bisect. However, it never discusses feature.diff placing imageItem before the callback-scoped status/record, and §1 briefly overclaims the case 'had never been exercised' where the evidence cannot establish every historical user."
+    },
+    {
+      "id": "fix-and-hardening",
+      "verdict": "partial",
+      "reason": "Covers removing the dangling || busy (preserving the phase guard) or properly lifting/owning busy as a prop, record?.items ?? [], and event.target.closest?.(...) — but never addresses scoping the hover lookups (imageItem) to where record/status are defined inside the map."
+    },
+    {
+      "id": "data-present-regression",
+      "verdict": "pass",
+      "reason": "Provides a concrete data-present, phase:'plain' render test asserting the chip exists and no error-boundary capture, explains why the empty-state early return and node --check/parse-only gates miss the free identifier, and requires a representative-data render smoke for every slot component as a pre-ship check."
+    }
+  ],
+  "caps": []
+}

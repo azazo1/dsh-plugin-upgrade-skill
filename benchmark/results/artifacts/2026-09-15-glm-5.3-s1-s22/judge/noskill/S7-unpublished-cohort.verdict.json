@@ -1,0 +1,31 @@
+{
+  "decisions": [
+    {
+      "id": "published-version-evidence",
+      "verdict": "pass",
+      "reason": "Report grounds the diagnosis in the fixture package.json declaration and the brief-supplied registry list, states alpha.1 was never published while alpha.2 was, marks the registry fact unconfirmed per closed-book, and proposes package-specific verification (npm ls / resolved-version recording). No online npm view demanded."
+    },
+    {
+      "id": "caret-resolution",
+      "verdict": "pass",
+      "reason": "Correctly explains ^0.1.2-alpha.1 resolves to the published 0.1.2-alpha.2 (same tuple, prerelease identifier >= alpha.1), so install does not fail despite the missing lower bound; identifies the silent type-baseline mismatch and future-prerelease drift risk. No claim that all alphas are missing or that the caret guarantees alpha.1."
+    },
+    {
+      "id": "workable-baseline-plan",
+      "verdict": "pass",
+      "reason": "Multiple complete plans with tradeoffs: Path A accepts published alpha.2, Path B exact-pins it, Path C builds/installs alpha.1 from a verified local source ref via file:/link without publishing, each with tradeoffs and exit paths."
+    },
+    {
+      "id": "reproducibility-and-exit",
+      "verdict": "pass",
+      "reason": "Plan includes one consistent package manager (noting ambiguity), committed lockfile, exact pin option, proposed tsc --noEmit typecheck against the target, explicit override-removal/exit paths, and an honest unconfirmed-items list; does not require npm and pnpm simultaneously or any executed install."
+    }
+  ],
+  "caps": [
+    {
+      "id": "install-unpublished-registry-version",
+      "triggered": false,
+      "reason": "The report never prescribes installing alpha.1 from npm; its alpha.1 path (Path C) explicitly uses local built artifacts via file:/npm link/workspace override, and no rejected BAD example triggers the cap."
+    }
+  ]
+}

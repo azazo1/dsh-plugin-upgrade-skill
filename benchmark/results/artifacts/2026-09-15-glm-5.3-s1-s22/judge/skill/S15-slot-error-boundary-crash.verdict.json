@@ -1,0 +1,30 @@
+{
+  "decisions": [
+    {
+      "id": "busy-scope-and-trigger",
+      "verdict": "pass",
+      "reason": "Report locates the dangling busy in `disabled: (props.input?.phase ?? 'plain') !== 'plain' || busy`, states busy is AttachButton's useState binding and an unbound free identifier in AttachmentChips, explains the empty-occurrence early `return null` before the map, and that a present occurrence in plain phase makes the left guard false so busy is evaluated and throws ReferenceError — grounded in the fixture files."
+    },
+    {
+      "id": "slot-boundary",
+      "verdict": "pass",
+      "reason": "Explains the render exception is caught by the InputZone slot error boundary which unmounts the whole dock entry (not just the remove button), that AttachButton lives in a separate input.left slot entry with its own boundary and survives, and that the diagnostic is console-only with no user-facing banner."
+    },
+    {
+      "id": "attribution-and-isolation",
+      "verdict": "pass",
+      "reason": "Uses the shipped v0.2.10 expression to establish busy already occurs in the baseline, proposes both hunk-level rollback/re-add bisection and a data-present plain-phase mount of the v0.2.10 component, does not force the claim that the hover diff is harmless (instead identifies the hoisted imageItem line as a second always-reachable defect), credits the record?.items.find TypeError, event.target.closest risks, and the diff/baseline inconsistency on the disabled line, and honestly caveats that the excerpt/full-build evidence cannot prove when historical users first exercised the failure."
+    },
+    {
+      "id": "fix-and-hardening",
+      "verdict": "pass",
+      "reason": "Proposes deleting the bare busy (or threading explicitly owned state via props.busy), moving imageItem into the map callback where record/status are scoped, adding record?.items ?? [] / record?.items?.find hardening and event.target.closest?.()/target-type safety, while keeping the phase guard; equivalent safe fixes grounded in the fixture."
+    },
+    {
+      "id": "data-present-regression",
+      "verdict": "pass",
+      "reason": "Proposes mounting the dock with at least one occurrence present, asserting the .chip exists and the error boundary captures nothing, explains why an empty-state-only test returns null before the throwing line and why node --check only parses and cannot resolve free identifiers or execute the component, and requires this data-present smoke in pre-ship checks."
+    }
+  ],
+  "caps": []
+}

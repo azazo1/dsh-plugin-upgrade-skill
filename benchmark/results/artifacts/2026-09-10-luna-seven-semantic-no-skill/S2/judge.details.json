@@ -1,0 +1,217 @@
+{
+  "status": "scored",
+  "score": 60,
+  "max": 100,
+  "passed": false,
+  "decisions": [
+    {
+      "id": "host-break",
+      "verdict": "partial",
+      "reason": "Correctly locates the connected legacy dependency, injection, and provider call. However, category #3 is incorrectly presented as a change card; the report omits A1-01, APIProxy removal, direct llm injection/listProviders migration, and removal of the dead apiproxy dependency.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "`package.json:17` depends on `@deepseek-ai/dsh-host-apiproxy` at `0.0.1-rc.1`; `index.js:3` injects `apiProxy`; `index.js:9` calls `ctx.apiProxy.llm.providers()`."
+        },
+        {
+          "report": "report.md",
+          "quote": "**Card #3 — internal service/Remote: `apiProxy`.**"
+        },
+        {
+          "report": "report.md",
+          "quote": "This card must be checked and migrated for dsh 0.1.2-alpha.2; the exact replacement contract cannot be inferred from this static source alone."
+        }
+      ],
+      "sources": [
+        {
+          "path": "index.js",
+          "quote": "export const inject = [\"apiProxy\"]"
+        },
+        {
+          "path": "index.js",
+          "quote": "const providers = await ctx.apiProxy.llm.providers()"
+        },
+        {
+          "path": "package.json",
+          "quote": "\"@deepseek-ai/dsh-host-apiproxy\": \"0.0.1-rc.1\""
+        }
+      ],
+      "references": [
+        "DSH-0.1.2-A1-01"
+      ],
+      "points": 40,
+      "awarded": 20
+    },
+    {
+      "id": "negative-coverage",
+      "verdict": "partial",
+      "reason": "Identifies the scanned files and correctly treats session-notes.js as a pure utility and patch registration as scaffolding. However, the six unnamed categories receive generic negative assertions rather than category-specific, source-supported analysis.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "No version-sensitive host/API reference attributable to this category appears in `package.json`, `index.js`, `src/session-notes.js`, or `cordis.patch.yml`."
+        },
+        {
+          "report": "report.md",
+          "quote": "The apparently suspicious `src/session-notes.js` is not evidence of a session or host touchpoint: it contains only `String`, array slicing, looping, and whitespace formatting (`src/session-notes.js:2-9`)."
+        },
+        {
+          "report": "report.md",
+          "quote": "Likewise, `apply`, `inject`, `ctx.effect`, and the patch export are plugin scaffolding/registration"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/session-notes.js",
+          "quote": "return String(text).trim().replace(/\\s+/g, ' ').slice(0, 200)"
+        },
+        {
+          "path": "src/session-notes.js",
+          "quote": "for (let i = 0; i < lines.length; i += size) out.push(lines.slice(i, i + size))"
+        },
+        {
+          "path": "cordis.patch.yml",
+          "quote": "- insert:\n    - id: minimal-llm\n      name: \"@demo/dsh-minimal-llm\""
+        }
+      ],
+      "references": [],
+      "points": 20,
+      "awarded": 10
+    },
+    {
+      "id": "inference-boundary",
+      "verdict": "partial",
+      "reason": "Clearly rejects zero hits as proof of compatibility and explains static-scan and dependency/runtime limits. However, it treats APIProxy availability as an open question rather than identifying the already decisive target-version break.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "The other six categories have no hits in this fixture, but those negative results only say that those particular surfaces were not found."
+        },
+        {
+          "report": "report.md",
+          "quote": "The scan cannot check module resolution, package/build output, service startup order, isolated-profile behavior, or the actual provider lookup result."
+        },
+        {
+          "report": "report.md",
+          "quote": "Whether injection resolves and whether `llm.providers()` still exists with the same shape cannot be determined by a negative scan."
+        }
+      ],
+      "sources": [],
+      "references": [
+        "DSH-0.1.2-A1-01"
+      ],
+      "points": 20,
+      "awarded": 10
+    },
+    {
+      "id": "verification-plan",
+      "verdict": "pass",
+      "reason": "Proposes post-migration target-version build/typecheck, isolated cold boot with resolved injection and no unresolved services, and a functional provider lookup smoke test. These are future checks, not claimed executions.",
+      "evidence": [
+        {
+          "report": "report.md",
+          "quote": "**Build/typecheck** the plugin and verify its exports and package metadata resolve for dsh 0.1.2-alpha.2."
+        },
+        {
+          "report": "report.md",
+          "quote": "**Cold-boot with an isolated profile**, confirming that the plugin loads, its service injection resolves, and no startup/unresolved-service errors occur."
+        },
+        {
+          "report": "report.md",
+          "quote": "**Functional smoke test** the `llm.providers()` behavior (including the failure path), and confirm the patch registration/load path works in the target host."
+        }
+      ],
+      "sources": [],
+      "references": [],
+      "points": 20,
+      "awarded": 20
+    }
+  ],
+  "caps": [],
+  "model": {
+    "requested": "gpt-6-astra",
+    "returned": null,
+    "resolved": "gpt-6-astra",
+    "endpoint": "codex://chatgpt-login",
+    "transport": "codex-exec-v1",
+    "cli_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "usage": {
+      "input_tokens": 9900,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1483,
+      "reasoning_output_tokens": 255
+    },
+    "request_id": "01a08aee-252f-73a1-bc64-c52641da9883",
+    "tool_calls": 0,
+    "diagnostics": [],
+    "request_sha256": "91a48d8e9676b760b1f7f0368dd2f4a25d5d4bf7349f6605b0c57dbe9f44bfad",
+    "response_sha256": "873401b5a78b0323bc3bdfe8eeee179c1106b8e01cd2b4c60a946ba2eae1b59b"
+  },
+  "citation_audit": [
+    {
+      "report": "report.md",
+      "citation": "package.json:17",
+      "path": "package.json",
+      "start": 17,
+      "end": 17,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "index.js:3",
+      "path": "index.js",
+      "start": 3,
+      "end": 3,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "index.js:9",
+      "path": "index.js",
+      "start": 9,
+      "end": 9,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "src/session-notes.js:2-9",
+      "path": "src/session-notes.js",
+      "start": 2,
+      "end": 9,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "package.json:16-18",
+      "path": "package.json",
+      "start": 16,
+      "end": 18,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "index.js:3",
+      "path": "index.js",
+      "start": 3,
+      "end": 3,
+      "valid": true
+    },
+    {
+      "report": "report.md",
+      "citation": "index.js:9",
+      "path": "index.js",
+      "start": 9,
+      "end": 9,
+      "valid": true
+    }
+  ],
+  "reports": {
+    "report.md": "25d2b86a4d9df1836b02c021ce9fab454c0aaa2a39f9878d7d7a9bc0979a7b3c"
+  },
+  "protocol": "report-judge-v1",
+  "packet_sha256": "d75fb357d5ffc628de5e9afc864e5b5e255459fcbc712ef214cac10bd8ccad1d",
+  "judge_sha256": "e6fae254b49e5d92cac1c89371b99c93f85ed964b20b42400670edd92a51e43d",
+  "adapter_sha256": "8bc544808fc705c35cfc993a2072c57c37b7f398f5fe073fe1ec12a0d439a7f6"
+}
