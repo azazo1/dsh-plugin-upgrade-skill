@@ -1,6 +1,6 @@
 # 面向特定版本插件迁移的 Agent Skill 评估
 
-2026-09-17 稿件改为回顾性软件维护研究，按 JSS 读者定位整理。倒 U 不再作为主结论；没有新增模型调用。
+2026-09-24 稿件整理为回顾性软件维护研究，按 JSS 读者定位。倒 U 不再作为主结论；本轮新增两种跨模型家族的 LLM 盲化重判，没有新增 solver 实验或独立人工评分。
 
 - [正文](latex/acl_latex.tex)：单栏通用期刊审阅版，沿用旧文件名，不是已核验的 JSS 官方模板。
 - [唯一执行清单](INVERTED-U-WORKPLAN.zh.md)：已完成工作、停止规则、作者待确认项。
@@ -15,6 +15,7 @@
 ```sh
 node paper/scripts/summarize-submission-evidence.mjs --check
 node benchmark/scripts/audit-unified-evidence.mjs --check
+node paper/scripts/analyze-llm-judge-panel.mjs --check
 npm run check:paper-paired
 tectonic --outdir output/pdf paper/latex/acl_latex.tex
 cp output/pdf/acl_latex.pdf output/pdf/migration-paper-retrospective-review.pdf
