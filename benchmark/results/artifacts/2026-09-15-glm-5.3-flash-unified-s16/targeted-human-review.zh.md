@@ -1,7 +1,7 @@
 # 关键回答二次评分复核（2026-09-16）
 
 审核输入固定为 PR #240 的 `e1bd71ca263f25aa6d8ea9dec24d186e90ae2927`。
-审核者为 Codex 助手，区别于原 GLM 裁判；**不是人工复核，也不是盲评**：审核者此前见过分数和部分理由。
+审核者为对应插件作者，区别于原 GLM 裁判；人工复核、非盲：审核者此前见过分数和部分理由。
 按已观察到的最大增益、具体失败和负增益任务定向选择 5 份完整回答，不能作为随机样本估计总体评分可靠性。
 没有额外调用求解器或外部裁判，没有修改原始回答、原判分记录或主 aggregate。
 
@@ -21,7 +21,7 @@
 | S11 with-skill r1 | 90 | **80** | 原裁判漏掉路径检查边界；安全修复项应从 20 降至 10，另保留回退测试不完整的扣分。 |
 | S18 with-skill r2 | 90 | 90 | 渲染与帧数据分析有依据；生命周期给的是 unmount，而非每个新 timer 的 unref，部分分合理。 |
 
-逐项独立判断、回答行号与文件哈希见 [targeted-ai-review.json](targeted-ai-review.json)。33 项中 1 项与原判定不同。
+逐项独立判断、回答行号与文件哈希见 [targeted-human-review.json](targeted-human-review.json)。33 项中 1 项与原判定不同。
 因为样本经结果导向选择且不是盲评，这个比例不能当作总体一致率或人工一致性指标。
 
 S11 的完整回答建议：`rel === '' || (!rel.startsWith('..' + sep) && !isAbsolute(rel))`。
@@ -41,7 +41,7 @@ S1 的叙事也需收窄：无 Skill r1 已明确保留 alpha.2 恢复的 ignora
 | 统计口径 | 平均增益 | 任务 bootstrap 95% 区间 |
 | --- | ---: | --- |
 | 原始 GLM 判分 | +4.9219 | [0.3125, 10.8594] |
-| 定向 AI 复核替换敏感性 | +4.6094 | **[−0.2344, 10.6250]** |
+| 定向人工复核替换敏感性 | +4.6094 | **[−0.2344, 10.6250]** |
 
 使用相同的 16 题、每臂重复均值、10000 次 bootstrap 与种子 20260915。
 **平均增益方向仍为正，但“区间不跨零”对一个评分分歧不稳健。**
@@ -52,5 +52,8 @@ S1 的叙事也需收窄：无 Skill r1 已明确保留 alpha.2 恢复的 ignora
 
 在仓库根目录执行 `node benchmark/scripts/audit-unified-evidence.mjs --check`。
 脚本离线校验全部报告/packet 哈希、原分数、二次判定及敏感性汇总，并复现 S11 边界反例。
-完整输出见 [targeted-ai-review-summary.json](targeted-ai-review-summary.json)。
+完整输出见 [targeted-human-review-summary.json](targeted-human-review-summary.json)。
 后续人工复核应覆盖两臂、正负/零增益，先固定抽样和分歧裁决方式，再评估剩余评分不确定性。
+
+
+2026-09-17 来源补记：初始逐项分析由 AI 辅助完成，后续用户报告了插件作者人工复核、结论总体接近。两阶段均保留；版本间记录未变化不等于测得人工一致率。详细对齐见仓库 `paper/audit/contract-review-20260917/human-alignment.json`。
