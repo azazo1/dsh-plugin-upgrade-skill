@@ -203,8 +203,8 @@ ${tableRows.join('\n')}
 \\bottomrule
 \\end{tabular}
 \\par\\smallskip
-{\\footnotesize All ${itemIds.length} focal reports (${output.criterionDecisions} criterion decisions) re-judged blind to arm label under the unchanged report-judge-v2 prompt and rubric. \`\`vs.\\ original'': exact credit-level agreement / linearly weighted $\\kappa$ with the original GLM decisions. \`\`vs.\\ author'': exact agreement with the ${authorRef[0].n} decisions of the non-blind plugin-author review (${authorCells.length} answers), which is a reference, not ground truth.${pairText ? ` Between panel judges: ${pairText}.` : ''} All judges are LLMs; this is not human validation.\\par}
-\\caption{Sensitivity of the focal paired endpoint to judge model family. Estimand, bootstrap, and seed as in Section~\\ref{sec:focal-method}; the original row is the primary recorded endpoint.}
+{\\footnotesize All ${itemIds.length} focal reports (${output.criterionDecisions} criterion decisions) re-judged without supplied arm labels or prior scores under the unchanged report-judge-v2 prompt and rubric. \`\`vs.\\ original'': exact credit-level agreement / linearly weighted $\\kappa$ with the original GLM decisions. \`\`vs.\\ author'': exact agreement with the ${authorRef[0].n} decisions of the non-blind plugin-author review (${authorCells.length} answers), which is a reference, not ground truth.${pairText ? ` Between panel judges: ${pairText}.` : ''} All judges are LLMs; this is not human validation.\\par}
+\\caption{Sensitivity of the focal paired endpoint to judge configuration. Estimand, bootstrap, and seed as in Section~\\ref{sec:focal-method}; the original row is the primary recorded endpoint.}
 \\label{tab:judge_panel}
 \\end{table}
 `

@@ -1,47 +1,45 @@
-% Existing author information, preserved without confirming order, consent, or correspondence.
-\author{Author 1 \and ... \and Author n \\
-%         Address line \\ ... \\ Address line}
-% if the names do not fit well on one line use
-%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
-% For authors from different institutions:
-% \author{Author 1 \\ Address line \\  ... \\ Address line
-%         \And  ... \And
-%         Author n \\ Address line \\ ... \\ Address line}
-% To start a separate ``row'' of authors use \AND, as in
-% \author{Author 1 \\ Address line \\  ... \\ Address line
-%         \AND
-%         Author 2 \\ Address line \\ ... \\ Address line \And
-%         Author 3 \\ Address line \\ ... \\ Address line}
-
-\author{Beiming Liu \\
-  Tsinghua University \\
-  \texttt{lbm21@tsinghua.org.cn} \\
-  \And
-  Puzhao Zhang \\
-  Dalian Neusoft University of Information \\
-  \texttt{3026418933@qq.com} \\
-  \And
-  Minjie Chen \\
-  PetroChina Southwest Oil \& Gasfield Company \\
-  \texttt{auturnncrow@gmail.com} \\
-  \And
-  William Jin \\
-  Independent Researcher \\
-  \texttt{williamjinq@gmail.com} \\
-  \And
-  Jiming Ye \\
-  Shenzhen University \\
-  \texttt{jiming\_ye@163.com} \\
-  \And
-  Yucheng Xia \\
-  Harbin Engineering University \\
-  \texttt{Fisfzy@qq.com} \\
-  \And
-  Tongtao Wang \\
-  Independent Researcher \\
-  \texttt{tongtao.wang@gmail.com} \\
-  \And
-  Haihao Li \\
-  Fudan University \\
-  \texttt{24302010010@m.fudan.edu.cn} \\}
-
+% Author block used in paper/latex/acl_latex.tex (authblk). Updated 2026-09-24.
+% Contributor-to-account mapping used for ordering: lhh010 (Haihao Li), ccch1mneyyy (Ning Chen),
+% SenmuuuuW (Yiran Wang), yejiming (Jiming Ye), zp-home (Puzhao Zhang, 张普曌, 3026418933@qq.com), TT-Wang (Tongtao Wang),
+% vlln (Sheng Gao), william-jin-cmu (William Jin), huiliyi37 (Chengzhi Liu), Fisfzy (Yucheng Xia),
+% Grivn (Guangren Wang), t4wefan (Chaoyang Fan), changfenhuang (Changfeng Huang).
+% Not yet matched to a GitHub account: Minjie Chen, Weihao Mu, Xunming Lin, Yuanjie Shen.
+% Author order confirmed by the first author on 2026-09-24. Company names for
+% affiliations 11 and 16 are pinyin transliterations pending confirmation.
+\author[1]{Beiming~Liu\thanks{Corresponding author: \texttt{lbm21@tsinghua.org.cn}}}
+\author[2]{Haihao~Li\thanks{Equal contribution.}}
+\author[3]{Minjie~Chen\protect\footnotemark[2]}
+\author[4]{Ning~Chen}
+\author[5]{Yiran~Wang}
+\author[6]{Jiming~Ye}
+\author[7]{Puzhao~Zhang}
+\author[8]{Tongtao~Wang}
+\author[9]{Sheng~Gao}
+\author[8]{William~Jin}
+\author[10,11]{Weihao~Mu}
+\author[12]{Chengzhi~Liu}
+\author[13]{Yucheng~Xia}
+\author[14]{Guangren~Wang}
+\author[15,16]{Chaoyang~Fan}
+\author[17]{Changfeng~Huang}
+\author[18]{Xunming~Lin}
+\author[19]{Yuanjie~Shen}
+\affil[1]{Tsinghua University}
+\affil[2]{Fudan University}
+\affil[3]{PetroChina Southwest Oil \& Gasfield Company}
+\affil[4]{Jilin University}
+\affil[5]{The Frederick Gunn School}
+\affil[6]{Shenzhen University}
+\affil[7]{Dalian Neusoft University of Information}
+\affil[8]{Independent Researcher}
+\affil[9]{University of Chinese Academy of Sciences}
+\affil[10]{Dalian University of Technology}
+\affil[11]{Jiyin Zhiyuan (Shanghai) Technology Co., Ltd.}
+\affil[12]{Lanzhou University of Technology}
+\affil[13]{Harbin Engineering University}
+\affil[14]{Alibaba Cloud}
+\affil[15]{Jianghan University}
+\affil[16]{Jiuxiangxian (Beijing) Technology Co., Ltd.}
+\affil[17]{Sun Yat-sen University}
+\affil[18]{Great Bay University}
+\affil[19]{Beijing Information Science and Technology University}

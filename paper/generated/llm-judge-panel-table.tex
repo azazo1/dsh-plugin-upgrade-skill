@@ -16,7 +16,7 @@ Judge & no-skill $\rightarrow$ with-skill & $\Delta$ & 95\% CI & vs.\ original &
 \bottomrule
 \end{tabular}
 \par\smallskip
-{\footnotesize All 64 focal reports (328 criterion decisions) re-judged blind to arm label under the unchanged report-judge-v2 prompt and rubric. ``vs.\ original'': exact credit-level agreement / linearly weighted $\kappa$ with the original GLM decisions. ``vs.\ author'': exact agreement with the 56 decisions of the non-blind plugin-author review (10 answers), which is a reference, not ground truth. Between panel judges: claude-opus-5-5 vs openai-gpt-5.5: 90.5\% exact, $\kappa_w$ = 0.57. All judges are LLMs; this is not human validation.\par}
-\caption{Sensitivity of the focal paired endpoint to judge model family. Estimand, bootstrap, and seed as in Section~\ref{sec:focal-method}; the original row is the primary recorded endpoint.}
+{\footnotesize All 64 focal reports (328 criterion decisions) re-judged without supplied arm labels or prior scores under the unchanged report-judge-v2 prompt and rubric. ``vs.\ original'': exact credit-level agreement / linearly weighted $\kappa$ with the original GLM decisions. ``vs.\ author'': exact agreement with the 56 decisions of the non-blind plugin-author review (10 answers), which is a reference, not ground truth. Between panel judges: claude-opus-5-5 vs openai-gpt-5.5: 90.5\% exact, $\kappa_w$ = 0.57. All judges are LLMs; this is not human validation.\par}
+\caption{Sensitivity of the focal paired endpoint to judge configuration. Estimand, bootstrap, and seed as in Section~\ref{sec:focal-method}; the original row is the primary recorded endpoint.}
 \label{tab:judge_panel}
 \end{table}

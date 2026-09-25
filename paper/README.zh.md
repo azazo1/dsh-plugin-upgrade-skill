@@ -1,5 +1,7 @@
 # 面向特定版本插件迁移的 Agent Skill 评估
 
+**预印本**：[arXiv:2609.30120](https://arxiv.org/abs/2609.30120)（cs.SE，2026 年 9 月），源码为 `paper/latex/acl_latex.tex`，计划投稿期刊为 JSS。
+
 2026-09-24 稿件整理为回顾性软件维护研究，按 JSS 读者定位。倒 U 不再作为主结论；本轮新增两种跨模型家族的 LLM 盲化重判，没有新增 solver 实验或独立人工评分。
 
 - [正文](latex/acl_latex.tex)：单栏通用期刊审阅版，沿用旧文件名，不是已核验的 JSS 官方模板。

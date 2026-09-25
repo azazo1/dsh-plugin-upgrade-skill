@@ -42,7 +42,7 @@ console.log(serialized)
 const fixed=x=>Number(x).toFixed(2)
 const tex=String.raw`% AUTO-GENERATED from the original 64 scored cells; do not edit.
 \begin{longtable}{lrrrrr}
-\caption{Focal task-level original scores. Each arm has two repeats; differences use arm means. These are static rubric scores, not repair pass rates.}\label{tab:focal-tasks}\\
+\caption{Focal task-level original scores. Each arm has two repeats; differences use arm means. These are static rubric scores, not repair pass rates.}\label{tab:focal_tasks}\\
 \toprule
 Task & No skill r1 & No skill r2 & Skill r1 & Skill r2 & Mean $\Delta$\\
 \midrule\endfirsthead

@@ -1,6 +1,6 @@
 # Evaluating Agent Skills for Version-Specific Plugin Migration
 
-Current manuscript: **A Retrospective Study** (24 September 2026). The paper targets software-maintenance readers, with JSS as the intended first venue; it is a generic single-column review draft, not a certified publisher template.
+**Preprint:** [arXiv:2609.30120](https://arxiv.org/abs/2609.30120), *Evaluating Agent Skills for Version-Specific Plugin Migration: A Retrospective Study* (cs.SE, September 2026). The source used for the arXiv version is `paper/latex/acl_latex.tex`; the planned journal target is JSS.
 
 The inverted-U hypothesis is no longer a main claim or a completion criterion. No new solver calls were made. A blinded cross-family LLM panel now re-judges all 64 focal reports with Claude Opus 5.5 and GPT-5.5; both are model judgments, not human annotation. Historical configurations remain descriptive; the archived Flash S16 comparison is the focal case. The bounded, non-blind review initially used AI assistance; the authors subsequently reported human checking by contributing plugin authors.
 
