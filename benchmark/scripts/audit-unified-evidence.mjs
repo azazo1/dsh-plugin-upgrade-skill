@@ -19,7 +19,7 @@ for (const cell of schedule.cells) {
   const details = read(join(root, 'judge', sub, 'details.json'))
   const verdict = read(join(root, 'judge', sub, 'verdict.json'))
   const score = read(join(root, 'scores', `${cell.task}__${cell.arm}__r${cell.repeat}.json`))
-  const packet = read(join(repo, 'benchmark/tasks', cell.task, 'tests/packet.json'))
+  const packet = read(join(root, 'packets', `${cell.task}.json`))
   assert.equal(sha256(JSON.stringify(packet)), details.packet_sha256)
   if (sha256(report) === details.reports['report.md']) directHashes++
   else {
@@ -40,7 +40,7 @@ let reviewedCriteria = 0, changedCriteria = 0
 for (const c of audit.cases) {
   const report = readFileSync(join(root, c.report), 'utf8')
   assert.equal(sha256(report), c.reportSha256)
-  const packet = read(join(repo, 'benchmark/tasks', c.task, 'tests/packet.json'))
+  const packet = read(join(root, 'packets', `${c.task}.json`))
   assert.equal(sha256(JSON.stringify(packet)), c.packetSha256)
   const result = scoreDecisions(packet, { 'report.md': report }, c)
   assert.equal(result.score, c.reviewScore)

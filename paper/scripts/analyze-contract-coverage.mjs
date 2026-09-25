@@ -15,7 +15,7 @@ assert.equal(tasks.length,16)
 const domains=Object.fromEntries(Object.entries(map.domains).map(([id,name])=>[id,{name,tasks:new Set(),arms:Object.fromEntries(['no-skill','with-skill'].map(a=>[a,{criteria:0,pass:0,partial:0,fail:0,missing:0,possible:0,awarded:0}]))}]))
 const reports=[]
 for(const task of tasks){
- const packetPath=`benchmark/tasks/${task}/tests/packet.json`
+ const packetPath=`${archive}/packets/${task}.json` // run-time packet snapshot
  const packet=read(packetPath)
  assert.deepEqual(Object.keys(map.mapping[task]).sort(),packet.rubric.criteria.map(c=>c.id).sort())
  for(const arm of ['no-skill','with-skill'])for(const repeat of [1,2]){

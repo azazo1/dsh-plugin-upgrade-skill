@@ -21,7 +21,7 @@ let criteria=0,changed=0;const rows=[]
 const orig=aggregate(read(dir+'/schedule.json'),join(root,dir));const revised=structuredClone(orig)
 for(const c of all.values()){
  const report=fs.readFileSync(join(root,c.report),'utf8');assert.equal(sha256(report),c.sha256)
- const packet=read(`benchmark/tasks/${c.task}/tests/packet.json`)
+ const packet=read(`${dir}/packets/${c.task}.json`)
  const result=scoreDecisions(packet,{'report.md':report},c);assert.equal(result.score,c.reviewScore)
  const prior=read(`${dir}/scores/${c.task}__${c.arm}__r${c.repeat}.json`)
  const n=c.decisions.filter(x=>prior.criteria.find(y=>y.id===x.id).verdict!==x.verdict).length
@@ -33,7 +33,7 @@ for(const c of all.values()){
 const summary=a=>{const x=analyze(a);return{meanNoSkill:x.meanNoSkill,meanWithSkill:x.meanWithSkill,meanDelta:x.meanDelta,ci95:x.bootstrap.ci95}}
 const usage=read('benchmark/results/artifacts/2026-09-11-glm-5.3-flash-s1-s22/usage-summary.json')
 const historicalResources=Object.fromEntries(['noskill','skill'].map(arm=>{const xs=Object.entries(usage).filter(([k])=>k.startsWith(arm+':')).map(([,v])=>v);return[arm,Object.fromEntries(['in','out','cache','total','ms'].map(k=>[k,xs.reduce((s,x)=>s+x[k],0)]).concat([['sessions',xs.length]]))]}))
-const rubricHashes=Object.fromEntries([...new Set([...all.values()].map(c=>c.task))].sort().map(task=>[task,sha256(fs.readFileSync(join(root,`benchmark/tasks/${task}/tests/packet.json`),'utf8'))]))
+const rubricHashes=Object.fromEntries([...new Set([...all.values()].map(c=>c.task))].sort().map(task=>[task,sha256(fs.readFileSync(join(root,`${dir}/packets/${task}.json`),'utf8'))]))
 const output={rubricHashes,reviewedAnswers:all.size,reviewedCriteria:criteria,changedCriteria:changed,rows,original:summary(orig),allReviewedReplacementSensitivity:summary(revised),priorTargetedSensitivity:read(dir+'/targeted-human-review-summary.json').targetedReplacementSensitivity,historicalResources,interpretation:'Initial non-blind AI-assisted review with author-reported human follow-up; no separately measured inter-rater agreement. Original scores remain unchanged; report all sensitivities.'}
 const target=join(root,'paper/generated/submission-evidence.json');const serialized=JSON.stringify(output,null,2)+'\n'
 if(process.argv.includes('--check'))assert.equal(fs.readFileSync(target,'utf8'),serialized);else fs.writeFileSync(target,serialized)
