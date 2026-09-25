@@ -2,17 +2,21 @@
 
 [简体中文](README.md) | **English**
 
-**A skill that teaches AI to upgrade your dsh plugins.** Community-built.
+[![arXiv](https://img.shields.io/badge/arXiv-2609.30120-b31b1b.svg)](https://arxiv.org/abs/2609.30120) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ![Skills](https://img.shields.io/badge/skills-10-blue) ![Upgrade cards](https://img.shields.io/badge/upgrade%20cards-165-blue) ![Benchmark](https://img.shields.io/badge/benchmark-63%20tasks-blue)
 
-[DSH (DeepSeek Harness)](https://github.com/deepseek-ai/deepseek-harness) is an AI runtime where every feature is a plugin. The catch: **every time dsh releases a new version, older plugins may stop working.** This repo turns every known pitfall into an upgrade manual that AI can read, so Claude Code, Codex, Gemini, and friends can migrate your plugin to the new version safely.
+**Agent skills that teach AI to upgrade your DSH plugins.** Community-built.
+
+[DSH (DeepSeek Harness)](https://github.com/deepseek-ai/deepseek-harness) is an AI runtime where every feature is a plugin. The catch: **every new DSH release can break older plugins.** This repository turns known pitfalls into upgrade manuals that AI can read, so Claude Code, Codex, Gemini, and other agents can migrate plugins safely, and it ships a public benchmark to check whether they actually got it right.
+
+> 📄 **Paper**: [Evaluating Agent Skills for Version-Specific Plugin Migration: A Retrospective Study](https://arxiv.org/abs/2609.30120) (arXiv:2609.30120). See [Paper](#paper) for the evaluation design and main findings.
 
 ## What's in this repo
 
-- **165 upgrade cards** — each records one real pitfall: what breaks, why, how to fix it, and which version the information comes from. Ordered by version, from 0.1.0-rc.8 all the way to 0.1.6-alpha.1 (alpha.5→rc.1 has no plugin-facing changes: 0 cards; alpha.2→alpha.3 has 2 cards (1 additive capability + SQLite removal backfill); alpha.3→alpha.4 has 6; rc.8→rc.1 carries 9 draft cards; 0.1.2-rc.1→0.1.3-alpha.1 adds 8 (2 session-log measured + 1 Windows install/fs-ext field report + 3 git-tag anchored + A1-07/08 unpublished-cohort recipe and runtime re-verification), 0.1.3-alpha.1→alpha.2 adds 5 draft cards, 0.1.3-alpha.2→0.1.5-alpha.1 adds 20 draft cards, 0.1.5-alpha.1→0.1.5-alpha.2 adds 24 draft cards (12 of them covering the client and packaging faces), 0.1.5-alpha.2→0.1.5-rc.1 adds 5 draft cards, 0.1.5-rc.1→rc.2 adds 6 draft cards, and 0.1.5-rc.2→0.1.6-alpha.1 adds 38 draft cards — the widest edge so far: 800 commits and 4015 changed files).
-- **13 general-purpose countermeasures** — some problems have nothing to do with the version (back up first, run old and new side by side, what to do when startup hangs). These live in one checklist.
-- **9 skills** — one unified workflow selects and coordinates stages, while the other eight check upgrades, write plugins, test plugins, release plugins, diff two dsh versions, debug runtime failures, integrate heavy dependencies into lightweight plugins, and turn real upgrade experiences into auto-graded benchmark tasks.
-- **56 exam questions (benchmark)** — tests whether an AI with our skill actually knows how to upgrade a plugin. Every question is auto-graded; two reproduce the real dsh-web v0.3.8 → v0.3.9 and dsh-data-agent v0.1.3 → v0.1.4 migrations.
-- **Multiple validation reports** — we installed two real dsh versions in Docker and confirmed that following the cards really does fix plugins, followed by several rounds of agent benchmark runs.
+- **165 upgrade cards**: each records one real pitfall: what breaks, why, how to fix it, and which version the evidence comes from. Cards are ordered along the version corridor from 0.1.0-rc.8 to 0.1.6-alpha.1; per-edge counts and status are in the [coverage table](#which-versions-are-covered).
+- **13 general-purpose countermeasures**: version-independent problems (back up first, run old and new side by side, what to do when startup hangs) collected in one checklist.
+- **10 skills**: a unified workflow selects and coordinates stages; eight skills check upgrades, write, test, and release plugins, diff two DSH versions, debug runtime failures, integrate heavy dependencies, and turn upgrade experience into benchmark tasks; one framework-agnostic migration methodology without DSH-specific facts serves as the control arm for comparative experiments.
+- **63 auto-graded benchmark tasks**: 22 static diagnosis, 14 mixed, and 27 hands-on tasks, including two real migrations (dsh-web and dsh-data-agent).
+- **A paper with fully traceable evidence**: raw answers, criterion-level grading, and cross-model re-grading are public and recomputable; see [Paper](#paper).
 
 ## Quick Start
 
@@ -112,7 +116,7 @@ registration remains a separate external-publication step. On a proxied network,
 Node 24+ and `node --use-env-proxy`; Node 20-23 built-in `fetch` is not guaranteed to consume proxy
 environment variables. A failed, oversized, or invalid-v2 query is unknown/not checked, never available.
 
-## What each of the 9 skills does
+## What each of the 10 skills does
 
 | Skill | What it's for |
 | --- | --- |
@@ -125,6 +129,7 @@ environment variables. A failed, oversized, or invalid-v2 query is unknown/not c
 | [plugin-runtime-debug](skills/plugin-runtime-debug/) | Debugging plugin runtime failures against host API contracts (coordinate/projection mismatches, stale version chips, phantom entries) |
 | [plugin-heavy-dep](skills/plugin-heavy-dep/) | Wiring heavy dependencies (like mermaid) into lightweight plugins, with a lazy-loading integration checklist |
 | [dsh-benchmark-case](skills/dsh-benchmark-case/) | Turns a plugin's real upgrade experience (or an existing version card) into one auto-graded benchmark task (fixture + instruction + judge + solution) |
+| [generic-migration](skills/generic-migration/) | Framework-agnostic plugin migration methodology (inventory coupling points, read the version corridor, verify in layers) with no DSH-specific facts; used as the control arm in comparative experiments |
 
 ## Which versions are covered
 
@@ -149,9 +154,20 @@ environment variables. A failed, oversized, or invalid-v2 query is unknown/not c
 | 0.1.1 → 0.1.2 final | 🔄 Waiting for the official release | — | dsh 0.1.2 final isn't out yet (npm `latest` is still rc.1; the corridor now extends to 0.1.6-alpha.1 with draft cards); we'll re-verify everything once 0.1.2 final is out |
 | 0.1.6-alpha.1 → later versions (0.1.5/0.1.6 final, etc.) | 📝 Up for grabs | — | Want to help write cards? See the [contributing guide](CONTRIBUTING.md) |
 
-## The exam (benchmark)
+## Benchmark
 
-The [benchmark/](benchmark/) folder has 56 upgrade exam questions with auto-grading, in [Harbor](https://github.com/harbor-framework/harbor) task format: each question is a self-contained task (its own container with dsh preinstalled, plus an automatic verifier). Run `harbor run -p benchmark/tasks/<task-id> -a <agent>` to get a 0–1 score. Run the same AI twice — once with this skill installed, once without — and the score difference is the skill's real effect. See [benchmark/README.md](benchmark/README.md) for details. The result set includes two 2026-09-01 Codex + `gpt-5.6-terra` 22-task reports ([with the skill](benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22.md), [with literally zero skills](benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22-literal-no-skill.md)), four Codex + `gpt-5.6-luna` reports for the earlier 19-task snapshot, and the 2026-09-02 H22 dsh-data-agent pair ([with `plugin-upgrade`](benchmark/results/validation-report-2026-09-02-h22-dsh-data-agent-alpha2-plugin-upgrade.md), [with literally zero skills](benchmark/results/validation-report-2026-09-02-h22-dsh-data-agent-alpha2-no-skill.md)).
+[benchmark/](benchmark/) holds 63 upgrade tasks with automatic grading in the [Harbor](https://github.com/harbor-framework/harbor) task format: each task is self-contained (a container with its own DSH environment plus an automatic verifier), and `harbor run -p benchmark/tasks/<task-id> -a <agent>` yields a 0 to 1 score. Run the same agent with and without the skill; the difference is the skill's measured effect. Results for several models and agents are summarized in [benchmark/README.md](benchmark/README.md), with full reports in [benchmark/results/](benchmark/results/).
+
+## Paper
+
+We report the evaluation of this skill as a retrospective study: [arXiv:2609.30120](https://arxiv.org/abs/2609.30120). Its central question: **when the score goes up, does the migration advice actually satisfy the target version's contract?**
+
+- **Score gain**: on 16 static migration-diagnosis tasks (64 answers), making the skill available raises mean reward from 93.83 to 98.75 (+4.92, 95% interval [0.31, 10.86]). The gain is concentrated in a few tasks, and eight task pairs are at the ceiling.
+- **Contract-level checks**: tracing all 328 criterion decisions to their version contracts, with executable probes, exposes grading problems, e.g., a path guard that accepts the parent directory still receives full credit. A high score is not the same as correct advice.
+- **Cross-model re-grading**: judges from two other model families (Claude Opus 5.5 and GPT-5.5), blind to condition and prior scores, re-grade all 64 answers. They agree with the original judge on 91.8% and 95.7% of decisions and give gains of +10.63 and +6.09: same direction, judge-dependent size.
+- **Recomputable**: raw answers, grades, reviews, the re-grading protocol, and scripts are all in this repository; start from [paper/](paper/).
+
+Limitations (one framework, static diagnosis, no independent human annotation or control arm yet) are stated in the paper together with planned follow-up work.
 
 ## References
 
@@ -189,7 +205,7 @@ skills/<skill-name>/
 └── examples/       # example code (read-only, do not run)
 scripts/validate.mjs            # repo self-check
 scripts/validate-manifests.mjs  # multi-agent manifest self-check
-benchmark/                      # 56 exam questions + grader + validation reports
+benchmark/                      # 63 benchmark tasks + graders + validation reports
 ```
 
 ## Contributing
@@ -203,7 +219,25 @@ node scripts/validate.mjs
 node scripts/validate-manifests.mjs
 ```
 
+## Citation
+
+If this repository or the paper helps your work, please cite:
+
+```bibtex
+@misc{liu2026evaluating,
+  title         = {Evaluating Agent Skills for Version-Specific Plugin Migration: A Retrospective Study},
+  author        = {Liu, Beiming and Li, Haihao and Chen, Minjie and Chen, Ning and Wang, Yiran and Ye, Jiming and Zhang, Puzhao and Wang, Tongtao and Gao, Sheng and Jin, William and Mu, Weihao and Liu, Chengzhi and Xia, Yucheng and Wang, Guangren and Fan, Chaoyang and Huang, Changfeng and Lin, Xunming and Shen, Yuanjie},
+  year          = {2026},
+  eprint        = {2609.30120},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  url           = {https://arxiv.org/abs/2609.30120}
+}
+```
+
 ## Acknowledgments
+
+The paper authors and every contributor who opened a pull request built this repository together; see [Contributors](https://github.com/oh-my-dsh/dsh-plugin-upgrade-skill/graphs/contributors) for the full list.
 
 - [@hikariming](https://github.com/hikariming) — repository maintenance and the dsh skill index site [dshfind.com](https://dshfind.com)
 - [@ccch1mneyyy](https://github.com/ccch1mneyyy) — issue #1 proposal and the alpha version cards

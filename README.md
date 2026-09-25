@@ -2,17 +2,21 @@
 
 **简体中文** | [English](README.en.md)
 
-**教 AI 帮你升级 dsh 插件的 skill**，社区共建。
+[![arXiv](https://img.shields.io/badge/arXiv-2609.30120-b31b1b.svg)](https://arxiv.org/abs/2609.30120) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ![Skills](https://img.shields.io/badge/skills-10-blue) ![Upgrade cards](https://img.shields.io/badge/upgrade%20cards-165-blue) ![Benchmark](https://img.shields.io/badge/benchmark-63%20tasks-blue)
 
-[DSH（DeepSeek Harness）](https://github.com/deepseek-ai/deepseek-harness) 是一个"所有功能都以插件形式存在"的 AI 运行框架。麻烦在于：**dsh 每次发新版，老插件就可能启动不了**。本仓库做的事情就是把所有已知的坑写成 AI 看得懂的升级手册，让 AI（Claude Code、Codex、Gemini 等）帮你把插件安全迁到新版本。
+**教 AI 帮你升级 DSH 插件的 skill 集合**，社区共建。
+
+[DSH（DeepSeek Harness）](https://github.com/deepseek-ai/deepseek-harness) 是一个"所有功能都以插件形式存在"的 AI 运行框架。麻烦在于：**DSH 每次发新版，老插件就可能启动不了**。本仓库把已知的坑整理成 AI 读得懂的升级手册，让 Claude Code、Codex、Gemini 等 agent 帮你把插件安全迁到新版本，并用一套公开的 benchmark 检验这件事到底有没有做对。
+
+> 📄 **论文**：[Evaluating Agent Skills for Version-Specific Plugin Migration: A Retrospective Study](https://arxiv.org/abs/2609.30120)（arXiv:2609.30120）。评估方法与主要发现见[论文](#论文)一节。
 
 ## 这个仓库里有什么
 
-- **165 张升级说明卡**：每张卡记录一个真实的坑——什么坏了、为什么坏、怎么修、信息来源是哪个版本。按版本排好序，从 0.1.0-rc.8 一路到 0.1.6-alpha.1（alpha.5→rc.1 无插件面变更，0 张卡；alpha.2→alpha.3 有 2 张卡（1 张新增能力卡 + SQLite 移除回填）；alpha.3→alpha.4 有 6 张；rc.8→rc.1 为 9 张草稿卡；0.1.2-rc.1→0.1.3-alpha.1 有 8 张（2 张 session-log 实测 + 1 张 Windows 安装 fs-ext 实测 + 3 张钉 tag + A1-07/08 源码宿主配方与运行时复核）、0.1.3-alpha.1→0.1.3-alpha.2 有 5 张草稿卡、0.1.3-alpha.2→0.1.5-alpha.1 有 20 张草稿卡、0.1.5-alpha.1→0.1.5-alpha.2 有 24 张草稿卡（其中 12 张覆盖客户端与打包面）、0.1.5-alpha.2→0.1.5-rc.1 有 5 张草稿卡、0.1.5-rc.1→0.1.5-rc.2 有 6 张草稿卡、0.1.5-rc.2→0.1.6-alpha.1 有 38 张草稿卡（目前最宽的一条边：800 个提交、4015 个改动文件））。
-- **13 条通用对策**：有些坑和版本无关（比如"先备份再动手""新旧版本怎么共存"），这些写成了一份对策清单。
-- **9 个 skill**：一个统一工作流负责选择和编排，另外八个分别负责查升级、写新插件、测插件、发插件、对比两个版本的差别、排查运行时故障、给轻量插件接入重依赖，以及把插件升级经验提取成 benchmark 考题。
-- **56 道考题（benchmark）**：用来测"AI 装了我们的 skill 之后到底会不会升级插件"，每道题都有自动判分；其中包含 dsh-web v0.3.8 → v0.3.9 和 dsh-data-agent v0.1.3 → v0.1.4 两道真实迁移。
-- **多份验证报告**：我们在 docker 里真的装了两个版本的 dsh，验证了"按卡片做就能修好插件"；此后又用 Codex 等 agent 做了多轮 benchmark 实测。
+- **165 张升级说明卡**：每张卡记录一个真实的坑——什么坏了、为什么坏、怎么修、信息来自哪个版本。按版本走廊排好序，覆盖 0.1.0-rc.8 → 0.1.6-alpha.1，每条边的卡数与状态见下方[覆盖表](#升级卡覆盖到哪个版本了)。
+- **13 条通用对策**：与具体版本无关的坑（先备份、新旧共存、启动卡死怎么办等），集中在一份清单里。
+- **10 个 skill**：统一工作流负责选择与编排，另外八个分别负责查升级、写插件、测插件、发插件、对比两个版本、排查运行时故障、接入重依赖、把升级经验提取成考题；还有一个不含 DSH 专有知识的通用迁移方法论，用作对照实验的控制组。
+- **63 道自动判分的考题（benchmark）**：22 道静态诊断、14 道混合、27 道实操，其中包含 dsh-web 与 dsh-data-agent 两次真实迁移。
+- **一篇论文和完整的评估证据**：从原始回答、逐条评分到跨模型复评全部公开可复算，见下方[论文](#论文)。
 
 ## 快速开始
 
@@ -114,7 +118,7 @@ Claude Code 中按名字调用 skill（插件安装后带命名空间）：
 代理网络下使用 Node 24+ 的 `node --use-env-proxy` 运行查询，Node 20-23 不保证内置 `fetch`
 自动读取代理环境变量。查询失败、索引超限或 v2 契约不合法都表示“未知/未检查”，不能解释为名称可用。
 
-## 9 个 skill 各自管什么
+## 10 个 skill 各自管什么
 
 | Skill | 干什么用 |
 | --- | --- |
@@ -127,6 +131,7 @@ Claude Code 中按名字调用 skill（插件安装后带命名空间）：
 | [plugin-runtime-debug](skills/plugin-runtime-debug/) | 排查插件在宿主里的运行时故障（坐标/投影不匹配、版本滞后、幽灵条目等） |
 | [plugin-heavy-dep](skills/plugin-heavy-dep/) | 给轻量插件接入重依赖（mermaid 这类），含懒加载接入清单 |
 | [dsh-benchmark-case](skills/dsh-benchmark-case/) | 把某个插件的真实升级经验（或已有版本卡）提取成一条可自动判分的 benchmark 考题（fixture + instruction + judge + solution） |
+| [generic-migration](skills/generic-migration/) | 框架无关的插件迁移方法论（盘点耦合面、通读版本走廊、分层验证），不含任何 DSH 专有事实；用作对照实验的控制组 |
 
 ## 升级卡覆盖到哪个版本了
 
@@ -153,7 +158,18 @@ Claude Code 中按名字调用 skill（插件安装后带命名空间）：
 
 ## 考题（benchmark）
 
-[benchmark/](benchmark/) 目录下有 56 道升级考题和自动判分，采用 [Harbor](https://github.com/harbor-framework/harbor) 任务格式：每题一个自包含任务（自带 dsh 环境的容器 + 自动 verifier），`harbor run -p benchmark/tasks/<题号> -a <agent>` 即可出 0~1 分。同一只 AI 装 skill 做一遍、不装做一遍，分差就是 skill 的实际效果。详见 [benchmark/README.md](benchmark/README.md)。同目录还有多份验证报告，包括两份 2026-09-01 的 Codex + `gpt-5.6-terra` 22 题报告（[带 skill](benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22.md)、[完全不带 skill](benchmark/results/validation-report-2026-09-01-codex-gpt-5.6-terra-all-22-literal-no-skill.md)）、四份 Codex + `gpt-5.6-luna` 19 题快照报告，以及 2026-09-02 的 H22 dsh-data-agent 配对实测（[带 `plugin-upgrade`](benchmark/results/validation-report-2026-09-02-h22-dsh-data-agent-alpha2-plugin-upgrade.md)、[完全不带 skill](benchmark/results/validation-report-2026-09-02-h22-dsh-data-agent-alpha2-no-skill.md)）。
+[benchmark/](benchmark/) 目录下有 63 道升级考题和自动判分，采用 [Harbor](https://github.com/harbor-framework/harbor) 任务格式：每题一个自包含任务（自带 DSH 环境的容器 + 自动 verifier），`harbor run -p benchmark/tasks/<题号> -a <agent>` 即可得到 0~1 分。同一个 agent 装 skill 做一遍、不装做一遍，分差就是 skill 的实际效果。多个模型与 agent 的实测结果和完整报告列在 [benchmark/README.md](benchmark/README.md)，报告原文在 [benchmark/results/](benchmark/results/)。
+
+## 论文
+
+我们把这个 skill 的评估写成了一篇回顾性研究：[arXiv:2609.30120](https://arxiv.org/abs/2609.30120)。它关注的问题是：**分数提高了，是否说明迁移建议真的满足了目标版本的契约？**
+
+- **分数提升**：在 16 道静态迁移诊断题、64 份回答上，挂载 skill 后平均得分从 93.83 升到 98.75（+4.92，95% 区间 [0.31, 10.86]）。提升集中在少数题目，8 组题两边都已满分。
+- **契约层面的检查**：把 328 条评分决策逐条对到版本契约，并用可执行探针复核，发现了评分本身的问题，例如一个会放过父目录的路径守卫仍拿到满分。分数高不等于建议正确。
+- **跨模型复评**：用另外两个模型家族（Claude Opus 5.5、GPT-5.5）在不知道分组、也看不到原分数的条件下重评全部 64 份回答，与原评审的一致率为 91.8% 和 95.7%，重算的提升为 +10.63 和 +6.09，方向一致、幅度随评审而变。
+- **可复算**：原始回答、评分、复核、复评协议与脚本都在仓库里，入口见 [paper/](paper/)。
+
+局限（单一框架、静态诊断、尚无独立人工标注与对照组）在论文中如实说明，后续工作也已列出。
 
 ## 参考资源
 
@@ -187,7 +203,7 @@ skills/<skill-name>/
 └── examples/       # 示例代码（只读，不要运行）
 scripts/validate.mjs            # 仓库自检
 scripts/validate-manifests.mjs  # 多 agent 清单自检
-benchmark/                      # 56 道考题 + 判分 + 验证报告
+benchmark/                      # 63 道考题 + 判分 + 验证报告
 ```
 
 ## 想贡献？
@@ -204,7 +220,25 @@ node scripts/validate.mjs
 node scripts/validate-manifests.mjs
 ```
 
+## 引用
+
+如果本仓库或论文对你的工作有帮助，请引用：
+
+```bibtex
+@misc{liu2026evaluating,
+  title         = {Evaluating Agent Skills for Version-Specific Plugin Migration: A Retrospective Study},
+  author        = {Liu, Beiming and Li, Haihao and Chen, Minjie and Chen, Ning and Wang, Yiran and Ye, Jiming and Zhang, Puzhao and Wang, Tongtao and Gao, Sheng and Jin, William and Mu, Weihao and Liu, Chengzhi and Xia, Yucheng and Wang, Guangren and Fan, Chaoyang and Huang, Changfeng and Lin, Xunming and Shen, Yuanjie},
+  year          = {2026},
+  eprint        = {2609.30120},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  url           = {https://arxiv.org/abs/2609.30120}
+}
+```
+
 ## 致谢
+
+论文作者与所有提交过 PR 的贡献者共同建设了本仓库，完整名单见 [Contributors](https://github.com/oh-my-dsh/dsh-plugin-upgrade-skill/graphs/contributors)。
 
 - [@hikariming](https://github.com/hikariming) — 仓库维护与 dsh 技能检索站 [dshfind.com](https://dshfind.com)
 - [@ccch1mneyyy](https://github.com/ccch1mneyyy) — issue #1 提案和 alpha 版本卡片
