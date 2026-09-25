@@ -6,9 +6,10 @@
 % Not yet matched to a GitHub account: Minjie Chen, Weihao Mu, Xunming Lin, Yuanjie Shen.
 % Author order confirmed by the first author on 2026-09-24. Company names for
 % affiliations 11 and 16 are pinyin transliterations pending confirmation.
-\author[1]{Beiming~Liu\thanks{Corresponding author: \texttt{lbm21@tsinghua.org.cn}}}
+% Updated 2026-09-25: first author affiliation changed to CFCA; Qianyu Xiao (CFCA) added as last and corresponding author.
+\author[1]{Beiming~Liu}
 \author[2]{Haihao~Li\thanks{Equal contribution.}}
-\author[3]{Minjie~Chen\protect\footnotemark[2]}
+\author[3]{Minjie~Chen\protect\footnotemark[1]}
 \author[4]{Ning~Chen}
 \author[5]{Yiran~Wang}
 \author[6]{Jiming~Ye}
@@ -24,7 +25,8 @@
 \author[17]{Changfeng~Huang}
 \author[18]{Xunming~Lin}
 \author[19]{Yuanjie~Shen}
-\affil[1]{Tsinghua University}
+\author[1]{Qianyu~Xiao\thanks{Corresponding author: \texttt{xiaoqianyu@cfca.com.cn}}}
+\affil[1]{China Financial Certification Authority (CFCA)}
 \affil[2]{Fudan University}
 \affil[3]{PetroChina Southwest Oil \& Gasfield Company}
 \affil[4]{Jilin University}

@@ -25,9 +25,9 @@
 \title{Evaluating Agent Skills for Version-Specific Plugin Migration: A Retrospective Study}
 % Author order confirmed by the first author on 2026-09-24. Company names for
 % affiliations 11 and 16 are pinyin transliterations pending confirmation.
-\author[1]{Beiming~Liu\thanks{Corresponding author: \texttt{lbm21@tsinghua.org.cn}}}
+\author[1]{Beiming~Liu}
 \author[2]{Haihao~Li\thanks{Equal contribution.}}
-\author[3]{Minjie~Chen\protect\footnotemark[2]}
+\author[3]{Minjie~Chen\protect\footnotemark[1]}
 \author[4]{Ning~Chen}
 \author[5]{Yiran~Wang}
 \author[6]{Jiming~Ye}
@@ -43,7 +43,8 @@
 \author[17]{Changfeng~Huang}
 \author[18]{Xunming~Lin}
 \author[19]{Yuanjie~Shen}
-\affil[1]{Tsinghua University}
+\author[1]{Qianyu~Xiao\thanks{Corresponding author: \texttt{xiaoqianyu@cfca.com.cn}}}
+\affil[1]{China Financial Certification Authority (CFCA)}
 \affil[2]{Fudan University}
 \affil[3]{PetroChina Southwest Oil \& Gasfield Company}
 \affil[4]{Jilin University}
@@ -143,7 +144,7 @@ We distinguish three evidence tiers. The focal comparison answers the research q
 \item Supplementary evidence: a newer 16-task Qwen comparison with scored records but without archived original answers and judgment reasons, plus three GLM-5.3 rounds with a change of judge in round three. Neither is pooled into the focal estimate.
 \end{enumerate}
 
-\section{Method}
+\section{Method}\label{sec:method}
 We report the study as a retrospective single-case study~\citep{runeson2009case}; in the terms of \citet{stol2018abc}, it is a field study that favors realism over generalizability, such studies are covered by the case-study standard of the ACM SIGSOFT empirical standards~\citep{ralph2020empirical}. Figure~\ref{fig:overview} summarizes the focal study design end to end: a seeded selection from the static task pool, paired execution under two conditions, criterion-level grading, and the three analyses that answer the research questions. The subsections below follow this flow.
 
 \begin{figure}[H]
@@ -322,7 +323,7 @@ The judges differ in both direction and extent of re-scoring. Claude assigns low
 
 Agreement does not establish accuracy. The original judge awards full credit to 300 of 328 decisions (91.5\%), so high exact agreement must be read alongside the chance-adjusted weighted $\kappa$. Against the 56 decisions in the non-blind author review, GLM, Claude, and GPT match 53, 51, and 48; that review was seeded by GLM's decisions and is no gold standard. Both cross-family re-judgments preserve a positive descriptive direction, but the magnitude varies, and the judges share a rubric whose validity is not established by their agreement. The original judgment remains the primary recorded endpoint.
 
-The 64 formal execution records contain 3,185,993 no-skill and 12,320,379 skill \texttt{subagent\_tokens}, a ratio of 3.87. The corresponding sums of recorded task durations are 9,446 and 11,450 seconds, a ratio of 1.21. The token field does not separately define input, output, and cache accounting, so it is not a billing-cost measure. Summed task durations are not end-to-end wall-clock time under overlapping execution. Pilot records are excluded.
+The 64 formal execution records contain 3,185,993 no-skill and 12,320,379 skill \path{subagent_tokens}, a ratio of 3.87. The corresponding sums of recorded task durations are 9,446 and 11,450 seconds, a ratio of 1.21. The token field does not separately define input, output, and cache accounting, so it is not a billing-cost measure. Summed task durations are not end-to-end wall-clock time under overlapping execution. Pilot records are excluded.
 
 Together, these results answer RQ3 with a conditional assessment: higher recorded reward accompanies greater recorded token use in the focal configuration. The bounded review's replacement intervals touch or cross zero, whereas both label-blinded LLM re-judgments retain positive intervals under the specified task bootstrap. These analyses probe different sources of grading sensitivity and do not establish a single corrected score. The archive supports neither a monetary cost-benefit estimate nor a claim that the added resource use produces more successful repairs.
 
