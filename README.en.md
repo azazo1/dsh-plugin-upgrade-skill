@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | **English**
 
-[![arXiv](https://img.shields.io/badge/arXiv-2609.30120-b31b1b.svg)](https://arxiv.org/abs/2609.30120) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ![Skills](https://img.shields.io/badge/skills-10-blue) ![Upgrade cards](https://img.shields.io/badge/upgrade%20cards-165-blue) ![Benchmark](https://img.shields.io/badge/benchmark-63%20tasks-blue)
+[![arXiv](https://img.shields.io/badge/arXiv-2609.30120-b31b1b.svg)](https://arxiv.org/abs/2609.30120) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ![Skills](https://img.shields.io/badge/skills-11-blue) ![Upgrade cards](https://img.shields.io/badge/upgrade%20cards-189-blue) ![Benchmark](https://img.shields.io/badge/benchmark-63%20tasks-blue)
 
 **Agent skills that teach AI to upgrade your DSH plugins.** Community-built.
 
@@ -12,9 +12,9 @@
 
 ## What's in this repo
 
-- **165 upgrade cards**: each records one real pitfall: what breaks, why, how to fix it, and which version the evidence comes from. Cards are ordered along the version corridor from 0.1.0-rc.8 to 0.1.6-alpha.1; per-edge counts and status are in the [coverage table](#which-versions-are-covered).
+- **189 upgrade cards**: each records one real pitfall: what breaks, why, how to fix it, and which version the evidence comes from. Cards are ordered along the version corridor from 0.1.0-rc.8 to 0.1.7-rc.1; per-edge counts and status are in the [coverage table](#which-versions-are-covered).
 - **13 general-purpose countermeasures**: version-independent problems (back up first, run old and new side by side, what to do when startup hangs) collected in one checklist.
-- **10 skills**: a unified workflow selects and coordinates stages; eight skills check upgrades, write, test, and release plugins, diff two DSH versions, debug runtime failures, integrate heavy dependencies, and turn upgrade experience into benchmark tasks; one framework-agnostic migration methodology without DSH-specific facts serves as the control arm for comparative experiments.
+- **11 skills**: a unified workflow selects and coordinates stages; nine skills check upgrades, write, test, and release plugins, diff two DSH versions, debug runtime failures, integrate heavy dependencies, sweep the installed plugin fleet after a host upgrade, and turn upgrade experience into benchmark tasks; one framework-agnostic migration methodology without DSH-specific facts serves as the control arm for comparative experiments.
 - **63 auto-graded benchmark tasks**: 22 static diagnosis, 14 mixed, and 27 hands-on tasks, including two real migrations (dsh-web and dsh-data-agent).
 - **A paper with fully traceable evidence**: raw answers, criterion-level grading, and cross-model re-grading are public and recomputable; see [Paper](#paper).
 
@@ -116,7 +116,7 @@ registration remains a separate external-publication step. On a proxied network,
 Node 24+ and `node --use-env-proxy`; Node 20-23 built-in `fetch` is not guaranteed to consume proxy
 environment variables. A failed, oversized, or invalid-v2 query is unknown/not checked, never available.
 
-## What each of the 10 skills does
+## What each of the 11 skills does
 
 | Skill | What it's for |
 | --- | --- |
@@ -127,6 +127,7 @@ environment variables. A failed, oversized, or invalid-v2 query is unknown/not c
 | [plugin-release](skills/plugin-release/) | Packaging and releasing a plugin, with automatic pre-release checks |
 | [dsh-upgrade-audit](skills/dsh-upgrade-audit/) | Diffs two dsh versions to see what actually changed, as evidence for the upgrade cards |
 | [plugin-runtime-debug](skills/plugin-runtime-debug/) | Debugging plugin runtime failures against host API contracts (coordinate/projection mismatches, stale version chips, phantom entries) |
+| [plugin-fleet-sweep](skills/plugin-fleet-sweep/) | Sweeping the whole installed plugin fleet after a host upgrade: static sweep for renamed/removed APIs, per-plugin driven-browser assertions, and a per-plugin fix/release loop |
 | [plugin-heavy-dep](skills/plugin-heavy-dep/) | Wiring heavy dependencies (like mermaid) into lightweight plugins, with a lazy-loading integration checklist |
 | [dsh-benchmark-case](skills/dsh-benchmark-case/) | Turns a plugin's real upgrade experience (or an existing version card) into one auto-graded benchmark task (fixture + instruction + judge + solution) |
 | [generic-migration](skills/generic-migration/) | Framework-agnostic plugin migration methodology (inventory coupling points, read the version corridor, verify in layers) with no DSH-specific facts; used as the control arm in comparative experiments |
@@ -150,9 +151,13 @@ environment variables. A failed, oversized, or invalid-v2 query is unknown/not c
 | 0.1.5-alpha.2 → 0.1.5-rc.1 | 📝 Draft | [v0.1.5-rc.1.md](skills/plugin-upgrade/references/v0.1.5-rc.1.md) | 5 draft cards (base default agent model id moves to `deepseek-flash`; the adapter catalog gains V41 Flash with image input, in-history system prompts and no gateway probe; document renderers gain a required `scrollportRef`; sidebar guide entries gain an optional `description`; negative evidence plus a 17-repository fleet verification record). This edge is 17 commits |
 | 0.1.5-rc.1 → 0.1.5-rc.2 | 📝 Draft | [v0.1.5-rc.2.md](skills/plugin-upgrade/references/v0.1.5-rc.2.md) | 6 draft cards (the feedback surface's injected contract loses `toggle`/`acknowledge` and `openDialog` gains a required `rating`; both ratings confirm in the dialog and a failed submission becomes a 6s warning toast; `FileTypeIcon`'s 48 code categories move to the design-export artwork; the completed-turn footer and file-section spacing become a 20/16/20px contract; `service-stability` is re-labelled in both languages; plus negative evidence that no Host-plane surface changed) |
 | 0.1.5-rc.2 → 0.1.6-alpha.1 | 📝 Draft | [v0.1.6-alpha.1.md](skills/plugin-upgrade/references/v0.1.6-alpha.1.md) | 38 draft cards (the widest edge carded here so far: 800 commits, 4015 changed files). Host: `agent/session-start` deleted and `agent/created` made serial + awaited, `auditStartupEntries` replaces the `assertEntries*` helpers, synchronous session-event reads deprecated, `registerMessageProjection()` added with a refusal for content-rewriting events that lack a registered interpreter, `session-log-deepseek` uploads by default. Runtime: `codeRuntime`→`ptcRuntime` with `run` split into `resolve`/`run`, async `confine` and `ShellExecutor.start`, subprocess `terminalEnvironment()` + optional control channel, `workflow-ptc` replacing the worker-thread provider, MCP 2.0 SDK, new `ctx.mcpResources` and `ctx.ssh`. LLM: adapters report `IMAGE_OFFLOAD_REQUIRED`, `deepseek-official` defaults to the Anthropic Messages protocol, images move to the v41 token grid, projection `stateVersion` 5, `AssistantProvenance`→`AssistantProviderMetadata`. Web Client: provenance→producer/provider metadata, required `CommandClaim.name`, new permission and keyed guide slots, `reconnectLabel` removal, context-aware diffs, `?fixture` mode retired. Packaging: base row swap, `image-offload` (required-on-read `image/offload`) and `mcp-resources` mounted by default, `tool-ralph` disabled, Web bundle drops the `code-runtime` row, a +22/−7 package ledger, headless `--session-id`/`--json`, public package manifest rebuild, experimental publication flipped to a denylist, native dependency floor `^0.1.4`→`^0.1.6`; plus negative evidence for the unmoved surfaces) |
+| 0.1.6-alpha.1 → 0.1.6-alpha.2 | 📝 Draft | [v0.1.6-alpha.2.md](skills/plugin-upgrade/references/v0.1.6-alpha.2.md) | 4 draft cards (`SessionListState.current` removed — resolve the main Session through `uiSession.adapter.current`; global standard props swap `useSessionPendingInteraction` for `useSessionStatus` + `useSessionRetainInfo` while `useSessions` stays; the new Plugin Manager manages profile bundles and patch-row toggles, link-installed plugins stay outside it; npm E404 window after the GitHub release; first-hand fixes shipped in three external plugins) |
+| 0.1.6-alpha.2 → 0.1.7-alpha.1 | 📝 Draft | [v0.1.7-alpha.1.md](skills/plugin-upgrade/references/v0.1.7-alpha.1.md) | 11 draft cards (every client primitives `*16` icon export removed, `workspaceFiles` reads unify on `readBytes`, settings move into the Profile's plugin configuration, bundle-declared agent presets, session log V4, the official DeepSeek adapter is Messages-API only, ordered multi-patch bundles, tolerant Profile loading, locale-aware plugin metadata, custom-event attachments no longer auto-read, and two new settings-page seats `settings.launcher`/`settings.models.sign-in`; the preceding 0.1.6-alpha.1 → 0.1.6-alpha.2 edge is carded separately) |
+| 0.1.7-alpha.1 → 0.1.7-alpha.2 | 📝 Draft | [v0.1.7-alpha.2.md](skills/plugin-upgrade/references/v0.1.7-alpha.2.md) | 4 draft cards (`spill-policy` moves to `maxInlineTokens`, vendored auto-updates pin to same-minor patches, first install auto-selects an npm registry, client bundles cached at host boot with automatic page reconnect) |
+| 0.1.7-alpha.2 → 0.1.7-rc.1 | 📝 Draft | [v0.1.7-rc.1.md](skills/plugin-upgrade/references/v0.1.7-rc.1.md) | 5 draft cards (DSH peer ranges enforced at install and startup, with the `^0.1.7` trap under the host's semver ≥ 7.8.3; three-phase toolview owners; transient conversation starts; four work-detail modes; bounded silent pnpm runs in the Plugin Manager) |
 | Cross-version countermeasures | ✅ Done | [rollup-0.1.2.md](skills/plugin-upgrade/references/rollup-0.1.2.md) | 13 items (running old and new side by side, back up first, what to do when startup hangs, etc.) |
-| 0.1.1 → 0.1.2 final | 🔄 Waiting for the official release | — | dsh 0.1.2 final isn't out yet (npm `latest` is still rc.1; the corridor now extends to 0.1.6-alpha.1 with draft cards); we'll re-verify everything once 0.1.2 final is out |
-| 0.1.6-alpha.1 → later versions (0.1.5/0.1.6 final, etc.) | 📝 Up for grabs | — | Want to help write cards? See the [contributing guide](CONTRIBUTING.md) |
+| 0.1.1 → 0.1.2 final | 🔄 Waiting for the official release | — | dsh 0.1.2 final isn't out yet (npm `latest` is still rc.1; the corridor now extends to 0.1.7-rc.1 with draft cards); we'll re-verify everything once 0.1.2 final is out |
+| 0.1.7-rc.1 → later versions (0.1.6/0.1.7 final, etc.) | 📝 Up for grabs | — | Want to help write cards? See the [contributing guide](CONTRIBUTING.md) |
 
 ## Benchmark
 
